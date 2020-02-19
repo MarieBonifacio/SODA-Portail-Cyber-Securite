@@ -94,7 +94,7 @@ class Article {
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,
                 ), array(
-                    "id"  =>  $this->id,
+                    "id" => $this->id,
                 )
             );
             
