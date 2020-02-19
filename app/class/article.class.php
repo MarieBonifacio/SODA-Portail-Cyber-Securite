@@ -4,6 +4,7 @@ class Article {
     private $id;
     private $title;
     private $content;
+    private $imgPath;
     private $view;
     private $author;
     private $createdAt;
@@ -20,6 +21,7 @@ class Article {
         $this->id = $r['id'];
         $this->title = $r['title'];
         $this->content = $r['content'];
+        $this->imgPath = $r['img_path'];
         $this->view = $r['view'];
         $this->author = (new User())->selectById($r['id']);
         $this->createAt = $r['create_at'];
@@ -41,6 +43,13 @@ class Article {
     }
     public function setContent($content){
         $this->content = $content;
+    }
+
+    public function getImgPath(){
+        return $this->imgPath;
+    }
+    public function setImgPath($imgPath){
+        $this->imgPath = $imgPath;
     }
 
     public function getViewt(){
@@ -79,25 +88,26 @@ class Article {
                     "id"  =>  $this->id,
                     "title" => $this->title,
                     "content" => $this->content,
+                    "img_path" => $this->imgPath,
                     "view" => $this->view,
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,
-                )
-            );
+                    )
+                );
         }else{
             global $wpdb;
             $wpdb->update(
                 'article', array(
                     "title" => $this->title,
                     "content" => $this->content,
+                    "img_path" => $this->imgPath,
                     "view" => $this->view,
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,
                 ), array(
                     "id" => $this->id,
                 )
-            );
-            
+            ); 
         }
     }
 
@@ -120,7 +130,7 @@ class Article {
         return '
             <div>
                 <h2>'.$this->title.'</h2>
-                <p>vues</p>
+                <p>'.$this->views.'</p>
                 <p>'.$this->author->getName().'</p>
                 <p>'.substr($this->content, 0, 100).'...</p>
             </div>
