@@ -12,6 +12,11 @@ body
     overflow: hidden;
 }
 
+a *
+{
+    font-family: 'Montserrat', sans-serif;
+}
+
 nav
 {
     position: relative;
@@ -46,24 +51,22 @@ nav
             background: rgba(19, 26, 40, 0.5);
             z-index: 2;
         }
-        .connexion
+        .connection
         {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
             position: relative;
             height: 100%;
-            width: 50%;
+            width: 60%;
             form
             {
+                position: absolute;
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
-                position: relative;
                 width: 80%;
                 height: 100%;
                 font-weight: 600;
                 color: white;
+                right: 10px;
                 input
                 {
                     position: relative;
@@ -83,10 +86,14 @@ nav
                     font-size: 15px;
                     text-align: center;
                 }
+                div:nth-child(2)
+                {
+                    position: relative;
+                }
                 .mdpForget
                 {
                     position: absolute;
-                    bottom: 5px;
+                    bottom: -100%;
                     right: 5%;    
                     color: #7AB9C9;
                     text-decoration: none;
@@ -97,22 +104,24 @@ nav
                 {
                     font-weight: 900;
                 }
-            }
-            .loginButton
-            {
-                color: #131A28;
-                text-decoration: none;
-                position: relative;
-                background: #EBB94A;
-                padding: 5px 20px;
-                border-radius: 15px;
-                font-weight: 600;
-                transition: .2s;
-            }
-            .loginButton:hover
-            {
-                cursor: pointer;
-                background: white;
+                input[type=submit]
+                {
+                    position: relative;
+                    background: #EBB94A;
+                    border-bottom: none;
+                    border-radius: 20px;
+                    padding: 5px 20px;
+                    width: 150px;
+                    transition: .2s;
+                    color: #131A28;
+                    font-weight: 600;
+                    font-family: "Montserrat", sans-serif;
+                }
+                input[type=submit]:hover
+                {
+                    background: white;
+                    cursor: pointer;
+                }
             }
         }
     }
