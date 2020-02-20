@@ -243,6 +243,17 @@ nav .above .connection form input[type=submit]:hover {
   text-align: center;
 }
 
+.insc .form form div select {
+  background: #EBB94A;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 200px;
+}
+
 .insc .form form input[type=submit] {
   margin-top: 50px;
   background: #EBB94A;

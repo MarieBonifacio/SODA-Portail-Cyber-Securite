@@ -47,7 +47,7 @@
             </div>
             <div>
                 <label for="">Identifiant :</label>  
-                <input type="text" name="id">
+                <input type="text" name="id_user">
             </div>
             <div>
                 <label for="">Adresses mail :</label>
@@ -58,23 +58,13 @@
                 <input type="password" name="first_password">
             </div>
             <div>
-                <!-- <label for="">Site Armatis :</label>
-                <input class="list" list="sites" placeholder="Votre site"> 
-                <datalist id="sites">
-                    <option value="Auxerre">
-                    <option value="Bordeaux">
-                    <option value="Boulogne-Sur-Mer">
-                    <option value="Caen">
-                    <option value="Calais">
-                </datalist> -->
-                <label for="pet-select">Choose a pet :</label>
-
-                <select name="sites" id="sites">
+                <label for="pet-select">Votre site :</label>
+                <select name="location" id="sites">
                     <option value="">Veuillez choisir votre site</option>
                     <?php 
-                    
-                    $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
 
+                    $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
+                    
                     for($i=0; $i<count($sites); $i++){
                         echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
                     }

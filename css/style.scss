@@ -200,23 +200,17 @@ nav
                     font-size: 15px;
                     text-align: center;
                 }
-                // .list
-                // {
-                //     background: #EBB94A;
-                //     padding: 5px 0px;
-                //     border-radius: 20px;
-                //     border-bottom: none;
-                // }
-                // .list:focus
-                // {
-                //     color: #131A28;
-                //     font-weight: 600;
-                // }
-                // .list:not(:focus)
-                // {
-                //     color: #131A28;
-                //     font-weight: 600;
-                // }
+                select
+                {
+                    background: #EBB94A;
+                    padding: 5px 20px;
+                    border: none;
+                    border-radius: 20px;
+                    font-size: 10px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    width: 200px;
+                }
             }
             input[type=submit]
             {
