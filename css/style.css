@@ -247,26 +247,34 @@ nav .above .connection form input[type=submit]:hover {
   position: relative;
   background: #EBB94A;
   width: 60%;
-  border-radius: 20px;
 }
 
 .insc .form form div .select select {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
-  -webkit-appearance: none;
+  background: #EBB94A;
+  color: #131A28;
   padding: 5px 20px;
-  cursor: pointer;
+  width: 100%;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Muli", sans-serif;
+  -webkit-appearance: none;
+  outline: none;
 }
 
 .insc .form form div .select select:focus {
   outline: none;
 }
 
-.insc .form form div .select:before {
-  content: '';
+.insc .form form div .select select:before {
+  content: "\f0dd";
+  position: absolute;
+  background: #131A28;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  font-family: "Font Awesome 5 Free";
 }
 
 .insc .form form input[type=submit] {
@@ -280,6 +288,7 @@ nav .above .connection form input[type=submit]:hover {
   font-weight: bold;
   -webkit-transition: .2s;
   transition: .2s;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .insc .form form input[type=submit]:hover {

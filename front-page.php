@@ -14,7 +14,7 @@
             <img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
             <div class="filter"></div>
             <div class="connection"> 
-                <form action="app/connect.php" method="post">
+                <form action="<?php echo get_template_directory_uri(); ?>/app/connect.php" method="post">
                     <div> 
                         <label for="">Adresse-mail :</label>
                         <input type="mail" name="mail">
