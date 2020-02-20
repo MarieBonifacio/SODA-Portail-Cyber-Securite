@@ -218,6 +218,7 @@ nav
                         -webkit-appearance: none;
                         outline: none;
                         border-radius: 20px;
+                        cursor: pointer;
                     }
                     select:focus
                     {
@@ -230,6 +231,7 @@ nav
                     color: #192231;
                     font-size: 20px;
                     right: 10px;
+                    transition: .1s;
                 }
             }
             input[type=submit]
