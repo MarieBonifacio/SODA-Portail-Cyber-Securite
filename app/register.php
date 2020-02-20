@@ -10,9 +10,9 @@ if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST[
     $r = $wpdb->get_row("SELECT * FROM 'user' where mail="$mail"");
 
     if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $mail)){
-        echo "L'adresse mail n'est pas valide.";
+        echo("L'adresse mail n'est pas valide.");
     }elseif(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$#', $password)){
-        echo"Votre mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial."
+        echo("Votre mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.");
     }elseif($r==null){
         $newUser = new User();
         $newUser->setName($name);
@@ -26,7 +26,7 @@ if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST[
     }
 }else{
     echo("Veuillez remplir tous les champs");
-    header("Location:accueil")
+    header("Location:accueil");
 }
 
 ?>
