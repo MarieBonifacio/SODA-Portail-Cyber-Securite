@@ -154,7 +154,7 @@ nav .above .connection form input[type=submit]:hover {
   color: white;
 }
 
-.insc #insc_conn {
+.insc .insc_conn {
   position: relative;
   left: 7%;
   width: 40%;
