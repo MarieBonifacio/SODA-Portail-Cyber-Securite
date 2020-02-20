@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-
+require('../../../../wp-load.php');
 class User {
     private $id;
     private $role;
@@ -93,7 +93,7 @@ class User {
     public function save(){
         if ($this->id == null){
             global $wpdb;
-            $wpdb->insert(
+            $test = $wpdb->insert(
                 'user', array(
                     "role" => $this->role,
                     "name" => $this->name,
@@ -101,11 +101,13 @@ class User {
                     "mail" => $this->mail,
                     "password" => $this->password,
                     "location" => $this->location,
-                    "id_user" => $this->idUser,
+                    "id_number" => $this->idUser,
                     "img_path" => $this->imgPath,
                     "created_at" => $this->created_at,
                 )
             );
+
+            echo '---'.$test.'---';
         }else{
             global $wpdb;
             $wpdb->update(
@@ -124,6 +126,7 @@ class User {
                 )
             );  
         }
+        echo 'coucou';
     }
 
     public function delete(){
