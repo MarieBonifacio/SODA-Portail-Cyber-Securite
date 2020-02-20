@@ -22,10 +22,10 @@ class User {
         $this->name = $name;
     }
 
-    public function getlastName(){
+    public function getLastName(){
         return $this->lastName;
     }
-    public function setlastName($lastName){
+    public function setLastName($lastName){
         $this->lastname = $lastName;
     }
 
@@ -40,7 +40,7 @@ class User {
         return $this->password;
     }
     public function setPassword($password){
-        $this->paswword = $password;
+        $this->paswword = password_hash($password);
     }
 
     public function getLocation(){
