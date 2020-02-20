@@ -36,7 +36,7 @@
 
     <div class="form">
         <h2>Inscription</h2>  
-        <form action="app/register.php" method="post">
+        <form action="<?php echo get_template_directory_uri(); ?>/app/register.php" method="post">
             <div>
                 <label for="">Nom :</label>
                 <input type="text" name="last_name">

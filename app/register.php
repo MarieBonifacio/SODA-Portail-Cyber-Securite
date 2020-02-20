@@ -1,13 +1,19 @@
 <?php
-if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST['last_name']) AND isset($_POST['password']) AND isset($_POST['location'])){
+define('WP_USE_THEMES', false);
+global $wpdb;
+require('class/user.class.php');
+require('../../../../wp-load.php');
+
+if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST['last_name']) AND isset($_POST['first_password']) AND isset($_POST['location'])){
+    global $wpdb;
 
     $mail = $_POST['first_mail'];
-    $name = htmlspecialchars($_POST['first_name'];
-    $lastName = htmlspecialchars($_POST['last_Name'];
-    $password = $_POST['password'];
+    $name = htmlspecialchars($_POST['first_name']);
+    $lastName = htmlspecialchars($_POST['last_name']);
+    $password = $_POST['first_password'];
     $location = $_POST['location'];
 
-    $r = $wpdb->get_row("SELECT * FROM 'user' where mail="$mail"");
+    $r = $wpdb->get_row("SELECT * FROM 'user' where mail='$mail'");
 
     if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $mail)){
         echo("L'adresse mail n'est pas valide.");
@@ -20,13 +26,14 @@ if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST[
         $newUser->setMail($mail);
         $newUser->setPassword($password);
         $newUser->setLocation($location);
-        $newUser->save()
+        $newUser->save();
+        echo 'test';
     }else{
         echo("Utilisateur déjà existant");
     }
+
 }else{
     echo("Veuillez remplir tous les champs");
-    header("Location:accueil");
 }
 
 ?>

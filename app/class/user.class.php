@@ -14,7 +14,9 @@ class User {
     private $created_at;
 
     public function selectById($id){
+        $test = 
         $r = $wpdb->get_row("SELECT * FROM 'user' where id=".$id."");
+        echo '---'.$test.'---';
         $this->id = $r['id'];
         $this->title = $r['role'];
         $this->content = $r['name'];
@@ -24,7 +26,7 @@ class User {
         $this->view = $r['location'];
         $this->view = $r['id_number'];
         $this->view = $r['img_path'];
-        $this->createAt = $r['create_at'];
+        $this->createAt = $r['created_at'];
     }
 
     public function getId(){
@@ -56,7 +58,7 @@ class User {
         return $this->password;
     }
     public function setPassword($password){
-        $this->paswword = password_hash($password);
+        $this->paswword = password_hash($password,PASSWORD_BCRYPT);
     }
 
     public function getLocation(){
@@ -89,35 +91,34 @@ class User {
 
 
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
             $wpdb->insert(
                 'user', array(
-                    "id"  => $this->id,
-                    "role" => $this->role;
-                    "name" => $this->name;
-                    "lastName" => $this->lastName;
-                    "mail" => $this->mail;
-                    "password" => $this->password;
-                    "location" => $this->location;
-                    "id_user" => $this->idUser;
-                    "img_path" => $this->imgPath;
-                    "created_at" => $this->created_at;
+                    "role" => $this->role,
+                    "name" => $this->name,
+                    "last_name" => $this->lastName,
+                    "mail" => $this->mail,
+                    "password" => $this->password,
+                    "location" => $this->location,
+                    "id_user" => $this->idUser,
+                    "img_path" => $this->imgPath,
+                    "created_at" => $this->created_at,
                 )
             );
         }else{
             global $wpdb;
             $wpdb->update(
                 'user', array(
-                    "role" => $this->role;
-                    "name" => $this->name;
-                    "lastName" => $this->lastName;
-                    "mail" => $this->mail;
-                    "password" => $this->password;
-                    "location" => $this->location;
-                    "id_user" => $this->idUser;
-                    "img_path" => $this->imgPath;
-                    "created_at" => $this->created_at;
+                    "role" => $this->role,
+                    "name" => $this->name,
+                    "last_name" => $this->lastName,
+                    "mail" => $this->mail,
+                    "password" => $this->password,
+                    "location" => $this->location,
+                    "id_user" => $this->idUser,
+                    "img_path" => $this->imgPath,
+                    "created_at" => $this->created_at,
                 ), array(
                     "id" => $this->id,
                 )
@@ -125,7 +126,7 @@ class User {
         }
     }
 
-    public static function delete(){
+    public function delete(){
         global $wpdb;
         $wpdb->delete( 'user', array( 'id' => $id ) );
     }
