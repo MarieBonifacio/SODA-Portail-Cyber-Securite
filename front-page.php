@@ -58,19 +58,21 @@
                 <input type="password" name="first_password">
             </div>
             <div>
-                <label for="pet-select">Votre site :</label>
-                <select name="location" id="sites">
-                    <option value="">Veuillez choisir votre site</option>
-                    <?php 
-
-                    $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
-                    
-                    for($i=0; $i<count($sites); $i++){
-                        echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
-                    }
-
-                    ?>
-                </select>
+                <label for="location">Votre site :</label>
+                <div class="select">
+                    <select name="location" id="sites">
+                        <option value="">Veuillez choisir votre site</option>
+                        <?php 
+    
+                        $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
+    
+                        for($i=0; $i<count($sites); $i++){
+                            echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
+                        }
+    
+                        ?>
+                    </select>
+                </div>
             </div>
             <input type="submit" value="S'inscrire">
         </form>

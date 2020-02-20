@@ -243,15 +243,30 @@ nav .above .connection form input[type=submit]:hover {
   text-align: center;
 }
 
-.insc .form form div select {
+.insc .form form div .select {
+  position: relative;
   background: #EBB94A;
-  padding: 5px 20px;
-  border: none;
+  width: 60%;
   border-radius: 20px;
-  font-size: 10px;
-  text-transform: uppercase;
-  font-weight: 600;
-  width: 200px;
+}
+
+.insc .form form div .select select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  -webkit-appearance: none;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.insc .form form div .select select:focus {
+  outline: none;
+}
+
+.insc .form form div .select:before {
+  content: '';
 }
 
 .insc .form form input[type=submit] {
