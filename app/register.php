@@ -1,8 +1,7 @@
 <?php
-if(isset($_POST['mail']) AND isset($_POST['role']) AND isset($_POST['name']) AND isset($_POST['lastName']) AND isset($_POST['password']) AND isset($_POST['location'])){
+if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST['last_name']) AND isset($_POST['password']) AND isset($_POST['location'])){
 
     $mail = $_POST['mail'];
-    $role = $_POST['role'];
     $name = htmlspecialchars($_POST['name'];
     $lastName = htmlspecialchars($_POST['lastName'];
     $password = $_POST['password'];
