@@ -13,7 +13,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     $password = $_POST['first_password'];
     $location = $_POST['location'];
 
-    $r = $wpdb->get_row("SELECT * FROM 'user' where mail='$mail'");
+    $r = $wpdb->get_results("SELECT * FROM user where mail='".$mail."'"); 
 
     if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail)){
         echo("L'adresse mail n'est pas valide.");
@@ -27,7 +27,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         $newUser->setPassword($password);
         $newUser->setLocation($location);
         $newUser->save();
-        echo 'test';
     }else{
         echo("Utilisateur déjà existant");
     }

@@ -106,8 +106,6 @@ class User {
                     "created_at" => $this->created_at,
                 )
             );
-
-            echo '---'.$test.'---';
         }else{
             global $wpdb;
             $wpdb->update(
@@ -126,7 +124,6 @@ class User {
                 )
             );  
         }
-        echo 'coucou';
     }
 
     public function delete(){
