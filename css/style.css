@@ -247,6 +247,7 @@ nav .above .connection form input[type=submit]:hover {
   position: relative;
   background: #EBB94A;
   width: 60%;
+  border-radius: 20px;
 }
 
 .insc .form form div .select select {
@@ -255,26 +256,22 @@ nav .above .connection form input[type=submit]:hover {
   padding: 5px 20px;
   width: 100%;
   border: none;
-  font-size: 15px;
   font-weight: 600;
   font-family: "Muli", sans-serif;
   -webkit-appearance: none;
   outline: none;
+  border-radius: 20px;
 }
 
 .insc .form form div .select select:focus {
   outline: none;
 }
 
-.insc .form form div .select select:before {
-  content: "\f0dd";
+.insc .form form div i {
   position: absolute;
-  background: #131A28;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 50px;
-  font-family: "Font Awesome 5 Free";
+  color: #192231;
+  font-size: 20px;
+  right: 10px;
 }
 
 .insc .form form input[type=submit] {

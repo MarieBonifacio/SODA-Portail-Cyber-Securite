@@ -6,7 +6,6 @@
     <title>Inscription/Connexion</title>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
-
 </head>
 <body>
     <nav>
@@ -69,9 +68,9 @@
                         for($i=0; $i<count($sites); $i++){
                             echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
                         }
-    
                         ?>
                     </select>
+                    <i class="fas fa-sort-down"></i>
                 </div>
             </div>
             <input type="submit" value="S'inscrire">
@@ -79,5 +78,6 @@
 
     </div>
 </section>
+<script src="https://kit.fontawesome.com/06909fb3de.js"></script>
 </body>
 </html>

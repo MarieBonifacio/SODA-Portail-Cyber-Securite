@@ -205,6 +205,7 @@ nav
                     position: relative;
                     background: #EBB94A;
                     width: 60%;
+                    border-radius: 20px;
                     select
                     {
                         background: #EBB94A;
@@ -212,27 +213,23 @@ nav
                         padding: 5px 20px;
                         width: 100%;
                         border: none;
-                        font-size: 15px;
                         font-weight: 600;
                         font-family: "Muli", sans-serif;
                         -webkit-appearance: none;
                         outline: none;
+                        border-radius: 20px;
                     }
                     select:focus
                     {
                         outline: none;
                     }
-                    select:before
-                    {
-                        content: "\f0dd";
-                        position: absolute;
-                        background: #131A28;
-                        top: 0;
-                        right: 0;
-                        width: 50px;
-                        height: 50px;
-                        font-family: "Font Awesome 5 Free";
-                    }
+                }
+                i
+                {
+                    position: absolute;
+                    color: #192231;
+                    font-size: 20px;
+                    right: 10px;
                 }
             }
             input[type=submit]
