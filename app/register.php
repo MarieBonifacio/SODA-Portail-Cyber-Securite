@@ -1,9 +1,9 @@
 <?php
 if(isset($_POST['first_mail']) AND isset($_POST['first_name']) AND isset($_POST['last_name']) AND isset($_POST['password']) AND isset($_POST['location'])){
 
-    $mail = $_POST['mail'];
-    $name = htmlspecialchars($_POST['name'];
-    $lastName = htmlspecialchars($_POST['lastName'];
+    $mail = $_POST['first_mail'];
+    $name = htmlspecialchars($_POST['first_name'];
+    $lastName = htmlspecialchars($_POST['last_Name'];
     $password = $_POST['password'];
     $location = $_POST['location'];
 
