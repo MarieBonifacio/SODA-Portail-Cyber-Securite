@@ -10,6 +10,10 @@ body {
   overflow: hidden;
 }
 
+a * {
+  font-family: 'Montserrat', sans-serif;
+}
+
 nav {
   position: relative;
   height: 12%;
@@ -52,22 +56,14 @@ nav .above .filter {
   z-index: 2;
 }
 
-nav .above .connexion {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+nav .above .connection {
   position: relative;
   height: 100%;
-  width: 50%;
+  width: 60%;
 }
 
-nav .above .connexion form {
+nav .above .connection form {
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -77,14 +73,14 @@ nav .above .connexion form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
   width: 80%;
   height: 100%;
   font-weight: 600;
   color: white;
+  right: 10px;
 }
 
-nav .above .connexion form input {
+nav .above .connection form input {
   position: relative;
   border: none;
   border-bottom: 1px solid white;
@@ -92,22 +88,26 @@ nav .above .connexion form input {
   width: 50%;
 }
 
-nav .above .connexion form input:focus {
+nav .above .connection form input:focus {
   color: #fff;
   outline: none;
   font-size: 15px;
   text-align: center;
 }
 
-nav .above .connexion form input:not(:focus) {
+nav .above .connection form input:not(:focus) {
   color: #fff;
   font-size: 15px;
   text-align: center;
 }
 
-nav .above .connexion form .mdpForget {
+nav .above .connection form div:nth-child(2) {
+  position: relative;
+}
+
+nav .above .connection form .mdpForget {
   position: absolute;
-  bottom: 5px;
+  bottom: -100%;
   right: 5%;
   color: #7AB9C9;
   text-decoration: none;
@@ -115,25 +115,27 @@ nav .above .connexion form .mdpForget {
   font-weight: 200;
 }
 
-nav .above .connexion form .mdpForget:hover {
+nav .above .connection form .mdpForget:hover {
   font-weight: 900;
 }
 
-nav .above .connexion .loginButton {
-  color: #131A28;
-  text-decoration: none;
+nav .above .connection form input[type=submit] {
   position: relative;
   background: #EBB94A;
+  border-bottom: none;
+  border-radius: 20px;
   padding: 5px 20px;
-  border-radius: 15px;
-  font-weight: 600;
+  width: 150px;
   -webkit-transition: .2s;
   transition: .2s;
+  color: #131A28;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
 }
 
-nav .above .connexion .loginButton:hover {
-  cursor: pointer;
+nav .above .connection form input[type=submit]:hover {
   background: white;
+  cursor: pointer;
 }
 
 .insc {
