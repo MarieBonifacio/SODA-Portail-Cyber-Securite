@@ -15,11 +15,11 @@
             <div class="connection"> 
                 <form action="<?php echo get_template_directory_uri(); ?>/app/connect.php" method="post">
                     <div> 
-                        <label for="">Adresse-mail :</label>
+                        <label for="">Adresse mail :</label>
                         <input type="mail" name="mail">
                     </div>
                     <div> 
-                        <label for="">Mot de passe:</label>
+                        <label for="">Mot de passe :</label>
                         <input type="password" name="mdp">
                         <a class="mdpForget" href="">Mot de passe oublié ?</a>
                     </div>
@@ -149,7 +149,7 @@
                 <input type="text" name="id_user">
             </div>
             <div>
-                <label for="">Adresses mail :</label>
+                <label for="">Adresse mail :</label>
                 <input type="mail" name="first_mail">
             </div>
             <div>

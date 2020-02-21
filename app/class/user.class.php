@@ -14,7 +14,7 @@ class User {
     private $created_at;
 
     public function selectById($id){
-        $r = $wpdb->get_row("SELECT * FROM 'user' where id=".$id."");
+        $r = $wpdb->get_row("SELECT * FROM user where id=".$id."");
         $this->id = $r['id'];
         $this->role = $r['role'];
         $this->name = $r['name'];
