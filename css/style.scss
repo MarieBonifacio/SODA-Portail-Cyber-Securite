@@ -384,18 +384,20 @@ nav
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            width: 40%;
+            width: 60%;
             div
             {
                 position: relative;
                 width: 100%;
                 display: flex;
-                justify-content: space-evenly;
+                justify-content: space-around;
                 font-weight: 600;
                 margin-bottom: 5px;
                 label
                 {
                     position: relative;
+                    left: 0;
+                    width: 40%;
                 }
                 input
                 {
