@@ -18,12 +18,16 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     $r = $wpdb->get_results("SELECT * FROM user where mail='".$mail."'"); 
 
     if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail)){
+    
         echo("L'adresse mail n'est pas valide.");
     }elseif(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$#', $password)){
+ 
         echo("Votre mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.");
     }elseif($password != $passwordChecked){
+        
         echo("votre mot de passe et sa vérification sont différents.");
     }elseif( !preg_match("#^[0-9]{1,6}$# ", $idUser)){
+  
         echo("Votre identifiant n'est pas correct");
     }elseif($r==null){
         $newUser = new User();
@@ -34,11 +38,14 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         $newUser->setPassword($password);
         $newUser->setLocation($location);
         $newUser->save();
+        
     }else{
+
         echo("Utilisateur déjà existant");
     }
 
 }else{
+
     echo("Veuillez remplir tous les champs");
 }
 
