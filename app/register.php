@@ -4,13 +4,14 @@ global $wpdb;
 require('class/user.class.php');
 require('../../../../wp-load.php');
 
-if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['first_password']) && !empty($_POST['id_user']) && !empty($_POST['location'])){
+if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['first_password']) && !empty($_POST['check_password']) && !empty($_POST['id_user']) && !empty($_POST['location'])){
     global $wpdb;
 
     $mail = $_POST['first_mail'];
     $name = htmlspecialchars($_POST['first_name']);
     $lastName = htmlspecialchars($_POST['last_name']);
     $password = $_POST['first_password'];
+    $passwordChecked = $_POST['check_password'];
     $idUser = $_POST['id_user'];
     $location = $_POST['location'];
 
@@ -20,6 +21,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         echo("L'adresse mail n'est pas valide.");
     }elseif(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$#', $password)){
         echo("Votre mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.");
+    }elseif($password != $passwordChecked){
+        echo("votre mot de passe et sa vérification sont différents.");
     }elseif( !preg_match("#^[0-9]{1,6}$# ", $idUser)){
         echo("Votre identifiant n'est pas correct");
     }elseif($r==null){
