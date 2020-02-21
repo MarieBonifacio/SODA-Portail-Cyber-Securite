@@ -141,6 +141,225 @@ nav
         position: relative;
         left: 7%;
         width: 40%;
+        #checked
+        {
+            .glowing
+            {
+                animation: fill 2s infinite ease-in-out;
+            }
+            @keyframes fill 
+            {
+                0%{
+                    fill:#3AD29F;
+                }
+                20%{
+                    fill:rgb(0, 255, 174)
+                }
+                25%{
+                    fill:rgb(11, 195, 134);
+                }
+                30%{
+                    fill: rgb(1, 255, 170);
+                }
+                35%{
+                    fill: #3AD29F;
+                }
+                100%{
+                    fill:#3AD29F;
+                }
+            }
+        }
+        #cross_1
+        {
+            animation: cross1 4s infinite ease-in-out;
+            @keyframes cross1
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                10%{
+                    transform: translate(0px, 0px);
+                }
+                15%{
+                    transform: translate(3px, 3px);
+                }
+                20%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_4
+        {
+            animation: cross4 4s infinite ease-in-out;
+            @keyframes cross4
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                50%{
+                    transform: translate(0px, 0px);
+                }
+                55%{
+                    transform: translate(-3px, 0px);
+                }
+                58%{
+                    transform: translate(3px, 0px);
+                }
+                60%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_7
+        {
+            animation: cross7 4s infinite ease-in-out;
+            @keyframes cross7
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                60%{
+                    transform: translate(0px, 0px);
+                }
+                65%{
+                    transform: translate(5px, 10px);
+                }
+                70%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_8
+        {
+            animation: cross8 4s infinite ease-in-out;
+            @keyframes cross8
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                70%{
+                    transform: translate(0px, 0px);
+                }
+                75%{
+                    transform: translate(-5px, 10px);
+                }
+                80%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_9
+        {
+            animation: cross9 4s infinite ease-in-out;
+            @keyframes cross9
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                20%{
+                    transform: translate(0px, 0px);
+                }
+                25%{
+                    transform: translate(-3px, -3px);
+                }
+                30%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_12
+        {
+            animation: cross12 4s infinite ease-in-out;
+            @keyframes cross12
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                55%{
+                    transform: translate(0px, 0px);
+                }
+                63%{
+                    transform: translate(8px, 7px);
+                }
+                65%{
+                    transform: translate(7px, 6px);
+                }
+                70%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_14
+        {
+            animation: cross14 4s infinite ease-in-out;
+            @keyframes cross14
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                55%{
+                    transform: translate(0px, 0px);
+                }
+                80%{
+                    transform: translate(0px, 2px);
+                }
+                85%{
+                    transform: translate(3px, 4px);
+                }
+                90%{
+                    transform: translate(5px, 5px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
+        #cross_15
+        {
+            animation: cross15 4s infinite ease-in-out;
+            @keyframes cross15
+            {
+                0%{
+                    transform: translate(0px, 0px);
+                }
+                30%{
+                    transform: translate(0px, 0px);
+                }
+                33%{
+                    transform: translate(6px, 2px);
+                }
+                35%{
+                    transform: translate(3px, 4px);
+                }
+                40%{
+                    transform: translate(5px, 5px);
+                }
+                45%{
+                    transform: translate(0px, 0px);
+                }
+                100%{
+                    transform: translate(0px, 0px);
+                }
+            }
+        }
     }
     .form
     {
@@ -254,5 +473,6 @@ nav
             }
         }
     }
+   
 }
 

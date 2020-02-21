@@ -160,6 +160,501 @@ nav .above .connection form input[type=submit]:hover {
   width: 40%;
 }
 
+.insc .insc_conn #checked .glowing {
+  -webkit-animation: fill 2s infinite ease-in-out;
+          animation: fill 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes fill {
+  0% {
+    fill: #3AD29F;
+  }
+  20% {
+    fill: #00ffae;
+  }
+  25% {
+    fill: #0bc386;
+  }
+  30% {
+    fill: #01ffaa;
+  }
+  35% {
+    fill: #3AD29F;
+  }
+  100% {
+    fill: #3AD29F;
+  }
+}
+
+@keyframes fill {
+  0% {
+    fill: #3AD29F;
+  }
+  20% {
+    fill: #00ffae;
+  }
+  25% {
+    fill: #0bc386;
+  }
+  30% {
+    fill: #01ffaa;
+  }
+  35% {
+    fill: #3AD29F;
+  }
+  100% {
+    fill: #3AD29F;
+  }
+}
+
+.insc .insc_conn #cross_1 {
+  -webkit-animation: cross1 4s infinite ease-in-out;
+          animation: cross1 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross1 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  10% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  15% {
+    -webkit-transform: translate(3px, 3px);
+            transform: translate(3px, 3px);
+  }
+  20% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross1 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  10% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  15% {
+    -webkit-transform: translate(3px, 3px);
+            transform: translate(3px, 3px);
+  }
+  20% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_4 {
+  -webkit-animation: cross4 4s infinite ease-in-out;
+          animation: cross4 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross4 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  50% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  55% {
+    -webkit-transform: translate(-3px, 0px);
+            transform: translate(-3px, 0px);
+  }
+  58% {
+    -webkit-transform: translate(3px, 0px);
+            transform: translate(3px, 0px);
+  }
+  60% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross4 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  50% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  55% {
+    -webkit-transform: translate(-3px, 0px);
+            transform: translate(-3px, 0px);
+  }
+  58% {
+    -webkit-transform: translate(3px, 0px);
+            transform: translate(3px, 0px);
+  }
+  60% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_7 {
+  -webkit-animation: cross7 4s infinite ease-in-out;
+          animation: cross7 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross7 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  60% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  65% {
+    -webkit-transform: translate(5px, 10px);
+            transform: translate(5px, 10px);
+  }
+  70% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross7 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  60% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  65% {
+    -webkit-transform: translate(5px, 10px);
+            transform: translate(5px, 10px);
+  }
+  70% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_8 {
+  -webkit-animation: cross8 4s infinite ease-in-out;
+          animation: cross8 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross8 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  70% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  75% {
+    -webkit-transform: translate(-5px, 10px);
+            transform: translate(-5px, 10px);
+  }
+  80% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross8 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  70% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  75% {
+    -webkit-transform: translate(-5px, 10px);
+            transform: translate(-5px, 10px);
+  }
+  80% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_9 {
+  -webkit-animation: cross9 4s infinite ease-in-out;
+          animation: cross9 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross9 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  20% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  25% {
+    -webkit-transform: translate(-3px, -3px);
+            transform: translate(-3px, -3px);
+  }
+  30% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross9 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  20% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  25% {
+    -webkit-transform: translate(-3px, -3px);
+            transform: translate(-3px, -3px);
+  }
+  30% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_12 {
+  -webkit-animation: cross12 4s infinite ease-in-out;
+          animation: cross12 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross12 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  55% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  63% {
+    -webkit-transform: translate(8px, 7px);
+            transform: translate(8px, 7px);
+  }
+  65% {
+    -webkit-transform: translate(7px, 6px);
+            transform: translate(7px, 6px);
+  }
+  70% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross12 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  55% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  63% {
+    -webkit-transform: translate(8px, 7px);
+            transform: translate(8px, 7px);
+  }
+  65% {
+    -webkit-transform: translate(7px, 6px);
+            transform: translate(7px, 6px);
+  }
+  70% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_14 {
+  -webkit-animation: cross14 4s infinite ease-in-out;
+          animation: cross14 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross14 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  55% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  80% {
+    -webkit-transform: translate(0px, 2px);
+            transform: translate(0px, 2px);
+  }
+  85% {
+    -webkit-transform: translate(3px, 4px);
+            transform: translate(3px, 4px);
+  }
+  90% {
+    -webkit-transform: translate(5px, 5px);
+            transform: translate(5px, 5px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross14 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  55% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  80% {
+    -webkit-transform: translate(0px, 2px);
+            transform: translate(0px, 2px);
+  }
+  85% {
+    -webkit-transform: translate(3px, 4px);
+            transform: translate(3px, 4px);
+  }
+  90% {
+    -webkit-transform: translate(5px, 5px);
+            transform: translate(5px, 5px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+.insc .insc_conn #cross_15 {
+  -webkit-animation: cross15 4s infinite ease-in-out;
+          animation: cross15 4s infinite ease-in-out;
+}
+
+@-webkit-keyframes cross15 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  30% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  33% {
+    -webkit-transform: translate(6px, 2px);
+            transform: translate(6px, 2px);
+  }
+  35% {
+    -webkit-transform: translate(3px, 4px);
+            transform: translate(3px, 4px);
+  }
+  40% {
+    -webkit-transform: translate(5px, 5px);
+            transform: translate(5px, 5px);
+  }
+  45% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
+@keyframes cross15 {
+  0% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  30% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  33% {
+    -webkit-transform: translate(6px, 2px);
+            transform: translate(6px, 2px);
+  }
+  35% {
+    -webkit-transform: translate(3px, 4px);
+            transform: translate(3px, 4px);
+  }
+  40% {
+    -webkit-transform: translate(5px, 5px);
+            transform: translate(5px, 5px);
+  }
+  45% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+}
+
 .insc .form {
   position: relative;
   display: -webkit-box;
