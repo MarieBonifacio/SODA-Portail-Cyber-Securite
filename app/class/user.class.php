@@ -14,18 +14,16 @@ class User {
     private $created_at;
 
     public function selectById($id){
-        $test = 
         $r = $wpdb->get_row("SELECT * FROM 'user' where id=".$id."");
-        echo '---'.$test.'---';
         $this->id = $r['id'];
-        $this->title = $r['role'];
-        $this->content = $r['name'];
-        $this->view = $r['last_name'];
-        $this->view = $r['mail'];
-        $this->view = $r['password'];
-        $this->view = $r['location'];
-        $this->view = $r['id_number'];
-        $this->view = $r['img_path'];
+        $this->role = $r['role'];
+        $this->name = $r['name'];
+        $this->lastName= $r['last_name'];
+        $this->mail = $r['mail'];
+        $this->password = $r['password'];
+        $this->location = $r['location'];
+        $this->idUser = $r['id_number'];
+        $this->imgPath = $r['img_path'];
         $this->createAt = $r['created_at'];
     }
 
@@ -44,7 +42,7 @@ class User {
         return $this->lastName;
     }
     public function setLastName($lastName){
-        $this->lastname = $lastName;
+        $this->lastName = $lastName;
     }
 
     public function getMail(){
@@ -58,7 +56,7 @@ class User {
         return $this->password;
     }
     public function setPassword($password){
-        $this->paswword = password_hash($password,PASSWORD_BCRYPT);
+        $this->password = password_hash($password,PASSWORD_BCRYPT);
     }
 
     public function getLocation(){
@@ -71,7 +69,7 @@ class User {
     public function getIdUser(){
         return $this->idUser;
     }
-    public function setIdNumber($idUser){
+    public function setIdUser($idUser){
         $this->idUser = $idUser;
     }
 
@@ -93,7 +91,8 @@ class User {
     public function save(){
         if ($this->id == null){
             global $wpdb;
-            $test = $wpdb->insert(
+            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
+            $wpdb->insert(
                 'user', array(
                     "role" => $this->role,
                     "name" => $this->name,
