@@ -427,6 +427,7 @@ nav
                     background: #EBB94A;
                     width: 60%;
                     border-radius: 20px;
+                    overflow: hidden;
                     select
                     {
                         background: #EBB94A;
@@ -436,10 +437,17 @@ nav
                         border: none;
                         font-weight: 600;
                         font-family: "Muli", sans-serif;
-                        -webkit-appearance: none;
+                        appearance: none;
                         outline: none;
                         border-radius: 20px;
+                        box-shadow: none;
                         cursor: pointer;
+                        option
+                        {
+                            background-color: #EBB94A;
+                            outline: none;
+                            border: none;
+                        }
                     }
                     select:focus
                     {

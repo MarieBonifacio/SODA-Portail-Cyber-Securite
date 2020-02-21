@@ -5,7 +5,7 @@
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/accueil.css">
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/portail.css">
     	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -21,7 +21,11 @@
             tests: {}
         });
         </script>
-
 	</head>
 	<body>
-
+			<div class="above">
+				<img class="logo" src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
+				<div class="filter"></div>
+			</div>
+			<div class="side">
+			</div>
