@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 body {
   height: 100vh;
   width: 100%;
@@ -8,16 +10,19 @@ body {
   overflow: hidden;
 }
 
-a * {
-  font-family: 'Montserrat', sans-serif;
+body p {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: "Muli", sans-serif;
+  font-weight: 100;
 }
 
-.above {
+body .above {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 10%;
+  height: 12%;
   background: #192231;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   display: -webkit-box;
@@ -35,10 +40,168 @@ a * {
           flex-direction: row;
 }
 
-.above .logo {
+body .above .logo {
   position: relative;
-  width: 10%;
-  height: auto;
+  width: 15%;
+  height: 100%;
   z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .above .logo img {
+  position: relative;
+  width: 70%;
+  height: auto;
+  z-index: 4;
+}
+
+body .above .search {
+  position: relative;
+  width: 85%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .above .search .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 10%;
+  height: 100%;
+  font-size: 2rem;
+  color: #fff;
+}
+
+body .above .search .icons i:hover {
+  color: #EBB94A;
+  cursor: pointer;
+}
+
+body .above .search .profile_pic {
+  width: 10%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .above .search .profile_pic .circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+body .above .search .settings {
+  display: none;
+}
+
+body .side {
+  position: relative;
+  width: 15%;
+  height: 88%;
+  top: 12%;
+  background: #131A28;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .side i {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+body .side i:hover {
+  color: #EBB94A;
+  cursor: pointer;
+}
+
+body .side div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 5%;
+}
+
+body .side div .fa-home {
+  color: #2CB751;
+}
+
+body .side .home {
+  margin-top: 15px;
+}
+
+body .side .fa-question {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 2rem;
 }
 /*# sourceMappingURL=portail.css.map */

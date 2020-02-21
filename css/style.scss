@@ -10,479 +10,490 @@ body
     margin: 0;
     font-family: "Muli", sans-serif;
     overflow: hidden;
-}
-
-a *
-{
-    font-family: 'Montserrat', sans-serif;
-}
-
-nav
-{
-    position: relative;
-    height: 12%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    .above
+    a *
+    {
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    nav
+    {
+        position: relative;
+        height: 12%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        .above
+        {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            border-bottom: 1px solid rgba($color: #FFFFFF, $alpha: 0.5);
+            background: #192231;
+            .logo
+            {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                width: 15%;
+                height: 100%;
+                z-index: 3; 
+                img
+                {
+                    position: relative;
+                    width: 70%;
+                    height: auto;
+                    z-index: 4;
+                }
+                // .filter
+                // {
+                //     position: absolute;
+                //     top: 0;
+                //     left: 0;
+                //     width: 100%;
+                //     height: 100%;
+                //     background: rgba(19, 26, 40, 0.5);
+                //     z-index: 2;
+                // }
+            }
+            .connection
+            {
+                position: relative;
+                height: 100%;
+                width: 60%;
+                form
+                {
+                    position: absolute;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    width: 80%;
+                    height: 100%;
+                    font-weight: 600;
+                    color: white;
+                    right: 10px;
+                    input
+                    {
+                        position: relative;
+                        border: none;
+                        border-bottom: 1px solid white;
+                        background: transparent;
+                        width: 50%;
+                    }
+                    input:focus{
+                        color: #fff;
+                        outline: none;
+                        font-size: 15px;
+                        text-align: center;
+                    }
+                    input:not(:focus){
+                        color: #fff;
+                        font-size: 15px;
+                        text-align: center;
+                    }
+                    div:nth-child(2)
+                    {
+                        position: relative;
+                    }
+                    .mdpForget
+                    {
+                        position: absolute;
+                        bottom: -100%;
+                        right: 5%;    
+                        color: #7AB9C9;
+                        text-decoration: none;
+                        font-size: 12px;
+                        font-weight: 200;
+                    }
+                    .mdpForget:hover
+                    {
+                        font-weight: 900;
+                    }
+                    input[type=submit]
+                    {
+                        position: relative;
+                        background: #EBB94A;
+                        border-bottom: none;
+                        border-radius: 20px;
+                        padding: 5px 20px;
+                        width: 150px;
+                        transition: .2s;
+                        color: #131A28;
+                        font-weight: 600;
+                        font-family: "Montserrat", sans-serif;
+                    }
+                    input[type=submit]:hover
+                    {
+                        background: white;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    
+    .insc
     {
         position: relative;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        height: 100%;
+        justify-content: center;
         width: 100%;
-        border-bottom: 1px solid rgba($color: #FFFFFF, $alpha: 0.5);
-        background: #192231;
-        .logo
+        height: 88%;
+        color: white;
+        .insc_conn
         {
             position: relative;
-            width: 10%;
-            height: auto;
-            z-index: 3;
+            left: 7%;
+            width: 40%;
+            #checked
+            {
+                .glowing
+                {
+                    animation: fill 2s infinite ease-in-out;
+                }
+                @keyframes fill 
+                {
+                    0%{
+                        fill:#3AD29F;
+                    }
+                    20%{
+                        fill:rgb(0, 255, 174)
+                    }
+                    25%{
+                        fill:rgb(11, 195, 134);
+                    }
+                    30%{
+                        fill: rgb(1, 255, 170);
+                    }
+                    35%{
+                        fill: #3AD29F;
+                    }
+                    100%{
+                        fill:#3AD29F;
+                    }
+                }
+            }
+            #cross_1
+            {
+                animation: cross1 4s infinite ease-in-out;
+                @keyframes cross1
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    10%{
+                        transform: translate(0px, 0px);
+                    }
+                    15%{
+                        transform: translate(3px, 3px);
+                    }
+                    20%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_4
+            {
+                animation: cross4 4s infinite ease-in-out;
+                @keyframes cross4
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    50%{
+                        transform: translate(0px, 0px);
+                    }
+                    55%{
+                        transform: translate(-3px, 0px);
+                    }
+                    58%{
+                        transform: translate(3px, 0px);
+                    }
+                    60%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_7
+            {
+                animation: cross7 4s infinite ease-in-out;
+                @keyframes cross7
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    60%{
+                        transform: translate(0px, 0px);
+                    }
+                    65%{
+                        transform: translate(5px, 10px);
+                    }
+                    70%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_8
+            {
+                animation: cross8 4s infinite ease-in-out;
+                @keyframes cross8
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    70%{
+                        transform: translate(0px, 0px);
+                    }
+                    75%{
+                        transform: translate(-5px, 10px);
+                    }
+                    80%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_9
+            {
+                animation: cross9 4s infinite ease-in-out;
+                @keyframes cross9
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    20%{
+                        transform: translate(0px, 0px);
+                    }
+                    25%{
+                        transform: translate(-3px, -3px);
+                    }
+                    30%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_12
+            {
+                animation: cross12 4s infinite ease-in-out;
+                @keyframes cross12
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    55%{
+                        transform: translate(0px, 0px);
+                    }
+                    63%{
+                        transform: translate(8px, 7px);
+                    }
+                    65%{
+                        transform: translate(7px, 6px);
+                    }
+                    70%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_14
+            {
+                animation: cross14 4s infinite ease-in-out;
+                @keyframes cross14
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    55%{
+                        transform: translate(0px, 0px);
+                    }
+                    80%{
+                        transform: translate(0px, 2px);
+                    }
+                    85%{
+                        transform: translate(3px, 4px);
+                    }
+                    90%{
+                        transform: translate(5px, 5px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
+            #cross_15
+            {
+                animation: cross15 4s infinite ease-in-out;
+                @keyframes cross15
+                {
+                    0%{
+                        transform: translate(0px, 0px);
+                    }
+                    30%{
+                        transform: translate(0px, 0px);
+                    }
+                    33%{
+                        transform: translate(6px, 2px);
+                    }
+                    35%{
+                        transform: translate(3px, 4px);
+                    }
+                    40%{
+                        transform: translate(5px, 5px);
+                    }
+                    45%{
+                        transform: translate(0px, 0px);
+                    }
+                    100%{
+                        transform: translate(0px, 0px);
+                    }
+                }
+            }
         }
-        .filter
-        {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 10%;
-            height: 100%;
-            background: rgba(19, 26, 40, 0.5);
-            z-index: 2;
-        }
-        .connection
+        .form
         {
             position: relative;
-            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             width: 60%;
+            height: 100%;
+            h2
+            {
+                position: relative;
+                margin-bottom: 50px;
+                font-size: 30px;
+                font-family: "Montserrat", sans-serif;
+            }
             form
             {
-                position: absolute;
+                position: relative;
                 display: flex;
-                justify-content: space-evenly;
+                justify-content: center;
                 align-items: center;
-                width: 80%;
-                height: 100%;
-                font-weight: 600;
-                color: white;
-                right: 10px;
-                input
+                flex-direction: column;
+                width: 60%;
+                div
                 {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    font-weight: 600;
+                    margin-bottom: 5px;
+                    label
+                    {
+                        position: relative;
+                        left: 0;
+                        width: 40%;
+                    }
+                    input
+                    {
                     position: relative;
                     border: none;
                     border-bottom: 1px solid white;
                     background: transparent;
-                    width: 50%;
-                }
-                input:focus{
-                    color: #fff;
-                    outline: none;
-                    font-size: 15px;
-                    text-align: center;
-                }
-                input:not(:focus){
-                    color: #fff;
-                    font-size: 15px;
-                    text-align: center;
-                }
-                div:nth-child(2)
-                {
-                    position: relative;
-                }
-                .mdpForget
-                {
-                    position: absolute;
-                    bottom: -100%;
-                    right: 5%;    
-                    color: #7AB9C9;
-                    text-decoration: none;
-                    font-size: 12px;
-                    font-weight: 200;
-                }
-                .mdpForget:hover
-                {
-                    font-weight: 900;
+                    width: 60%;
+                    margin-bottom: 25px;
+                    }
+                    input:focus
+                    {
+                        color: #fff;
+                        outline: none;
+                        font-size: 15px;
+                        text-align: center;
+                    }
+                    input:not(:focus)
+                    {
+                        color: #fff;
+                        font-size: 15px;
+                        text-align: center;
+                    }
+                    .select
+                    {
+                        position: relative;
+                        background: #EBB94A;
+                        width: 60%;
+                        border-radius: 20px;
+                        overflow: hidden;
+                        select
+                        {
+                            background: #EBB94A;
+                            color: #131A28;
+                            padding: 5px 20px;
+                            width: 100%;
+                            border: none;
+                            font-weight: 600;
+                            font-family: "Muli", sans-serif;
+                            appearance: none;
+                            outline: none;
+                            border-radius: 20px;
+                            box-shadow: none;
+                            cursor: pointer;
+                            option
+                            {
+                                background-color: #EBB94A;
+                                outline: none;
+                                border: none;
+                            }
+                        }
+                        select:focus
+                        {
+                            outline: none;
+                        }
+                    }
+                    i
+                    {
+                        position: absolute;
+                        color: #192231;
+                        font-size: 20px;
+                        right: 10px;
+                        transition: .1s;
+                    }
                 }
                 input[type=submit]
                 {
-                    position: relative;
+                    margin-top: 50px;
+                    margin-bottom: 25px;
                     background: #EBB94A;
-                    border-bottom: none;
+                    border: none;
+                    padding: 5px 25px;
                     border-radius: 20px;
-                    padding: 5px 20px;
-                    width: 150px;
-                    transition: .2s;
                     color: #131A28;
-                    font-weight: 600;
-                    font-family: "Montserrat", sans-serif;
+                    font-size: 20px;
+                    font-weight: bold;
+                    transition: .2s;
+                    font-family: 'Montserrat', sans-serif;
                 }
                 input[type=submit]:hover
                 {
-                    background: white;
                     cursor: pointer;
+                    background: white;
                 }
             }
         }
+       
     }
 }
 
-.insc
-{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 88%;
-    color: white;
-    .insc_conn
-    {
-        position: relative;
-        left: 7%;
-        width: 40%;
-        #checked
-        {
-            .glowing
-            {
-                animation: fill 2s infinite ease-in-out;
-            }
-            @keyframes fill 
-            {
-                0%{
-                    fill:#3AD29F;
-                }
-                20%{
-                    fill:rgb(0, 255, 174)
-                }
-                25%{
-                    fill:rgb(11, 195, 134);
-                }
-                30%{
-                    fill: rgb(1, 255, 170);
-                }
-                35%{
-                    fill: #3AD29F;
-                }
-                100%{
-                    fill:#3AD29F;
-                }
-            }
-        }
-        #cross_1
-        {
-            animation: cross1 4s infinite ease-in-out;
-            @keyframes cross1
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                10%{
-                    transform: translate(0px, 0px);
-                }
-                15%{
-                    transform: translate(3px, 3px);
-                }
-                20%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_4
-        {
-            animation: cross4 4s infinite ease-in-out;
-            @keyframes cross4
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                50%{
-                    transform: translate(0px, 0px);
-                }
-                55%{
-                    transform: translate(-3px, 0px);
-                }
-                58%{
-                    transform: translate(3px, 0px);
-                }
-                60%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_7
-        {
-            animation: cross7 4s infinite ease-in-out;
-            @keyframes cross7
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                60%{
-                    transform: translate(0px, 0px);
-                }
-                65%{
-                    transform: translate(5px, 10px);
-                }
-                70%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_8
-        {
-            animation: cross8 4s infinite ease-in-out;
-            @keyframes cross8
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                70%{
-                    transform: translate(0px, 0px);
-                }
-                75%{
-                    transform: translate(-5px, 10px);
-                }
-                80%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_9
-        {
-            animation: cross9 4s infinite ease-in-out;
-            @keyframes cross9
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                20%{
-                    transform: translate(0px, 0px);
-                }
-                25%{
-                    transform: translate(-3px, -3px);
-                }
-                30%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_12
-        {
-            animation: cross12 4s infinite ease-in-out;
-            @keyframes cross12
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                55%{
-                    transform: translate(0px, 0px);
-                }
-                63%{
-                    transform: translate(8px, 7px);
-                }
-                65%{
-                    transform: translate(7px, 6px);
-                }
-                70%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_14
-        {
-            animation: cross14 4s infinite ease-in-out;
-            @keyframes cross14
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                55%{
-                    transform: translate(0px, 0px);
-                }
-                80%{
-                    transform: translate(0px, 2px);
-                }
-                85%{
-                    transform: translate(3px, 4px);
-                }
-                90%{
-                    transform: translate(5px, 5px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-        #cross_15
-        {
-            animation: cross15 4s infinite ease-in-out;
-            @keyframes cross15
-            {
-                0%{
-                    transform: translate(0px, 0px);
-                }
-                30%{
-                    transform: translate(0px, 0px);
-                }
-                33%{
-                    transform: translate(6px, 2px);
-                }
-                35%{
-                    transform: translate(3px, 4px);
-                }
-                40%{
-                    transform: translate(5px, 5px);
-                }
-                45%{
-                    transform: translate(0px, 0px);
-                }
-                100%{
-                    transform: translate(0px, 0px);
-                }
-            }
-        }
-    }
-    .form
-    {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 60%;
-        height: 100%;
-        h2
-        {
-            position: relative;
-            margin-bottom: 50px;
-            font-size: 30px;
-            font-family: "Montserrat", sans-serif;
-        }
-        form
-        {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 60%;
-            div
-            {
-                position: relative;
-                width: 100%;
-                display: flex;
-                justify-content: space-around;
-                font-weight: 600;
-                margin-bottom: 5px;
-                label
-                {
-                    position: relative;
-                    left: 0;
-                    width: 40%;
-                }
-                input
-                {
-                position: relative;
-                border: none;
-                border-bottom: 1px solid white;
-                background: transparent;
-                width: 60%;
-                margin-bottom: 25px;
-                }
-                input:focus
-                {
-                    color: #fff;
-                    outline: none;
-                    font-size: 15px;
-                    text-align: center;
-                }
-                input:not(:focus)
-                {
-                    color: #fff;
-                    font-size: 15px;
-                    text-align: center;
-                }
-                .select
-                {
-                    position: relative;
-                    background: #EBB94A;
-                    width: 60%;
-                    border-radius: 20px;
-                    overflow: hidden;
-                    select
-                    {
-                        background: #EBB94A;
-                        color: #131A28;
-                        padding: 5px 20px;
-                        width: 100%;
-                        border: none;
-                        font-weight: 600;
-                        font-family: "Muli", sans-serif;
-                        appearance: none;
-                        outline: none;
-                        border-radius: 20px;
-                        box-shadow: none;
-                        cursor: pointer;
-                        option
-                        {
-                            background-color: #EBB94A;
-                            outline: none;
-                            border: none;
-                        }
-                    }
-                    select:focus
-                    {
-                        outline: none;
-                    }
-                }
-                i
-                {
-                    position: absolute;
-                    color: #192231;
-                    font-size: 20px;
-                    right: 10px;
-                    transition: .1s;
-                }
-            }
-            input[type=submit]
-            {
-                margin-top: 50px;
-                background: #EBB94A;
-                border: none;
-                padding: 5px 25px;
-                border-radius: 20px;
-                color: #131A28;
-                font-size: 20px;
-                font-weight: bold;
-                transition: .2s;
-                font-family: 'Montserrat', sans-serif;
-            }
-            input[type=submit]:hover
-            {
-                cursor: pointer;
-                background: white;
-            }
-        }
-    }
-   
-}
 
