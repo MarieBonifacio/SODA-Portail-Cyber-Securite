@@ -158,7 +158,7 @@
             </div>
             <div>
                 <label for="">Vérifiez votre mot de passe :</label>
-                <input type="password" name="first_password">
+                <input type="password" name="check_password">
             </div>
             <div>
                 <label for="location">Votre site :</label>
