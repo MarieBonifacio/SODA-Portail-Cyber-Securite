@@ -449,4 +449,34 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
     return '<h2>' . $content . '</h2>';
 }
 
+/**
+
+ * Active les variables de session.
+
+ *
+
+ * Utilisation : add_action( 'init', 'monprefixe_session_start', 1 );
+
+ *
+
+ * @author Christiane Lagacé
+
+ *
+
+ */
+
+function monprefixe_session_start() {
+
+    if ( ! session_id() ) {
+ 
+       @session_start();
+ 
+    }
+ 
+ }
+ 
+  
+ 
+ add_action( 'init', 'monprefixe_session_start', 1 );
+
 ?>

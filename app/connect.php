@@ -16,8 +16,7 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
     if($r == null || !password_verify($password, $r[0]->password)){
         echo "L'adresse mail ou le mot de passe ne sont pas corrects";
     }else{
-        $_SESSION['mail'] = $mail; 
-       
+        $_SESSION['userConnected'] = (new User())->selectById($r[0]->id); 
         echo "vous êtes co !";
     }
 }else{

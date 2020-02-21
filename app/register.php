@@ -7,6 +7,8 @@ require('../../../../wp-load.php');
 if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['first_password']) && !empty($_POST['check_password']) && !empty($_POST['id_user']) && !empty($_POST['location'])){
     global $wpdb;
 
+    $_SESSION["error"]=$error;
+
     $mail = $_POST['first_mail'];
     $name = htmlspecialchars($_POST['first_name']);
     $lastName = htmlspecialchars($_POST['last_name']);
@@ -18,17 +20,17 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     $r = $wpdb->get_results("SELECT * FROM user where mail='".$mail."'"); 
 
     if ( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail)){
-    
-        echo("L'adresse mail n'est pas valide.");
+        wp_redirect('http://localhost/wordpress/');
+        $error = "L'adresse mail n'est pas valide.";
     }elseif(!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{10,}$#', $password)){
- 
-        echo("Votre mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.");
+        wp_redirect('http://localhost/wordpress/');
+        $error = "Votre mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.";
     }elseif($password != $passwordChecked){
-        
-        echo("votre mot de passe et sa vérification sont différents.");
+        wp_redirect('http://localhost/wordpress/');
+        $error = "votre mot de passe et sa vérification sont différents.";
     }elseif( !preg_match("#^[0-9]{1,6}$# ", $idUser)){
-  
-        echo("Votre identifiant n'est pas correct");
+        wp_redirect('http://localhost/wordpress/');
+        $error = "Votre identifiant n'est pas correct";
     }elseif($r==null){
         $newUser = new User();
         $newUser->setName($name);
@@ -40,13 +42,13 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         $newUser->save();
         
     }else{
-
-        echo("Utilisateur déjà existant");
+        wp_redirect('http://localhost/wordpress/');
+        $error = "Utilisateur déjà existant";
     }
 
 }else{
-
-    echo("Veuillez remplir tous les champs");
+    wp_redirect('http://localhost/wordpress/');
+    $error = "Veuillez remplir tous les champs";
 }
 
 ?>
