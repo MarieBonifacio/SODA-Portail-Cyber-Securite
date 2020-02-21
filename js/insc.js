@@ -6,5 +6,5 @@ setInterval(() => {
     fill.classList.add("glowing");
     setTimeout(() => {
         fill.classList.remove("glowing");
-    }, 2000);
-}, 8000);
+    }, 4000);
+}, 10000);
