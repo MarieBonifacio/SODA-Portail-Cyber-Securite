@@ -6,7 +6,6 @@ require('class/user.class.php');
 require('../../../../wp-load.php');
 
 
-$hash =
 $mail = $_POST['mail'];
 $password = $_POST['mdp'];
 
@@ -22,7 +21,7 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
         echo "L'adresse mail ou le mot de passe ne sont pas corrects";
     }else{
         $_SESSION['mail'] = $mail; 
-        header("Location : #");
+        wp_redirect("#");
         echo "vous êtes co !";
     }
 }else{
