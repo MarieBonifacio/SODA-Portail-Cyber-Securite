@@ -1,7 +1,10 @@
 <?php
 global $wpdb;
-require('../../../../wp-load.php');
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+include($path.'wp-load.php');
+
 class User {
+    
     private $id;
     private $role;
     private $name;
@@ -12,19 +15,20 @@ class User {
     private $idUser;
     private $imgPath;
     private $created_at;
-
+    
     public function selectById($id){
-        $r = $wpdb->get_row("SELECT * FROM user where id=".$id."");
-        $this->id = $r['id'];
-        $this->role = $r['role'];
-        $this->name = $r['name'];
-        $this->lastName= $r['last_name'];
-        $this->mail = $r['mail'];
-        $this->password = $r['password'];
-        $this->location = $r['location'];
-        $this->idUser = $r['id_number'];
-        $this->imgPath = $r['img_path'];
-        $this->createAt = $r['created_at'];
+        global $wpdb;
+        $r = $wpdb->get_row("SELECT * FROM user where id='".$id."'");
+        $this->id = $r->id;
+        $this->role = $r->role;
+        $this->name = $r->name;
+        $this->lastName= $r->last_name;
+        $this->mail = $r->mail;
+        $this->password = $r->password;
+        $this->location = $r->location;
+        $this->idUser = $r->id_number;
+        $this->imgPath = $r->img_path;
+        $this->createAt = $r->created_at;
     }
 
     public function getId(){
@@ -132,7 +136,6 @@ class User {
 //Affichage user    
     public function print(){
         return '
-            <img src="'.$this->imgPath.'">
             <div>
                 <p>'.$this->name.'<p>
                 <p>'.$this->lastName.'</p>

@@ -2,7 +2,8 @@
 define('WP_USE_THEMES', false);
 global $wpdb;
 require('class/user.class.php');
-require('../../../../wp-load.php');
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+include($path.'wp-load.php');
 
 if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['first_password']) && !empty($_POST['check_password']) && !empty($_POST['id_user']) && !empty($_POST['location'])){
     global $wpdb;
@@ -40,6 +41,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         $newUser->setPassword($password);
         $newUser->setLocation($location);
         $newUser->save();
+        
         
     }else{
         wp_redirect('http://localhost/wordpress/');
