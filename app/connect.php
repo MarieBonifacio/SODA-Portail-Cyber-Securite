@@ -5,15 +5,11 @@ define('WP_USE_THEMES', false);
 require('class/user.class.php');
 require('../../../../wp-load.php');
 
-
-$mail = $_POST['mail'];
-$password = $_POST['mdp'];
-
-
-
-
 if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
     global $wpdb;
+    $mail = $_POST['mail'];
+    $password = $_POST['mdp'];
+
     $r = $wpdb->get_results("SELECT * FROM user where mail='".$mail."'");
     print_r($r);
     echo '---'.($r ==null).'--'.(password_verify($password, $r['password'])).'---';
@@ -21,7 +17,7 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
         echo "L'adresse mail ou le mot de passe ne sont pas corrects";
     }else{
         $_SESSION['mail'] = $mail; 
-        wp_redirect("#");
+       
         echo "vous êtes co !";
     }
 }else{
