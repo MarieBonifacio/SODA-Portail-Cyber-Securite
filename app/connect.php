@@ -10,26 +10,23 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
     $mail = $_POST['mail'];
     $password = $_POST['mdp'];
 
-    $r = $wpdb->get_results("SELECT * FROM user where mail='".$mail."'");
+    $r = $wpdb->get_row("SELECT * FROM user where mail='".$mail."'");
    
-    echo '---'.($r ==null).'--'.(password_verify($password, $r['password'])).'---';
-    if($r == null || !password_verify($password, $r[0]->password)){
-        echo "L'adresse mail ou le mot de passe ne sont pas corrects";
+    if($r == null || !password_verify($password, $r->password)){
+        $_SESSION['errorConnect'] = "L'adresse mail ou le mot de passe ne sont pas corrects";
+        wp_redirect( home_url() );
     }else{
-        $_SESSION['userConnected'] = $r[0]->id;
-        print_r($_SESSION);
+        $_SESSION['userConnected'] = $r->id;
 
         setcookie('user', json_encode([
-            'mail' => $mail,
-            'password' => $password
+            "userConnected" => $r->id,
         ]), time() + 3600 * 24 * 30);
 
-        echo "vous êtes co !";
-        wp_redirect('http://localhost/wordpress/?page_id=7');
-        exit;
+        wp_redirect( home_url().'/profile.php' );
     }
 }else{
-    echo "veuillez remplir tous les champs";
+    $_SESSION['errorConnect'] = "veuillez remplir tous les champs";
+    wp_redirect( home_url() );
 }
 
 ?>
