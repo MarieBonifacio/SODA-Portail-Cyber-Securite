@@ -301,11 +301,66 @@ body .shrink {
   width: 5%;
 }
 
-body .body {
+body .content {
   position: absolute;
   width: 95%;
   height: 88%;
   left: 5%;
   top: 12%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .content h2 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+  z-index: 1;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+body .content .profile {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+body .content .svg {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .content .svg .svg_profile {
+  width: 90%;
+  height: auto;
 }
 /*# sourceMappingURL=portail.css.map */

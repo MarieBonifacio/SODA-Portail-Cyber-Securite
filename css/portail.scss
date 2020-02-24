@@ -206,12 +206,46 @@ body
         width: 5%;
     }
     
-    .body
+    .content
     {
         position: absolute;
         width: 95%;
         height: 88%;
         left: 5%;
         top: 12%;
+        // background: red;
+        @include flex( space-between, center, row);
+        h2
+        {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: $police;
+            z-index: 1;
+            font-size: $fontSize3;
+            // color: $color-imp;
+            font-family: "Montserrat", sans-serif;
+        }
+        .profile
+        {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            // background-color:blue;
+        }
+        .svg
+        {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            @include flex(center, center, row);
+            // background: red;
+            .svg_profile
+            {
+                width: 90%;
+                height: auto;
+            }
+        }
     }
 }

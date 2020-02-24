@@ -82,5 +82,6 @@
 			</div>
 			<i class="fas fa-question"></i>
 		</nav>
+
+		<section class="content">
 		
-		<section class="body">
