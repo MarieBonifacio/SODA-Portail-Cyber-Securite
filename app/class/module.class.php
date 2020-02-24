@@ -16,7 +16,7 @@ class Module {
         $this->title = $r['title'];
         $this->content = $r['content'];
         $this->imgPath = $r['img_path'];
-        $this->author = (new User())->selectById($r['id']);
+        $this->author = (new User())->selectById($r->id);
         $this->createAt = $r['create_at'];
     }
 

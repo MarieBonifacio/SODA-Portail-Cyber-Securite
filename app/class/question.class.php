@@ -11,22 +11,29 @@ class Question {
     private $points;
 
     public function selectById($id){
+        global $wpdb;
         $r = $wpdb->get_row("SELECT * FROM 'question' where id=".$id."");
-        $this->id = $r['id'];
-        $this->id_quiz = (new Quiz())->selectById($r['id']);
-        $this->content = $r['content'];
-        $this->points = $r['points'];
+        $this->id = $r->id;
+        $this->id_quiz = (new Quiz())->selectById($r->id);
+        $this->content = $r->content;
+        $this->points = $r->points;
     }
 
     public function getId(){
         return $this->id;
     }
 
-    public function getTitle(){
-        return $this->title;
+    public function getIdQuiz(){
+        return $this->id_quiz;
     }
-    public function setTitle($title){
-        $this->name = $title;
+    public function setIdQuiz($id_quiz){
+        $this->id_quiz = $id_quiz;
+    }
+
+    //Set id_Quiz with id of quiz
+    public function setIdQuizById(int $idQuiz){
+        $this->id_quiz = new quiz();
+        $this->id_quiz->selectById($idQuiz);
     }
 
     public function getContent(){
@@ -43,49 +50,34 @@ class Question {
         $this->view = $view;
     }
 
-    public function getAuthorId(){
-        return $this->authorId;
-    }
-    public function setMail($authorId){
-        $this->authorId = $authorId;
-    }
-
-    public function getCreatedAt(){
-        return $this->created_at;
-    }
-    public function setCreatedAt($created_at){
-        $this->created_at = $created_at;
-    }
-
-
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
-            $wpdb->insert('article', array(
-            "id" => $this->id,
-            "title" => $this->title;
-            "content" => $this->content;
-            "view" => $this->view;
-            "authorId" => $this->authorId;
-            "created_at" => $this->created_at;
-            ));
+            $wpdb->insert(
+                'question', array(
+                    "id" => $this->id,
+                    "id_quiz" => $this->id_quiz;
+                    "content" => $this->content;
+                    "points" => $this->points;
+                    )
+                );
         }else{
             global $wpdb;
-            $wpdb->update('article', array(
-                "id" => $this->id,
-                "title" => $this->title;
-                "content" => $this->content;
-                "view" => $this->view;
-                "authorId" => $this->authorId;
-                "created_at" => $this->created_at;
-            ));
-            
+            $wpdb->update(
+                'question', array(
+                    "id_quiz" => $this->id_quiz;
+                    "content" => $this->content;
+                    "content" => $this->content;
+                ), array(
+                    "id" => $this->id,
+                )
+            );
         }
     }
 
-    public static function delete(){
+    public function delete(){
         global $wpdb;
-        $wpdb->delete( 'user', array( 'id' => $id ) );
+        $wpdb->delete( 'question', array( 'id' => $id ) );
     }
 }
 

@@ -15,7 +15,7 @@ class Quiz {
         $r = $wpdb->get_row("SELECT * FROM quiz where id='".$id."'");
         $this->id = $r->id;
         $this->name = $r->name;
-        $this->author = (new User())->selectById($r['id']);
+        $this->author = (new User())->selectById($r->id);
         $this->createAt = $r->created_at;
     }
 
@@ -51,24 +51,24 @@ class Quiz {
     }
 
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'quiz', array(
-                    "id" => $this->$id,
-                    "name" => $this->$name,
-                    "author" => $this->$author,
-                    "created_at" => $this->$createdAt
+                    "id" => $this->id,
+                    "name" => $this->name,
+                    "author" => $this->author,
+                    "created_at" => $this->created_at
                 )
             );
         }else{
             global $wpdb;
             $wpdb->update(
                 'quiz', array(
-                    "name" => $this->$name,
-                    "author" => $this->$author,
-                    "created_at" => $this->$createdAt
+                    "name" => $this->name,
+                    "author" => $this->author,
+                    "created_at" => $this->created_at
                 ), array(
                     "id" => $this->$id,
                 )
@@ -78,7 +78,7 @@ class Quiz {
     
     public function delete(){
         global $wpdb;
-        $wpdb->delete( 'user', array( 'id' => $id ) );
+        $wpdb->delete( 'quiz', array( 'id' => $id ) );
     }
 }
 

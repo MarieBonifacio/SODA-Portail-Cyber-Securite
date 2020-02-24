@@ -4,6 +4,7 @@ $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
 class Article {
+
     private $id;
     private $title;
     private $content;
@@ -84,7 +85,7 @@ class Article {
     }
 
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
             $wpdb->insert(
                 'article', array(

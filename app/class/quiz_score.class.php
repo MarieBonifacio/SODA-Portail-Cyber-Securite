@@ -1,82 +1,166 @@
 <?php
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+include($path.'wp-load.php');
 
-class Article {
+class Quiz_score {
     private $id;
-    private $title;
-    private $content;
-    private $view;
-    private $authorId;
-    private $createdAt;
+    private $user_id;
+    private $quiz_id;
+    private $score;
+    private $time;
+    private $date;
+
+    public function selectById($id){
+        global $wpdb;
+        $r = $wpdb->get_row("SELECT * FROM 'quiz_score' where id=".$id."");
+        $this->id = $r->id;
+        $this->user_id = (new User())->selectById($r->id);
+        $this->quiz_id = (new Quiz())->selectById($r->id);
+        $this->score = $r->score;
+        $this->time = $r->time;
+        $this->date = $r->date;
+    }
 
     public function getId(){
         return $this->id;
     }
 
-    public function getTitle(){
-        return $this->title;
+    public function getUserId(){
+        return $this->user_id;
     }
-    public function setTitle($title){
-        $this->name = $title;
-    }
-
-    public function getContent(){
-        return $this->content;
-    }
-    public function setContent($content){
-        $this->content = $content;
+    public function setUserId($user_id){
+        $this->user_id = $user_id;
     }
 
-    public function getViewt(){
-        return $this->view;
-    }
-    public function setView($view){
-        $this->view = $view;
-    }
-
-    public function getAuthorId(){
-        return $this->authorId;
-    }
-    public function setMail($authorId){
-        $this->authorId = $authorId;
+    //Set user_id with id of user
+    public function setUserIdById(int $UserId){
+        $this->user_id = new User();
+        $this->user_id->selectById($UserId);
     }
 
-    public function getCreatedAt(){
-        return $this->created_at;
+
+    public function getQuizId(){
+        return $this->quiz_id;
     }
-    public function setCreatedAt($created_at){
-        $this->created_at = $created_at;
+    public function setQuizId($quiz_id){
+        $this->quiz_id = $quiz_id;
+    }
+
+    //Set quiz_id with id of quiz
+    public function setQuizIdById(int $quizId){
+        $this->quiz_id = new User();
+        $this->quiz_id->selectById($quizId);
+    }
+
+
+    public function getScore(){
+        return $this->score;
+    }
+    public function setScore($score){
+        $this->score = $score;
+    }
+
+    public function getTime(){
+        return $this->time;
+    }
+    public function setTime($time){
+        $this->time = $time;
+    }
+
+    public function getDate(){
+        return $this->date;
+    }
+    public function setDate($date){
+        $this->date = $date;
     }
 
 
     public function save(){
         if ($this->id != null){
             global $wpdb;
-            $wpdb->insert('article', array(
-            "id"  => $this->id,
-            "title" => $this->title;
-            "content" => $this->content;
-            "view" => $this->view;
-            "authorId" => $this->authorId;
-            "created_at" => $this->created_at;
+            $wpdb->insert(
+                'quiz_score', array(
+                    "id" => $this->id,
+                    "user_id" => $this->user_id;
+                    "quiz_id" => $this->quiz_id;
+                    "score" => $this->score;
+                    "time" => $this->time;
+                    "date" => $this->date;
             ));
         }else{
             global $wpdb;
-            $wpdb->update('article', array(
-                "id"  => $this->id,
-                "title" => $this->title;
-                "content" => $this->content;
-                "view" => $this->view;
-                "authorId" => $this->authorId;
-                "created_at" => $this->created_at;
+            $wpdb->update(
+                'quiz_score', array(
+                    "user_id" => $this->user_id;
+                    "quiz_id" => $this->quiz_id
+                    "score" => $this->score;
+                    "time" => $this->time;
+                    "date" => $this->date;
+            ), array(
+                "id" => $this->id,
             ));
             
         }
     }
 
-    public static function delete(){
+    public function delete(){
         global $wpdb;
-        $wpdb->delete( 'user', array( 'id' => $id ) );
+        $wpdb->delete( 'quiz_score', array( 'id' => $id ) );
+    }
+
+    //moyenne globale de toutes les notes tous utilisateurs compris
+    public function globalAverage(){
+        global $wpdb;
+
+        return $wpdb->get_var( "SELECT AVG(`score`) from quiz_score" );
+    }
+    
+    //Moyenne de l'utilisateur sur tous les quizs
+    public function userAverage($id_user){
+        global $wpdb;
+
+        return $wpdb->get_var( "SELECT AVG(`score`) from quiz_score  where user_id =".$user_id."" );
+    }
+ 
+    //Moyenne des utilisateurs sur un quiz
+    public function quizAverage($id_quiz){
+        global $wpdb;
+
+        return $wpdb->get_var( "SELECT AVG(`score`) from quiz_score  where quiz_id =".$quiz_id."" );
+    }
+
+
+    //Moyenne par locatiçon sur tous les quizs
+    public function locationAverage($location){
+        global $wpdb;
+
+        return $wpdb->get_var( "SELECT AVG(`score`) from quiz_score  inner join user on quiz_score.user_id = user.id where `location` =".$location."" );
+    }
+
+
+    //Classement par score global
+    public function orderByGlobalScore(){
+        global $wpdb;
+
+        $wpdb->get_result( "SELECT * from quiz_score order by score");
+    }
+
+    //Classement sur un quiz
+    public function orderByQuizScore($quizId){
+        global $wpdb;
+
+        $wpdb->get_result( "SELECT * from quiz_score where quiz_id =".$quiz_id." order by score");
+    }
+
+    //Classement par lieux    
+    public function orderByLocationScore($location){
+        global $wpdb;
+
+        $wpdb->get_result(" SELECT * from quiz_score inner join user on quiz_score.user_id = user.id where `location` =".$location." order by `score`");
     }
 }
+
+
+//faire moyennes globales et par quiz
 
 ?>
