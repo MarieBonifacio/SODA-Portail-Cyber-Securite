@@ -24,7 +24,7 @@
 		<script src="https://kit.fontawesome.com/06909fb3de.js"></script>
 	</head>
 	<body>
-			<div class="above">
+			<nav class="above">
 				<div class="logo">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
 					<!-- <div class="filter"></div> -->
@@ -42,9 +42,8 @@
 					</div>
 					<div class="settings"></div>
 				</div>
-			
-			</div>
-			<div class="side">
+			</nav>
+			<nav class="side">
 				<div class="home">
 					<i class="fas fa-home"></i>
 					<!-- <p>Accueil</p> -->
@@ -81,4 +80,4 @@
 					<i class="fas fa-sort-down"></i>
 				</div>
 				<i class="fas fa-question"></i>
-			</div>
+			</nav>

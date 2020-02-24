@@ -151,6 +151,10 @@
                     echo $_SESSION["errorRegister"];
                     unset($_SESSION["errorRegister"]);
                     }
+                    elseif(!empty($_SESSION["register"])){
+                    echo $_SESSION["register"];
+                    unset($_SESSION["register"]);
+                    }
                 ?>
             </p>
             <div>

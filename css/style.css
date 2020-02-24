@@ -720,7 +720,7 @@ body .insc .form form {
 
 body .insc .form form .error {
   position: absolute;
-  color: red;
+  color: #EBB94A;
   top: -35px;
   margin: 0;
   padding: 0;
