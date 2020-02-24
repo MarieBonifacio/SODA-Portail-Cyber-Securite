@@ -12,18 +12,17 @@
         <div class="above">
             <div class="logo">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
-                <!-- <div class="filter"></div> -->
             </div>
             <div class="connection"> 
                 <form action="<?php echo get_template_directory_uri(); ?>/app/connect.php" method="post">
-                    <div class="errorConnect">
+                    <p class="errorConnect">
                     <?php
                             if(!empty($_SESSION["errorConnect"])){
                             echo $_SESSION["errorConnect"];
                             unset($_SESSION["errorConnect"]);
                             }
                     ?>
-                    </div>
+                    </p>
                     <div> 
                         <label for="">Adresse mail :</label>
                         <input type="mail" name="mail">
@@ -144,16 +143,16 @@
 
 
     <div class="form">
-        <div class="error">
-           <?php
-                if(!empty($_SESSION["errorRegister"])){
-                   echo $_SESSION["errorRegister"];
-                   unset($_SESSION["errorRegister"]);
-                }
-           ?>
-        </div>
         <h2>Inscription</h2>  
         <form action="<?php echo get_template_directory_uri(); ?>/app/register.php" method="post">
+            <p class="error">
+                <?php
+                    if(!empty($_SESSION["errorRegister"])){
+                    echo $_SESSION["errorRegister"];
+                    unset($_SESSION["errorRegister"]);
+                    }
+                ?>
+            </p>
             <div>
                 <label for="">Nom :</label>
                 <input type="text" name="last_name">

@@ -107,21 +107,34 @@ body nav .above .connection form input:not(:focus) {
   text-align: center;
 }
 
-body nav .above .connection form div:nth-child(2) {
+body nav .above .connection form p:nth-child(1) {
+  position: absolute;
+  color: red;
+  top: 2%;
+  left: 50%;
+  width: 70%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+body nav .above .connection form div:nth-child(3) {
   position: relative;
 }
 
-body nav .above .connection form .mdpForget {
+body nav .above .connection form div:nth-child(3) .mdpForget {
   position: absolute;
   bottom: -100%;
-  right: 5%;
+  right: 10%;
   color: #7AB9C9;
   text-decoration: none;
   font-size: 12px;
   font-weight: 200;
 }
 
-body nav .above .connection form .mdpForget:hover {
+body nav .above .connection form div:nth-child(3) .mdpForget:hover {
   font-weight: 900;
 }
 
@@ -703,6 +716,15 @@ body .insc .form form {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 60%;
+}
+
+body .insc .form form .error {
+  position: absolute;
+  color: red;
+  top: -35px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
 }
 
 body .insc .form form div {
