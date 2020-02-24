@@ -5,7 +5,8 @@ require('class/user.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
-$error = "Veuillez remplir tous les champs";
+
+
 
 if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['first_password']) && !empty($_POST['check_password']) && !empty($_POST['id_user']) && !empty($_POST['location'])){
     global $wpdb;
@@ -42,7 +43,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     }else{
         $error = "Utilisateur déjà existant";
     }
-
+}else{
+    $error = "Veuillez remplir tous les champs";
 }
 
 $_SESSION["register"] = $register;
