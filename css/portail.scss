@@ -47,19 +47,84 @@ body
             width:85%;
             height: 100%;
             @include flex(flex-end, center, row);
+            .arrow
+            {
+                position: absolute;
+                left: 0;
+                font-size: $fontSize3;
+                color: $icons;
+                z-index: 2;
+            }
+            .arrow:hover
+            {
+                color: $color-imp;
+                cursor: pointer;
+            }
             .icons
             {
                 @include flex(space-around, center, row);
+                position: relative;
                 width: 10%;
                 height: 100%;
                 font-size: $fontSize3;
                 color: $icons;
+                transition: .3s;
+                i
+                {
+                    position: relative;
+                    z-index: 5;
+                }
                 i:hover
                 {
                     color: $color-imp;
                     cursor: pointer;
                 }
+                .fa-bell
+                {
+                    position: absolute;
+                    right: 10px;
+                }
+                .searchContainer
+                {
+                    position: relative;
+                    width: 0%;
+                    height: 100%;
+                    color: $icons;
+                    font-size: $fontSize3;
+                    transition: .3s;
+                    @include flex(center, center, row);
+                    .searchBar
+                    {
+                        position: relative;
+                        height: 50%;
+                        width: 0%;
+                        opacity: 0;
+                        border: none;
+                        background: none;
+                        border-bottom: 1px solid $police;
+                        transition: .3s;
+                        margin-left: 10px;
+                    }
+                    //class which grows searchbar
+                    .growUp
+                    {
+                        width: 80%;
+                        opacity: 1;
+                    }
+                }
+                // class which grows container of searchbar
+                .opacitySearch
+                {
+                    width: 100%;
+                    opacity: 1;
+                }
             }
+            // class which grows the container of bell icon and search icon/bar
+            .iconsGrow
+            {
+                width: 90%;
+            }
+
             .profile_pic
             {
                 width: 10%;
@@ -80,11 +145,13 @@ body
     }
     .side
     {
-        position: relative;
+        position: fixed;
         width: 15%;
         height: 88%;
         top: 12%;
+        z-index: 5;
         background: $color1;
+        transition: .5s;
         @include flex(flex-start, center, column);
         i
         {
@@ -107,6 +174,19 @@ body
             {
                 color: $icon-home;
             }
+            p
+            {
+                display: block;
+                width: 50%;
+                color: rgba(255, 255, 255, 1);
+                transition: .2s;
+            }
+            // class to make icons name appear
+            .para
+            {
+                width: 0%;
+                color: rgba(255, 255, 255, 0);
+            }
         }
         .home
         {
@@ -119,5 +199,19 @@ body
             bottom: 10px;
             font-size: $fontSize3;
         }
+    }
+    // class to shrink the side nav
+    .shrink
+    {
+        width: 5%;
+    }
+    
+    .body
+    {
+        position: absolute;
+        width: 95%;
+        height: 88%;
+        left: 5%;
+        top: 12%;
     }
 }

@@ -21,63 +21,66 @@
             tests: {}
         });
 		</script>
-		<script src="https://kit.fontawesome.com/06909fb3de.js"></script>
 	</head>
 	<body>
-			<nav class="above">
-				<div class="logo">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
-					<!-- <div class="filter"></div> -->
-				</div>
-				<div class="search">
-					<!-- <i class="fas fa-arrow-left"></i> -->
-					<div class="icons">
+		<nav class="above">
+			<div class="logo">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
+			</div>
+			<div class="search">
+				<i class="arrow fas fa-arrow-left"></i>
+				<div class="icons">
+					<div class="searchContainer">
 						<i class="fas fa-search"></i>
-						<i class="far fa-bell"></i>
+						<input class="searchBar"></input>
 					</div>
-					<div class="profile_pic">
-						<div class="circle">
-							<img src="" alt="photo de votre profil">
-						</div>
+					<i class="far fa-bell"></i>
+				</div>
+				<div class="profile_pic">
+					<div class="circle">
+						<img src="" alt="photo de votre profil">
 					</div>
-					<div class="settings"></div>
 				</div>
-			</nav>
-			<nav class="side">
-				<div class="home">
-					<i class="fas fa-home"></i>
-					<!-- <p>Accueil</p> -->
-                    <i class="fas fa-sort-down"></i>
-				</div>
-				<div class="articles">
-					<i class="far fa-newspaper"></i>
-					<!-- <p>Articles</p> -->
-                    <i class="fas fa-sort-down"></i>
-				</div>
-				<div class="modules">
-					<i class="fas fa-graduation-cap"></i>
-					<!-- <p>Modules</p> -->
-                    <i class="fas fa-sort-down"></i>
-				</div>
-				<div class="tools">
-					<i class="fas fa-tools"></i>
-					<!-- <p>Outils</p> -->
-					<i class="fas fa-sort-down"></i>
-				</div>
-				<div class="quiz">
-					<i class="fas fa-question-circle"></i>
-					<!-- <p>Quiz</p> -->
-					<i class="fas fa-sort-down"></i>
-				</div>
-				<div class="games">
-					<i class="fas fa-gamepad"></i>
-					<!-- <p>Jeux</p> -->
-					<i class="fas fa-sort-down"></i>
-				</div>
-				<div class="rank">
-					<i class="fas fa-trophy"></i>
-					<!-- <p>Classement</p> -->
-					<i class="fas fa-sort-down"></i>
-				</div>
-				<i class="fas fa-question"></i>
-			</nav>
+				<div class="settings"></div>
+			</div>
+		</nav>
+		<nav class="side">
+			<div class="home">
+				<i class="fas fa-home"></i>
+				<p id="p">Accueil</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<div class="articles">
+				<i class="far fa-newspaper"></i>
+				<p id="p">Articles</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<div class="modules">
+				<i class="fas fa-graduation-cap"></i>
+				<p id="p">Modules</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<div class="tools">
+				<i class="fas fa-tools"></i>
+				<p id="p">Outils</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<div class="quiz">
+				<i class="fas fa-question-circle"></i>
+				<p id="p">Quiz</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<div class="games">
+				<i class="fas fa-gamepad"></i>
+				<p id="p">Jeux</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<div class="rank">
+				<i class="fas fa-trophy"></i>
+				<p id="p">Classement</p>
+				<i class="fas fa-sort-down"></i>
+			</div>
+			<i class="fas fa-question"></i>
+		</nav>
+		
+		<section class="body">

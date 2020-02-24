@@ -145,18 +145,16 @@
     <div class="form">
         <h2>Inscription</h2>  
         <form action="<?php echo get_template_directory_uri(); ?>/app/register.php" method="post">
-            <p class="error">
-                <?php
-                    if(!empty($_SESSION["errorRegister"])){
-                    echo $_SESSION["errorRegister"];
-                    unset($_SESSION["errorRegister"]);
-                    }
-                    elseif(!empty($_SESSION["register"])){
-                    echo $_SESSION["register"];
-                    unset($_SESSION["register"]);
-                    }
-                ?>
-            </p>
+            <?php
+                if(!empty($_SESSION["errorRegister"])){
+                echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
+                unset($_SESSION["errorRegister"]);
+                }
+                elseif(!empty($_SESSION["register"])){
+                echo "<p class='mess good'>".$_SESSION["register"]."</p>";
+                unset($_SESSION["register"]);
+                }
+            ?>
             <div>
                 <label for="">Nom :</label>
                 <input type="text" name="last_name">

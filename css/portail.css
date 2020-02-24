@@ -86,6 +86,19 @@ body .above .search {
           flex-direction: row;
 }
 
+body .above .search .arrow {
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+  color: #fff;
+  z-index: 2;
+}
+
+body .above .search .arrow:hover {
+  color: #EBB94A;
+  cursor: pointer;
+}
+
 body .above .search .icons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -99,15 +112,78 @@ body .above .search .icons {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  position: relative;
   width: 10%;
   height: 100%;
   font-size: 2rem;
   color: #fff;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+body .above .search .icons i {
+  position: relative;
+  z-index: 5;
 }
 
 body .above .search .icons i:hover {
   color: #EBB94A;
   cursor: pointer;
+}
+
+body .above .search .icons .fa-bell {
+  position: absolute;
+  right: 10px;
+}
+
+body .above .search .icons .searchContainer {
+  position: relative;
+  width: 0%;
+  height: 100%;
+  color: #fff;
+  font-size: 2rem;
+  -webkit-transition: .3s;
+  transition: .3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .above .search .icons .searchContainer .searchBar {
+  position: relative;
+  height: 50%;
+  width: 0%;
+  opacity: 0;
+  border: none;
+  background: none;
+  border-bottom: 1px solid #fff;
+  -webkit-transition: .3s;
+  transition: .3s;
+  margin-left: 10px;
+}
+
+body .above .search .icons .searchContainer .growUp {
+  width: 80%;
+  opacity: 1;
+}
+
+body .above .search .icons .opacitySearch {
+  width: 100%;
+  opacity: 1;
+}
+
+body .above .search .iconsGrow {
+  width: 90%;
 }
 
 body .above .search .profile_pic {
@@ -140,11 +216,14 @@ body .above .search .settings {
 }
 
 body .side {
-  position: relative;
+  position: fixed;
   width: 15%;
   height: 88%;
   top: 12%;
+  z-index: 5;
   background: #131A28;
+  -webkit-transition: .5s;
+  transition: .5s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -194,6 +273,19 @@ body .side div .fa-home {
   color: #2CB751;
 }
 
+body .side div p {
+  display: block;
+  width: 50%;
+  color: white;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+body .side div .para {
+  width: 0%;
+  color: rgba(255, 255, 255, 0);
+}
+
 body .side .home {
   margin-top: 15px;
 }
@@ -203,5 +295,17 @@ body .side .fa-question {
   right: 10px;
   bottom: 10px;
   font-size: 2rem;
+}
+
+body .shrink {
+  width: 5%;
+}
+
+body .body {
+  position: absolute;
+  width: 95%;
+  height: 88%;
+  left: 5%;
+  top: 12%;
 }
 /*# sourceMappingURL=portail.css.map */

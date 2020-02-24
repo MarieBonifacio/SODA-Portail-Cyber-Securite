@@ -1,19 +1,9 @@
 			<!-- footer -->
-			<footer class="footer" role="contentinfo">
-
-				<!-- copyright -->
-				<p class="copyright">
-					&copy; <?php echo date('Y'); ?> Copyright <?php bloginfo('name'); ?>. <?php _e('Powered by', 'html5blank'); ?>
-					<a href="//wordpress.org" title="WordPress">WordPress</a> &amp; <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>.
-				</p>
-				<!-- /copyright -->
-
-			</footer>
+			<!-- <footer>
+			</footer> -->
 			<!-- /footer -->
 
-		</div>
-		<!-- /wrapper -->
-
+		</section>
 		<?php wp_footer(); ?>
 
 		<!-- analytics -->
@@ -25,6 +15,6 @@
 		ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
 		ga('send', 'pageview');
 		</script>
-
+		<script src="<?php echo get_template_directory_uri(); ?>/js/portail.js"></script>
 	</body>
 </html>
