@@ -38,13 +38,14 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         $newUser->setLocation($location);
         $newUser->save();
         
-        $error = "Inscription validée.";
+        $register = "Inscription validée.";
     }else{
         $error = "Utilisateur déjà existant";
     }
 
 }
 
+$_SESSION["register"] = $register;
 $_SESSION["errorRegister"] = $error;
 wp_redirect( home_url() );
 ?>

@@ -1,12 +1,22 @@
 <?php
+global $wpdb;
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+include($path.'wp-load.php');
 
-class Article {
+class Question {
+
     private $id;
-    private $title;
+    private $id_quiz;
     private $content;
-    private $view;
-    private $authorId;
-    private $createdAt;
+    private $points;
+
+    public function selectById($id){
+        $r = $wpdb->get_row("SELECT * FROM 'question' where id=".$id."");
+        $this->id = $r['id'];
+        $this->id_quiz = (new Quiz())->selectById($r['id']);
+        $this->content = $r['content'];
+        $this->points = $r['points'];
+    }
 
     public function getId(){
         return $this->id;
