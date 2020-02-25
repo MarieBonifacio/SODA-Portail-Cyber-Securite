@@ -5,3 +5,31 @@
     align-items: $align;
     flex-direction: $direction;
 }
+
+@mixin positionTL($position, $top, $left) 
+{
+    position:  $position;
+    top: $top;
+    left: $left;
+}
+
+@mixin positionTR($position, $top, $right) 
+{
+    position:  $position;
+    top: $top;
+    right: $right;
+}
+
+@mixin positionBL($position, $bottom, $left) 
+{
+    position:  $position;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin positionBR($position, $bottom, $right) 
+{
+    position:  $position;
+    bottom: $bottom;
+    right: $right;
+}

@@ -2,250 +2,364 @@
 
 body
 {  
-    height: 100vh;
-    width: 100%;
-    background-color: $color2;
-    padding: 0;
-    margin: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: $color2;
+  padding: 0;
+  margin: 0;
+  font-family: "Muli", sans-serif;
+  overflow: hidden;
+  p
+  {
+    font-size: $fontSize2;
+    color: $police;
     font-family: "Muli", sans-serif;
-    overflow: hidden;
-    p
+    font-weight: 100;
+  }
+  i
+  {
+    font-size: $fontSize2;
+    color: $icons;
+  }
+  i:hover
+  {
+    color: $color-imp;
+    cursor: pointer;
+    user-select: none;
+  }
+  .above
+  {
+    @include positionTL(fixed, 0, 0);
+    width: 100%;
+    height: 12%;
+    background: $color2;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    @include flex(space-between, center, row);
+    .logo
     {
-        font-size: $fontSize2;
-        color: $police;
-        font-family: "Muli", sans-serif;
-        font-weight: 100;
+      position: relative;
+      width: 15%;
+      height: 100%;
+      z-index: 3;
+      @include flex(center, center, row);
+      img
+      {
+        position: relative;
+        width: 70%;
+        height: auto;
+        z-index: 4;
+      }
     }
-    .above
+    .search
     {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 12%;
-        background: $color2;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        @include flex(space-between, center, row);
-        .logo
+      position: relative;
+      width:85%;
+      height: 100%;
+      @include flex(flex-end, center, row);
+      i
+      {
+        font-size: $fontSize3;
+      }
+      .arrow
+      {
+        @include positionTL(absolute, "", 0);
+        font-size: $fontSize3;
+        color: $icons;
+        z-index: 2;
+      }
+      .arrow:hover
+      {
+        color: $color-imp;
+        cursor: pointer;
+      }
+      .icons
+      {
+        position: relative;
+        width: 10%;
+        height: 100%;
+        font-size: $fontSize3;
+        color: $icons;
+        transition: .3s;
+        @include flex(space-around, center, row);
+        i
         {
+          position: relative;
+          z-index: 5;
+        }
+        .fa-bell
+        {
+          @include positionTR(absolute, "", 10px);
+        }
+        .searchContainer
+        {
+          position: relative;
+          width: 0%;
+          height: 100%;
+          color: $icons;
+          font-size: $fontSize3;
+          transition: .3s;
+          @include flex(center, center, row);
+          .searchBar
+          {
             position: relative;
-            width: 15%;
-            height: 100%;
-            z-index: 3;
+            height: 50%;
+            width: 0%;
+            opacity: 0;
+            border: none;
+            background: none;
+            border-bottom: 1px solid $police;
+            transition: .3s;
+            margin-left: 10px;
+          }
+          //class which grows searchbar
+          .growUp
+          {
+            width: 80%;
+            opacity: 1;
+          }
+        }
+        // class which grows container of searchbar
+        .opacitySearch
+        {
+          width: 100%;
+          opacity: 1;
+        }
+      }
+        // class which grows the container of bell icon and search icon/bar
+      .iconsGrow
+      {
+          width: 90%;
+      }
+      .profile_pic
+      {
+        width: 10%;
+        height: 100%;
+        @include flex(center, center, row);
+        .circle{
+          position: relative;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background: #fff;
+          overflow: hidden;
+          @include flex(center, center, row);
+          img
+          {
+            position: relative;
+            width: 100%;
+          }
+        }
+      }
+      .settings
+      {
+        display: none;
+      }
+    }
+  }
+  .side
+  {
+    @include positionTR(fixed, 12%, "");
+    width: 15%;
+    height: 88%;
+    z-index: 5;
+    background: $color1;
+    transition: .5s;
+    @include flex(flex-start, center, column);
+    div
+    {
+      position: relative;
+      @include flex(space-evenly, center, row);
+      margin-bottom: 15px;
+      width: 100%;
+      height: 5%;
+      .fa-home
+      {
+        color: $icon-home;
+      }
+      p
+      {
+        display: block;
+        width: 50%;
+        color: rgba(255, 255, 255, 1);
+        transition: .2s;
+      }
+      // class to make icons name appear
+      .para
+      {
+        width: 0%;
+        color: rgba(255, 255, 255, 0);
+      }
+    }
+    .home
+    {
+      margin-top: 15px;
+    }
+    .fa-question
+    {
+      @include positionTR(absolute, "", 10px);
+      bottom: 10px;
+      font-size: $fontSize3;
+    }
+  }
+  // class to shrink the side nav
+  .shrink
+  {
+    width: 5%;
+  }
+  
+  .content
+  {
+    position: absolute;
+    width: 95%;
+    height: 88%;
+    left: 5%;
+    top: 12%;
+    // background: red;
+    @include flex( space-between, center, row);
+    h2
+    {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $police;
+      z-index: 1;
+      font-size: $fontSize3;
+      // color: $color-imp;
+      font-family: "Montserrat", sans-serif;
+    }
+    .profile
+    {
+      position: relative;
+      width: 45%;
+      height: 100%;
+      font-size: $fontSize2;
+      font-family: "Muli";
+      @include flex(space-evenly, center, column);
+      form
+      {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        color: $police;
+        font-weight: 600;
+        @include flex(space-around, center, column);
+        .picture
+        {
+          position: relative;
+          font-weight: 200;
+          width: 150px;
+          @include flex(center, center, row);
+          i
+          {
+            @include positionBR(absolute, 0, 0);
+          }
+          span
+          {
+            width: 200%;
+            text-align: left;
+            @include positionBR(absolute, -5px, -310px);
+            color: $color-imp;
+            font-weight: 600;
+          }
+          .img
+          {
+            position: relative;
+            width: 100%;
+            border-radius: 50%;
+            overflow: hidden;
             @include flex(center, center, row);
             img
             {
-                position: relative;
-                width: 70%;
-                height: auto;
-                z-index: 4;
+              position: relative;
+              width: 100%;
             }
-        }
-        .search
-        {
-            position: relative;
-            width:85%;
-            height: 100%;
-            @include flex(flex-end, center, row);
-            .arrow
-            {
-                position: absolute;
-                left: 0;
-                font-size: $fontSize3;
-                color: $icons;
-                z-index: 2;
-            }
-            .arrow:hover
-            {
-                color: $color-imp;
-                cursor: pointer;
-            }
-            .icons
-            {
-                @include flex(space-around, center, row);
-                position: relative;
-                width: 10%;
-                height: 100%;
-                font-size: $fontSize3;
-                color: $icons;
-                transition: .3s;
-                i
-                {
-                    position: relative;
-                    z-index: 5;
-                }
-                i:hover
-                {
-                    color: $color-imp;
-                    cursor: pointer;
-                }
-                .fa-bell
-                {
-                    position: absolute;
-                    right: 10px;
-                }
-                .searchContainer
-                {
-                    position: relative;
-                    width: 0%;
-                    height: 100%;
-                    color: $icons;
-                    font-size: $fontSize3;
-                    transition: .3s;
-                    @include flex(center, center, row);
-                    .searchBar
-                    {
-                        position: relative;
-                        height: 50%;
-                        width: 0%;
-                        opacity: 0;
-                        border: none;
-                        background: none;
-                        border-bottom: 1px solid $police;
-                        transition: .3s;
-                        margin-left: 10px;
-                    }
-                    //class which grows searchbar
-                    .growUp
-                    {
-                        width: 80%;
-                        opacity: 1;
-                    }
-                }
-                // class which grows container of searchbar
-                .opacitySearch
-                {
-                    width: 100%;
-                    opacity: 1;
-                }
-            }
-            // class which grows the container of bell icon and search icon/bar
-            .iconsGrow
-            {
-                width: 90%;
-            }
-
-            .profile_pic
-            {
-                width: 10%;
-                height: 100%;
-                @include flex(center, center, row);
-                .circle{
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    background: #fff;
-                }
-            }
-            .settings
-            {
-                display: none;
-            }
-        }
-    }
-    .side
-    {
-        position: fixed;
-        width: 15%;
-        height: 88%;
-        top: 12%;
-        z-index: 5;
-        background: $color1;
-        transition: .5s;
-        @include flex(flex-start, center, column);
-        i
-        {
-            font-size: $fontSize2;
-            color: $icons;
-        }
-        i:hover
-        {
-            color: $color-imp;
-            cursor: pointer;
+          }
         }
         div
         {
-            position: relative;
-            @include flex(space-evenly, center, row);
-            margin-bottom: 15px;
-            width: 100%;
-            height: 5%;
-            .fa-home
-            {
-                color: $icon-home;
-            }
-            p
-            {
-                display: block;
-                width: 50%;
-                color: rgba(255, 255, 255, 1);
-                transition: .2s;
-            }
-            // class to make icons name appear
-            .para
-            {
-                width: 0%;
-                color: rgba(255, 255, 255, 0);
-            }
+          width: 50%;
+          label
+          {
+            font-family: "Montserrat";
+          }
+          @include flex(space-between, center, row);
+          input
+          {
+            width: 62%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid $police;
+            color: $color-imp;
+          }
+          input:focus
+          {
+            color: $color-imp;
+            outline: none;
+            text-align: center;
+          }
+          input:not(:focus)
+          {
+            text-align: center;
+            color: $color-imp;
+          }
+          button
+          {
+            background: none;
+            border: none;
+          }
         }
-        .home
+        .select
         {
-            margin-top: 15px;
+          position: relative;
+          width: auto;
+          select
+          {
+            appearance: none;
+            outline: none;
+            font-weight: 600;
+          }
+          i
+          {
+              @include positionTR(absolute, 0, 5px);
+              color: #192231;
+              font-size: $fontSize3;
+          }
+          select:hover
+          {
+            cursor: pointer;
+          }
         }
-        .fa-question
+        input[type=submit], select
         {
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            font-size: $fontSize3;
+          background: $color-btn;
+          color: $color1;
+          border: none;
+          border-radius: 20px;
+          padding: 5px 20px;
+          font-size: $fontSize2;
+          font-weight: 600;
+          transition: .2s;
         }
+        input[type=submit]:hover, select:hover
+        {
+          cursor: pointer;
+          background: white;
+        }
+      }
     }
-    // class to shrink the side nav
-    .shrink
+    .svg
     {
-        width: 5%;
+      position: relative;
+      width: 50%;
+      height: 100%;
+      @include flex(center, center, row);
+      .svg_profile
+      {
+        margin-top: 50px;
+        width: 90%;
+        height: auto;
+      }
     }
-    
-    .content
-    {
-        position: absolute;
-        width: 95%;
-        height: 88%;
-        left: 5%;
-        top: 12%;
-        // background: red;
-        @include flex( space-between, center, row);
-        h2
-        {
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: $police;
-            z-index: 1;
-            font-size: $fontSize3;
-            // color: $color-imp;
-            font-family: "Montserrat", sans-serif;
-        }
-        .profile
-        {
-            position: relative;
-            width: 50%;
-            height: 100%;
-            // background-color:blue;
-        }
-        .svg
-        {
-            position: relative;
-            width: 50%;
-            height: 100%;
-            @include flex(center, center, row);
-            // background: red;
-            .svg_profile
-            {
-                width: 90%;
-                height: auto;
-            }
-        }
-    }
+  }
 }

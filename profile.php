@@ -5,21 +5,69 @@ $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
 
-if(!empty($_SESSION['userConnected'])){
+if(!empty($_SESSION['userConnected']))
+{
     $id = $_SESSION['userConnected'];
     
     $userConnected = new User();
     $userConnected->selectById($id);
     
-    echo $userConnected->print();
-  }
+    // echo $userConnected->print();
+}
 
 
 ?>
   <h2>Mon profil</h2>
 
   <div class="profile">
-    
+    <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post">
+        <div class="picture">
+          <div class="img">
+            <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="votre photo de profil">
+          </div>
+          <button type="button" disabled>
+            <i class="fas fa-pencil-alt" id="custom-button"></i>
+          </button>
+          <span id="custom-text">Aucune image séléctionné</span>
+          <input id="real-file" type="file" name="avatar" accept="image/png, image/jpeg" hidden>
+        </div>
+        
+        <div>
+            <label for="last_name">Nom :</label>
+            <input type="text" name="last_name" value="<?php echo $userConnected->getLastName();?>">
+        </div>
+        <div>
+            <label for="first_name">Prénom :</label>            
+            <input type="text" name="first_name" value="<?php echo $userConnected->getName();?>">
+        </div>
+        <div>
+            <label for="id_user">Identifiant :</label>  
+            <input type="text" name="id_user" value="<?php echo $userConnected->getIdUser();?>">
+        </div>
+        <div>
+            <label for="firs-mail">Adresse mail :</label>
+            <input type="mail" name="first_mail"  value="<?php echo $userConnected->getMail();?>">
+        </div>
+        <div>
+            <label for="location">Votre site :</label>
+            <div class="select">
+                <select name="location" id="sites">
+                    <option value="<?php echo $userConnected->getLocation();?>"><?php echo $userConnected->getLocation();?></option>
+                    <?php 
+
+                    $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
+
+                    for($i=0; $i<count($sites); $i++){
+                        echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
+                    }
+                    ?>
+                </select>
+                <i class="fas fa-sort-down"></i>
+            </div>
+        </div>
+        <input type="submit" value="Modifier">
+    </form>
+
   </div>
 
   <div class="svg">

@@ -17,6 +17,20 @@ body p {
   font-weight: 100;
 }
 
+body i {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+body i:hover {
+  color: #EBB94A;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 body .above {
   position: fixed;
   top: 0;
@@ -86,8 +100,13 @@ body .above .search {
           flex-direction: row;
 }
 
+body .above .search i {
+  font-size: 2rem;
+}
+
 body .above .search .arrow {
   position: absolute;
+  top: "";
   left: 0;
   font-size: 2rem;
   color: #fff;
@@ -100,6 +119,13 @@ body .above .search .arrow:hover {
 }
 
 body .above .search .icons {
+  position: relative;
+  width: 10%;
+  height: 100%;
+  font-size: 2rem;
+  color: #fff;
+  -webkit-transition: .3s;
+  transition: .3s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -112,13 +138,6 @@ body .above .search .icons {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  position: relative;
-  width: 10%;
-  height: 100%;
-  font-size: 2rem;
-  color: #fff;
-  -webkit-transition: .3s;
-  transition: .3s;
 }
 
 body .above .search .icons i {
@@ -126,13 +145,9 @@ body .above .search .icons i {
   z-index: 5;
 }
 
-body .above .search .icons i:hover {
-  color: #EBB94A;
-  cursor: pointer;
-}
-
 body .above .search .icons .fa-bell {
   position: absolute;
+  top: "";
   right: 10px;
 }
 
@@ -205,10 +220,30 @@ body .above .search .profile_pic {
 }
 
 body .above .search .profile_pic .circle {
+  position: relative;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background: #fff;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .above .search .profile_pic .circle img {
+  position: relative;
+  width: 100%;
 }
 
 body .above .search .settings {
@@ -217,9 +252,10 @@ body .above .search .settings {
 
 body .side {
   position: fixed;
+  top: 12%;
+  right: "";
   width: 15%;
   height: 88%;
-  top: 12%;
   z-index: 5;
   background: #131A28;
   -webkit-transition: .5s;
@@ -237,16 +273,6 @@ body .side {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-body .side i {
-  font-size: 1.5rem;
-  color: #fff;
-}
-
-body .side i:hover {
-  color: #EBB94A;
-  cursor: pointer;
 }
 
 body .side div {
@@ -292,6 +318,7 @@ body .side .home {
 
 body .side .fa-question {
   position: absolute;
+  top: "";
   right: 10px;
   bottom: 10px;
   font-size: 2rem;
@@ -336,8 +363,190 @@ body .content h2 {
 
 body .content .profile {
   position: relative;
-  width: 50%;
+  width: 45%;
   height: 100%;
+  font-size: 1.5rem;
+  font-family: "Muli";
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .content .profile form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-weight: 600;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .content .profile form .picture {
+  position: relative;
+  font-weight: 200;
+  width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .content .profile form .picture i {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+body .content .profile form .picture span {
+  width: 200%;
+  text-align: left;
+  position: absolute;
+  bottom: -5px;
+  right: -310px;
+  color: #EBB94A;
+  font-weight: 600;
+}
+
+body .content .profile form .picture .img {
+  position: relative;
+  width: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .content .profile form .picture .img img {
+  position: relative;
+  width: 100%;
+}
+
+body .content .profile form div {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+body .content .profile form div label {
+  font-family: "Montserrat";
+}
+
+body .content .profile form div input {
+  width: 62%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #EBB94A;
+}
+
+body .content .profile form div input:focus {
+  color: #EBB94A;
+  outline: none;
+  text-align: center;
+}
+
+body .content .profile form div input:not(:focus) {
+  text-align: center;
+  color: #EBB94A;
+}
+
+body .content .profile form div button {
+  background: none;
+  border: none;
+}
+
+body .content .profile form .select {
+  position: relative;
+  width: auto;
+}
+
+body .content .profile form .select select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  font-weight: 600;
+}
+
+body .content .profile form .select i {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: #192231;
+  font-size: 2rem;
+}
+
+body .content .profile form .select select:hover {
+  cursor: pointer;
+}
+
+body .content .profile form input[type=submit], body .content .profile form select {
+  background: #EBB94A;
+  color: #131A28;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+body .content .profile form input[type=submit]:hover, body .content .profile form select:hover {
+  cursor: pointer;
+  background: white;
 }
 
 body .content .svg {
@@ -360,6 +569,7 @@ body .content .svg {
 }
 
 body .content .svg .svg_profile {
+  margin-top: 50px;
   width: 90%;
   height: auto;
 }

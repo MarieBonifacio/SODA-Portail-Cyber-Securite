@@ -38,7 +38,7 @@
 				</div>
 				<div class="profile_pic">
 					<div class="circle">
-						<img src="" alt="photo de votre profil">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="photo de votre profil">
 					</div>
 				</div>
 				<div class="settings"></div>

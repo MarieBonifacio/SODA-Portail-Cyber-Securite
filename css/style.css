@@ -817,8 +817,6 @@ body .insc .form form div i {
   color: #192231;
   font-size: 20px;
   right: 10px;
-  -webkit-transition: .1s;
-  transition: .1s;
 }
 
 body .insc .form form input[type=submit] {

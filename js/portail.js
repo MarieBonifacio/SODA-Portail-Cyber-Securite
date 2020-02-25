@@ -47,3 +47,36 @@ searchIcon.addEventListener("click", ()=>{
         searchBar.classList.remove("growUp");
     }
 });
+
+//file input animation
+
+const realBtn = document.querySelector("#real-file");
+const fakeBtn = document.querySelector("#custom-button");
+const span = document.querySelector("#custom-text");
+const regex = /[\/\\]([\w\d\s\.\-\(\)]+)$/;
+/*
+regex to analyse: 
+
+/ 
+first character : [ matches  "/"  or  "\"  before the name of the file ]
+then a character ( [ matches any word characters "\w"  or  "\d" or whitespaces "\s"  or  special characters among  "\." _ "\-" _ "\(" _ "\)" -> between one and unlimited characters "+" ] )
+$ -> end of regex 
+/   
+
+*/
+
+fakeBtn.addEventListener("click", ()=>{
+    realBtn.click();
+});
+
+realBtn.addEventListener("change", ()=>{
+    if(realBtn.value)
+    {
+        // match() method get a correlation table between a regular expression (image path -> realBtn.value)  and a rational expression (regex)
+        span.innerHTML = realBtn.value.match(regex)[1];
+    }
+    else
+    {
+        span.innerHTML = "Aucune image séléctionné";
+    }
+})
