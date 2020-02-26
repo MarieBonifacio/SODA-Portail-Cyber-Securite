@@ -48,7 +48,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
             $error = "Impossible de copier le fichier dans $content_dir";
         }
         $newUser = new User();
-        $newUser->setImgPath($img);
+        $newUser->setImgPath($imgPath);
         $newUser->save();
 
         $error = "Le fichier a bien été uploadé";
@@ -66,6 +66,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     {
 
         $newUser = new User();
+        $newUser->selectById($r->id);
         $newUser->setImgPath($imgPath);
         $newUser->setName($name);
         $newUser->setLastName($lastName);
@@ -86,6 +87,6 @@ else
 
 $_SESSION["errorRegister"] = $error;
 echo $error;
-// wp_redirect( home_url()."/profil" ); 
+wp_redirect( home_url()."/profil" ); 
 
 ?>
