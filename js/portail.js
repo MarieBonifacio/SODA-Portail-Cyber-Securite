@@ -53,7 +53,6 @@ searchIcon.addEventListener("click", ()=>{
 const realBtn = document.querySelector("#real-file");
 const fakeBtn = document.querySelector("#custom-button");
 const span = document.querySelector("#custom-text");
-const regex = /[\/\\]([\w\d\s\.\-\(\)]+)$/;
 /*
 regex to analyse: 
 
@@ -73,7 +72,7 @@ realBtn.addEventListener("change", ()=>{
     if(realBtn.value)
     {
         // match() method get a correlation table between a regular expression (image path -> realBtn.value)  and a rational expression (regex)
-        span.innerHTML = realBtn.value.match(regex)[1];
+        span.innerHTML = realBtn.value.replace(/C:\\fakepath\\/, '');
     }
     else
     {

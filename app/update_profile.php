@@ -12,6 +12,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 {
     global $wpdb;
 
+    var_dump($_FILES);
+
     $imgPath = $_FILES['avatar'];
     $mail = $_POST['first_mail'];
     $name = htmlspecialchars($_POST['first_name']);
@@ -47,7 +49,11 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         { 
             $error = "Impossible de copier le fichier dans $content_dir";
         }
+
+        $imgPath = $content_dir.'/$name_file';
+
         $newUser = new User();
+        $newUser->selectById($r->id);
         $newUser->setImgPath($imgPath);
         $newUser->save();
 

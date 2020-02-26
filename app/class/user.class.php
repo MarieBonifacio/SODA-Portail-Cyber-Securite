@@ -94,7 +94,7 @@ class User {
     public function save(){
         if ($this->id == null){
             global $wpdb;
-            // $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
+            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'user', array(
                     "role" => $this->role,
@@ -110,7 +110,7 @@ class User {
             );
         }else{
             global $wpdb;
-           
+            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->update(
                 'user', array(
                     "role" => $this->role,
