@@ -163,12 +163,12 @@ body
     height: 88%;
     z-index: 5;
     background: $color1;
-    transition: .5s;
+    transition: .3s;
     @include flex(flex-start, center, column);
     div
     {
       position: relative;
-      @include flex(space-evenly, center, row);
+      @include flex(space-around, center, row);
       margin-bottom: 15px;
       width: 100%;
       height: 5%;
@@ -176,18 +176,33 @@ body
       {
         color: $icon-home;
       }
-      p
+      .fa-sort-down
       {
-        display: block;
+        width: 30%;
+        text-align: center;
+      }
+      #a
+      {
+        position: relative;
         width: 50%;
-        color: rgba(255, 255, 255, 1);
         transition: .2s;
+        @include flex(space-around, center, row);
+        p
+        {
+          width: 50%;
+          color: $police;
+          font-size: $fontSize2;
+          font-family: "Montserrat";
+        }
+        p:hover
+        {
+          color: $color-imp;
+        }
       }
       // class to make icons name appear
       .para
       {
-        width: 0%;
-        color: rgba(255, 255, 255, 0);
+        display: none;
       }
     }
     .home

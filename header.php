@@ -5,7 +5,7 @@
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/portail.css">
+        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/portail.min.css">
     	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,38 +46,31 @@
 		</nav>
 		<nav class="side">
 			<div class="home">
-				<i class="fas fa-home"></i>
-				<p id="p">Accueil</p>
+				<a id="a" href=""><i class="fas fa-home"></i><p id="p">Accueil</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="articles">
-				<i class="far fa-newspaper"></i>
-				<p id="p">Articles</p>
+				<a id="a" href=""><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="modules">
-				<i class="fas fa-graduation-cap"></i>
-				<p id="p">Modules</p>
+				<a id="a" href=""><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="tools">
-				<i class="fas fa-tools"></i>
-				<p id="p">Outils</p>
+				<a id="a" href=""><i class="fas fa-tools"></i><p id="p">Outils</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="quiz">
-				<i class="fas fa-question-circle"></i>
-				<p id="p">Quiz</p>
+				<a id="a" href=""><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="games">
-				<i class="fas fa-gamepad"></i>
-				<p id="p">Jeux</p>
+				<a id="a" href=""><i class="fas fa-gamepad"></i><p id="p">Jeux</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="rank">
-				<i class="fas fa-trophy"></i>
-				<p id="p">Classement</p>
+				<a id="a" href=""><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<i class="fas fa-question"></i>

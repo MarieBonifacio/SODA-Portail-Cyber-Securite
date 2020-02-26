@@ -39,7 +39,7 @@ if(!empty($_SESSION['userConnected']))
             <i class="fas fa-pencil-alt" id="custom-button"></i>
           </button>
           <span id="custom-text">Aucune image séléctionnée</span>
-          <input id="real-file" type="file" name="avatar" accept="image/png, image/jpeg" hidden>
+          <input id="real-file" type="file" name="avatar" hidden>
         </div>
         
         <div>
