@@ -37,16 +37,16 @@
 					<i class="far fa-bell"></i>
 				</div>
 				<div class="profile_pic">
-					<div class="circle">
+					<a href="<?php echo home_url()."/profil" ?>" class="circle">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="photo de votre profil">
-					</div>
+					</a>
 				</div>
 				<div class="settings"></div>
 			</div>
 		</nav>
 		<nav class="side">
 			<div class="home">
-				<a id="a" href=""><i class="fas fa-home"></i><p id="p">Accueil</p></a>
+				<a id="a" href="<?php echo home_url()."/accueil" ?>"><i class="fas fa-home"></i><p id="p">Accueil</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="articles">

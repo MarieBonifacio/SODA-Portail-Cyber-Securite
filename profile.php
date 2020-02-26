@@ -25,12 +25,12 @@ if(!empty($_SESSION['userConnected']))
         echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
         unset($_SESSION["errorRegister"]);
       }
-      elseif(!empty($_SESSION["register"])){
-        echo "<p class='mess good'>".$_SESSION["register"]."</p>";
-        unset($_SESSION["register"]);
+      elseif(!empty($_SESSION["updateOk"])){
+        echo "<p class='mess good'>".$_SESSION["updateOk"]."</p>";
+        unset($_SESSION["updateOk"]);
       }
     ?>
-    <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post">
+    <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post" enctype="multipart/form-data">
         <div class="picture">
           <div class="img">
             <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="votre photo de profil">

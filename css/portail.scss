@@ -251,6 +251,18 @@ body
       font-size: $fontSize2;
       font-family: "Muli";
       @include flex(space-evenly, center, column);
+      .mess
+      {
+        font-weight: 600;
+      }
+      .error
+      {
+        color: red;
+      }
+      .good
+      {
+        color: #3AD29F;
+      }
       form
       {
         position: relative;
