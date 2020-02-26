@@ -20,6 +20,16 @@ if(!empty($_SESSION['userConnected']))
   <h2>Mon profil</h2>
 
   <div class="profile">
+    <?php
+      if(!empty($_SESSION["errorRegister"])){
+        echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
+        unset($_SESSION["errorRegister"]);
+      }
+      elseif(!empty($_SESSION["register"])){
+        echo "<p class='mess good'>".$_SESSION["register"]."</p>";
+        unset($_SESSION["register"]);
+      }
+    ?>
     <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post">
         <div class="picture">
           <div class="img">
