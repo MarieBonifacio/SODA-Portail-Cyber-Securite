@@ -1,1 +1,0 @@
-<?php /* Template Name: Create Quiz */ get_header();?>
