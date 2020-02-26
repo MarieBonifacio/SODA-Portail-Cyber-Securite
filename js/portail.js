@@ -77,6 +77,20 @@ realBtn.addEventListener("change", ()=>{
     }
     else
     {
-        span.innerHTML = "Aucune image séléctionné";
+        span.innerHTML = "Aucune image séléctionnée";
     }
 })
+
+// clock animation -> hands of clock rotation
+
+let rotateBigHand = -30;
+let rotateLittleHand = -120;
+const bigHand = document.querySelector("#Vector_106");
+const littleHand = document.querySelector("#Vector_107");
+
+setInterval(() => {
+    rotateBigHand +=6;
+    rotateLittleHand +=0.5;
+    bigHand.style.transform = `rotate(${rotateBigHand}deg)`;
+    littleHand.style.transform = `rotate(${rotateLittleHand}deg)`;
+}, 50);

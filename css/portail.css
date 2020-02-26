@@ -569,8 +569,275 @@ body .content .svg {
 }
 
 body .content .svg .svg_profile {
+  position: relative;
   margin-top: 50px;
   width: 90%;
   height: auto;
+}
+
+body .content .svg .svg_profile #arm-l path {
+  -webkit-transform-origin: 15%;
+          transform-origin: 15%;
+  -webkit-animation: arml 0.8s infinite alternate;
+          animation: arml 0.8s infinite alternate;
+}
+
+@-webkit-keyframes arml {
+  0% {
+    -webkit-transform: translateX(-12px);
+            transform: translateX(-12px);
+    -webkit-transform: rotateZ(0.1deg);
+            transform: rotateZ(0.1deg);
+  }
+  100% {
+    -webkit-transform: translateX(-12px);
+            transform: translateX(-12px);
+    -webkit-transform: rotateZ(0.7deg);
+            transform: rotateZ(0.7deg);
+  }
+}
+
+@keyframes arml {
+  0% {
+    -webkit-transform: translateX(-12px);
+            transform: translateX(-12px);
+    -webkit-transform: rotateZ(0.1deg);
+            transform: rotateZ(0.1deg);
+  }
+  100% {
+    -webkit-transform: translateX(-12px);
+            transform: translateX(-12px);
+    -webkit-transform: rotateZ(0.7deg);
+            transform: rotateZ(0.7deg);
+  }
+}
+
+body .content .svg .svg_profile #arm-r {
+  -webkit-transform-origin: 0%;
+          transform-origin: 0%;
+  -webkit-animation: armr 0.8s infinite alternate;
+          animation: armr 0.8s infinite alternate;
+}
+
+@-webkit-keyframes armr {
+  0% {
+    -webkit-transform: translate(0px, 6px);
+            transform: translate(0px, 6px);
+  }
+  100% {
+    -webkit-transform: translate(6px, 6px);
+            transform: translate(6px, 6px);
+  }
+}
+
+@keyframes armr {
+  0% {
+    -webkit-transform: translate(0px, 6px);
+            transform: translate(0px, 6px);
+  }
+  100% {
+    -webkit-transform: translate(6px, 6px);
+            transform: translate(6px, 6px);
+  }
+}
+
+body .content .svg .svg_profile #apple {
+  position: relative;
+  -webkit-transform-origin: 20% 95%;
+          transform-origin: 20% 95%;
+  -webkit-animation: 3s squeeze infinite alternate;
+          animation: 3s squeeze infinite alternate;
+}
+
+@-webkit-keyframes squeeze {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  21% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  25% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  29% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  33% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  37% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes squeeze {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  21% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  25% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  29% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  33% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  37% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+body .content .svg .svg_profile #apple_2 {
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-animation: 3s newton infinite alternate;
+          animation: 3s newton infinite alternate;
+}
+
+@-webkit-keyframes newton {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  83% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  88% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  93% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes newton {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  83% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  88% {
+    -webkit-transform: translateY(-15px);
+            transform: translateY(-15px);
+  }
+  93% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+body .content .svg .svg_profile #Vector_106 {
+  -webkit-transform-origin: 12.85% 19.92%;
+          transform-origin: 12.85% 19.92%;
+}
+
+body .content .svg .svg_profile #Vector_107 {
+  -webkit-transform-origin: 12.85% 19.92%;
+          transform-origin: 12.85% 19.92%;
+}
+
+body .content .svg .svg_profile #Vector_112 {
+  -webkit-animation: 4s light infinite alternate;
+          animation: 4s light infinite alternate;
+}
+
+@-webkit-keyframes light {
+  0% {
+    fill: #E0E0E0;
+  }
+  20% {
+    fill: #E0E0E0;
+  }
+  30% {
+    fill: #7ab9c9;
+  }
+  40% {
+    fill: #E0E0E0;
+  }
+  60% {
+    fill: #E0E0E0;
+  }
+  70% {
+    fill: #7ab9c9;
+  }
+  80% {
+    fill: #E0E0E0;
+  }
+  100% {
+    fill: #E0E0E0;
+  }
+}
+
+@keyframes light {
+  0% {
+    fill: #E0E0E0;
+  }
+  20% {
+    fill: #E0E0E0;
+  }
+  30% {
+    fill: #7ab9c9;
+  }
+  40% {
+    fill: #E0E0E0;
+  }
+  60% {
+    fill: #E0E0E0;
+  }
+  70% {
+    fill: #7ab9c9;
+  }
+  80% {
+    fill: #E0E0E0;
+  }
+  100% {
+    fill: #E0E0E0;
+  }
 }
 /*# sourceMappingURL=portail.css.map */

@@ -356,9 +356,138 @@ body
       @include flex(center, center, row);
       .svg_profile
       {
+        position: relative;
         margin-top: 50px;
         width: 90%;
         height: auto;
+        #arm-l
+        {
+          path
+          {
+            transform-origin: 15%;
+            animation: arml 0.8s infinite alternate;
+          }
+        }
+        @keyframes arml 
+        {
+          0%{
+            transform: translateX(-12px);
+            transform: rotateZ(0.1deg);
+          }
+          100%{
+            transform: translateX(-12px);
+            transform: rotateZ(0.7deg);
+          }
+        }
+        #arm-r
+        {
+            transform-origin: 0%;
+            animation: armr 0.8s infinite alternate;
+        }
+        @keyframes armr 
+        {
+          0%{
+            transform: translate(0px, 6px);
+          }
+          100%{
+            transform: translate(6px, 6px);
+          }
+        }
+        #apple
+        {
+          position: relative;
+          transform-origin: 20% 95%;
+          animation: 3s squeeze infinite alternate;
+        }
+        @keyframes squeeze 
+        {
+          0%{
+            transform: rotate(0deg);
+          }
+          20%{
+            transform: rotate(0deg);
+          }
+          21%{
+            transform: rotate(2deg);
+          }
+          25%{
+            transform: rotate(-2deg);
+          }
+          29%{
+            transform: rotate(2deg);
+          }
+          33%{
+            transform: rotate(-2deg);
+          }
+          37%{
+            transform: rotate(0deg);
+          }
+          100%{
+            transform: rotate(0deg);
+          }
+        }
+        #apple_2
+        {
+          transform-origin: bottom;
+          animation: 3s newton infinite alternate;
+        }
+        @keyframes newton 
+        {
+          0%{
+            transform: translateY(0px);
+          }
+          83%{
+            transform: translateY(0px);
+          }
+          88%{
+            transform: translateY(-15px);
+          }
+          93%{
+            transform: translateY(0px);
+          }
+          100%{
+            transform: translateY(0px);
+          }
+        }
+        #Vector_106
+        {
+          transform-origin: 12.85% 19.92%;
+        }
+        #Vector_107
+        {
+          transform-origin: 12.85% 19.92%;
+        }
+        #Vector_112
+        {
+          animation: 4s light infinite alternate;
+        }
+        @keyframes light
+        {
+          0%{
+            fill: #E0E0E0;
+          }
+          20%{
+            fill: #E0E0E0;
+          }
+          30%{
+            fill: #7ab9c9;
+          }
+          40%{
+            fill: #E0E0E0;
+          }
+          60%{
+            fill: #E0E0E0;
+          }
+          70%{
+            fill: #7ab9c9;
+          }
+          80%{
+            fill: #E0E0E0;
+          }
+          100%{
+            fill: #E0E0E0;
+          }
+        }
       }
     }
   }
