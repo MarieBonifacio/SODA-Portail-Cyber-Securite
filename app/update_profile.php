@@ -12,20 +12,21 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 {
     global $wpdb;
 
-    var_dump($_FILES);
-
+    
     $imgPath = $_FILES['avatar'];
     $mail = $_POST['first_mail'];
     $name = htmlspecialchars($_POST['first_name']);
     $lastName = htmlspecialchars($_POST['last_name']);
     $idUser = $_POST['id_user'];
     $location = $_POST['location'];
+    
+   
 
-    echo $imgPath;
 
     $id = $_SESSION['userConnected'];
     $r = $wpdb->get_row("SELECT * FROM user where id='".$id."'");
 
+    
     //si l'image n'existe pas en bdd
     if($r->img_path==null && !empty($_FILES['avatar']))
     {
@@ -33,33 +34,36 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         // $directoryName = $r->id;
         // mkdir(public_path(home_url().'img/avatar/').$directoryName, 0775);
         //upload image 
-        $content_dir = home_url().'img/avatar/';
+        $content_dir =  get_template_directory().'/img/avatar/';
         $tmp_file = $_FILES['avatar']['tmp_name'];
         if( !is_uploaded_file($tmp_file) )
         {
             $error="Le fichier est introuvable";
         }
         $type_file = $_FILES['avatar']['type'];
+        
+       
+
         if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'png')) 
         {
             $error="Le format du fichier n'est pas pris en charge";
         }
         // on copie le fichier dans le dossier de destination
-        $name_file = $r->id;
+        $name_file = $r->id .'.'.preg_replace("#image\/#","",$type_file);
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
         { 
-            $error = "Impossible de copier le fichier dans $content_dir";
+            $error = "Impossible de copier le fichier $name_file dans $content_dir";
         }
 
-        $imgPath = $content_dir.'/'.$name_file;
+        $imgPath = $content_dir.$name_file;
 
         $newUser = new User();
         $newUser->selectById($r->id);
         $newUser->setImgPath($imgPath);
         $newUser->save();
 
-        $error = "Le fichier a bien été uploadé";
+        $updateOk = "Le fichier a bien été uploadé";
 
     } 
     elseif( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail))
