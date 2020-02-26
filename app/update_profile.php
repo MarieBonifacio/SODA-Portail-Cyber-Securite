@@ -21,6 +21,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     $idUser = $_POST['id_user'];
     $location = $_POST['location'];
 
+    echo $imgPath;
+
     $id = $_SESSION['userConnected'];
     $r = $wpdb->get_row("SELECT * FROM user where id='".$id."'");
 
@@ -37,7 +39,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         {
             $error="Le fichier est introuvable";
         }
-        $type_file = $_FILES['fichier']['type'];
+        $type_file = $_FILES['avatar']['type'];
         if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'png')) 
         {
             $error="Le format du fichier n'est pas pris en charge";
@@ -50,7 +52,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
             $error = "Impossible de copier le fichier dans $content_dir";
         }
 
-        $imgPath = $content_dir.'/$name_file';
+        $imgPath = $content_dir.'/'.$name_file;
 
         $newUser = new User();
         $newUser->selectById($r->id);
@@ -81,7 +83,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         $newUser->setLocation($location);
         $newUser->save();
         
-        $error = "Modifications validées.";
+        $updateOk = "Modifications validées.";
     }
 
 }
@@ -90,7 +92,7 @@ else
     $error = "Veuillez remplir tous les champs";
 }
 
-
+$_SESSION["updateOk"] = $updateOk;
 $_SESSION["errorRegister"] = $error;
 echo $error;
 wp_redirect( home_url()."/profil" ); 
