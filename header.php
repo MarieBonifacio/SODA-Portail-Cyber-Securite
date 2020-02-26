@@ -23,6 +23,19 @@
 		</script>
 	</head>
 	<body>
+
+	<?php
+	require('app/class/user.class.php');
+	$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+	include($path.'wp-load.php');
+	
+	if(!empty($_SESSION['userConnected']))
+	{
+		$id = $_SESSION['userConnected'];
+		$userConnected = new User();
+		$userConnected->selectById($id);
+	}
+	?>
 		<nav class="above">
 			<div class="logo">
 				<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
@@ -38,7 +51,7 @@
 				</div>
 				<div class="profile_pic">
 					<a href="<?php echo home_url()."/profil" ?>" class="circle">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="photo de votre profil">
+					<img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil">
 					</a>
 				</div>
 				<div class="settings"></div>

@@ -56,8 +56,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
             $error = "Impossible de copier le fichier $name_file dans $content_dir";
         }
 
-        $imgPath = $content_dir.$name_file;
 
+        $imgPath = $name_file;
         $newUser = new User();
         $newUser->selectById($r->id);
         $newUser->setImgPath($imgPath);
