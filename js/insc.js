@@ -1,3 +1,5 @@
+// animation of checked icon on the shield
+
 const fill = document.querySelector(".fill");
 
 setInterval(() => {

@@ -236,5 +236,5 @@ if(!empty($_SESSION['userConnected']))
       </defs>
     </svg>
   </div>
-
+<script src="<?php echo get_template_directory_uri(); ?>/js/profile.js">
 <?php get_footer()?>

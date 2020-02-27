@@ -594,6 +594,19 @@ body
             border: none;
             border-bottom: 1px solid $police;
           }
+          input:focus
+          {
+            color: $police;
+            outline: none;
+            text-align: center;
+          }
+          input:not(:focus)
+          {
+            color: $police;
+            outline: none;
+            text-align: center;
+            text-transform: uppercase;
+          }
           select
           {
             position: relative;
@@ -606,6 +619,9 @@ body
             border-radius: 20px;
             outline: none;
             transition: .2s;
+            font-size: $fontSize1;
+            text-transform: uppercase;
+            font-weight: 600;
           }
           select:hover
           {
@@ -615,8 +631,39 @@ body
           i
           {
             color: $color1;
-            font-size: $fontSize3;
-            @include positionTR(absolute, 0, 5px);
+            font-size: $fontSize2;
+            @include positionTR(absolute, 0px, 5px);
+          }
+          button
+          {
+            width: 62%;
+            background: none;
+            border: none;
+            p
+            {
+              position: relative;
+              padding: 5px 10px;
+              width: 100%;
+              background: $color-btn;
+              border: none;
+              border-radius: 20px;
+              color: $color1;
+              outline: none;
+              transition: .2s;
+              font-size:$fontSize1;
+              font-weight: 600;
+              text-transform: uppercase;
+            }
+            p:hover
+            {
+              background: $police;
+              cursor: pointer;
+            }
+          }
+          span
+          {
+            font-size: 12px;
+            @include positionTR(absolute, 37px, 5px);
           }
         }
         input[type=submit]
@@ -629,6 +676,8 @@ body
           font-weight: 600;
           color: $color1;
           transition: .2s;
+          @include positionBR(absolute, -50px, 50%);
+          transform: translate(50%,);
         }
         input[type=submit]:hover
         {
@@ -640,9 +689,119 @@ body
     {
       width: 50%;
       height: 100%;
-      z-index: 1;
+      z-index: 6;
       @include positionTR(absolute, 0, 0);
       @include flex(center, center, row);
+      svg
+      {
+        width: 70%;
+        @include positionBR(absolute, 15px, 15px);
+        #foot
+        {
+          transform-origin: 20% 50%;
+          animation: 2.5s foot infinite ease-in alternate;
+        }
+        @keyframes foot 
+        {
+          0%{
+            transform: rotate(0deg);
+          }
+          12.5%{
+            transform: rotate(5deg);
+          }
+          25%{
+            transform: rotate(10deg);
+          }
+          37.5%{
+            transform: rotate(5deg);
+          }
+          50%{
+            transform: rotate(0deg);
+          }
+          62.5%{
+            transform: rotate(-5deg);
+          }
+          75%{
+            transform: rotate(-10deg);
+          }
+          87.5%{
+            transform: rotate(-5deg);
+          }
+          100%{
+            transform: rotate(0deg);
+          }
+        }
+        #r_hand
+        {
+          transform-origin: 55% 75%;
+          animation: 2s rhand infinite ease-in alternate;
+        }
+        @keyframes rhand
+        {
+          0%{
+            transform: rotate(0deg);
+          }
+          12.5%{
+            transform: rotate(4deg);
+          }
+          25%{
+            transform: rotate(6deg);
+          }
+          37.5%{
+            transform: rotate(4deg);
+          }
+          50%{
+            transform: rotate(0deg);
+          }
+          62.5%{
+            transform: rotate(-4deg);
+          }
+          75%{
+            transform: rotate(-6deg);
+          }
+          87.5%{
+            transform: rotate(-4deg);
+          }
+          100%{
+            transform: rotate(0deg);
+          }
+        }
+        #l_hand
+        {
+          transform-origin: 45% 75%;
+          animation: 2s lhand infinite ease-in alternate;
+        }
+        @keyframes lhand
+        {
+          0%{
+            transform: rotate(0deg);
+          }
+          12.5%{
+            transform: rotate(5deg);
+          }
+          25%{
+            transform: rotate(10deg);
+          }
+          37.5%{
+            transform: rotate(5deg);
+          }
+          50%{
+            transform: rotate(0deg);
+          }
+          62.5%{
+            transform: rotate(5deg);
+          }
+          75%{
+            transform: rotate(10deg);
+          }
+          87.5%{
+            transform: rotate(5deg);
+          }
+          100%{
+            transform: rotate(0deg);
+          }
+        }
+      }
     }
   }
 }
