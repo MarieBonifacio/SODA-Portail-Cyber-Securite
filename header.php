@@ -51,7 +51,8 @@
 				</div>
 				<div class="profile_pic">
 					<a href="<?php echo home_url()."/profil" ?>" class="circle">
-					<img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="avatar">
+					<!-- <img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil"> -->
 					</a>
 				</div>
 				<div class="settings"></div>
