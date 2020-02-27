@@ -23,6 +23,7 @@
 		</script>
 	</head>
 	<body>
+	
 		<nav class="above">
 			<div class="logo">
 				<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
@@ -38,12 +39,7 @@
 				</div>
 				<div class="profile_pic">
 					<a href="<?php echo home_url()."/profil" ?>" class="circle">
-<<<<<<< HEAD
-					<img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="avatar">
-					<!-- <img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil"> -->
-=======
 						<img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="photo de votre profil">
->>>>>>> f645785451faf127090440d9d7fb247ce522670e
 					</a>
 				</div>
 				<div class="settings"></div>
