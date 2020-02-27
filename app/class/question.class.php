@@ -8,6 +8,8 @@ class Question {
     private $id;
     private $id_quiz;
     private $content;
+    private $img_path;
+    private $url;
     private $points;
 
     public function selectById($id){
@@ -16,6 +18,8 @@ class Question {
         $this->id = $r->id;
         $this->id_quiz = (new Quiz())->selectById($r->id);
         $this->content = $r->content;
+        $this->img_path = $r->img_path;
+        $this->url = $r->url;
         $this->points = $r->points;
     }
 
@@ -43,12 +47,27 @@ class Question {
         $this->content = $content;
     }
 
-    public function getViewt(){
-        return $this->view;
+    public function getImgPath(){
+        return $this->img_path;
     }
-    public function setView($view){
-        $this->view = $view;
+    public function setImgPath($img_path){
+        $this->img_path = $img_path;
     }
+
+    public function getUrl(){
+        return $this->url;
+    }
+    public function setUrl($url){
+        $this->url = $url;
+    }
+
+    public function getPoints(){
+        return $this->points;
+    }
+    public function setPoints($points){
+        $this->points = $points;
+    }
+
 
     public function save(){
         if ($this->id == null){
@@ -58,6 +77,8 @@ class Question {
                     "id" => $this->id,
                     "id_quiz" => $this->id_quiz;
                     "content" => $this->content;
+                    "img_path" => $this->img_path;
+                    "url" => $this->url;
                     "points" => $this->points;
                     )
                 );
@@ -67,7 +88,9 @@ class Question {
                 'question', array(
                     "id_quiz" => $this->id_quiz;
                     "content" => $this->content;
-                    "content" => $this->content;
+                    "img_path" => $this->img_path;
+                    "url" => $this->url;
+                    "points" => $this->points;
                 ), array(
                     "id" => $this->id,
                 )

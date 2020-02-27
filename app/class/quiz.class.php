@@ -7,6 +7,8 @@ class Quiz {
 
     private $id;
     private $name;
+    private $tag_id;
+    private $img_path
     private $author;
     private $created_at;
 
@@ -15,6 +17,8 @@ class Quiz {
         $r = $wpdb->get_row("SELECT * FROM quiz where id='".$id."'");
         $this->id = $r->id;
         $this->name = $r->name;
+        $this->tag_id = (new Tag())->selectById($r->id);
+        $this->img_path = $r->img_path;
         $this->author = (new User())->selectById($r->id);
         $this->createAt = $r->created_at;
     }
@@ -28,6 +32,22 @@ class Quiz {
     }
     public function setName($name){
         $this->name = $name;
+    }
+
+    public function getTagId(){
+        $this->tag_id->$tag_id;
+    }
+
+    public function setTagId($tag_id){
+        $this->tag_id = $tag_id;
+    }
+
+    public function getImgPath(){
+        $this->img_path->$img_path;
+    }
+
+    public function setImgPath($img_path){
+        $this->img_path = $img_path;
     }
 
     public function getAuthor(){
@@ -58,6 +78,8 @@ class Quiz {
                 'quiz', array(
                     "id" => $this->id,
                     "name" => $this->name,
+                    "tag_id" => $this->tag_id;
+                    "img_path" => $this->img_path;
                     "author" => $this->author,
                     "created_at" => $this->created_at
                 )
@@ -67,6 +89,8 @@ class Quiz {
             $wpdb->update(
                 'quiz', array(
                     "name" => $this->name,
+                    "tag_id" => $this->tag_id;
+                    "img_path" => $this->img_path;
                     "author" => $this->author,
                     "created_at" => $this->created_at
                 ), array(
