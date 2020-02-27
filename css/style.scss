@@ -511,6 +511,18 @@ body
             }
         }
     }
+    .error404
+    {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        @include flex(center, center, row);
+        svg
+        {
+            position: relative;
+            width: 50%;
+        }
+    }
 }
 
 
