@@ -28,7 +28,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
     
     //si l'image n'existe pas en bdd
-    if($r->img_path==null && isset($_FILES['avatar']))
+    if($_FILES['avatar']['error'] != UPLOAD_ERR_NO_FILE)
     {
         // //créer dossier image au nom de l'id de l'User
         // $directoryName = $r->id;
@@ -36,13 +36,14 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         //upload image 
         $content_dir =  get_template_directory().'/img/avatar/';
         $tmp_file = $_FILES['avatar']['tmp_name'];
-        if( !is_uploaded_file($tmp_file) )
+
+        if(!is_uploaded_file($tmp_file))
         {
             $error="Le fichier est introuvable";
         }
         $type_file = $_FILES['avatar']['type'];
 
-        if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'png')) 
+        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
         {
             $error="Le format du fichier n'est pas pris en charge";
         }

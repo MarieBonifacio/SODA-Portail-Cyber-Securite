@@ -29,7 +29,6 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
             $error_quiz="Le fichier est introuvable";
         }
         $type_file = $_FILES['img_quiz']['type'];
-        echo $type_file;
 
         if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
         {
