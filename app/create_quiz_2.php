@@ -53,7 +53,7 @@ if($nbrQuestion>=10)
                 //compteur de bonne reponse par question
                 $nbrTrue = 0;
                 //Si le texte de la réponse est rempli
-                if(!empty[$_POST['q_'.$i.'_reponse_'.$r])){
+                if(!empty([$_POST['q_'.$i.'_reponse_'.$r])){
                      //si la réponse est marque bonne, on incremente le compteur de bonne reponse
                      if($_POST['q_'.$i.'_isTrue_'.$r] == true){
                         $nbrTrue ++;
