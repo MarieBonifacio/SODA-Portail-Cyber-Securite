@@ -8,7 +8,7 @@ body
   padding: 0;
   margin: 0;
   font-family: "Muli", sans-serif;
-  // overflow: hidden;
+  overflow-x: hidden;
   p
   {
     font-size: $fontSize2;
@@ -714,14 +714,93 @@ body
           background: $color3;
           border-radius: 5px;
           padding: 10px 10px;
-          @include flex(flex-start, center, column);
+          font-size: $fontSize2;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          @include flex(flex-start, flex-start, column);
           div
           {
+            width: 100%;
+            margin-bottom: 10px;
+            margin-top: 5px;
+            // @include flex(flex-start, center, row);
             input
             {
+              width: 70%;
               background: none;
               border:none;
               border-bottom: 1px solid $police;
+            }
+            label
+            {
+              font-weight: 600;
+            }
+            input:focus
+            {
+              color: $color-imp;
+            }
+            input:not(:focus)
+            {
+              color: $color-imp;
+              // text-transform: uppercase;
+            }
+          }
+          .answers
+          {
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            @include flex(center, flex-start, column);
+            .abcd
+            {
+              position: relative;
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+              .answer
+              {
+                width: 50%;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                @include flex(space-evenly, center, row);
+                input
+                {
+                  outline: none;
+                  width: 60%;
+                }
+                input[type=radio]
+                {
+                  position: absolute;
+                  opacity: 0;
+                  width: 10%;
+                  height: 0;
+                }
+                div
+                {
+                  width: 10%;
+                }
+                div:hover
+                {
+                  cursor: pointer;
+                }
+                .true:hover input ~ span i
+                {
+                  color: #3AD29F;
+                }
+                .true input:checked ~ span i
+                {
+                  color: #3AD29F;
+                }
+                .false:hover input ~ span i
+                {
+                  color: red;
+                }
+                .false input:checked ~ span i
+                {
+                  color: red;
+                }
+              }
             }
           }
         }
