@@ -11,7 +11,7 @@
         <div class="stick"></div>
     </div>
 
-    <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_1.php" method="post">
+    <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_1.php" method="post" enctype="multipart/form-data">
         <?php
             if(!empty($_SESSION["errorQuiz"])){
                 echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
@@ -32,11 +32,11 @@
                 <option value="">Thème de votre quiz</option>
                 <?php 
 
-                $sites = array("lol", "mdr", "ptdr");
+                    $sites = array("lol", "mdr", "ptdr");
 
-                for($i=0; $i<count($sites); $i++){
-                    echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
-                }
+                    for($i=0; $i<count($sites); $i++){
+                        echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
+                    }
                 ?>
             </select>
             <i class="fas fa-sort-down"></i>
