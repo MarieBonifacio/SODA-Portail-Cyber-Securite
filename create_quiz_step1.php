@@ -5,13 +5,23 @@
 <div class="createQuiz">
     <h3>Étape 1: Le sujet</h3>
     <div class="steps">
-        <div class="step step1">1</div>
+        <div class="step stepInto">1</div>
         <div class="step">2</div>
         <div class="step">3</div>
         <div class="stick"></div>
     </div>
-    <form action="">
-    <!--<?php echo get_template_directory_uri(); ?>/app/create_quiz_1.php -->
+
+    <?php
+        if(!empty($_SESSION["errorQuiz"])){
+            echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
+            unset($_SESSION["errorQuiz"]);
+        }
+        elseif(!empty($_SESSION["quizOk"])){
+            echo "<p class='mess good'>".$_SESSION["quizOk"]."</p>";
+            unset($_SESSION["quizOk"]);
+        }
+    ?>
+    <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_1.php" method="post">
         <div>
             <label for="">Titre du quiz :</label>
             <input type="text" name="title">

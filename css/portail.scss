@@ -8,7 +8,7 @@ body
   padding: 0;
   margin: 0;
   font-family: "Muli", sans-serif;
-  overflow: hidden;
+  // overflow: hidden;
   p
   {
     font-size: $fontSize2;
@@ -517,7 +517,38 @@ body
         }
       }
     }
-    
+    .steps
+    {
+      position: relative;
+      width: 50%;
+      height: 20%;
+      @include flex(space-between, center, row);
+      .step
+      {
+        background: $color3;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        @include flex(center, center, row);
+        font-size: $fontSize3;
+        font-family: "Muli";
+        color: $police;
+        z-index: 2;
+      }
+      .stepInto
+      {
+        background: $color-imp;
+      }
+      .stick
+      {
+        @include positionTL(absolute, 50%, 50%);
+        transform: translate(-50%);
+        width: 90%;
+        height: 2%;
+        background: $color3;
+        z-index: 1;
+      }
+    }
     .createQuiz
     {
       position: relative;
@@ -532,38 +563,6 @@ body
         font-size: $fontSize3;
         font-weight: 200;
         color: $police;
-      }
-      .steps
-      {
-        position: relative;
-        width: 50%;
-        height: 20%;
-        @include flex(space-between, center, row);
-        .step
-        {
-          background: $color3;
-          width: 70px;
-          height: 70px;
-          border-radius: 50%;
-          @include flex(center, center, row);
-          font-size: $fontSize3;
-          font-family: "Muli";
-          color: $police;
-          z-index: 2;
-        }
-        .step1
-        {
-          background: $color-imp;
-        }
-        .stick
-        {
-          @include positionTL(absolute, 50%, 50%);
-          transform: translate(-50%);
-          width: 90%;
-          height: 2%;
-          background: $color3;
-          z-index: 1;
-        }
       }
       form
       {
