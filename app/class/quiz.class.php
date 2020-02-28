@@ -8,7 +8,7 @@ class Quiz {
     private $id;
     private $name;
     private $tag_id;
-    private $img_path
+    private $img_path;
     private $author;
     private $created_at;
 
@@ -78,8 +78,8 @@ class Quiz {
                 'quiz', array(
                     "id" => $this->id,
                     "name" => $this->name,
-                    "tag_id" => $this->tag_id;
-                    "img_path" => $this->img_path;
+                    "tag_id" => $this->tag_id,
+                    "img_path" => $this->img_path,
                     "author" => $this->author,
                     "created_at" => $this->created_at
                 )
@@ -89,8 +89,8 @@ class Quiz {
             $wpdb->update(
                 'quiz', array(
                     "name" => $this->name,
-                    "tag_id" => $this->tag_id;
-                    "img_path" => $this->img_path;
+                    "tag_id" => $this->tag_id,
+                    "img_path" => $this->img_path,
                     "author" => $this->author,
                     "created_at" => $this->created_at
                 ), array(

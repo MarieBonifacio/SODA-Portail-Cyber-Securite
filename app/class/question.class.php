@@ -75,22 +75,22 @@ class Question {
             $wpdb->insert(
                 'question', array(
                     "id" => $this->id,
-                    "id_quiz" => $this->id_quiz;
-                    "content" => $this->content;
-                    "img_path" => $this->img_path;
-                    "url" => $this->url;
-                    "points" => $this->points;
+                    "id_quiz" => $this->id_quiz,
+                    "content" => $this->content,
+                    "img_path" => $this->img_path,
+                    "url" => $this->url,
+                    "points" => $this->points,
                     )
                 );
         }else{
             global $wpdb;
             $wpdb->update(
                 'question', array(
-                    "id_quiz" => $this->id_quiz;
-                    "content" => $this->content;
-                    "img_path" => $this->img_path;
-                    "url" => $this->url;
-                    "points" => $this->points;
+                    "id_quiz" => $this->id_quiz,
+                    "content" => $this->content,
+                    "img_path" => $this->img_path,
+                    "url" => $this->url,
+                    "points" => $this->points,
                 ), array(
                     "id" => $this->id,
                 )

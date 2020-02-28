@@ -57,18 +57,18 @@ class Answer {
             $wpdb->insert(
                 'answer', array(
                     "id"  => $this->id,
-                    "id_question" => $this->id_question;
-                    "content" => $this->content;
-                    "is_true" => $this->is_true;
+                    "id_question" => $this->id_question,
+                    "content" => $this->content,
+                    "is_true" => $this->is_true,
                     )
                 );
         }else{
             global $wpdb;
             $wpdb->update(
                 'answer', array(
-                    "id_question" => $this->id_question;
-                    "content" => $this->content;
-                    "is_true" => $this->is_true;
+                    "id_question" => $this->id_question,
+                    "content" => $this->content,
+                    "is_true" => $this->is_true,
                 ), array(
                     "id"  => $this->id,
                 )

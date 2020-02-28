@@ -81,21 +81,21 @@ class Quiz_score {
             $wpdb->insert(
                 'quiz_score', array(
                     "id" => $this->id,
-                    "user_id" => $this->user_id;
-                    "quiz_id" => $this->quiz_id;
-                    "score" => $this->score;
-                    "time" => $this->time;
-                    "date" => $this->date;
+                    "user_id" => $this->user_id,
+                    "quiz_id" => $this->quiz_id,
+                    "score" => $this->score,
+                    "time" => $this->time,
+                    "date" => $this->date,
             ));
         }else{
             global $wpdb;
             $wpdb->update(
                 'quiz_score', array(
-                    "user_id" => $this->user_id;
-                    "quiz_id" => $this->quiz_id
-                    "score" => $this->score;
-                    "time" => $this->time;
-                    "date" => $this->date;
+                    "user_id" => $this->user_id,
+                    "quiz_id" => $this->quiz_id,
+                    "score" => $this->score,
+                    "time" => $this->time,
+                    "date" => $this->date,
             ), array(
                 "id" => $this->id,
             ));

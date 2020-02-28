@@ -14,8 +14,11 @@ $_SESSION['quizData']['quiz'] = $quiz;
 $_SESSION['quizData']['questions'] = $question;
 $_SESSION['quizData']['answers'] = $answer;
 
+
+
 foreach()
 {
+
     
     $quiz = new Quiz();
     $quiz ->setName($quiz=>$title);

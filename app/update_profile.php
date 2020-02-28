@@ -41,8 +41,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
             $error="Le fichier est introuvable";
         }
         $type_file = $_FILES['avatar']['type'];
-        
-       
 
         if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'png')) 
         {
@@ -58,7 +56,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
 
         $imgPath = $name_file;
-        $newUser = new User();
+        $newUser = new User();  
         $newUser->selectById($r->id);
         $newUser->setImgPath($imgPath);
         $newUser->save();
@@ -98,7 +96,7 @@ else
 
 $_SESSION["updateOk"] = $updateOk;
 $_SESSION["errorRegister"] = $error;
-echo $error;
+
 wp_redirect( home_url()."/profil" ); 
 
 ?>
