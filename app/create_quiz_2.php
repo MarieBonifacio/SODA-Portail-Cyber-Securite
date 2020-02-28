@@ -4,7 +4,7 @@ define('WP_USE_THEMES', false);
 require('class/answer.class.php');
 require('class/question.class.php');
 require('class/quiz.class.php');
-require('class/quiz.score.class.php');
+require('class/quiz_score.class.php');
 require('class/user.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
@@ -37,9 +37,33 @@ if($nbrQuestion>=10)
             }
             
             //Si une image est donnée
-            if(!empty($_POST['q_'.$i.'_img'])){
+            if(!empty($_FILES['q_'.$i.'_img'])){
                 // FAUT FAIRE LE TRAITEMENT UPLOAD => DEPLACEMENT + RENOMMAGE
+                $content_dir =  get_template_directory().'/img/quizs/questions';
+                $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
+        
+                if(!is_uploaded_file($tmp_file))
+                {
+                    $error_quiz="Le fichier est introuvable";
+                }
+                $type_file = $_FILES['q_'.$i.'_img']['type'];
+                echo $type_file;
+        
+                if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
+                {
+                    $error_quiz = "Le format du fichier n'est pas pris en charge";
+                }
+                    // on copie le fichier dans le dossier de destination
+                $name_file = $_POST['q_'.$i.'_img'].'.'.preg_replace("#image\/#","",$type_file);
+                $img = $name_file;
+        
+                if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+                { 
+                    $errorQuiz = "Impossible de copier le fichier $name_file dans $content_dir";
+                }
+        
                 // Puis stocker le resultat $question[$i]['img'] => $_POST['q_'.$i.'_img'];
+                $question[$i]['img'] => $img;
             }
 
             //on stocke le tableau questions dans la liste des questions (['questions']) de la variable de session quizdata

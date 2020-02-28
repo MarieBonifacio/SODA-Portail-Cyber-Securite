@@ -28,7 +28,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
     
     //si l'image n'existe pas en bdd
-    if($r->img_path==null && !empty($_FILES['avatar']))
+    if($r->img_path==null && isset($_FILES['avatar']))
     {
         // //créer dossier image au nom de l'id de l'User
         // $directoryName = $r->id;

@@ -15,8 +15,12 @@ include($path.'wp-load.php');
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
     print_r($_FILES['img_quiz']);
-    if(!empty($_FILES['img_quiz'])){
+    if(!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) 
+    {
+        $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
 
+    }else{
+    
         $content_dir =  get_template_directory().'/img/quizs/';
         $tmp_file = $_FILES['img_quiz']['tmp_name'];
 
@@ -53,6 +57,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     );
 
     $_SESSION['quizData']['quiz'] = $quiz;
+    wp_redirect( home_url().'/create-quiz-2' );
     
 
 }else{
@@ -66,4 +71,5 @@ $_SESSION["errorQuiz"] = $error_quiz;
 $_SESSION["quizOk"] = $quiz_ok;
 print_r($quiz);
 wp_redirect( home_url().'/create-quiz-1' );
+
 ?>
