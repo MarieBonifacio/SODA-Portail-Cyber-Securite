@@ -32,7 +32,7 @@
                 <option value="">Thème de votre quiz</option>
                 <?php 
 
-                $sites = array();
+                $sites = array("lol", "mdr", "ptdr");
 
                 for($i=0; $i<count($sites); $i++){
                     echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';

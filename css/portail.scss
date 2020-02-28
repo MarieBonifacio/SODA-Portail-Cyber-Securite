@@ -689,7 +689,7 @@ body
     {
       width: 50%;
       height: 100%;
-      z-index: 6;
+      z-index: 1;
       @include positionTR(absolute, 0, 0);
       @include flex(center, center, row);
       svg
