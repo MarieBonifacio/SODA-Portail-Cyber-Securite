@@ -12,7 +12,16 @@
     <div class="step">3</div>
     <div class="stick"></div>
 </div>
-
+<?php
+    if(!empty($_SESSION["errorQuiz"])){
+        echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
+        unset($_SESSION["errorQuiz"]);
+    }
+    elseif(!empty($_SESSION["quizOk"])){
+        echo "<p class='mess good'>".$_SESSION["quizOk"]."</p>";
+        unset($_SESSION["quizOk"]);
+    }
+?>
 <form action="">
     <
 </form>

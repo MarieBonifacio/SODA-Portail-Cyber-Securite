@@ -11,17 +11,17 @@
         <div class="stick"></div>
     </div>
 
-    <?php
-        if(!empty($_SESSION["errorQuiz"])){
-            echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
-            unset($_SESSION["errorQuiz"]);
-        }
-        elseif(!empty($_SESSION["quizOk"])){
-            echo "<p class='mess good'>".$_SESSION["quizOk"]."</p>";
-            unset($_SESSION["quizOk"]);
-        }
-    ?>
     <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_1.php" method="post">
+        <?php
+            if(!empty($_SESSION["errorQuiz"])){
+                echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
+                unset($_SESSION["errorQuiz"]);
+            }
+            elseif(!empty($_SESSION["quizOk"])){
+                echo "<p class='mess good'>".$_SESSION["quizOk"]."</p>";
+                unset($_SESSION["quizOk"]);
+            }
+        ?>
         <div>
             <label for="">Titre du quiz :</label>
             <input type="text" name="title">

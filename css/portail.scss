@@ -27,6 +27,19 @@ body
     cursor: pointer;
     user-select: none;
   }
+  .mess
+  {
+    font-size: $fontSize2;
+    font-weight: 600;
+  }
+  .error
+  {
+    color: red;
+  }
+  .good
+  {
+    color: #3AD29F;
+  }
   .above
   {
     @include positionTL(fixed, 0, 0);
@@ -251,18 +264,6 @@ body
       font-size: $fontSize2;
       font-family: "Muli";
       @include flex(space-evenly, center, column);
-      .mess
-      {
-        font-weight: 600;
-      }
-      .error
-      {
-        color: red;
-      }
-      .good
-      {
-        color: #3AD29F;
-      }
       form
       {
         position: relative;
