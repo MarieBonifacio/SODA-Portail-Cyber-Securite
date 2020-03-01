@@ -110,7 +110,6 @@ class User {
             );
         }else{
             global $wpdb;
-            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->update(
                 'user', array(
                     "role" => $this->role,

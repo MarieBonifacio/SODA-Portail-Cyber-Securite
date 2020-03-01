@@ -56,7 +56,6 @@ class Answer {
             global $wpdb;
             $wpdb->insert(
                 'answer', array(
-                    "id"  => $this->id,
                     "id_question" => $this->id_question,
                     "content" => $this->content,
                     "is_true" => $this->is_true,

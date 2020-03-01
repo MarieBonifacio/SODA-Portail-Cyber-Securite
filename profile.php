@@ -1,9 +1,4 @@
 <?php /* Template Name: Profil */ get_header(); 
-global $wpdb;
-require('app/class/user.class.php');
-$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
-include($path.'wp-load.php');
-
 
 if(!empty($_SESSION['userConnected']))
 {
@@ -11,7 +6,6 @@ if(!empty($_SESSION['userConnected']))
     $userConnected = new User();
     $userConnected->selectById($id);
 }
-
 ?>
   <h2>Mon profil</h2>
 
@@ -29,8 +23,7 @@ if(!empty($_SESSION['userConnected']))
     <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post" enctype="multipart/form-data">
         <div class="picture">
           <div class="img">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="avatar">
-          <!-- <img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil"> -->
+          <img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil"> 
           </div>
           <button type="button" disabled>
             <i class="fas fa-pencil-alt" id="custom-button"></i>

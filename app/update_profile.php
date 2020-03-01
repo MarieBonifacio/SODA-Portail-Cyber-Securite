@@ -5,14 +5,12 @@ require('class/user.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
-
-
+$error = "Veuillez remplir tous les champs";
 
 if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['id_user']) && !empty($_POST['location']))
 {
     global $wpdb;
 
-    
     $imgPath = $_FILES['avatar'];
     $mail = $_POST['first_mail'];
     $name = htmlspecialchars($_POST['first_name']);
@@ -20,15 +18,13 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     $idUser = $_POST['id_user'];
     $location = $_POST['location'];
     
-   
-
-
     $id = $_SESSION['userConnected'];
-    $r = $wpdb->get_row("SELECT * FROM user where id='".$id."'");
-
     
-    //si l'image n'existe pas en bdd
-    if($_FILES['avatar']['error'] != UPLOAD_ERR_NO_FILE)
+    $newUser = new User();  
+    $newUser->selectById($id);
+
+    $error = '';
+    if($_FILES['avatar']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['avatar']))
     {
         // //créer dossier image au nom de l'id de l'User
         // $directoryName = $r->id;
@@ -48,7 +44,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
             $error="Le format du fichier n'est pas pris en charge";
         }
         // on copie le fichier dans le dossier de destination
-        $name_file = $r->id .'.'.preg_replace("#image\/#","",$type_file);
+        $name_file = $id .'.'.preg_replace("#image\/#","",$type_file);
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
         { 
@@ -57,28 +53,19 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
 
         $imgPath = $name_file;
-        $newUser = new User();  
-        $newUser->selectById($r->id);
         $newUser->setImgPath($imgPath);
-        $newUser->save();
-
-        $updateOk = "Le fichier a bien été uploadé";
-
     } 
-    elseif( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail))
+    if( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail))
     {
         $error = "L'adresse mail n'est pas valide.";
     }
-    elseif( !preg_match("#^[0-9]{1,6}$# ", $idUser))
+    if( !preg_match("#^[0-9]{1,6}$# ", $idUser))
     {
         $error = "Votre identifiant n'est pas correct";
     }
-    else
+    
+    if($error == "")
     {
-
-        $newUser = new User();
-        $newUser->selectById($r->id);
-        $newUser->setImgPath($imgPath);
         $newUser->setName($name);
         $newUser->setLastName($lastName);
         $newUser->setIdUser($idUser);
@@ -88,11 +75,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         
         $updateOk = "Modifications validées.";
     }
-
-}
-else
-{
-    $error = "Veuillez remplir tous les champs";
 }
 
 $_SESSION["updateOk"] = $updateOk;

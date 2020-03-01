@@ -13,41 +13,40 @@
         <div class="step">3</div>
         <div class="stick"></div>
     </div>
-    <!-- <?php
+    <?php
         if(!empty($_SESSION["errorQuiz"])){
             echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
-            unset($_SESSION["errorQuiz"]);
+            unset($_SESSION["errorQuiz"]); 
+            /* SI ON REVIENT DU SCRIPT VALIDATION */
+            $p = $_SESSION['formQuizStep2'];
+           
         }
-        elseif(!empty($_SESSION["quizOk"])){
-            echo "<p class='mess good'>".$_SESSION["quizOk"]."</p>";
-            unset($_SESSION["quizOk"]);
-        }
-    ?> -->
-    <form action="">
+    ?>
+    <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post">
         <?php
-        
+           
             for($i=1; $i<=10; $i++){
                 echo '
                 <div class="question">
-                    <input type="number" name="nbrQuestion" hidden>
+                    <input type="hidden" name="nbrQuestion" value = "10">
                     <div>
                         <label for="">Votre question: '.$i.'.</label>
-                        <input type="text" name="question">
+                        <input type="text" name="question_'.$i.'" value="'.$p['question_'.$i].'">
                     </div>
                     <div class="answers">
                         <label for="">Vos réponses(2 minimum):</label>
                         <div class="abcd">
                             <div class="answer">
                                 <label for="">A.</label>
-                                <input type="text" name="answerA">
+                                <input type="text" name="q_'.$i.'_reponse_1" value="'.$p['q_'.$i.'_reponse_1'].'">
                                 <label class="true" id="truea">
-                                    <input type="radio" value="true" name="ansA'.$i.'">
+                                    <input type="radio" value="true" name="q_'.$i.'_isTrue_1">
                                     <span>
                                         <i class="fas fa-check"></i>
                                     </span>
                                 </label>
                                 <label class="false" id="falsea">
-                                    <input type="radio" value="false" name="ansA'.$i.'">
+                                    <input type="radio" value="false" name="q_'.$i.'_isTrue_1">
                                     <span>
                                         <i class="fas fa-times"></i>
                                     </span>
@@ -55,15 +54,15 @@
                             </div>
                             <div class="answer">
                                 <label for="">B.</label>
-                                <input type="text" name="answerB">
+                                <input type="text" name="q_'.$i.'_reponse_2" value="'.$p['q_'.$i.'_reponse_2'].'">
                                 <label class="true" id="trueb">
-                                    <input type="radio" value="true" name="ansB'.$i.'">
+                                    <input type="radio" value="true" name="q_'.$i.'_isTrue_2">
                                     <span>
                                         <i class="fas fa-check"></i>
                                     </span>
                                 </label>
                                 <label class="false" id="falseb">
-                                    <input type="radio" value="false" name="ansB'.$i.'">
+                                    <input type="radio" value="false" name="q_'.$i.'_isTrue_2">
                                     <span>
                                         <i class="fas fa-times"></i>
                                     </span>
@@ -71,15 +70,15 @@
                             </div>
                             <div class="answer">
                                 <label for="">C.</label>
-                                <input type="text" name="answerC">
+                                <input type="text" name="q_'.$i.'_reponse_3"  value="'.$p['q_'.$i.'_reponse_3'].'">
                                 <label class="true" id="truec">
-                                    <input type="radio" value="true" name="ansC'.$i.'">
+                                    <input type="radio" value="true" name="q_'.$i.'_isTrue_3">
                                     <span>
                                         <i class="fas fa-check"></i>
                                     </span>
                                 </label>
                                 <label class="false" id="falsec">
-                                    <input type="radio" value="false" name="ansC'.$i.'">
+                                    <input type="radio" value="false" name="q_'.$i.'_isTrue_3">
                                     <span>
                                         <i class="fas fa-times"></i>
                                     </span>
@@ -87,15 +86,15 @@
                             </div>
                             <div class="answer">
                                 <label for="">D.</label>
-                                <input type="text" name="answerD">
+                                <input type="text" name="q_'.$i.'_reponse_4"  value="'.$p['q_'.$i.'_reponse_4'].'">
                                 <label class="true" id="trued">
-                                    <input type="radio" value="true" name="ansD'.$i.'">
+                                    <input type="radio" value="true" name="q_'.$i.'_isTrue_4">
                                     <span>
                                         <i class="fas fa-check"></i>
                                     </span>
                                 </label>
                                 <label class="false" id="falsed">
-                                    <input type="radio" value="false" name="ansD'.$i.'">
+                                    <input type="radio" value="false" name="q_'.$i.'_isTrue_4">
                                     <span>
                                         <i class="fas fa-times"></i>
                                     </span>
@@ -108,6 +107,7 @@
             }
 
         ?> 
+        <input type="submit" value="Valider" />
     </form>
 
     <i class="fas fa-plus"></i>

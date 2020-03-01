@@ -69,6 +69,6 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 $_SESSION["errorQuiz"] = $error_quiz;
 $_SESSION["quizOk"] = $quiz_ok;
 print_r($quiz);
-wp_redirect( home_url().'/creationquizetape1' );
+wp_redirect( home_url().'/creationquizetape2' );
 
 ?>
