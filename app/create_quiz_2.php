@@ -25,10 +25,11 @@ if($nbrQuestion >= 10)
         {
             //on récupère l'énoncé
             //img/vidéo vides de base
+
             $question['info'] = array(
-                'text' => $_POST['question_'.$i],
-                'img' => '',
-                'video' => '',
+                 'text' => $_POST['question_'.$i],
+                 'img' => '',
+                 'video' => '',
             );
             
             //si le lien d'une vidéo est donné
