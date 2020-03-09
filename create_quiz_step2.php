@@ -1,6 +1,6 @@
 <?php /* Template Name: Create Quiz Etape 2 */ get_header();?>
 
-<h2>Titre du quiz</h2>
+<h2><?php $_SESSION['quizData']['quiz']['title']; ?></h2>
 
 <div class="step2">
 
@@ -21,7 +21,7 @@
       $p = $_SESSION['formQuizStep2'];
     }
     ?>
-  <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post">
+  <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
     <?php
       for($i=1; $i<=10; $i++){
         echo '
