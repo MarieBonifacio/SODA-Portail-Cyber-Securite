@@ -40,6 +40,21 @@ body
   {
     color: #3AD29F;
   }
+  input[type=submit]
+  {
+    background: $color-btn;
+    border-radius: 20px;
+    padding: 5px 20px;
+    border: none;
+    font-size: $fontSize3;
+    font-weight: 600;
+    color: $color1;
+    transition: .2s;
+  }
+  input[type=submit]:hover
+  {
+    background: $police;
+  }
   .above
   {
     @include positionTL(fixed, 0, 0);
@@ -360,7 +375,7 @@ body
             cursor: pointer;
           }
         }
-        input[type=submit], select
+        select
         {
           background: $color-btn;
           color: $color1;
@@ -371,7 +386,7 @@ body
           font-weight: 600;
           transition: .2s;
         }
-        input[type=submit]:hover, select:hover
+        select:hover
         {
           cursor: pointer;
           background: white;
@@ -670,20 +685,8 @@ body
         }
         input[type=submit]
         {
-          background: $color-btn;
-          border-radius: 20px;
-          padding: 5px 20px;
-          border: none;
-          font-size: $fontSize3;
-          font-weight: 600;
-          color: $color1;
-          transition: .2s;
           @include positionBR(absolute, -50px, 50%);
           transform: translate(50%,);
-        }
-        input[type=submit]:hover
-        {
-          background: $police;
         }
       }
     }
@@ -734,6 +737,7 @@ body
             label
             {
               font-weight: 600;
+              color: $color-imp;
             }
             input:focus
             {
@@ -758,6 +762,10 @@ body
               display: flex;
               flex-wrap: wrap;
               width: 100%;
+              label
+              {
+                color: $police;
+              }
               .answer
               {
                 width: 50%;
@@ -801,6 +809,60 @@ body
                   color: red;
                 }
               }
+            }
+          }
+        }
+        .media
+        {
+          // background: red;
+          @include flex(space-around, center, row);
+          div
+          {
+            position: relative;
+            width: 45%;
+            @include flex(space-between, center, row);
+            button
+            {
+              width: 70%;
+              background: none;
+              border: none;
+              p
+              {
+                position: relative;
+                padding: 5px 10px;
+                width: 100%;
+                background: $color-btn;
+                border: none;
+                border-radius: 20px;
+                color: $color1;
+                outline: none;
+                transition: .2s;
+                font-size:$fontSize1;
+                font-weight: 600;
+                text-transform: uppercase;
+              }
+              p:hover
+              {
+                background: $police;
+                cursor: pointer;
+              }
+            }
+            span
+            {
+              font-size: $fontSize1;
+              @include positionBR(absolute, -10px, 0px);
+            }
+            label
+            {
+              color: $police;
+            }
+          }
+          div:nth-child(3)
+          {
+            @include flex(space-around, center, row);
+            input
+            {
+              width: 70%;
             }
           }
         }
