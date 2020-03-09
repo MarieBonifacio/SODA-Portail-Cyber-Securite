@@ -27,6 +27,7 @@ function inputFile()
   });
 }
 
+
 inputFile();
 
 var id = 10;
@@ -34,6 +35,7 @@ var nbrQuestions = 10;
 
 const plus = document.querySelector(".plus"),
       form = document.querySelector("form"),
+      nbrQuestionsTotal = document.querySelector("input[name=nbrQuestion]"),
       total = document.createElement("p");
       total.classList.add("total");
       form.appendChild(total);
@@ -46,13 +48,13 @@ plus.addEventListener("click", ()=>{
   }
   else
   {
-
     id += 1;
     nbrQuestions += 1;
+    nbrQuestionsTotal.value = `${nbrQuestions}`;
     total.innerHTML=`Total de questions: ${nbrQuestions}`;
     var div = document.createElement("div");
     div.classList.add("question");
-    div.innerHTML=`<input type="hidden" name="nbrQuestion" value = "10">
+    div.innerHTML=`
     <div>
     <label for="">Votre question:</label>
       <input type="text" name="question_${id}" value="">
@@ -151,10 +153,15 @@ plus.addEventListener("click", ()=>{
       e.target.parentNode.remove();
       nbrQuestions -= 1;
       total.innerHTML=`Total de questions: ${nbrQuestions}`;
+      nbrQuestionsTotal.value = `${nbrQuestions}`;
+      console.log(nbrQuestionsTotal.value);
     })
     inputFile();
+    console.log(nbrQuestionsTotal.value);
   }
 })
+
+console.log(nbrQuestionsTotal.value);
 
 const validate = document.querySelector(".validate");
 
