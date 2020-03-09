@@ -108,12 +108,12 @@
               <label for="">Image :</label>
               <button type="button" disabled><p id="fakebtn" data-id="'.$i.'">Séléctionnez une image</p></button>
               <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
-              <input id="realbtn'.$i.'" type="file" name="img_quiz'.$i.'" hidden>
+              <input id="realbtn'.$i.'" type="file" name="q_'.$i.'_img" hidden>
             </div>
             <p>ou</p>
             <div>
               <label for="">Video :</label>
-              <input type="text" name="video_q'.$i.'" value="">
+              <input type="text" name="q_'.$i.'video" value="">
             </div>
           </div>
         </div>
