@@ -18,7 +18,7 @@ $_SESSION['errorQuiz'] = "";
 if($nbrQuestion >= 10)
 {
     //pour chaque question du formulaire
-    for( $i = 1; $i < $nbrQuestion; $i++)
+    for( $i = 1; $i <= $nbrQuestion; $i++)
     {
         //Si l'énoncé de la question est rempli
         if(!empty($_POST['question_'.$i]))
@@ -88,6 +88,7 @@ if($nbrQuestion >= 10)
                         'text' => $_POST['q_'.$i.'_reponse_'.$r],
                         'isTrue' => $_POST['q_'.$i.'_isTrue_'.$r],
                     );
+
                      //on stock le tableau answer dans la liste des reponses ['answers'] de la question ([$i])
                      $_SESSION['quizData']['questions'][$i]['answers'][$r] = $answer;
                 }
@@ -130,6 +131,8 @@ if($_SESSION['errorQuiz'] == ""){
 
 $_SESSION['quizData'];
 
+print_r($_SESSION['quizData']);
+
 //recuperation quiz
 $newQuiz = new Quiz();
 $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
@@ -141,22 +144,36 @@ $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
 $newQuizId = $wpdb->insert_id;
 
-//recupération question
-foreach($_SESSION['quizData']['questions'] as $q){
-   $newQuestion = new Question();
-   $newQuestion->setIdQuiz($newQuizId);
-   $newQuestion->setContent($q['info']['text']);
-   $newQuestion->save();
-   $newQuestionId = $wpdb->insert_id;
+print_r($newQuizId);
 
-    foreach ($q['answers'] as $a){
+//recupération questions/réponses
+foreach($_SESSION['quizData']['questions'] as $q)
+{
+    $newQuestion = new Question();
+    $newQuestion->setIdQuiz($newQuizId);
+    $newQuestion->setContent($q['info']['text']);
+    $points = 100/$nbrQuestion;
+    $newQuestion->setPoints($points);
+    $newQuestion->save();
+    $newQuestionId = $wpdb->insert_id;
+   
+    foreach ($q['answers'] as $a)
+    {
+        print_r($a);
         $newAnswer = new Answer();
-        $newAnswer->setIdQuestion($newQuestion->getId());
+        $newAnswer->setIdQuestion($newQuestionId);
         $newAnswer->setContent($a['text']);
-        $newAnswer->setIstrue($a['isTrue']);
+        $newAnswer->setIsTrue($a['isTrue']);
         $newAnswer->save();
+        print_r($newAnswer);
     }
 
 }
+
+
+
+
+
+
 ?>
     

@@ -18,6 +18,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     if(!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) 
     {
         $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
+        wp_redirect( home_url().'/creationquizetape1' );
 
     }else{
     
@@ -27,12 +28,14 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         if(!is_uploaded_file($tmp_file))
         {
             $error_quiz="Le fichier est introuvable";
+            wp_redirect( home_url().'/creationquizetape1' );
         }
         $type_file = $_FILES['img_quiz']['type'];
 
         if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
         {
             $error_quiz = "Le format du fichier n'est pas pris en charge";
+            wp_redirect( home_url().'/creationquizetape1' );
         }
             // on copie le fichier dans le dossier de destination
         $name_file = $_POST['title'].'.'.preg_replace("#image\/#","",$type_file);
@@ -41,6 +44,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
         { 
             $errorQuiz = "Impossible de copier le fichier $name_file dans $content_dir";
+            wp_redirect( home_url().'/creationquizetape1' );
         }
 
             
@@ -56,7 +60,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     );
 
     $_SESSION['quizData']['quiz'] = $quiz;
-    wp_redirect( home_url().'/create-quiz-2' );
+    
     
 
 }else{
