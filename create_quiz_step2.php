@@ -20,13 +20,13 @@
       /* SI ON REVIENT DU SCRIPT VALIDATION */
       $p = $_SESSION['formQuizStep2'];
     }
-  ?>
+    ?>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post">
     <?php
       for($i=1; $i<=10; $i++){
         echo '
         <div class="question">
-          <input type="hidden" name="nbrQuestion" value = "10">
+          <!-- <input type="hidden" name="nbrQuestion" value = "10"> -->
           <div>
             <label for="">Votre question:</label>
             <input type="text" name="question_'.$i.'" value="'.$p['question_'.$i].'">
@@ -106,22 +106,26 @@
           <div class="media">
             <div>
               <label for="">Image :</label>
-              <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
-              <span id="img_select">Aucune image sélectionnée.</span>
-              <input id="realbtn" type="file" name="img_quiz" hidden>
+              <button type="button" disabled><p id="fakebtn" data-id="'.$i.'">Séléctionnez une image</p></button>
+              <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
+              <input id="realbtn'.$i.'" type="file" name="img_quiz'.$i.'" hidden>
             </div>
             <p>ou</p>
             <div>
               <label for="">Video :</label>
-              <input type="text" name="video_q_'.$i.'" value="">
+              <input type="text" name="video_q'.$i.'" value="">
             </div>
           </div>
         </div>
         ';
       }
     ?> 
-    <input type="submit" value="Valider" />
+    <input type="submit" value="Valider" hidden/>
   </form>
-  <i class="fas fa-plus"></i>
+  <i class="plus fas fa-plus"></i>
+  <p class="validate">Suivant</p>
 </div>
+
+<script src="<?php echo get_template_directory_uri(); ?>/js/quiz_step2.js">
+
 <?php get_footer()?>

@@ -569,7 +569,6 @@ body
     }
     .createQuiz
     {
-      position: relative;
       width: 100%;
       height: 100%;
       font-family: "Muli";
@@ -578,7 +577,7 @@ body
       @include positionBR(absolute, 0, 0);
       h3
       {
-        font-size: $fontSize3;
+        font-size: $fontSize2;
         font-weight: 200;
         color: $police;
       }
@@ -699,10 +698,25 @@ body
       width: 100%;
       @include flex(space-around, center, column);
       @include positionTL(absolute, 10%, 0);
+      .plus
+      {
+        margin-bottom: 10px;
+        font-size: $fontSize3;
+      }
       h3
       {
-        font-size: $fontSize3;
+        font-size: $fontSize2;
+        font-weight: 200;
         font-family: "Montserrat";
+      }
+      .trash
+      {
+        @include positionTR(absolute, 15px, 15px);
+      }
+      .total
+      {
+        font-weight: 600;
+        @include positionBR(fixed, 15px, 15px);
       }
       form
       {
@@ -710,6 +724,10 @@ body
         margin-bottom: 10px;
         width: 60%;
         @include flex(space-around, center, column);
+        .hidden
+        {
+          display: none !important;
+        }
         .question
         {
           position: relative;
@@ -866,6 +884,20 @@ body
             }
           }
         }
+      }
+      .validate
+      {
+        padding: 5px 20px;
+        background: $color-btn;
+        border-radius: 20px;
+        color: $color1;
+        font-weight: 600;
+        transition: .2s;
+      }
+      .validate:hover
+      {
+        background: $police;
+        cursor: pointer;
       }
     }
     .svg_step1
