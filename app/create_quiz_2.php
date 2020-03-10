@@ -15,69 +15,108 @@ $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
 print_r($_POST);
 
+echo '<pre>';
+print_r($_FILES);
+echo '</pre>';
 
+//J'initialise la variable session
 if(!empty($_SESSION['quizData'])){
     unset($_SESSION['quizData']);
+}
+
+//J'initialise la variable session erreur
+if(!empty($_SESSION['errorQuiz'])){
+    unset($_SESSION['errorQuiz']);
 }
 
 //si le nombre de question est supérieur ou égal à 10
 if($nbrQuestion >= 10)
 {
     //pour chaque question du formulaire
-    for( $i = 1; $i <= $nbrQuestion; $i++)
+    for( $i = 1; $i <= $nbrQuestion +50; $i++)
     {
         //Si l'énoncé de la question est rempli
         if(!empty($_POST['question_'.$i]))
         {
-            //on récupère l'énoncé
-            //img/vidéo vides de base
-
+           
+            //Je rempli en session les champs question, image et vidéo sont vides de base
             $question['info'] = array(
                 'text' => $_POST['question_'.$i],
-                'img' => $_FILES['q_'.$i.'_img'],
-                'video' => $_POST['q_'.$i.'_video'],
+                'img' => "",
+                'video' => "",
             );
             
             //si le lien d'une vidéo est donné
             if(!empty($_POST['q_'.$i.'_video'])){
-                $question['info']['video'] = $_POST['q_'.$i.'_video'];
+                $question['info']['video'] = $_POST["q_'.$i.'_video"];
             }
             
-            //Si une image est donnée
-            if(!isset($_FILES['q_'.$i.'_img']) || $_FILES['q_'.$i.'_img']['error'] == UPLOAD_ERR_NO_FILE)
-            {
-                $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
-                // wp_redirect( home_url().'/creationquizetape2' );
-            }else{
 
-                // FAUT FAIRE LE TRAITEMENT UPLOAD => DEPLACEMENT + RENOMMAGE
-                $content_dir =  get_template_directory().'/img/quizs/questions';
+
+            //////////////////////////
+            // if(!empty($_FILES['q_'.$i.'_img'])){
+            //     echo "- LOG : image for question ".$i."<br/>";
+            //     $content_dir =  get_template_directory().'/img/quizs/questions/';
+            //     $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
+            //     if(!is_uploaded_file($tmp_file))
+            //     {
+            //         echo "----- LOG :  Le fichier est introuvable<br/>";
+            //     }
+            //     $type_file = $_FILES['q_'.$i.'_img']['type'];
+            //     echo "----- LOG :  type_file : ".$type_file."<br/>";
+            //     if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
+            //     {
+            //         echo "----- LOG :  format invalide<br/>";
+            //     }
+            //     $name_file = $_POST["q_'.$i.'_img"].'.'.preg_replace("#image\/#","",$type_file);
+            //     echo "----- LOG :  name_file : ".$name_file."<br/>";
+            //     $img = $name_file;
+            //     if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+            //     {
+            //         echo "----- LOG :  error move : ".$name_file." ==> ".$content_dir."<br/>";
+            //         $errorQuiz = "Impossible de copier le fichier $name_file dans $content_dir";
+            //     }
+            // }else{
+            //     echo "- LOG : no image for question ".$i."<br/>";
+            // }
+
+            /////////////////////////////
+            
+
+            // Si une image est donnée
+            if($_FILES['q_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['q_'.$i.'_img']))
+            {
+                $content_dir =  get_template_directory().'/img/quizs/questions/';
                 $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
-        
+
                 if(!is_uploaded_file($tmp_file))
                 {
                     $error_quiz="Un fichier est introuvable";
                     // wp_redirect( home_url().'/creationquizetape2' );
                 }
+
                 $type_file = $_FILES['q_'.$i.'_img']['type'];
-        
+
                 if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
                 {
                     $error_quiz = "Le format d'un des fichiers n'est pas pris en charge";
                     // wp_redirect( home_url().'/creationquizetape2' );
                 }
-                    // on copie le fichier dans le dossier de destination
-                $name_file = $_POST['q_'.$i.'_img'].'.'.preg_replace("#image\/#","",$type_file);
-                $img = $name_file;
-        
+                
+                
+                $name_file = md5($tmp_file).'.'.preg_replace("#image\/#","",$type_file);
+
+                echo $name_file;
+
                 if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
                 { 
                     $errorQuiz = "Impossible de copier le fichier $name_file dans $content_dir";
                     // wp_redirect( home_url().'/creationquizetape2' );
                 }
-        
-                // Puis stocker le resultat $question[$i]['img'] => $_POST['q_'.$i.'_img'];
+
+                $img = $name_file;
                 $question['info']['img'] = $img;
+
             }
 
             //on stocke le tableau questions dans la liste des questions (['questions']) de la variable de session quizdata
@@ -176,7 +215,7 @@ foreach($_SESSION['quizData']['questions'] as $q)
     $newQuestion->save();
     $newQuestionId = $wpdb->insert_id;
    
-    foreach ($q['answers'] as $a)
+
     {
         
         $newAnswer = new Answer();

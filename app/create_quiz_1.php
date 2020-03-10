@@ -14,7 +14,6 @@ include($path.'wp-load.php');
 
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
-    print_r($_FILES['img_quiz']);
     if(!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) 
     {
         $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
