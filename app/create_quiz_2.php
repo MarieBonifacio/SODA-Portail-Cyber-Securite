@@ -58,7 +58,7 @@ if($nbrQuestion >= 10)
                 if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
                 {
                     $error_quiz = "Le format d'un des fichiers n'est pas pris en charge";
-                    wp_redirect( home_url().'/creationquizetape1' );
+                    wp_redirect( home_url().'/creationquizetape2' );
                 }
                     // on copie le fichier dans le dossier de destination
                 $name_file = $_POST['q_'.$i.'_img'].'.'.preg_replace("#image\/#","",$type_file);
@@ -87,6 +87,7 @@ if($nbrQuestion >= 10)
                 $nbrTrue = 0;
                 //Si le texte de la réponse est rempli
                 if(!empty($_POST['q_'.$i.'_reponse_'.$r])){
+                    $nbrAnswer ++;
                      //si la réponse est marque bonne, on incremente le compteur de bonne reponse
                     if($_POST['q_'.$i.'_isTrue_'.$r] == true){
                         $nbrTrue ++;
@@ -105,28 +106,29 @@ if($nbrQuestion >= 10)
                     $_SESSION['errorQuiz'] = "Veuillez remplir 4 réponses par questions.";
                     //wp_redirect( home_url().'/create_quiz_2' );
                 }*/
-    
+                echo "<br/>".$nbrAnswer."::".$nbrTrue."<br/>";
                 //si plus d'une reponse à été mise comme bonne pour la question
-                if($nbrTrue != 1){
-                    $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
-                    //wp_redirect( home_url().'/create_quiz_2' );
-                }
-                
-                if($nbrAnswer < 2){
-                    $_SESSION['errorQuiz'] = "Il faut deux réponses minimum par question.";
-                    //wp_redirect( home_url().'/create_quiz_2' );
-                }
+            }
+            if($nbrTrue != 1){
+                $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
+                wp_redirect( home_url().'/create_quiz_2' );
+            }
+    
+
+            if($nbrAnswer == 1){
+                $_SESSION['errorQuiz'] = "Il faut deux réponses minimum par question.";
+                //wp_redirect( home_url().'/create_quiz_2' );
             }
         }else{
             //on renvoie sur la page precedente si une question n'a pas d'énoncé
             $_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
-            wp_redirect( home_url().'/creationquizetape2' );
+            //wp_redirect( home_url().'/creationquizetape2' );
         }
     }
     
 } else {
     $_SESSION['errorQuiz'] = "Veuillez créer au moins 10 questions.";
-    wp_redirect( home_url().'/creationquizetape2' );
+    //wp_redirect( home_url().'/creationquizetape2' );
     //ne pas afficher le bouton envoyer en ajax
 }
 //quand toutes les questions/réponses on été traité on renvoie à la page suivante
@@ -147,15 +149,9 @@ $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 
 //A FAIRE (faire table tags)
 $newQuiz->setTagId(1);
-
-//Récup user connecté
-if(!empty($_SESSION['userConnected']))
-{
-    $id = $_SESSION['userConnected'];
-    $author = new User();
-    $author->selectById($id);
-}
-$newQuiz->setAuthor($author);
+$author = new User();
+$author->selectById(1);
+$newQuiz->setAuthor( $author->getId() );
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
 $newQuizId = $wpdb->insert_id;
@@ -185,10 +181,6 @@ foreach($_SESSION['quizData']['questions'] as $q)
     }
 
 }
-
-
-
-
 
 
 ?>
