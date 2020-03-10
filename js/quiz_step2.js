@@ -40,6 +40,7 @@ const plus = document.querySelector(".plus"),
       total.classList.add("total");
       form.appendChild(total);
       total.innerHTML=`Total de questions: ${nbrQuestions}`;
+      nbrQuestionsTotal.value = `${nbrQuestions}`;
 
 plus.addEventListener("click", ()=>{
   if( nbrQuestions == 25)
