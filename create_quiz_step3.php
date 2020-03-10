@@ -17,49 +17,57 @@
   <div class="recap">
       <?php 
       $img = get_template_directory_uri();
-      echo $_SESSION[quiz];
-      for($i=1; $i<=25; $i++)
+      $num = 0;
+      foreach($_SESSION['quizData']['questions'] as $q)
       {
+        $num ++;
         echo '
           <div class="questions">
-            <span class="numQ">'.$i.'</span>
+            <span class="numQ">'.$num.'</span>
             <div class="medias">
               <img src="'.$img.'/img/myAvatar.png" alt="votre image">
             </div>
             <div class="question">
-              <span>'.$i.'.</span>
-              <p>Voici la question 1, quel est la réponse ?</p>
+              <span>'.$num.'.</span>
+              <p>'.$q['info']['text'].'</p>
             </div>
             <div class="answers">
-              <div class="aaa">
-                <span>A.</span>
-                <p>hehe</p>
-                <i class="fas fa-check"></i>
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="bbb">
-                <span>B.</span>
-                <p>hehe</p>
-                <i class="fas fa-check"></i>
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="ccc">
-                <span>C.</span>
-                <p>hehe</p>
-                <i class="fas fa-check"></i>
-                <i class="fas fa-times"></i>
-              </div>
-              <div class="ddd">
-                <span>D.</span>
-                <p>hehe</p>
-                <i class="fas fa-check"></i>
-                <i class="fas fa-times"></i>
+
+          ';
+            $lettre = array("A", "B", "C", "D");
+            $lettreNum = -1;
+            foreach($q['answers'] as $a)
+            {
+              $lettreNum ++;
+              echo'
+                <div class="aaa">
+                  <span>'.$lettre[$lettreNum].'</span>
+                  <p>'.$a['text'].'</p>
+              ';
+              if($a['isTrue'] == "true")
+              {
+                echo'
+                  <i class="fas fa-check good"></i>
+                  <i class="fas fa-times"></i>
+                ';
+              }
+              else
+              {
+                echo '
+                  <i class="fas fa-check"></i>
+                  <i class="fas fa-times error"></i>
+                ';
+              }
+              echo '
+                </div>
+              ';
+            }
+          echo '
               </div>
             </div>
-          </div>
           ';
-        }
-      ?>
+          };
+          ?>
   </div>
 
   <a href="">Confirmez la création de votre quiz</a>
