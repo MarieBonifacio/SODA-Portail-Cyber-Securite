@@ -113,7 +113,7 @@
             <p>ou</p>
             <div>
               <label for="">Video :</label>
-              <input type="text" name="q_'.$i.'video" value="">
+              <input type="text" name="q_'.$i.'_video" value="">
             </div>
           </div>
         </div>

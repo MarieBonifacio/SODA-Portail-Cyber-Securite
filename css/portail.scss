@@ -913,10 +913,78 @@ body
       {
         font-weight: 200;
       }
+      a
+      {
+        padding: 5px 20px;
+        background: $color-btn;
+        color: $color1;
+        margin-bottom: 35px;
+        border-radius: 20px;
+        transition: .2s;
+        font-size: $fontSize3;
+        font-weight: 600;
+      }
+      a:hover
+      {
+        background: $police;
+      }
       .recap
       {
+        margin-top: 40px;
         width: 60%;
-        background: red;
+        @include flex(center, center, column);
+        .questions
+        {
+          position: relative;
+          width: 80%;
+          background: $color3;
+          border-radius: 5px;
+          padding: 5px 5px;
+          margin-bottom: 45px;
+          @include flex(space-around, center, column);
+          .numQ
+          {
+            font-size: $fontSize3;
+            font-weight: 600;
+            color: $color-imp;
+            @include positionTL(absolute, 10px, 10px);
+          }
+          .medias
+          {
+            width: 30%;
+            margin-top: 5px;
+            img
+            {
+              width: 100%;
+              height: auto;
+            }
+            iframe
+            {
+              width: 100%;
+              height: auto;
+            }
+          }
+          .question
+          {
+            width: 100%;
+            @include flex(center, center, row);
+            span
+            {
+              margin-right: 15px;
+            }
+          }
+          .answers
+          {
+            width: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            div
+            {
+              width: 50%;
+              @include flex(space-evenly, center, row);
+            }
+          }
+        }
       }
     }
     .svg_step1
