@@ -900,6 +900,25 @@ body
         cursor: pointer;
       }
     }
+    .step3
+    {
+      font-family: "Muli";
+      font-size: $fontSize2;
+      color: $police;
+      z-index: 1;
+      width: 100%;
+      @include flex(space-around, center, column);
+      @include positionTL(absolute, 10%, 0);
+      h3
+      {
+        font-weight: 200;
+      }
+      .recap
+      {
+        width: 60%;
+        background: red;
+      }
+    }
     .svg_step1
     {
       width: 50%;
