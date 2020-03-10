@@ -921,7 +921,7 @@ body
         margin-bottom: 35px;
         border-radius: 20px;
         transition: .2s;
-        font-size: $fontSize3;
+        font-size: $fontSize2;
         font-weight: 600;
       }
       a:hover
@@ -936,7 +936,7 @@ body
         .questions
         {
           position: relative;
-          width: 80%;
+          width: 70%;
           background: $color3;
           border-radius: 5px;
           padding: 5px 5px;
@@ -967,6 +967,7 @@ body
           .question
           {
             width: 100%;
+            font-weight: 600;
             @include flex(center, center, row);
             span
             {
@@ -975,13 +976,30 @@ body
           }
           .answers
           {
-            width: 60%;
+            width: 65%;
             display: flex;
             flex-wrap: wrap;
             div
             {
+              position: relative;
               width: 50%;
               @include flex(space-evenly, center, row);
+              .spanP
+              {
+                position: relative;
+                width: 65%;
+                @include flex(flex-start, center, row);
+                span
+                {
+                  margin-right: 15px;
+                }
+              }
+              div
+              {
+                position: relative;
+                width: 35%;
+                @include flex(space-evenly, center, row);
+              }
             }
           }
         }

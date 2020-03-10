@@ -16,6 +16,9 @@
 
   <div class="recap">
       <?php 
+      // <div class="medias">
+      //   <img src="'.$img.'/img/myAvatar.png" alt="votre image">
+      // </div>
       $img = get_template_directory_uri();
       $num = 0;
       foreach($_SESSION['quizData']['questions'] as $q)
@@ -24,9 +27,6 @@
         echo '
           <div class="questions">
             <span class="numQ">'.$num.'</span>
-            <div class="medias">
-              <img src="'.$img.'/img/myAvatar.png" alt="votre image">
-            </div>
             <div class="question">
               <span>'.$num.'.</span>
               <p>'.$q['info']['text'].'</p>
@@ -40,22 +40,28 @@
             {
               $lettreNum ++;
               echo'
-                <div class="aaa">
-                  <span>'.$lettre[$lettreNum].'</span>
-                  <p>'.$a['text'].'</p>
+                <div>
+                  <div class="spanP">
+                    <span>'.$lettre[$lettreNum].'</span>
+                    <p>'.$a['text'].'</p>
+                  </div>
               ';
               if($a['isTrue'] == "true")
               {
                 echo'
+                  <div>
                   <i class="fas fa-check good"></i>
                   <i class="fas fa-times"></i>
-                ';
+                  </div>
+                  ';
               }
               else
               {
                 echo '
+                  <div>
                   <i class="fas fa-check"></i>
                   <i class="fas fa-times error"></i>
+                  </div>
                 ';
               }
               echo '
