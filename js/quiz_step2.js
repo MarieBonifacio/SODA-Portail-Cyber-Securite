@@ -137,12 +137,12 @@ plus.addEventListener("click", ()=>{
     <label for="">Image :</label>
     <button type="button" disabled><p id="fakebtn" data-id="${id}">Séléctionnez une image</p></button>
     <span id="img_select${id}">Aucune image sélectionnée.</span>
-        <input id="realbtn${id}" type="file" name="img_quiz${id}" hidden>
+        <input id="realbtn${id}" type="file" name="q_${$i}_img" hidden>
         </div>
         <p>ou</p>
       <div>
         <label for="">Video :</label>
-        <input type="text" name="video_q${id}" value="">
+        <input type="text" name="q_${$i}_video" value="">
       </div>
       </div>
       <i class='trash${id} trash fas fa-trash'></i>`;
