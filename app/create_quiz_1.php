@@ -1,11 +1,15 @@
 <?php
-
 define('WP_USE_THEMES', false);
 require('class/answer.class.php');
 require('class/question.class.php');
 require('class/quiz.class.php');
 require('class/quiz_score.class.php');
 require('class/user.class.php');
+
+//J'initialise la variable session
+if(!empty($_SESSION['quizData'])){
+    unset($_SESSION['quizData']);
+}
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -20,8 +24,9 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         wp_redirect( home_url().'/creationquizetape1' );
 
     }else{
-    
-        $content_dir =  get_template_directory().'/img/quizs/';
+        $dir = $_POST['title'];
+        mkdir("../img/quizs/".$dir, 0775, true);
+        $content_dir =  get_template_directory()."../img/quizs/".$dir."/";
         $tmp_file = $_FILES['img_quiz']['tmp_name'];
 
         if(!is_uploaded_file($tmp_file))
