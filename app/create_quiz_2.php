@@ -202,7 +202,9 @@ $newQuiz = new Quiz();
 $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 
 //A FAIRE (faire table tags)
-$newQuiz->setTagId(1);
+$tagId = new Tag();
+$tagId->selectByName($_SESSION['quizData']['quiz']['theme']);
+$newQuiz->setTagId($tagId->getId());
 $newQuiz->setAuthor( $_SESSION['userConnected']);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();

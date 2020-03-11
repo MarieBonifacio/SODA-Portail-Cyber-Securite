@@ -31,11 +31,11 @@
             <select name="theme" id="sites">
                 <option value="">Thème de votre quiz</option>
                 <?php 
+                    //ajout boucle tags db
+                    $tags = $wpdb->get_results( "SELECT name FROM tag");
 
-                    $sites = array("lol", "mdr", "ptdr");
-
-                    for($i=0; $i<count($sites); $i++){
-                        echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
+                    foreach($tags as $t){
+                        echo '<option value="'.$t->name.'">'.$t->name.'</option>';
                     }
                 ?>
             </select>
