@@ -101,8 +101,11 @@ function html5blank_header_scripts()
         wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
         wp_enqueue_script('html5blankscripts'); // Enqueue it!
 
-        wp_register_script('fontawesome', "https://kit.fontawesome.com/06909fb3de.js", array(), '5.12.1'); // Custom scripts
+        wp_register_script('fontawesome', "https://kit.fontawesome.com/06909fb3de.js", array(), '5.12.1'); // fontawesome scripts
         wp_enqueue_script('fontawesome'); // Enqueue it!
+
+        // wp_register_script('isotope', "https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", array(), '3.0.6'); // isotope scripts
+        // wp_enqueue_script('isotope'); // Enqueue it!
     }
 }
 

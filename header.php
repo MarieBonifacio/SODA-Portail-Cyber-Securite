@@ -63,7 +63,6 @@ if(!empty($_SESSION['userConnected']))
 		<nav class="side">
 			<div class="home">
 				<a id="a" href="<?php echo home_url()."/accueil" ?>"><i class="fas fa-home"></i><p id="p">Accueil</p></a>
-				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="articles">
 				<a id="a" href=""><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
@@ -78,7 +77,7 @@ if(!empty($_SESSION['userConnected']))
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="quiz">
-				<a id="a" href="<?php echo home_url()."/quizmenu" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
+				<a id="a" href="<?php echo home_url()."/menuquiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="games">

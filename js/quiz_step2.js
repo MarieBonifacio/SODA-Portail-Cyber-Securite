@@ -159,8 +159,11 @@ plus.addEventListener("click", ()=>{
     })
     inputFile();
     console.log(nbrQuestionsTotal.value);
+    console.log(id);
   }
 })
+
+
 
 console.log(nbrQuestionsTotal.value);
 

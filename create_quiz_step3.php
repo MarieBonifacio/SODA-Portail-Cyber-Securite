@@ -16,11 +16,11 @@
 
   <div class="recap">
       <?php 
-      // <div class="medias">
-      //   <img src="'.$img.'/img/myAvatar.png" alt="votre image">
-      // </div>
       $img = get_template_directory_uri();
       $num = 0;
+      // <div class="medias">
+      //   <img src="'.$img va.'/img/myAvatar.png" alt="votre image">
+      // </div>
       foreach($_SESSION['quizData']['questions'] as $q)
       {
         $num ++;
