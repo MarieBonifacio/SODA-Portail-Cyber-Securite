@@ -35,8 +35,10 @@ $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 //A FAIRE (faire table tags)
 $tagId = new Tag();
 $tagId->selectByName($_SESSION['quizData']['quiz']['theme']);
-$newQuiz->setTagId($tagId->getId());
-$newQuiz->setAuthor( $_SESSION['userConnected']);
+$newQuiz->setTag($tagId);
+$u = new User();
+$u->selectById ($_SESSION['userconnected']);
+$newQuiz->setAuthor($u);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
 $newQuizId = $wpdb->insert_id;

@@ -82,9 +82,9 @@ class Quiz {
             $wpdb->insert(
                 'quiz', array(
                     "name" => $this->name,
-                    "tag_id" => $this->tag_id,
+                    "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
-                    "author_id" => $this->author,
+                    "author_id" => $this->author->getId (),
                     "created_at" => $this->created_at
                 )
             );

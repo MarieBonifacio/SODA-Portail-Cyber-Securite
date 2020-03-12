@@ -1,5 +1,4 @@
 <?php
-
 define('WP_USE_THEMES', false);
 require('class/answer.class.php');
 require('class/question.class.php');
@@ -15,16 +14,15 @@ include($path.'wp-load.php');
 $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
 
-if(!empty($_SESSION['errorQuiz'])){
-    unset($_SESSION['errorQuiz']);
-}
+$_SESSION['errorQuiz'] = "";
+
 if(!empty($_SESSION['quizData'])){
-    unset($_SESSION['questions'] = null);
+    $_SESSION['questions'] = null;
 }
 
 if($nbrQuestion >= 10){
-    for( $i = 1; $i <= $nbrQuestion +50; $i++)    {
-        if(!empty($_POST['question_'.$i])){
+    for( $i = 1; $i <= $nbrQuestion; $i++)    {
+        if(isset($_POST['question_'.$i])){
             $question['info'] = array(
                 'text' => $_POST['question_'.$i],
                 'img' => "",
@@ -38,7 +36,10 @@ if($nbrQuestion >= 10){
             if($_FILES['q_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['q_'.$i.'_img']))
             {
                 $dir = $_SESSION['quizData']['quiz']['title'];
-                mkdir("../img/quizs/".$dir."/questions", 0775, true);
+                $path = "../img/quizs/".$dir."/questions";
+                if(!is_dir($path)){
+                    mkdir($path, 0775, true);
+                }
                 $content_dir =  get_template_directory()."/img/quizs/".$dir."/questions/";
                 $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
 
@@ -94,7 +95,7 @@ if($nbrQuestion >= 10){
                 }
             }
         }else{
-            $_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
+            //$_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
         }
     }
 }else{
@@ -105,12 +106,6 @@ if($_SESSION['errorQuiz'] == ""){
     wp_redirect( home_url().'/creationquizetape3' );
 }
 wp_redirect( home_url().'/creationquizetape2' );
-
-
-
-?>
-
-
 
 // define('WP_USE_THEMES', false);
 // require('class/answer.class.php');
@@ -260,7 +255,6 @@ wp_redirect( home_url().'/creationquizetape2' );
 // if($_SESSION['errorQuiz'] == ""){
 //     wp_redirect( home_url().'/creationquizetape3' );
 // }
-
 
 ?>
     
