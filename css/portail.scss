@@ -187,7 +187,7 @@ body
   }
   .side
   {
-    @include positionTR(fixed, 12%, "");
+    @include positionTL(fixed, 12%, 0);
     width: 15%;
     height: 88%;
     z-index: 5;
@@ -263,10 +263,11 @@ body
   .content
   {
     position: absolute;
-    width: 95%;
+    width: 85%;
     height: 88%;
-    left: 5%;
-    top: 12%;
+    transition: .3s;
+    right: 0;
+    bottom: 0;
     // background: red;
     @include flex( space-between, center, row);
     h2
@@ -277,7 +278,7 @@ body
       font-size: $fontSize3;
       // color: $color-imp;
       font-family: "Montserrat", sans-serif;
-      @include positionTL(absolute, 5%, 50%);
+      @include positionTL(absolute, 2%, 50%);
     }
     .profile
     {
@@ -1187,7 +1188,65 @@ body
           padding: 10px;
           border-radius: 5px;
           background: $color3;
-          color: white;
+          color: $police;
+          font-weight: 600;
+          font-size: $fontSize2;
+          overflow: hidden;
+          @include flex(space-between, center, column);
+          h3
+          {
+            position: relative;
+            z-index: 2;
+          }
+          .tag
+          {
+            z-index: 2;
+            @include positionTL(absolute, 5px, 5px);
+          }
+          .score
+          {
+            z-index: 2;
+            @include positionTR(absolute, 5px, 5px);
+          }
+          .imgQ
+          {
+            // position: relative;
+            width: 100%;
+            height: 75%;
+            @include flex(center, center, column);
+            @include positionTL(absolute,0,0);
+            overflow: hidden;
+            img
+            {
+              position: relative;
+              width: 200%;
+              height: auto;
+              object-position: center;
+            }
+            .filter
+            {
+              width: 100%;
+              height: 100%;
+              @include positionTL(absolute, 0, 0);
+              background: rgba(0,0,0, 0.7);
+            }
+          }
+          p
+          {
+            position: relative;
+            background: $color-btn;
+            padding: 5px 20px;
+            border-radius: 100px;
+            transition: .2s;
+            color: $color1;
+            font-weight: 600;
+            margin-bottom: 0px;
+          }
+          p:hover
+          {
+            background: $police;
+            cursor: pointer;
+          }
         }
       }      
     }

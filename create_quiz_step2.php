@@ -24,7 +24,7 @@
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
   <input type="text" name="nbrQuestion" hidden>
     <?php
-      for($i=1; $i<=10; $i++){
+      for($i=1; $i<=1; $i++){
         echo '
         <div class="question">
           <div>

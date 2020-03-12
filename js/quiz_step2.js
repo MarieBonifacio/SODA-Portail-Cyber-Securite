@@ -30,8 +30,8 @@ function inputFile()
 
 inputFile();
 
-var id = 10;
-var nbrQuestions = 10;
+var id = 1;
+var nbrQuestions = 1;
 
 const plus = document.querySelector(".plus"),
       form = document.querySelector("form"),

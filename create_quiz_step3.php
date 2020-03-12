@@ -1,8 +1,10 @@
 <?php /* Template Name: Create Quiz Etape 3 */ get_header();?>
 
-<h2>Titre du quiz</h2>
+<h2><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
 
 <div class="step3">
+
+  <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="votre image">
 
   <h3>Étape 3: Confirmation</h3>
 
@@ -18,21 +20,27 @@
       <?php 
       $img = get_template_directory_uri();
       $num = 0;
-      // <div class="medias">
-      //   <img src="'.$img va.'/img/myAvatar.png" alt="votre image">
-      // </div>
       foreach($_SESSION['quizData']['questions'] as $q)
       {
         $num ++;
         echo '
           <div class="questions">
+          ';
+          // if()
+          // {
+          //   echo ' 
+          //   <div class="medias">
+          //     <img src="'.$img.'/img/myAvatar.png" alt="votre image">
+          //   </div>
+          //   ';
+          // }
+        echo '
             <span class="numQ">'.$num.'</span>
             <div class="question">
               <span>'.$num.'.</span>
               <p>'.$q['info']['text'].'</p>
             </div>
             <div class="answers">
-
           ';
             $lettre = array("A", "B", "C", "D");
             $lettreNum = -1;

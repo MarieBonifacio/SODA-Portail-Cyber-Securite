@@ -103,18 +103,17 @@ function html5blank_header_scripts()
 
         wp_register_script('fontawesome', "https://kit.fontawesome.com/06909fb3de.js", array(), '5.12.1'); // fontawesome scripts
         wp_enqueue_script('fontawesome'); // Enqueue it!
-
-        // wp_register_script('isotope', "https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", array(), '3.0.6'); // isotope scripts
-        // wp_enqueue_script('isotope'); // Enqueue it!
     }
 }
 
 // Load HTML5 Blank conditional scripts
 function html5blank_conditional_scripts()
 {
-    if (is_page('pagenamehere')) {
-        wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
-        wp_enqueue_script('scriptname'); // Enqueue it!
+    if (is_page(33)) {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/quiz.js');
+        wp_localize_script('my-script', 'myScript', array(
+            'theme_directory' => get_template_directory_uri() 
+        ));
     }
 }
 

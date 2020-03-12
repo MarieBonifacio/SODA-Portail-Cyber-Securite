@@ -3,6 +3,8 @@
 const arrow = document.querySelector(".arrow");
 const p = document.querySelectorAll("#p");
 const sideNav = document.querySelector(".side");
+const content = document.querySelector(".content");
+console.log(content);
 
 arrow.addEventListener("click", ()=>{
     if(arrow.classList.contains("fa-arrow-left"))
@@ -13,6 +15,7 @@ arrow.addEventListener("click", ()=>{
         p.forEach(p => {
             p.classList.add("para");
         });
+        content.style.width = "95%";
     }
     else
     {
@@ -22,6 +25,7 @@ arrow.addEventListener("click", ()=>{
         p.forEach(p => {
             p.classList.remove("para");
         });
+        content.style.width = "85%";
     }
 });
 
