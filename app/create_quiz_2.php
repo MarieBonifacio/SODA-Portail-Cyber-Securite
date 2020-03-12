@@ -13,11 +13,11 @@ include($path.'wp-load.php');
 
 $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
-print_r($_POST);
+// print_r($_POST);
 
-echo '<pre>';
-print_r($_FILES);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_FILES);
+// echo '</pre>';
 
 
 
@@ -47,8 +47,6 @@ if($nbrQuestion >= 10)
             if(!empty($_POST['q_'.$i.'_video'])){
                 $question['info']['video'] = $_POST["q_'.$i.'_video"];
             }
-            
-echo get_template_directory();
 
             //////////////////////////
             // if(!empty($_FILES['q_'.$i.'_img'])){
@@ -91,16 +89,16 @@ echo get_template_directory();
 
                 if(!is_uploaded_file($tmp_file))
                 {
-                    $error_quiz="Un fichier est introuvable";
-                    //wp_redirect( home_url().'/creationquizetape2' );
+                    $error_quiz="Un des fichiers est introuvable";
+                    wp_redirect( home_url().'/creationquizetape2' );
                 }
 
                 $type_file = $_FILES['q_'.$i.'_img']['type'];
 
                 if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
                 {
-                    $error_quiz = "Le format d'un des fichiers n'est pas pris en charge";
-                    //wp_redirect( home_url().'/creationquizetape2' );
+                    $error_quiz = "Le format d'un des fichiers n'est pas pris en charge.";
+                    wp_redirect( home_url().'/creationquizetape2' );
                 }
                 
                 
@@ -111,7 +109,7 @@ echo get_template_directory();
                 if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
                 { 
                     $errorQuiz = "Impossible de copier le fichier $name_file dans $content_dir";
-                    //wp_redirect( home_url().'/creationquizetape2' );
+                    wp_redirect( home_url().'/creationquizetape2' );
                 }
 
                 $img = $name_file;
@@ -153,89 +151,33 @@ echo get_template_directory();
                 }*/
                 
                 //si plus d'une reponse à été mise comme bonne pour la question
-                if($nbrTrue != 1)
-                {
-                    $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
-                    //wp_redirect( home_url().'/creationquizetape2' );
-                }
+                // if($nbrTrue != 1)
+                // {
+                //     $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
+                //     //wp_redirect( home_url().'/creationquizetape2' );
+                // }
                 if($nbrAnswer < 2)
                 {
                     $_SESSION['errorQuiz'] = "Il faut deux réponses minimum par question.";
-                    //wp_redirect( home_url().'/creationquizetape2' );
+                    wp_redirect( home_url().'/creationquizetape2' );
                 }
             }
         }else{
             //on renvoie sur la page precedente si une question n'a pas d'énoncé
             $_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
-            //wp_redirect( home_url().'/creationquizetape2' );
+            wp_redirect( home_url().'/creationquizetape2' );
         }
     }
     
 } else {
     $_SESSION['errorQuiz'] = "Veuillez créer au moins 10 questions.";
-    //wp_redirect( home_url().'/creationquizetape2' );
+    wp_redirect( home_url().'/creationquizetape2' );
 }
-//quand toutes les questions/réponses on été traité on renvoie à la page suivante
+//quand toutes les questions/réponses on été traitées on renvoie à la page suivante
 
 if($_SESSION['errorQuiz'] == ""){
-    //wp_redirect( home_url().'/creationquizetape3' );
+    wp_redirect( home_url().'/creationquizetape3' );
 }
-
-/* SAVE TO BDD TEST */
-
-if(!empty($_SESSION['userConnected']))
-{
-    $id = $_SESSION['userConnected'];
-    $userConnected = new User();
-    $userConnected->selectById($id);
-}
-
-echo $_SESSION['userConnected'];
-
-$_SESSION['quizData'];
-
-echo '<pre>';
- print_r($_SESSION['quizData']); 
- echo '</pre>';
-
-//recuperation quiz
-$newQuiz = new Quiz();
-$newQuiz->setName($_SESSION['quizData']['quiz']['title']);
-
-//A FAIRE (faire table tags)
-$tagId = new Tag();
-$tagId->selectByName($_SESSION['quizData']['quiz']['theme']);
-$newQuiz->setTagId($tagId->getId());
-$newQuiz->setAuthor( $_SESSION['userConnected']);
-$newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
-$newQuiz->save();
-$newQuizId = $wpdb->insert_id;
-
-
-//recupération questions/réponses
-foreach($_SESSION['quizData']['questions'] as $q)
-{
-    $newQuestion = new Question();
-    $newQuestion->setIdQuiz($newQuizId);
-    $newQuestion->setContent($q['info']['text']);
-    $points = 100/$nbrQuestion;
-    $newQuestion->setPoints($points);
-    $newQuestion->save();
-    $newQuestionId = $wpdb->insert_id;
-   
-
-    {
-        
-        $newAnswer = new Answer();
-        $newAnswer->setIdQuestion($newQuestionId);
-        $newAnswer->setContent($a['text']);
-        $newAnswer->setIsTrue($a['isTrue']);
-        $newAnswer->save();
-        
-    }
-
-}
-
 
 
 ?>
