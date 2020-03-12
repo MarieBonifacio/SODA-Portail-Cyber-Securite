@@ -1,5 +1,5 @@
 <?php /* Template Name: Create Quiz Etape 2 */ get_header();?>
-
+<?php echo '<pre>';print_r($_SESSION);echo '</pre>';?>
 <h2><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
 
 <div class="step2">
@@ -14,17 +14,19 @@
       <div class="stick"></div>
   </div>
   <?php
+    $nbrQuestion = 1;
     if(!empty($_SESSION["errorQuiz"])){
       echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
       unset($_SESSION["errorQuiz"]); 
       /* SI ON REVIENT DU SCRIPT VALIDATION */
       $p = $_SESSION['formQuizStep2'];
+      $nbrQuestion = $p['nbrQuestion'];
     }
     ?>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
   <input type="text" name="nbrQuestion" hidden>
     <?php
-      for($i=1; $i<=1; $i++){
+      for($i=1; $i<=$nbrQuestion; $i++){
         echo '
         <div class="question">
           <div>

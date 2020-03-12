@@ -14,14 +14,12 @@ include($path.'wp-load.php');
 $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
 
-$_SESSION['errorQuiz'] = "";
-
 if(!empty($_SESSION['quizData'])){
     $_SESSION['questions'] = null;
 }
 
-if($nbrQuestion >= 10){
-    for( $i = 1; $i <= $nbrQuestion; $i++)    {
+if($nbrQuestion >= 1){
+    for( $i = 1; $i <= $nbrQuestion; $i++) {
         if(isset($_POST['question_'.$i])){
             $question['info'] = array(
                 'text' => $_POST['question_'.$i],
@@ -84,15 +82,15 @@ if($nbrQuestion >= 10){
                     );
                     $_SESSION['quizData']['questions'][$i]['answers'][$r] = $answer;
                 }
+            }
 
-                if($nbrTrue != 1)
-                {
-                    $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
-                }
-                if($nbrAnswer < 2)
-                {
-                    $_SESSION['errorQuiz'] = "Il faut deux réponses minimum par question.";
-                }
+            if($nbrTrue < 1)
+            {
+                $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
+            }
+            if($nbrAnswer < 2)
+            {
+                $_SESSION['errorQuiz'] = "Il faut deux réponses minimum par question.";
             }
         }else{
             //$_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
@@ -104,8 +102,10 @@ if($nbrQuestion >= 10){
 
 if($_SESSION['errorQuiz'] == ""){
     wp_redirect( home_url().'/creationquizetape3' );
+}else{
+    $_SESSION['formQuizStep2'] = $_POST;
+    wp_redirect( home_url().'/creationquizetape2' );
 }
-wp_redirect( home_url().'/creationquizetape2' );
 
 // define('WP_USE_THEMES', false);
 // require('class/answer.class.php');

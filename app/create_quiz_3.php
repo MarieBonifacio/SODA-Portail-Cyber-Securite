@@ -4,7 +4,7 @@ define('WP_USE_THEMES', false);
 require('class/answer.class.php');
 require('class/question.class.php');
 require('class/quiz.class.php');
-require('class/quiz.score.class.php');
+require('class/quiz_score.class.php');
 require('class/tag.class.php');
 require('class/user.class.php');
 
@@ -13,6 +13,9 @@ include($path.'wp-load.php');
 
 /* SAVE TO BDD  */
 
+
+echo '<pre>';print_r($_SESSION);echo '</pre>';
+
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
@@ -20,25 +23,15 @@ if(!empty($_SESSION['userConnected']))
     $userConnected->selectById($id);
 }
 
-echo $_SESSION['userConnected'];
-
-$_SESSION['quizData'];
-
-echo '<pre>';
- print_r($_SESSION['quizData']); 
- echo '</pre>';
-
 //recuperation quiz
 $newQuiz = new Quiz();
 $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 
 //A FAIRE (faire table tags)
-$tagId = new Tag();
-$tagId->selectByName($_SESSION['quizData']['quiz']['theme']);
-$newQuiz->setTag($tagId);
-$u = new User();
-$u->selectById ($_SESSION['userconnected']);
-$newQuiz->setAuthor($u);
+$tag = new Tag();
+$tag->selectByName($_SESSION['quizData']['quiz']['theme']);
+$newQuiz->setTag($tag);
+$newQuiz->setAuthorById($_SESSION['userConnected']);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
 $newQuizId = $wpdb->insert_id;
@@ -50,14 +43,13 @@ foreach($_SESSION['quizData']['questions'] as $q)
     $newQuestion = new Question();
     $newQuestion->setIdQuiz($newQuizId);
     $newQuestion->setContent($q['info']['text']);
-    $points = 100/$nbrQuestion;
+    $points = 100/sizeof($_SESSION['quizData']['questions']);
     $newQuestion->setPoints($points);
     $newQuestion->save();
     $newQuestionId = $wpdb->insert_id;
    
-
+    foreach($q['answers'] as $a)
     {
-        
         $newAnswer = new Answer();
         $newAnswer->setIdQuestion($newQuestionId);
         $newAnswer->setContent($a['text']);
@@ -67,10 +59,4 @@ foreach($_SESSION['quizData']['questions'] as $q)
     }
 
 }
-
-
-
-
-
-
 ?>

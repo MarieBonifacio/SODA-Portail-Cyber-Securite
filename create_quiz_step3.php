@@ -1,7 +1,8 @@
 <?php /* Template Name: Create Quiz Etape 3 */ get_header();?>
 
 <h2><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
-
+<?php 
+echo '<pre>';print_r($_SESSION);echo '</pre>';?>
 <div class="step3">
 
   <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="votre image">
@@ -84,7 +85,7 @@
           ?>
   </div>
 
-  <a href="">Confirmez la création de votre quiz</a>
+  <a href="<?php echo get_template_directory_uri(); ?>/app/create_quiz_3.php">Confirmez la création de votre quiz</a>
 
 </div>
 
