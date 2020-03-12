@@ -1,23 +1,30 @@
+<?php
+header('content-type:application/json'); 
+require('app/class/answer.class.php');
+require('app/class/question.class.php');
+require('app/class/quiz.class.php');
+require('app/class/quiz_score.class.php');
+require('app/class/tag.class.php');
+require('app/class/user.class.php');
+
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+include($path.'wp-load.php');
+
+//JSON encode 
+// if(isset($_GET['id'])){
+//     $quiz = new Quiz();
+//     //$quiz->selectById($_GET['id']);
+// }
 
 
 
 
-// header('content-type:application/json');
 
-// require('app/class/answer.class.php');
-// require('app/class/question.class.php');
-// require('app/class/quiz.class.php');
-// require('app/class/quiz_score.class.php');
-// require('app/class/user.class.php');
-
-// $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
-// include($path.'wp-load.php');
-
-// //JSON encode 
 // $quiz = new Quiz();
-// $quiz->selectById($_GET['id']);
+// $test = $quiz->selectById(135);
+// print_r($quiz->getAuthor());
 
-// $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz=$quiz->getId()");
+// $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz = '$quiz->getId()'");
 // $quizArray = [];
 
 //     $quiz = array(
@@ -36,7 +43,7 @@
 //             "points" => $q->points,
 //         );
         
-//         $answers = $wpdb->get_results( "SELECT * FROM answer where id_question=$q->id" );
+//         $answers = $wpdb->get_results( "SELECT * FROM answer where id_question= '$q->id'" );
 //         foreach($answers as $a){
 //             $answer = array(
 //                 'id' => $a->id,
@@ -44,11 +51,13 @@
 //                 'content' => $a->content,
 //                 'is_true' => $a->is_true,
 //             );
-//             $question['answers'][] = $answer;
+//             $quiz['answers'][] = $answer;
 //         }
 //         $quiz['questions'][] = $question;
 //     }
+//     $quizArray[] = $quiz;
 
 
-// echo json_encode($quizArray);
+// echo json_encode($quiz);
+
 ?>

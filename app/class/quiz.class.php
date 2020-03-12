@@ -7,7 +7,7 @@ class Quiz {
 
     private $id;
     private $name;
-    private $tag_id;
+    private $tag;
     private $img_path;
     private $author;
     private $created_at;
@@ -17,10 +17,15 @@ class Quiz {
         $r = $wpdb->get_row("SELECT * FROM quiz where id='".$id."'");
         $this->id = $r->id;
         $this->name = $r->name;
-        $this->tag_id = (new Tag())->selectById($r->id);
+        $tagId = new tag();
+        $tagId->selectById($r->tag_id);
+        $this->tag = $tagId;
         $this->img_path = $r->img_path;
-        $this->author = (new User())->selectById($r->id);
-        $this->createAt = $r->created_at;
+        $author = new User();
+        $author->selectById($r->author_id);
+        $this->author = $author;
+        $this->created_at = $r->created_at;
+        return $r;
     }
 
     public function getId(){
@@ -34,12 +39,12 @@ class Quiz {
         $this->name = $name;
     }
 
-    public function getTagId(){
-        $this->tag_id->$tag_id;
+    public function getTag(){
+        return $this->tag;
     }
 
-    public function setTagId($tag_id){
-        $this->tag_id = $tag_id;
+    public function setTag($tag){
+        $this->tag = $tag;
     }
 
     public function getImgPath(){

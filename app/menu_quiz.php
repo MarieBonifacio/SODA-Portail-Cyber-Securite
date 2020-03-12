@@ -14,16 +14,19 @@ include($path.'wp-load.php');
 
 //JSON encode 
 
-
 $quizs = $wpdb->get_results( "SELECT id, name, tag_id, img_path FROM quiz" );
 $quizArray = [];
-foreach ($quizs as $q){
-  $quiz = array(
-     "id" => $q->id,
-     "name" => $q->name,
-     "tag_id" => $q->tag_id,
-     "img" => $q->img_path,
-  );
+        foreach ($quizs as $q){
+            $quizTmp = new Quiz();
+            $quizTmp->selectById($q->id);
+            
+            $quiz = array(
+                "id" => $quizTmp->getId(),
+                "name" => $quizTmp->getName(),
+                "tag_id" => $quizTmp->getTag()->getId(),
+                "tag_name" => $quizTmp->getTag()->getName(),
+                "img" => $quizTmp->getImgPath(),
+            );
  $quizArray[] = $quiz;
 }
 

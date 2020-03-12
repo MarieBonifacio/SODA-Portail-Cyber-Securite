@@ -27,7 +27,7 @@ class User {
         $this->location = $r->location;
         $this->idUser = $r->id_number;
         $this->imgPath = $r->img_path;
-        $this->createAt = $r->created_at;
+        $this->created_at = $r->created_at;
     }
 
     public function getId(){
