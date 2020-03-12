@@ -46,7 +46,24 @@ $('.button-group').each( function( i, buttonGroup ) {
 let btnQuizs = document.querySelectorAll(".btnQuiz");
 btnQuizs.forEach(btn => {
   btn.addEventListener("click", (e)=>{
-    console.log(e.target.dataset.id);
+    const id = e.target.dataset.id;
+    // var url = myScript.theme_directory;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+      if(this.readyState == 4 && this.status == 200)
+      {
+        var myQuizz = JSON.parse(this.responseText);
+      }
+      else
+      {
+        
+        console.log(id);
+      }
+    };
+
+    // url a trouver
+    xmlhttp.open("GET", url + '/play_quiz.php?id=' + id, true);
+    xmlhttp.send();
   })
 });
 

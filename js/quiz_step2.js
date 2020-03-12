@@ -145,17 +145,22 @@ plus.addEventListener("click", ()=>{
         <input type="text" name="q_${id}_video" value="">
       </div>
       </div>
-      <i class='trash${id} trash fas fa-trash'></i>`;
+      <i class='trash${id} trash fas fa-trash' data-id="${id}"></i>`;
     form.appendChild(div);
   
     var trash = document.querySelector(`.trash${id}`);
     
+
     trash.addEventListener("click", (e)=>{
-      e.target.parentNode.remove();
-      nbrQuestions -= 1;
-      total.innerHTML=`Total de questions: ${nbrQuestions}`;
-      nbrQuestionsTotal.value = `${nbrQuestions}`;
-      console.log(nbrQuestionsTotal.value);
+      if(e.target.dataset.id == nbrQuestions)
+      {
+        e.target.parentNode.remove();
+        nbrQuestions -= 1;
+        id -= 1;
+        total.innerHTML=`Total de questions: ${nbrQuestions}`;
+        nbrQuestionsTotal.value = `${nbrQuestions}`;
+        console.log(nbrQuestionsTotal.value);
+      }
     })
     inputFile();
     console.log(nbrQuestionsTotal.value);

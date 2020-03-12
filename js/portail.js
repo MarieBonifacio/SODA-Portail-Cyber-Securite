@@ -4,7 +4,6 @@ const arrow = document.querySelector(".arrow");
 const p = document.querySelectorAll("#p");
 const sideNav = document.querySelector(".side");
 const content = document.querySelector(".content");
-console.log(content);
 
 arrow.addEventListener("click", ()=>{
     if(arrow.classList.contains("fa-arrow-left"))
