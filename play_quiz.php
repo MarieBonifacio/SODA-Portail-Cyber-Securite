@@ -4,13 +4,14 @@ require('app/class/question.class.php');
 require('app/class/quiz.class.php');
 require('app/class/quiz_score.class.php');
 require('app/class/tag.class.php');
+require('app/class/user.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
 //JSON encode 
 $quiz = new Quiz();
-$quiz->selectById(137);
+$quiz->selectById($_GET['id']);
 
 $quizId = $quiz->getId();
 $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId'");
