@@ -15,6 +15,7 @@ $quiz->selectById(137);
 $quizId = $quiz->getId();
 $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId'");
 $quizArray = [];
+print_r($questions); 
 
     $quiz = array(
         'id' => $quiz->getId(),
@@ -33,7 +34,8 @@ $quizArray = [];
         );
         
         $questionId = $question['id'];
-
+        $answers = $wpdb->get_results( "SELECT * FROM answer where id_question='$questionId'" );
+        print_r($answers); 
         foreach($answers as $a){
             $answer = array(
                 'id' => $a->id,
@@ -48,3 +50,5 @@ $quizArray = [];
 
 
 echo json_encode($quiz);
+
+?>
