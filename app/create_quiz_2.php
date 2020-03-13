@@ -86,7 +86,7 @@ if($nbrQuestion >= 1){
 
             if($nbrTrue < 1)
             {
-                $_SESSION['errorQuiz'] = "Il faut une unique bonne réponse par question.";
+                $_SESSION['errorQuiz'] = "Il faut au moins une bonne réponse par question.";
             }
             if($nbrAnswer < 2)
             {

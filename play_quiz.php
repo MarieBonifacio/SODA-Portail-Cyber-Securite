@@ -1,27 +1,26 @@
 <?php
-
-define('WP_USE_THEMES', false);
-require('class/answer.class.php');
-require('class/question.class.php');
-require('class/quiz.class.php');
-require('class/quiz_score.class.php');
-require('class/user.class.php');
+require('app/class/answer.class.php');
+require('app/class/question.class.php');
+require('app/class/quiz.class.php');
+require('app/class/quiz_score.class.php');
+require('app/class/tag.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
 //JSON encode 
 $quiz = new Quiz();
-$quiz->selectById($_GET['id']);
+$quiz->selectById(137);
 
-$questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz=$quiz->getId()");
+$quizId = $quiz->getId();
+$questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId'");
 $quizArray = [];
 
     $quiz = array(
-        $quizArray['id'] => $quiz->getId(),
-        $quizArray['name'] => $quiz->getName(),
-        $quizArray['tag_id'] => $quiz->getTagId(),
-        $quizArray['img'] => $quiz->getImgPath(),
+        'id' => $quiz->getId(),
+        'name' => $quiz->getName(),
+        'tag_id' => $quiz->getTag()->getId(),
+        'img' => $quiz->getImgPath(),
     );
     foreach($questions as $q){
         $question = array(  
@@ -33,7 +32,8 @@ $quizArray = [];
             "points" => $q->points,
         );
         
-        $answers = $wpdb->get_results( "SELECT * FROM answer where id_question=$q->id" );
+        $questionId = $question['id'];
+
         foreach($answers as $a){
             $answer = array(
                 'id' => $a->id,
@@ -47,10 +47,4 @@ $quizArray = [];
     }
 
 
-echo json_encode($quizArray);
-
-
-
-
-
-?>
+echo json_encode($quiz);
