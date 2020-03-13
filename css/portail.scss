@@ -809,14 +809,6 @@ body
                   width: 10%;
                   height: 0;
                 }
-                div
-                {
-                  width: 10%;
-                }
-                div:hover
-                {
-                  cursor: pointer;
-                }
                 .true:hover input ~ span i
                 {
                   color: #3AD29F;
@@ -1173,7 +1165,7 @@ body
           background-color: $police;
         }
       }
-  
+      
       
       /* ---- isotope ---- */
       
@@ -1249,6 +1241,114 @@ body
           }
         }
       }      
+    }
+  }
+  .quizPlay
+  {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: $color2;
+    transition: .2s;
+    font-size: $fontSize2;
+    color: $police;
+    @include positionTL(fixed, 0, 0);
+    @include flex(center, center, column);
+    .quiz
+    {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 20%;
+      @include flex(space-between, center, column);
+    }
+    .btns
+    {
+      position: absolute;
+      width: 50%;
+      bottom: 20%;
+      @include flex(space-around, center, row);
+    }
+    .slide{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 50%;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s;
+      @include flex(center, center, column);
+      .question
+      {
+        margin-bottom: 20px;
+        font-size: $fontSize3;
+        font-weight: 600;
+        // @include flex(center, center, column);
+      }
+      .answers
+      {
+        position: relative;
+        width: 50%;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        label
+        {
+          position: relative;
+          width: 40%;
+          margin: 5px 5px;
+        }
+        input
+        {
+          outline: none;
+          // width: 60%;
+        }
+        input[type=radio]
+        {
+          position: absolute;
+          opacity: 0;
+          width: 10%;
+          height: 0;
+        }
+        p
+        {
+          position: relative;
+          width: 100%;
+          // height: 100px;
+          background: $color-btn;
+          padding: 10px 10px;
+          color: $color1;
+        }
+        label:hover
+        {
+          cursor: pointer;
+        }
+        label:hover input ~ p
+        {
+          background: $police;
+        }
+        label input:checked ~ p        
+        {
+          background: $police;
+        }
+      }
+    }
+    .active-slide{
+      opacity: 1;
+      z-index: 2;
+    }
+    .quiz-container{
+      position: relative;
+      height: 200px;
+      margin-top: 40px;
+    }
+    #results
+    {
+      position: absolute;
+      bottom: 10%;
     }
   }
 }

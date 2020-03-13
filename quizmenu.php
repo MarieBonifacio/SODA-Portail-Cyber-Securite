@@ -43,30 +43,178 @@ $('.button-group').each( function( i, buttonGroup ) {
   });
 });
 
+
 let btnQuizs = document.querySelectorAll(".btnQuiz");
 btnQuizs.forEach(btn => {
   btn.addEventListener("click", (e)=>{
     const id = e.target.dataset.id;
-    // var url = myScript.theme_directory;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
+    var urlScript = url + '/play_quiz.php/?id=' + id;
+    console.log(urlScript);
+    var xmlhttp2 = new XMLHttpRequest();
+    xmlhttp2.onreadystatechange = function () {
       if(this.readyState == 4 && this.status == 200)
       {
         var myQuizz = JSON.parse(this.responseText);
-      }
-      else
-      {
+        console.log(myQuizz.questions);
+        const divQuizz = document.createElement("div");
+        divQuizz.classList.add("quizPlay");
+        document.body.appendChild(divQuizz);
+        divQuizz.innerHTML = `
+          <div class="quiz" id="quiz"></div>
+          <div class="btns"> 
+            <button id="previous">Previous Question</button>
+            <button id="next">Next Question</button>
+            <button id="submit">Terminer le quiz</button>
+          </div>
+          <div id="results"></div>
+        `;
         
-        console.log(id);
+        let myQuestions = myQuizz.questions;
+        const quizContainer = document.getElementById('quiz');
+        const resultsContainer = document.getElementById('results');
+        const submitButton = document.getElementById('submit');
+        
+        function shuffle(array)
+        {
+          array.sort(()=> Math.random()-0.5);
+          console.log(array);
+        }
+
+
+        shuffle(myQuestions);
+
+        function buildQuiz(){
+
+                // variable to store the HTML output
+        const output = [];
+
+          // for each question...
+          myQuestions.forEach(
+            (currentQuestion, questionNumber) => {
+              // variable to store the list of possible answers
+              const currentAnswers = currentQuestion.answers;
+              const answers = [];
+              // and for each available answer...
+              for(i = 0; i<currentAnswers.length ; i++){
+                const letters = ['A', 'B' , 'C', 'D'];
+                // ...add an HTML radio button
+                answers.push(
+                  `<label>
+                    <input type="radio" name="question${questionNumber}" value="${currentAnswers[i].is_true}">
+                    
+                    <p class="answer">${letters[i]} : ${currentAnswers[i].content}</p>
+                  </label>`
+                );
+              }
+
+              // add this question and its answers to the output
+              output.push(
+                `<div class="slide">
+                  <div class="question"> ${currentQuestion.content} </div>
+                  <div class="answers">${answers.join('')}</div>
+                </div>`
+              );
+            }
+          );
+          // finally combine our output list into one string of HTML and put it on the page
+          quizContainer.innerHTML = output.join('');
+        }
+        
+        function showResults(){
+
+          // gather answer containers from our quiz
+          const answerContainers = quizContainer.querySelectorAll('.answers');
+
+          // keep track of user's answers
+          let numCorrect = 0;
+          let points = 0;
+
+          // for each question...
+          myQuestions.forEach( 
+            (currentQuestion, questionNumber) => {
+            // find selected answer
+            const answerContainer = answerContainers[questionNumber];
+            const selector = `input[name=question${questionNumber}]:checked`;
+            const userAnswer = (answerContainer.querySelectorAll(selector) || {}).value;
+
+            // if answer is correct
+            if(userAnswer === "true"){
+              // add to the number of correct answers
+              numCorrect+= 1;
+              points += parseInt(currentQuestion.points);
+              console.log(points);
+              // color the answers green
+              // answerContainers[questionNumber].style.color = 'lightgreen';
+            }
+            // if answer is wrong or blank
+            else{
+              // numCorrect -= 1;
+              // color the answers red
+              // answerContainers[questionNumber].style.color = 'red';
+            }
+          });
+
+          // show number of correct answers out of total
+          resultsContainer.innerHTML = `${numCorrect} correct sur ${myQuestions.length}
+            Vous avez obtenus ${points}!
+          `;
+        }
+
+        // display quiz right away
+        buildQuiz();
+
+        const previousButton = document.getElementById("previous");
+        const nextButton = document.getElementById("next");
+        const slides = document.querySelectorAll(".slide");
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+          slides[currentSlide].classList.remove('active-slide');
+          slides[n].classList.add('active-slide');
+          currentSlide = n;
+          if(currentSlide === 0){
+            previousButton.style.display = 'none';
+          }
+          else{
+            previousButton.style.display = 'inline-block';
+          }
+          if(currentSlide === slides.length-1){
+            nextButton.style.display = 'none';
+            submitButton.style.display = 'inline-block';
+          }
+          else{
+            nextButton.style.display = 'inline-block';
+            submitButton.style.display = 'none';
+          }
+        }
+
+        
+        // Show the first slide
+        showSlide(currentSlide);
+
+        function showNextSlide() {
+          showSlide(currentSlide + 1);
+        }
+        
+        function showPreviousSlide() {
+          showSlide(currentSlide - 1);
+        }
+
+
+        // Event listeners
+        previousButton.addEventListener("click", showPreviousSlide);
+        nextButton.addEventListener("click", showNextSlide);
+
+        // on submit, show results
+        submitButton.addEventListener('click', showResults);
       }
     };
 
     // url a trouver
-    xmlhttp.open("GET", url + '/play_quiz.php?id=' + id, true);
-    xmlhttp.send();
+    xmlhttp2.open("GET", urlScript , true);
+    xmlhttp2.send();
   })
 });
-
 
 </script>
 <?php get_footer()?>
