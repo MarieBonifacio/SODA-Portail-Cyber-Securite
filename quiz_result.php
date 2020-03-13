@@ -16,5 +16,11 @@ $data['id_quiz']
 $data['score']
 $data['time']
 
-= new
+$newScore = new quiz_score();
+$newScore->setUserId();
+$newScore->setQuizId();
+$newScore->setScore();
+$newScore->setTime();
+$newScore->save();
+
 ?>

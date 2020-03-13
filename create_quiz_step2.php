@@ -18,7 +18,7 @@
     if(!empty($_SESSION["errorQuiz"])){
       echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
       unset($_SESSION["errorQuiz"]); 
-      /* SI ON REVIENT DU SCRIPT VALIDATION */
+      /* SI ON REVIENT DU SCRIPT VALIDATION POUR CAUSE MESSAGE D'ERREUR */
       $p = $_SESSION['formQuizStep2'];
       $nbrQuestion = $p['nbrQuestion'];
     }
@@ -26,6 +26,9 @@
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
   <input type="text" name="nbrQuestion" hidden>
     <?php
+      If(isset( $_SESSION['quizData']['questions'])){
+      $nbrQuestion = sizeof($_SESSION['quizData']['questions']);
+      }
       for($i=1; $i<=$nbrQuestion; $i++){
         echo '
         <div class="question">
