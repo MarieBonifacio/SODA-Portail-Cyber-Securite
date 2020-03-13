@@ -16,5 +16,5 @@ $data['id_quiz']
 $data['score']
 $data['time']
 
-
+= new
 ?>
