@@ -36,6 +36,7 @@ print_r($questions);
         );
         
         $questionId = $question['id'];
+        print_r($questionId); 
         $answers = $wpdb->get_results( "SELECT * FROM answer where id_question='$questionId'" );
         print_r($answers); 
         foreach($answers as $a){

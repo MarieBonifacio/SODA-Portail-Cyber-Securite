@@ -28,7 +28,8 @@ if($nbrQuestion >= 1){
             );
 
             if(!empty($_POST['q_'.$i.'_video'])){
-                $question['info']['video'] = $_POST["q_'.$i.'_video"];
+                $url = $_POST['q_'.$i.'_video'];
+                $question['info']['video'] = $url;
             }
 
             if($_FILES['q_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['q_'.$i.'_img']))
@@ -36,7 +37,7 @@ if($nbrQuestion >= 1){
                 $dir = $_SESSION['quizData']['quiz']['title'];
                 $path = "../img/quizs/".$dir."/questions";
                 if(!is_dir($path)){
-                    mkdir($path, 0775, true);
+                    mkdir($path, 0700, true);
                 }
                 $content_dir =  get_template_directory()."/img/quizs/".$dir."/questions/";
                 $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
@@ -65,6 +66,7 @@ if($nbrQuestion >= 1){
             }
 
             $_SESSION['quizData']['questions'][$i] = $question;
+            
 
             $answers= array();
 

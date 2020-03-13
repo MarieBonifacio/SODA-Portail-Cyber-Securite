@@ -42,6 +42,8 @@ foreach($_SESSION['quizData']['questions'] as $q)
     $newQuestion->setIdQuiz($newQuizId);
     $newQuestion->setContent($q['info']['text']);
     $points = 100/sizeof($_SESSION['quizData']['questions']);
+    $newQuestion->setImgPath($q['info']['img']);
+    $newQuestion->setUrl($q['info']['video']);
     $newQuestion->setPoints($points);
     $newQuestion->save();
     $newQuestionId = $wpdb->insert_id;

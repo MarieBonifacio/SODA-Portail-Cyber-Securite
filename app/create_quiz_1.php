@@ -25,7 +25,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 
     }else{
         $dir = $_POST['title'];
-        mkdir("../img/quizs/".$dir, 0775, true);
+        mkdir("../img/quizs/".$dir, 0700, true);
         $content_dir =  get_template_directory()."../img/quizs/".$dir."/";
         $tmp_file = $_FILES['img_quiz']['tmp_name'];
 
