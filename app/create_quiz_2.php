@@ -15,7 +15,7 @@ $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
 
 if(!empty($_SESSION['quizData'])){
-    $_SESSION['questions'] = null;
+    $_SESSION['quizData']['quiz']['questions'] = null;
 }
 
 if($nbrQuestion >= 1){
@@ -74,7 +74,7 @@ if($nbrQuestion >= 1){
 
             $_SESSION['quizData']['questions'][$i] = $question;
             
-
+// REPONSES ----------------------------------------------------------------------------------------------------------
             $answers= array();
 
             $nbrAnswer = 0;
@@ -82,30 +82,34 @@ if($nbrQuestion >= 1){
             for( $r=1; $r <= 4; $r++){
                 if(!empty($_POST['q_'.$i.'_reponse_'.$r])){
                     $nbrAnswer += 1;
-                    if($_POST['q_'.$i.'_isTrue_'.$r] == true){
+                    if($_POST['q_'.$i.'_isTrue_'.$r] == "true"){
                         $nbrTrue += 1;
                     }
+
                     $answer = array(
                         'text' => $_POST['q_'.$i.'_reponse_'.$r],
                         'isTrue' => $_POST['q_'.$i.'_isTrue_'.$r],
                     );
                     $_SESSION['quizData']['questions'][$i]['answers'][$r] = $answer;
                 }
-               
-                if($nbrTrue < 1)
-                {
-                    $_SESSION['errorQuiz'] = "Il faut au moins une bonne réponse par question.";
-                }
+            }
+           
+            if($nbrTrue < 1)
+            {
+                $_SESSION['errorQuiz'] = "Merci de renseigner une bonne réponse par question.";
+            }
+            if($nbrTrue > 1){
+                $_SESSION['errorQuiz'] = "Merci de renseigner une seule bonne réponse par question.";
             }
             if($nbrAnswer < 2){
-                $_SESSION['errorQuiz'] = "Il faut au moins deux réponses par question.";
+                $_SESSION['errorQuiz'] = "Merci de renseigner au moins deux réponses par question.";
             }
         }else{
             $_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
         }
     }
-}elseif($nbrQuestion <= 3 || sizeof($_SESSION['quizData']['quiz']['questions']) <=3 ){
-    $_SESSION['errorQuiz'] = "Veuillez créer au moins x questions.";
+}elseif($nbrQuestion < 3 || sizeof($_SESSION['quizData']['quiz']['questions']) <3 ){
+    $_SESSION['errorQuiz'] = "Veuillez créer au moins 3 questions.";
 }
 
 if($_SESSION['errorQuiz'] == "")

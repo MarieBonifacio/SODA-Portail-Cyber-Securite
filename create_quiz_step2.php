@@ -23,18 +23,18 @@
       unset($_SESSION["errorQuiz"]); 
       /* SI ON REVIENT DU SCRIPT VALIDATION POUR CAUSE MESSAGE D'ERREUR */
       $p = $_SESSION['formQuizStep2'];
+      unset($_SESSION["formQuizStep2"]); 
       $nbrQuestion = $p['nbrQuestion'];
     }
-    if(!empty($_SESSION['quizData']['quiz']['questions'])){
-      $nbrQuestion = sizeof($_SESSION['quizData']['quiz']['questions']);
+    if(!empty($_SESSION['formQuizStep2'])){
+      $nbrQuestion = $_SESSION['formQuizStep2']['nbrQuestion'];
+      $p = $_SESSION['formQuizStep2'];
+      unset($_SESSION["formQuizStep2"]); 
     }
     ?>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
-  <input type="text" name="nbrQuestion" hidden>
+  <input type="text" name="nbrQuestion" value="<?php echo $nbrQuestion; ?>" hidden>
     <?php
-      If(isset( $_SESSION['quizData']['questions'])){
-      $nbrQuestion = sizeof($_SESSION['quizData']['questions']);
-      }
       for($i=1; $i<=$nbrQuestion; $i++){
         echo '
         <div class="question">
@@ -49,13 +49,13 @@
                 <label for="">A.</label>
                 <input type="text" name="q_'.$i.'_reponse_1" value="'.$p['q_'.$i.'_reponse_1'].'">
                 <label class="true" id="truea">
-                  <input checked type="radio" value="true" name="q_'.$i.'_isTrue_1">
+                  <input '.( ($p["q_".$i."_isTrue_1"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_1">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
                 </label>
                 <label class="false" id="falsea">
-                  <input type="radio" value="false" name="q_'.$i.'_isTrue_1">
+                  <input '.( ($p["q_".$i."_isTrue_1"] == "false")?"checked":"" ).' type="radio" value="false" name="q_'.$i.'_isTrue_1">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -65,13 +65,13 @@
                 <label for="">B.</label>
                 <input type="text" name="q_'.$i.'_reponse_2" value="'.$p['q_'.$i.'_reponse_2'].'">
                 <label class="true" id="trueb">
-                  <input type="radio" value="true" name="q_'.$i.'_isTrue_2">
+                  <input '.( ($p["q_".$i."_isTrue_2"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_2">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
                 </label>
                 <label class="false" id="falseb">
-                  <input checked type="radio" value="false" name="q_'.$i.'_isTrue_2">
+                  <input '.( ($p["q_".$i."_isTrue_2"] == "false")?"checked":"" ).' checked type="radio" value="false" name="q_'.$i.'_isTrue_2">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -81,13 +81,13 @@
                 <label for="">C.</label>
                 <input type="text" name="q_'.$i.'_reponse_3"  value="'.$p['q_'.$i.'_reponse_3'].'">
                 <label class="true" id="truec">
-                  <input checked type="radio" value="true" name="q_'.$i.'_isTrue_3">
+                  <input '.( ($p["q_".$i."_isTrue_3"] == "true")? "checked":"" ).' checked type="radio" value="true" name="q_'.$i.'_isTrue_3">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
                 </label>
                 <label class="false" id="falsec">
-                  <input type="radio" value="false" name="q_'.$i.'_isTrue_3">
+                  <input '.( ($p["q_".$i."_isTrue_3"] == "false")?"checked":"" ).' type="radio" value="false" name="q_'.$i.'_isTrue_3">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -97,13 +97,13 @@
                 <label for="">D.</label>
                 <input type="text" name="q_'.$i.'_reponse_4"  value="'.$p['q_'.$i.'_reponse_4'].'">
                 <label class="true" id="trued">
-                  <input type="radio" value="true" name="q_'.$i.'_isTrue_4">
+                  <input '.( ($p["q_".$i."_isTrue_4"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_4">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
                 </label>
                 <label class="false" id="falsed">
-                  <input checked type="radio" value="false" name="q_'.$i.'_isTrue_4">
+                  <input '.( ($p["q_".$i."_isTrue_4"] == "false")?"checked":"" ).' checked type="radio" value="false" name="q_'.$i.'_isTrue_4">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -127,7 +127,7 @@
               <input type="text" name="q_'.$i.'_video" value="">
             </div>
           </div>
-          <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>`;
+          <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>
         </div>
         ';
       }

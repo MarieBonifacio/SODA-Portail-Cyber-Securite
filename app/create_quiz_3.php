@@ -25,7 +25,7 @@ if(!empty($_SESSION['userConnected']))
 $newQuiz = new Quiz();
 $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 
-//A FAIRE (faire table tags)
+
 $tag = new Tag();
 $tag->selectByName($_SESSION['quizData']['quiz']['theme']);
 $newQuiz->setTag($tag);
