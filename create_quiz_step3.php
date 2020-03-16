@@ -27,14 +27,20 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
         echo '
           <div class="questions">
           ';
-          // if()
-          // {
-          //   echo ' 
-          //   <div class="medias">
-          //     <img src="'.$img.'/img/myAvatar.png" alt="votre image">
-          //   </div>
-          //   ';
-          // }
+          if($_SESSION['quizData']['quiz']['img'])
+          {
+            echo ' 
+            <div class="medias">
+              <img src="'.$img.'/img/myAvatar.png" alt="votre image">
+            </div>
+            ';
+          }
+          elseif ($_SESSION['quizData']['quiz']['video']) {
+            $regex = "ton regex";
+            echo ' 
+            <iframe width="725" height="408" src="https://www.youtube.com/embed/'.$regex.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            ';
+          }
         echo '
             <span class="numQ">'.$num.'</span>
             <div class="question">

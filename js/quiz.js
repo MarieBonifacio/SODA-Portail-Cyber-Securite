@@ -45,12 +45,38 @@ xmlhttp.onreadystatechange = function () {
                 <button id="submit">Terminer le quiz</button>
               </div>
               <div id="results"></div>
+              <div class="timer">
+                <label id="minutes">00</label>:<label id="seconds">00</label>
+              </div>
             `;
             
             let myQuestions = myQuizz.questions;
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const submitButton = document.getElementById('submit');
+            const btns = document.querySelector('.btns');
+                        
+            const timer = document.querySelector('.btns');
+            var minutesLabel = document.getElementById("minutes");
+            var secondsLabel = document.getElementById("seconds");
+            var totalSeconds = 0;
+            var setInt = setInterval(setTime, 1000);
+
+            function setTime() {
+              ++totalSeconds;
+              secondsLabel.innerHTML = pad(totalSeconds % 60);
+              minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+              console.log(totalSeconds);
+            }
+
+            function pad(val) {
+              var valString = val + "";
+              if (valString.length < 2) {
+                return "0" + valString;
+              } else {
+                return valString;
+              }
+            }
             
             function shuffle(array)
             {
@@ -132,10 +158,31 @@ xmlhttp.onreadystatechange = function () {
                 }
               });
 
+              clearInterval(setInt);
+
               // show number of correct answers out of total
+              resultsContainer.style.opacity = "1";
               resultsContainer.innerHTML = `${numCorrect} correct sur ${myQuestions.length}
-                Vous avez obtenus ${points}!
+              Vous avez obtenus ${points} en ${totalSeconds} secondes!
               `;
+              quizContainer.remove();
+              btns.remove();
+              timer.remove();
+
+              var obj = { 
+                "score": points,
+                "time": totalSeconds
+              };
+              dbParam = JSON.stringify(obj);
+              xmlhttp = new XMLHttpRequest();
+              xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  console.log("ok");
+                }
+              };
+              xmlhttp.open("POST", url + "/quiz_result.php", true);
+              // xmlhttp.setRequestHeader("Content-type", "multipart/form-data");
+              xmlhttp.send();
             }
 
             // display quiz right away
@@ -193,11 +240,12 @@ xmlhttp.onreadystatechange = function () {
         xmlhttp2.send();
       })
     });
+
+    //isotope initialized (with jquery)
     var $grid = $('.grid').isotope({
       itemSelector: '.element-item',
       layoutMode: 'fitRows',
     });
-    // filter functions
     // bind filter button click
     $('.filters-button-group').on( 'click', 'button', function() {
       var filterValue = $( this ).attr('data-filter');
@@ -218,4 +266,3 @@ xmlhttp.onreadystatechange = function () {
 // url a trouver
 xmlhttp.open("GET", url  + '/menu_quiz.php', true);
 xmlhttp.send();
-
