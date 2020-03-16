@@ -4,6 +4,7 @@ xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
+    console.log(myArray);
     const grid = document.querySelector(".grid");
     for($i = 0; $i<myArray.length; $i ++)
     {
@@ -44,7 +45,8 @@ xmlhttp.onreadystatechange = function () {
                 <button id="next">Next Question</button>
                 <button id="submit">Terminer le quiz</button>
               </div>
-              <div id="results"></div>
+              <div id="results">
+              </div>
               <div class="timer">
                 <label id="minutes">00</label>:<label id="seconds">00</label>
               </div>
@@ -164,7 +166,18 @@ xmlhttp.onreadystatechange = function () {
               resultsContainer.style.opacity = "1";
               resultsContainer.innerHTML = `${numCorrect} correct sur ${myQuestions.length}
               Vous avez obtenus ${points} en ${totalSeconds} secondes!
+              <p class="btnBackMenu">Revenir au menu Quiz</p>
+              <i class="btnBackMenu fas fa-trash"></i>
               `;
+
+              const btnBackMenu = document.querySelectorAll(".btnBackMenu");
+
+              btnBackMenu.forEach(btn => {
+                btn.addEventListener("click", ()=>{
+                  location.reload();
+                })
+              });
+
               quizContainer.remove();
               btns.remove();
               timer.remove();
@@ -181,7 +194,7 @@ xmlhttp.onreadystatechange = function () {
                   console.log(dbParam);
                 }
               };
-              xmlhttp.open("POST", url + "/quiz_result.php", true);
+              xmlhttp.open("POST", url + "/quiz_result.php/", true);
               // xmlhttp.setRequestHeader("Content-type", "multipart/form-data");
               xmlhttp.send(dbParam);
             }
@@ -245,7 +258,10 @@ xmlhttp.onreadystatechange = function () {
     //isotope initialized (with jquery)
     var $grid = $('.grid').isotope({
       itemSelector: '.element-item',
-      layoutMode: 'fitRows',
+      masonry: {
+        columnWidth: 120,
+        isFitWidth: true
+        }
     });
     // bind filter button click
     $('.filters-button-group').on( 'click', 'button', function() {
