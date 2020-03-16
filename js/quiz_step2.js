@@ -102,13 +102,13 @@ plus.addEventListener("click", ()=>{
                 <label for="">C.</label>
                 <input type="text" name="q_${id}_reponse_3"  value="">
                 <label class="true" id="truec">
-                <input type="radio" value="true" name="q_${id}_isTrue_3" checked>
+                <input type="radio" value="true" name="q_${id}_isTrue_3">
                 <span>
                 <i class="fas fa-check"></i>
                 </span>
                 </label>
                 <label class="false" id="falsec">
-                <input type="radio" value="false" name="q_${id}_isTrue_3">
+                <input type="radio" value="false" name="q_${id}_isTrue_3" checked>
                 <span>
                 <i class="fas fa-times"></i>
                 </span>
