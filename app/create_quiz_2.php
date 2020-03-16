@@ -104,7 +104,7 @@ if($nbrQuestion >= 1){
             $_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
         }
     }
-}else{
+}elseif($nbrQuestion <= 3 || sizeof($_SESSION['quizData']['quiz']['questions']) <=3 ){
     $_SESSION['errorQuiz'] = "Veuillez créer au moins x questions.";
 }
 

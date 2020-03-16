@@ -25,6 +25,9 @@
       $p = $_SESSION['formQuizStep2'];
       $nbrQuestion = $p['nbrQuestion'];
     }
+    if(!empty($_SESSION['quizData']['quiz']['questions'])){
+      $nbrQuestion = sizeof($_SESSION['quizData']['quiz']['questions']);
+    }
     ?>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
   <input type="text" name="nbrQuestion" hidden>
@@ -124,6 +127,7 @@
               <input type="text" name="q_'.$i.'_video" value="">
             </div>
           </div>
+          <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>`;
         </div>
         ';
       }

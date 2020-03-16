@@ -33,6 +33,9 @@ inputFile();
 var id = 1;
 var nbrQuestions = 1;
 
+let questions = document.querySelectorAll(".question");
+nbrQuestions = questions.length;
+
 const plus = document.querySelector(".plus"),
       form = document.querySelector("form"),
       nbrQuestionsTotal = document.querySelector("input[name=nbrQuestion]"),
@@ -167,6 +170,7 @@ plus.addEventListener("click", ()=>{
     console.log(id);
   }
 })
+
 
 
 
