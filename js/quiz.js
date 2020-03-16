@@ -178,6 +178,7 @@ xmlhttp.onreadystatechange = function () {
               xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                   console.log("ok");
+                  console.log(dbParam);
                 }
               };
               xmlhttp.open("POST", url + "/quiz_result.php", true);
