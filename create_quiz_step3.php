@@ -5,7 +5,7 @@
 echo '<pre>';print_r($_SESSION);echo '</pre>';?>
 <div class="step3">
 
-  <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="votre image">
+  <img src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title'].'/'.$_SESSION['quizData']['quiz']['img']?>" alt="votre image">
 
   <h3>Étape 3: Confirmation</h3>
 
