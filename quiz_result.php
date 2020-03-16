@@ -8,7 +8,9 @@ require('app/class/tag.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
-/* SAVE TO BDD / JSON DECODE */
+/* SAVE TO BDD / JSON DECODE 
+{"score":0,"time":5}
+*/
 $data = json_decode($json);
 
 

@@ -22,6 +22,7 @@ $quizArray = [];
         'name' => $quiz->getName(),
         'tag_id' => $quiz->getTag()->getId(),
         'img' => $quiz->getImgPath(),
+        'player' => $_SESSION['userConnected'],
     );
     foreach($questions as $q){
         $question = array(  
