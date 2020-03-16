@@ -182,7 +182,7 @@ xmlhttp.onreadystatechange = function () {
               };
               xmlhttp.open("POST", url + "/quiz_result.php", true);
               // xmlhttp.setRequestHeader("Content-type", "multipart/form-data");
-              xmlhttp.send();
+              xmlhttp.send(dbParam);
             }
 
             // display quiz right away
