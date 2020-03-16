@@ -686,7 +686,7 @@ body
           span
           {
             font-size: 12px;
-            @include positionTR(absolute, 37px, 5px);
+            @include positionBR(absolute, -10px, 5px);
           }
         }
         input[type=submit]
