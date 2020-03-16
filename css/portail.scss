@@ -1369,7 +1369,7 @@ body
       p
       {
         background: $color-btn;
-        padding: 5px 10px;
+        padding: 10px 20px;
         border-radius: 150px;
         font-weight: 600;
         color: $color1;
@@ -1382,6 +1382,11 @@ body
       {
         background: $police;
         cursor: pointer;
+      }
+      .fa-times
+      {
+        @include positionTR(absolute, 20px, 20px);
+        font-size: 28px;
       }
     }
   }

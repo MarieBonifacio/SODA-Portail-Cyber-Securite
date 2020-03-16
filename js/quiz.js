@@ -34,7 +34,7 @@ xmlhttp.onreadystatechange = function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myQuizz = JSON.parse(this.responseText);
-            console.log(myQuizz.questions);
+            console.log(myQuizz.player);
             const divQuizz = document.createElement("div");
             divQuizz.classList.add("quizPlay");
             document.body.appendChild(divQuizz);
@@ -58,7 +58,7 @@ xmlhttp.onreadystatechange = function () {
             const submitButton = document.getElementById('submit');
             const btns = document.querySelector('.btns');
                         
-            const timer = document.querySelector('.btns');
+            const timer = document.querySelector('.timer');
             var minutesLabel = document.getElementById("minutes");
             var secondsLabel = document.getElementById("seconds");
             var totalSeconds = 0;
@@ -167,7 +167,7 @@ xmlhttp.onreadystatechange = function () {
               resultsContainer.innerHTML = `${numCorrect} correct sur ${myQuestions.length}
               Vous avez obtenus ${points} en ${totalSeconds} secondes!
               <p class="btnBackMenu">Revenir au menu Quiz</p>
-              <i class="btnBackMenu fas fa-trash"></i>
+              <i class="btnBackMenu fas fa-times"></i>
               `;
 
               const btnBackMenu = document.querySelectorAll(".btnBackMenu");
@@ -178,13 +178,15 @@ xmlhttp.onreadystatechange = function () {
                 })
               });
 
+              timer.remove();
               quizContainer.remove();
               btns.remove();
-              timer.remove();
 
               var obj = { 
                 "score": points,
-                "time": totalSeconds
+                "time": totalSeconds,
+                "id_user": myQuizz.player,
+                "id_quiz" : myQuizz.id,
               };
               dbParam = JSON.stringify(obj);
               xmlhttp = new XMLHttpRequest();
