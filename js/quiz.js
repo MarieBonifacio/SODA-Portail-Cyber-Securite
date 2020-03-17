@@ -147,7 +147,7 @@ xmlhttp.onreadystatechange = function () {
                 if(userAnswer === "true"){
                   // add to the number of correct answers
                   numCorrect+= 1;
-                  points += parseInt(currentQuestion.points);
+                  points += parseFloat(currentQuestion.points);
                   console.log(points);
                   // color the answers green
                   // answerContainers[questionNumber].style.color = 'lightgreen';
@@ -159,13 +159,13 @@ xmlhttp.onreadystatechange = function () {
                   // answerContainers[questionNumber].style.color = 'red';
                 }
               });
-
+              points = Math.ceil(points);
               clearInterval(setInt);
 
               // show number of correct answers out of total
               resultsContainer.style.opacity = "1";
-              resultsContainer.innerHTML = `${numCorrect} correct sur ${myQuestions.length}
-              Vous avez obtenus ${points} en ${totalSeconds} secondes!
+              resultsContainer.innerHTML = `${numCorrect} correct(s) sur ${myQuestions.length}
+              Vous avez obtenu ${points} en ${totalSeconds} secondes!
               <p class="btnBackMenu">Revenir au menu Quiz</p>
               <i class="btnBackMenu fas fa-times"></i>
               `;
@@ -194,10 +194,11 @@ xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                   console.log("ok");
                   console.log(dbParam);
+                  console.log(this.responseText);
                 }
               };
               xmlhttp.open("POST", url + "/quiz_result.php/", true);
-              // xmlhttp.setRequestHeader("Content-type", "multipart/form-data");
+              xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
               xmlhttp.send(dbParam);
             }
 

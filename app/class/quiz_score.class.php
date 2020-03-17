@@ -4,56 +4,56 @@ include($path.'wp-load.php');
 
 class Quiz_score {
     private $id;
-    private $user_id;
-    private $quiz_id;
+    private $user;
+    private $quiz;
     private $score;
     private $time;
-    private $date;
+    private $created_at;
 
     public function selectById($id){
         global $wpdb;
         $r = $wpdb->get_row("SELECT * FROM 'quiz_score' where id=".$id."");
         $this->id = $r->id;
-        $userId = new User();
-        $userId->selectById($r->user_id);
-        $this->user_id = $userId;
-        $quizId = new Quiz();
-        $quizId = selectById($r->quiz_id);
-        $this->quiz_id = $quizId;
+        $user = new User();
+        $user->selectById($r->user_id);
+        $this->user = $user;
+        $quiz = new Quiz();
+        $quiz->selectById($r->quiz_id);
+        $this->quiz = $quiz;
         $this->score = $r->score;
         $this->time = $r->time;
-        $this->date = $r->date;
+        $this->created_at = $r->created_at;
     }
 
     public function getId(){
         return $this->id;
     }
 
-    public function getUserId(){
-        return $this->user_id;
+    public function getUser(){
+        return $this->user;
     }
-    public function setUserId($user_id){
-        $this->user_id = $user_id;
+    public function setUserId($user){
+        $this->user = $user;
     }
 
     //Set user_id with id of user
     public function setUserIdById(int $UserId){
-        $this->user_id = new User();
-        $this->user_id->selectById($UserId);
+        $this->user = new User();
+        $this->user->selectById($UserId);
     }
 
 
-    public function getQuizId(){
-        return $this->quiz_id;
+    public function getQuiz(){
+        return $this->quiz;
     }
-    public function setQuizId($quiz_id){
-        $this->quiz_id = $quiz_id;
+    public function setQuizId($quiz){
+        $this->quiz = $quiz;
     }
 
     //Set quiz_id with id of quiz
     public function setQuizIdById(int $quizId){
-        $this->quiz_id = new User();
-        $this->quiz_id->selectById($quizId);
+        $this->quiz = new Quiz();
+        $this->quiz->selectById($quizId);
     }
 
 
@@ -71,35 +71,34 @@ class Quiz_score {
         $this->time = $time;
     }
 
-    public function getDate(){
-        return $this->date;
+    public function getCreatedAt(){
+        return $this->created_at;
     }
-    public function setDate($date){
-        $this->date = $date;
+    public function setCreatedAt($created_at){
+        $this->created_at = $created_at;
     }
-
 
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
+            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'quiz_score', array(
-                    "id" => $this->id,
-                    "user_id" => $this->user_id->getId(),
-                    "quiz_id" => $this->quiz_id->getId(),
+                    "user_id" => $this->user->getId(),
+                    "quiz_id" => $this->quiz->getId(),
                     "score" => $this->score,
                     "time" => $this->time,
-                    "date" => $this->date,
+                    "created_at" => $this->created_at
             ));
         }else{
             global $wpdb;
             $wpdb->update(
                 'quiz_score', array(
-                    "user_id" => $this->user_id->getId(),
-                    "quiz_id" => $this->quiz_id->getId(),
+                    "user_id" => $this->user->getId(),
+                    "quiz_id" => $this->quiz->getId(),
                     "score" => $this->score,
                     "time" => $this->time,
-                    "date" => $this->date,
+                    "created_at" => $this->created_at
             ), array(
                 "id" => $this->id,
             ));
@@ -109,7 +108,7 @@ class Quiz_score {
 
     public function delete(){
         global $wpdb;
-        $wpdb->delete( 'quiz_score', array( 'id' => $id ) );
+        $wpdb->delete( 'quiz_score', array( 'id' => $this->id ) );
     }
 
     //moyenne globale de toutes les notes tous utilisateurs compris
