@@ -1172,7 +1172,7 @@ body
       
       .grid {
         position: absolute !important;
-        top: 20%;
+        top: 25%;
         .element-item {
           position: relative;
           width: 250px;
@@ -1362,11 +1362,11 @@ body
       width: 100%;
       height: 100%;
       background: $color1;
-      @include flex(center, center, row);
+      @include flex(center, center, column);
       @include positionTR(fixed, 0, 0);
       z-index: 2;
       opacity: 0;
-      p
+      .btn
       {
         background: $color-btn;
         padding: 10px 20px;
@@ -1378,7 +1378,7 @@ body
         transition: .2s;
         user-select: none;
       }
-      p:hover
+      .btn:hover
       {
         background: $police;
         cursor: pointer;
@@ -1387,6 +1387,15 @@ body
       {
         @include positionTR(absolute, 20px, 20px);
         font-size: 28px;
+      }
+      .recap
+      {
+        @include flex(center, center, "");
+        flex-wrap: wrap;
+        .question
+        {
+          @include flex(center, center, column);
+        }
       }
     }
   }

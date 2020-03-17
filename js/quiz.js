@@ -119,7 +119,7 @@ xmlhttp.onreadystatechange = function () {
                     // ...add an HTML radio button
                     answers.push(
                       `<label>
-                        <input type="radio" name="question${questionNumber}" value="${currentAnswers[i].is_true}">
+                      <input type="radio" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
                         
                         <p class="answer">${letters[i]} : ${currentAnswers[i].content}</p>
                       </label>`
@@ -147,6 +147,7 @@ xmlhttp.onreadystatechange = function () {
               // keep track of user's answers
               let numCorrect = 0;
               let points = 0;
+              let userSelect = [];
 
               // for each question...
               myQuestions.forEach( 
@@ -155,6 +156,7 @@ xmlhttp.onreadystatechange = function () {
                 const answerContainer = answerContainers[questionNumber];
                 const selector = `input[name=question${questionNumber}]:checked`;
                 const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                userSelect.push(`${(answerContainer.querySelector(selector) || {}).dataset.answer}`);
 
                 // if answer is correct
                 if(userAnswer === "true"){
@@ -181,7 +183,49 @@ xmlhttp.onreadystatechange = function () {
               Vous avez obtenu ${points}/100 en ${totalSeconds} secondes!
               <p class="btnBackMenu">Revenir au menu Quiz</p>
               <i class="btnBackMenu fas fa-times"></i>
+              <div class="recap">
+              </div>
               `;
+
+              const recap = document.querySelector('.recap');
+
+                for(i=0; i<myQuestions.length; i++) {
+                  const question = document.createElement("div");
+                  question.classList.add("question");
+                  recap.appendChild(question);
+                  const p = document.createElement("p");
+                  p.classList.add(`questionRecap`);
+                  question.appendChild(p);
+                  numQuestion = i+1;
+                  p.innerHTML =`${numQuestion}. ${myQuestions[i].content}`;
+                  const divAnswer = document.createElement("div");
+                  divAnswer.classList.add(`answerRecap${[i]}`);
+                  question.appendChild(divAnswer);
+                  const yourAnswer = document.createElement("p");
+                  yourAnswer.classList.add(`userAnswer`);
+                  question.appendChild(yourAnswer);
+                  yourAnswer.innerHTML = `Votre réponse : ${userSelect[i]}`;
+
+                  const answerRecap = document.querySelector(`.answerRecap${[i]}`);
+                  for(f=0; f<myQuestions[i].answers.length; f++)
+                  {
+                    const letters = ['A', 'B' , 'C', 'D'];
+                    const pAnswerDiv = document.createElement("div");
+                    pAnswerDiv.classList.add(`answerTF${[f]}${[i]}`, 'answerTF');
+                    answerRecap.appendChild(pAnswerDiv);
+                    pAnswerDiv.innerHTML = `${letters[f]}: ${myQuestions[i].answers[f].content}`;
+                    const pAnswer = document.querySelector(`.answerTF${[f]}${[i]}`);
+                    // console.log(pAnswer);
+                    if(myQuestions[i].answers[f].is_true == "true")
+                    {
+                      pAnswer.style.color = "#3AD29F";
+                    }
+                    else
+                    {
+                      pAnswer.style.color = "red";
+                    }
+                  }
+              };
 
               const btnBackMenu = document.querySelectorAll(".btnBackMenu");
 
