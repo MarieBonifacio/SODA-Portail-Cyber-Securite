@@ -11,16 +11,29 @@ xmlhttp.onreadystatechange = function () {
       const gridElement = document.createElement("div");
       gridElement.classList.add(`element-item` , `${myArray[$i].tag_name}`);
       gridElement.setAttribute('category', `${myArray[$i].tag_name}`);
-      gridElement.innerHTML = `
+      //---------------------------------------------------------
+      let quizContent = `
       <span class="tag">${myArray[$i].tag_name}</span>
       <h3>${myArray[$i].name}</h3>
-      <span class="score">0pts</span>
+      <span class="score">`;
+      console.log( myArray[$i].user_score);
+      if( myArray[$i].user_score != null){
+        quizContent += ``+myArray[$i].user_score+``;
+      }else{
+        quizContent += `0`;
+      }
+
+      quizContent +=` pts</span>
       <div class="imgQ">
         <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
         <div class="filter"></div>
       </div>
-      <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
     `;
+    if( myArray[$i].user_score == null){
+      quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+    }
+    //-----------------------------------------------------------------------------
+    gridElement.innerHTML = quizContent;
       grid.appendChild(gridElement);
     }
     let btnQuizs = document.querySelectorAll(".btnQuiz");
@@ -165,7 +178,7 @@ xmlhttp.onreadystatechange = function () {
               // show number of correct answers out of total
               resultsContainer.style.opacity = "1";
               resultsContainer.innerHTML = `${numCorrect} correct(s) sur ${myQuestions.length}
-              Vous avez obtenu ${points} en ${totalSeconds} secondes!
+              Vous avez obtenu ${points}/100 en ${totalSeconds} secondes!
               <p class="btnBackMenu">Revenir au menu Quiz</p>
               <i class="btnBackMenu fas fa-times"></i>
               `;

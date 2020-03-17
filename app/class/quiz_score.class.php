@@ -71,6 +71,13 @@ class Quiz_score {
         $this->time = $time;
     }
 
+    public function getTimeInMinutes($seconds){
+        $hours = floor($seconds / 3600);
+        $minutes = floor(($seconds / 60) % 60);
+        $seconds = $seconds % 60;
+        return "$hours:$minutes:$seconds";
+    }
+
     public function getCreatedAt(){
         return $this->created_at;
     }
