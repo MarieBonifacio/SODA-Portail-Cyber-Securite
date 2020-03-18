@@ -16,22 +16,23 @@ xmlhttp.onreadystatechange = function () {
       <span class="tag">${myArray[$i].tag_name}</span>
       <h3>${myArray[$i].name}</h3>
       <span class="score">`;
-      console.log( myArray[$i].user_score);
-      if( myArray[$i].user_score != null){
-        quizContent += ``+myArray[$i].user_score+``;
-      }else{
-        quizContent += `0`;
-      }
+      // console.log( myArray[$i].user_score);
+      // if( myArray[$i].user_score != null){
+      //   quizContent += ``+myArray[$i].user_score+``;
+      // }else{
+      //   quizContent += `0`;
+      // }
 
       quizContent +=` pts</span>
       <div class="imgQ">
         <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
         <div class="filter"></div>
       </div>
+      <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
     `;
-    if( myArray[$i].user_score == null){
-      quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
-    }
+    // if( myArray[$i].user_score == null){
+    //   quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+    // }
     //-----------------------------------------------------------------------------
     gridElement.innerHTML = quizContent;
       grid.appendChild(gridElement);
