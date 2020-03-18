@@ -4,7 +4,7 @@ xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
-    console.log(myArray);
+    // console.log(myArray);
     const grid = document.querySelector(".grid");
     for($i = 0; $i<myArray.length; $i ++)
     {
@@ -17,21 +17,23 @@ xmlhttp.onreadystatechange = function () {
       <h3>${myArray[$i].name}</h3>
       <span class="score">`;
       console.log( myArray[$i].user_score);
-      if( myArray[$i].user_score != null){
-        quizContent += ``+myArray[$i].user_score+``;
-      }else{
-        quizContent += `0`;
-      }
+      // if( myArray[$i].user_score != null){
+      //   quizContent += ``+myArray[$i].user_score+``;
+      // }else{
+      //   quizContent += `0`;
+      // }
 
       quizContent +=` pts</span>
       <div class="imgQ">
         <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
         <div class="filter"></div>
       </div>
+      
+      <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
     `;
-    if( myArray[$i].user_score == null){
-      quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
-    }
+    // if( myArray[$i].user_score == null){
+    //   quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+    // }
     //-----------------------------------------------------------------------------
     gridElement.innerHTML = quizContent;
       grid.appendChild(gridElement);
@@ -47,14 +49,13 @@ xmlhttp.onreadystatechange = function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myQuizz = JSON.parse(this.responseText);
-            console.log(myQuizz.player);
+            // console.log(myQuizz.player);
             const divQuizz = document.createElement("div");
             divQuizz.classList.add("quizPlay");
             document.body.appendChild(divQuizz);
             divQuizz.innerHTML = `
               <div class="quiz" id="quiz"></div>
               <div class="btns"> 
-                <button id="previous">Previous Question</button>
                 <button id="next">Next Question</button>
                 <button id="submit">Terminer le quiz</button>
               </div>
@@ -66,6 +67,7 @@ xmlhttp.onreadystatechange = function () {
             `;
             
             let myQuestions = myQuizz.questions;
+            // let myQuestionsLength = myQuestions.length;
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const submitButton = document.getElementById('submit');
@@ -81,7 +83,7 @@ xmlhttp.onreadystatechange = function () {
               ++totalSeconds;
               secondsLabel.innerHTML = pad(totalSeconds % 60);
               minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-              console.log(totalSeconds);
+              // console.log(totalSeconds);
             }
 
             function pad(val) {
@@ -111,6 +113,7 @@ xmlhttp.onreadystatechange = function () {
               myQuestions.forEach(
                 (currentQuestion, questionNumber) => {
                   // variable to store the list of possible answers
+                  // const tableIndexQuestions = [currentQuestion];
                   const currentAnswers = currentQuestion.answers;
                   const answers = [];
                   // and for each available answer...
@@ -119,7 +122,7 @@ xmlhttp.onreadystatechange = function () {
                     // ...add an HTML radio button
                     answers.push(
                       `<label>
-                      <input type="radio" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
+                      <input id="${currentAnswers[i].id}" class="input${myQuestions.indexOf(currentQuestion)}" type="radio" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
                         
                         <p class="answer">${letters[i]} : ${currentAnswers[i].content}</p>
                       </label>`
@@ -139,6 +142,11 @@ xmlhttp.onreadystatechange = function () {
               quizContainer.innerHTML = output.join('');
             }
             
+            var id_question;
+            var id_answer;
+
+            // console.log("coucou");
+
             function showResults(){
 
               // gather answer containers from our quiz
@@ -147,28 +155,41 @@ xmlhttp.onreadystatechange = function () {
               // keep track of user's answers
               let numCorrect = 0;
               let points = 0;
-              let userSelect = [];
+              // let userSelect = [];
 
               // for each question...
               myQuestions.forEach( 
                 (currentQuestion, questionNumber) => {
-                // find selected answer
-                const answerContainer = answerContainers[questionNumber];
-                const selector = `input[name=question${questionNumber}]:checked`;
-                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-                userSelect.push(`${(answerContainer.querySelector(selector) || {}).dataset.answer}`);
-
+                  id_question = currentQuestion.id;
+                  
+                  console.log(id_question)
+                  
+                  // find selected answer
+                  const answerContainer = answerContainers[questionNumber];
+                  const selector = `input[name=question${questionNumber}]:checked`;
+                  const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                  id_answer =(answerContainer.querySelector(selector) || {}).id;
+                  console.log(id_answer);
+                // lol = answerContainer.querySelector(selector).dataset.answer;
+                // userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
+                
                 // if answer is correct
+                // if(userAnswer === {})
+                // {
+                //   alert("veuillez répondre a la question");
+                // }
                 if(userAnswer === "true"){
                   // add to the number of correct answers
                   numCorrect+= 1;
                   points += parseFloat(currentQuestion.points);
-                  console.log(points);
+                  // console.log(points);
                   // color the answers green
                   // answerContainers[questionNumber].style.color = 'lightgreen';
+                  console.log(userAnswer);
                 }
                 // if answer is wrong or blank
                 else{
+                  console.log(userAnswer);
                   // numCorrect -= 1;
                   // color the answers red
                   // answerContainers[questionNumber].style.color = 'red';
@@ -201,10 +222,10 @@ xmlhttp.onreadystatechange = function () {
                   const divAnswer = document.createElement("div");
                   divAnswer.classList.add(`answerRecap${[i]}`);
                   question.appendChild(divAnswer);
-                  const yourAnswer = document.createElement("p");
-                  yourAnswer.classList.add(`userAnswer`);
-                  question.appendChild(yourAnswer);
-                  yourAnswer.innerHTML = `Votre réponse : ${userSelect[i]}`;
+                  // const yourAnswer = document.createElement("p");
+                  // yourAnswer.classList.add(`userAnswer`);
+                  // question.appendChild(yourAnswer);
+                  // yourAnswer.innerHTML = `Votre réponse : ${userSelect[i]}`;
 
                   const answerRecap = document.querySelector(`.answerRecap${[i]}`);
                   for(f=0; f<myQuestions[i].answers.length; f++)
@@ -262,7 +283,7 @@ xmlhttp.onreadystatechange = function () {
             // display quiz right away
             buildQuiz();
 
-            const previousButton = document.getElementById("previous");
+            // const previousButton = document.getElementById("previous");
             const nextButton = document.getElementById("next");
             const slides = document.querySelectorAll(".slide");
             let currentSlide = 0;
@@ -271,12 +292,6 @@ xmlhttp.onreadystatechange = function () {
               slides[currentSlide].classList.remove('active-slide');
               slides[n].classList.add('active-slide');
               currentSlide = n;
-              if(currentSlide === 0){
-                previousButton.style.display = 'none';
-              }
-              else{
-                previousButton.style.display = 'inline-block';
-              }
               if(currentSlide === slides.length-1){
                 nextButton.style.display = 'none';
                 submitButton.style.display = 'inline-block';
@@ -292,16 +307,53 @@ xmlhttp.onreadystatechange = function () {
             showSlide(currentSlide);
 
             function showNextSlide() {
-              showSlide(currentSlide + 1);
+              // console.log(lol)
+
+              // for (let i = 0; i < myQuestions.length; i++) {
+              //   const inputs = document.querySelectorAll(`.input${i}`);
+              //   console.log(inputs);
+                
+              //   inputs.forEach(input => {
+              //     if(input.checked)
+              //     {
+              //       showSlide(currentSlide + 1);
+              //     }
+              //   });
+              // }
+              var obj = { 
+                "questions": id_question, 
+                "answer": id_answer,
+                "time": totalSeconds,
+                // "id_user": myQuizz.player,
+                "id_quiz" : myQuizz.id,
+              };
+              dbParam = JSON.stringify(obj);
+              xmlhttp = new XMLHttpRequest();
+              xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  console.log("ok");
+                  console.log(dbParam);
+                  console.log(this.responseText);
+                  showSlide(currentSlide + 1);
+                }
+                else
+                {
+                  console.log("pas ok");
+                }
+              };
+              xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
+              xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              xmlhttp.send(dbParam);
+            
             }
             
-            function showPreviousSlide() {
-              showSlide(currentSlide - 1);
-            }
+            // function showPreviousSlide() {
+            //   showSlide(currentSlide - 1);
+            // }
 
 
             // Event listeners
-            previousButton.addEventListener("click", showPreviousSlide);
+            // previousButton.addEventListener("click", showPreviousSlide);
             nextButton.addEventListener("click", showNextSlide);
 
             // on submit, show results
