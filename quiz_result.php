@@ -34,4 +34,13 @@ $time = $response['time'];
 $newScore->setTime($time);
 $newScore->save();
 
+$wpdb->delete( 'quiz_progress' ,
+    array(
+        'id_user' => $user->getId(),
+        'id_quiz' => $quiz->getId(),
+    )
+);
+     
+
+
 ?>

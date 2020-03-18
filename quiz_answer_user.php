@@ -21,6 +21,6 @@ $wpdb->insert(
         'id_answer' => $response['answer'],
         'time' => $response['time'],
     )
-)
+);
 
 ?>
