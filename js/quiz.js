@@ -4,7 +4,7 @@ xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
-    console.log(myArray);
+    // console.log(myArray);
     const grid = document.querySelector(".grid");
     for($i = 0; $i<myArray.length; $i ++)
     {
@@ -17,21 +17,23 @@ xmlhttp.onreadystatechange = function () {
       <h3>${myArray[$i].name}</h3>
       <span class="score">`;
       console.log( myArray[$i].user_score);
-      if( myArray[$i].user_score != null){
-        quizContent += ``+myArray[$i].user_score+``;
-      }else{
-        quizContent += `0`;
-      }
+      // if( myArray[$i].user_score != null){
+      //   quizContent += ``+myArray[$i].user_score+``;
+      // }else{
+      //   quizContent += `0`;
+      // }
 
       quizContent +=` pts</span>
       <div class="imgQ">
         <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
         <div class="filter"></div>
       </div>
+      
+      <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
     `;
-    if( myArray[$i].user_score == null){
-      quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
-    }
+    // if( myArray[$i].user_score == null){
+    //   quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+    // }
     //-----------------------------------------------------------------------------
     gridElement.innerHTML = quizContent;
       grid.appendChild(gridElement);
@@ -302,10 +304,10 @@ xmlhttp.onreadystatechange = function () {
                 {
                   id_answer = input.id;
                 }
-                else
-                {
-                  id_answer = null;
-                }
+                // else
+                // {
+                //   id_answer = null;
+                // }
               });
               
             }
@@ -325,23 +327,26 @@ xmlhttp.onreadystatechange = function () {
                 // "id_user": myQuizz.player,
                 "id_quiz" : myQuizz.id,
               };
+
+
               dbParam = JSON.stringify(obj);
-              xmlhttp = new XMLHttpRequest();
-              xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                  console.log("ok");
-                  console.log(dbParam);
-                  console.log(this.responseText);
+              console.log(obj);
+              // xmlhttp = new XMLHttpRequest();
+              // xmlhttp.onreadystatechange = function() {
+              //   if (this.readyState == 4 && this.status == 200) {
+              //     console.log("ok");
+              //     console.log(dbParam);
+              //     console.log(this.responseText);
                   showSlide(currentSlide + 1);
-                }
-                else
-                {
-                  console.log("pas ok");
-                }
-              };
-              xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
-              xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-              xmlhttp.send(dbParam);
+              //   }
+              //   else
+              //   {
+              //     console.log("pas ok");
+              //   }
+              // };
+              // xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
+              // xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              // xmlhttp.send(dbParam);
             
             }
 
