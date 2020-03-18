@@ -11,13 +11,13 @@ include($path.'wp-load.php');
 
 $str_json = file_get_contents('php://input'); //($_POST doesn't work here)
 $response = json_decode($str_json, true); // decoding received JSON to array
-
+print_r($response);
 $wpdb->insert(
     'quiz_progress',
     array(
         'id_quiz' => $response['id_quiz'],
         'id_user' => $_SESSION['userConnected'],
-        'id_question' => $response['question'],
+        'id_question' => $response['questions'],
         'id_answer' => $response['answer'],
         'time' => $response['time'],
     )
