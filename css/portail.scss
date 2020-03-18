@@ -1419,7 +1419,12 @@ body
           width: 100%;
           .questionRecap
           {
+            text-align: center;
             font-weight: 600;
+          }
+          .answerRecap
+          {
+            @include flex(center, center, column);
           }
         }
       }
