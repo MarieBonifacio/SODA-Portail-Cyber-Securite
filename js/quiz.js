@@ -4,7 +4,7 @@ xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
-    // console.log(myArray);
+    console.log(myArray);
     const grid = document.querySelector(".grid");
     for($i = 0; $i<myArray.length; $i ++)
     {
@@ -53,7 +53,7 @@ xmlhttp.onreadystatechange = function () {
             divQuizz.innerHTML = `
               <div class="quiz" id="quiz"></div>
               <div class="btns"> 
-                <button id="next">Next Question</button>
+                <button id="next">Prochaine question</button>
                 <button id="submit">Terminer le quiz</button>
               </div>
               <div id="results">
@@ -105,13 +105,17 @@ xmlhttp.onreadystatechange = function () {
             // variable to store the HTML output
             const output = [];
 
+            let numQuestion = 0;
               // for each question...
               myQuestions.forEach(
                 (currentQuestion, questionNumber) => {
                   // variable to store the list of possible answers
                   const currentAnswers = currentQuestion.answers;
                   const answers = [];
+                  numQuestion += 1;
                   // and for each available answer...
+                  shuffle(currentAnswers);
+                  console.log(currentAnswers);
                   for(i = 0; i<currentAnswers.length ; i++){
                     const letters = ['A', 'B' , 'C', 'D'];
                     // ...add an HTML radio button
@@ -119,15 +123,14 @@ xmlhttp.onreadystatechange = function () {
                       `<label>
                       <input id="${currentAnswers[i].id}" class="input${myQuestions.indexOf(currentQuestion)}" type="radio" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
                         
-                        <p class="answer">${letters[i]} : ${currentAnswers[i].content}</p>
+                        <p class="answer">${letters[i]}. ${currentAnswers[i].content}</p>
                       </label>`
                     );
                   }
-
                   // add this question and its answers to the output
                   output.push(
                     `<div class="slide">
-                      <div class="question"> ${currentQuestion.content} </div>
+                      <div class="question">${numQuestion}. ${currentQuestion.content} </div>
                       <div class="answers">${answers.join('')}</div>
                     </div>`
                   );
@@ -145,7 +148,7 @@ xmlhttp.onreadystatechange = function () {
               // keep track of user's answers
               let numCorrect = 0;
               let points = 0;
-              // let userSelect = [];
+              let userSelect = [];
 
               // for each question...
               myQuestions.forEach( 
@@ -155,18 +158,13 @@ xmlhttp.onreadystatechange = function () {
                   const answerContainer = answerContainers[questionNumber];
                   const selector = `input[name=question${questionNumber}]:checked`;
                   let userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-                  // if(userAnswer == undefined)
-                  // {
-                  //   id_answer = "vide";
-                  // }
-                  // else
-                  // {
-                  //   id_answer =(answerContainer.querySelector(selector) || {}).id;
-                  // }
-                  // console.log(id_answer);
-                // lol = answerContainer.querySelector(selector).dataset.answer;
-                // userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
+                  // let inputs = document.querySelectorAll(`.input[name=question${questionNumber}`)
+                  // inputs.forEach(input => {
+                  //   if(input.checked)
+                  //   {
+                  //     userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
+                  //   }
+                  // });
                 
                 // if answer is correct
                 if(userAnswer === "true"){
@@ -186,13 +184,14 @@ xmlhttp.onreadystatechange = function () {
 
               // show number of correct answers out of total
               resultsContainer.style.opacity = "1";
-              resultsContainer.innerHTML = `${numCorrect} correct(s) sur ${myQuestions.length}
-              Vous avez obtenu ${points}/100 en ${totalSeconds} secondes!
-              <p class="btnBackMenu">Revenir au menu Quiz</p>
+              resultsContainer.innerHTML = `
+              <p>${numCorrect} correct(s) sur ${myQuestions.length}</p>
+              <p>Vous avez obtenu ${points}/100pts en ${totalSeconds} secondes!</p>
               <i class="btnBackMenu fas fa-times"></i>
               <div class="recap">
               </div>
               `;
+              // <p class="btnBackMenu btn">Revenir au menu Quiz</p>
 
               const recap = document.querySelector('.recap');
 

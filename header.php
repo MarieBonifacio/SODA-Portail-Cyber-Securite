@@ -81,7 +81,7 @@ if(!empty($_SESSION['userConnected']))
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="quiz">
-				<a id="a" href="<?php echo home_url()."/menuquiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
+				<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="games">
