@@ -4,7 +4,7 @@ xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
-    // console.log(myArray);
+    console.log(myArray);
     const grid = document.querySelector(".grid");
     for($i = 0; $i<myArray.length; $i ++)
     {
@@ -17,23 +17,21 @@ xmlhttp.onreadystatechange = function () {
       <h3>${myArray[$i].name}</h3>
       <span class="score">`;
       console.log( myArray[$i].user_score);
-      // if( myArray[$i].user_score != null){
-      //   quizContent += ``+myArray[$i].user_score+``;
-      // }else{
-      //   quizContent += `0`;
-      // }
+      if( myArray[$i].user_score != null){
+        quizContent += ``+myArray[$i].user_score+``;
+      }else{
+        quizContent += `0`;
+      }
 
       quizContent +=` pts</span>
       <div class="imgQ">
         <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
         <div class="filter"></div>
       </div>
-      
-      <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
     `;
-    // if( myArray[$i].user_score == null){
-    //   quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
-    // }
+    if( myArray[$i].user_score == null){
+      quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+    }
     //-----------------------------------------------------------------------------
     gridElement.innerHTML = quizContent;
       grid.appendChild(gridElement);
@@ -49,7 +47,6 @@ xmlhttp.onreadystatechange = function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myQuizz = JSON.parse(this.responseText);
-            // console.log(myQuizz.player);
             const divQuizz = document.createElement("div");
             divQuizz.classList.add("quizPlay");
             document.body.appendChild(divQuizz);
@@ -67,7 +64,6 @@ xmlhttp.onreadystatechange = function () {
             `;
             
             let myQuestions = myQuizz.questions;
-            // let myQuestionsLength = myQuestions.length;
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const submitButton = document.getElementById('submit');
@@ -106,14 +102,13 @@ xmlhttp.onreadystatechange = function () {
 
             function buildQuiz(){
 
-                    // variable to store the HTML output
+            // variable to store the HTML output
             const output = [];
 
               // for each question...
               myQuestions.forEach(
                 (currentQuestion, questionNumber) => {
                   // variable to store the list of possible answers
-                  // const tableIndexQuestions = [currentQuestion];
                   const currentAnswers = currentQuestion.answers;
                   const answers = [];
                   // and for each available answer...
@@ -141,11 +136,6 @@ xmlhttp.onreadystatechange = function () {
               // finally combine our output list into one string of HTML and put it on the page
               quizContainer.innerHTML = output.join('');
             }
-            
-            var id_question;
-            var id_answer;
-
-            // console.log("coucou");
 
             function showResults(){
 
@@ -160,39 +150,35 @@ xmlhttp.onreadystatechange = function () {
               // for each question...
               myQuestions.forEach( 
                 (currentQuestion, questionNumber) => {
-                  id_question = currentQuestion.id;
-                  
-                  console.log(id_question)
                   
                   // find selected answer
                   const answerContainer = answerContainers[questionNumber];
                   const selector = `input[name=question${questionNumber}]:checked`;
-                  const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-                  id_answer =(answerContainer.querySelector(selector) || {}).id;
-                  console.log(id_answer);
+                  let userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                  // if(userAnswer == undefined)
+                  // {
+                  //   id_answer = "vide";
+                  // }
+                  // else
+                  // {
+                  //   id_answer =(answerContainer.querySelector(selector) || {}).id;
+                  // }
+                  // console.log(id_answer);
                 // lol = answerContainer.querySelector(selector).dataset.answer;
                 // userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
                 
                 // if answer is correct
-                // if(userAnswer === {})
-                // {
-                //   alert("veuillez répondre a la question");
-                // }
                 if(userAnswer === "true"){
                   // add to the number of correct answers
                   numCorrect+= 1;
                   points += parseFloat(currentQuestion.points);
-                  // console.log(points);
-                  // color the answers green
-                  // answerContainers[questionNumber].style.color = 'lightgreen';
                   console.log(userAnswer);
                 }
                 // if answer is wrong or blank
                 else{
+                  userAnswer = "vide";
                   console.log(userAnswer);
-                  // numCorrect -= 1;
-                  // color the answers red
-                  // answerContainers[questionNumber].style.color = 'red';
                 }
               });
               points = Math.ceil(points);
@@ -302,24 +288,36 @@ xmlhttp.onreadystatechange = function () {
               }
             }
 
+            var id_question;
+            var id_answer;
+
+            function recupIds(){
+
+              id_question = myQuestions[currentSlide].id;
+
+              var inputs = document.querySelectorAll(`.input${currentSlide}`);
+              
+              inputs.forEach(input => {
+                if(input.checked)
+                {
+                  id_answer = input.id;
+                }
+                else
+                {
+                  id_answer = null;
+                }
+              });
+              
+            }
             
             // Show the first slide
             showSlide(currentSlide);
 
             function showNextSlide() {
-              // console.log(lol)
+              recupIds();
+              console.log(id_answer);
+              console.log(id_question);
 
-              // for (let i = 0; i < myQuestions.length; i++) {
-              //   const inputs = document.querySelectorAll(`.input${i}`);
-              //   console.log(inputs);
-                
-              //   inputs.forEach(input => {
-              //     if(input.checked)
-              //     {
-              //       showSlide(currentSlide + 1);
-              //     }
-              //   });
-              // }
               var obj = { 
                 "questions": id_question, 
                 "answer": id_answer,
@@ -346,11 +344,6 @@ xmlhttp.onreadystatechange = function () {
               xmlhttp.send(dbParam);
             
             }
-            
-            // function showPreviousSlide() {
-            //   showSlide(currentSlide - 1);
-            // }
-
 
             // Event listeners
             // previousButton.addEventListener("click", showPreviousSlide);
