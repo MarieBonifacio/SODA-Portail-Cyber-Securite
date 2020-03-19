@@ -33,7 +33,7 @@ if(!empty($_POST['title']) && !empty($_POST['content']))
             $error_quiz = "Le format du fichier n'est pas pris en charge";
             wp_redirect( home_url().'/creationarticle' );
         }
-            // on copie le fichier dans le dossier de destination
+        // on copie le fichier dans le dossier de destination
         $name_file = $_POST['title'].'.'.preg_replace("#image\/#","",$type_file);
         $img = $name_file;
 
