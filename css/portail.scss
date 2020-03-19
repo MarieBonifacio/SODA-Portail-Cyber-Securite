@@ -1290,6 +1290,30 @@ body
         background: $police;
       }
     }
+    .progress
+    {
+      @include positionBL(absolute, 5%, 50%);
+      transform: translateX(-50%);
+      width: 70%;
+      height: 20px;
+      border-radius: 150px;
+      background: $color1;
+    }
+    .progressDone
+    {
+      @include flex(center, center, "");
+      @include positionBL(absolute, 0%, 0%);
+      // transform: translate(-50%);
+      background: $color-imp;
+      font-size: $fontSize2;
+      color: $color1;
+      font-weight: 600;
+      width: 0%;
+      height: 100%;
+      border-radius: 150px;
+      opacity: 0;
+      transition: .2s ease;
+    }
     .timer
     {
       font-size: $fontSize3;
@@ -1447,12 +1471,6 @@ body
         background: $color2;
         border-radius: 50px;
       }
-      // .recap::-webkit-scrollbar-track:hover {
-      //   background: $color2;
-      // }
-      // .recap::-webkit-scrollbar-track:active {
-      //   background: $color2;
-      // }
       .recap::-webkit-scrollbar-corner {
         background: transparent;
       }

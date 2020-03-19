@@ -4,7 +4,6 @@ xmlhttp.onreadystatechange = function () {
 if(this.readyState == 4 && this.status == 200)
 {
   var myArray = JSON.parse(this.responseText);
-  // console.log(myArray);
   const grid = document.querySelector(".grid");
   for($i = 0; $i<myArray.length; $i ++)
   {
@@ -16,7 +15,6 @@ if(this.readyState == 4 && this.status == 200)
     <span class="tag">${myArray[$i].tag_name}</span>
     <h3>${myArray[$i].name}</h3>
     <span class="score">`;
-    // console.log( myArray[$i].user_score);
     if( myArray[$i].user_score != null){
       quizContent += ``+myArray[$i].user_score+``;
     }else{
@@ -28,6 +26,7 @@ if(this.readyState == 4 && this.status == 200)
       <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
       <div class="filter"></div>
     </div>
+    <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
   `;
   if( myArray[$i].user_score == null){
     quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
@@ -41,14 +40,12 @@ if(this.readyState == 4 && this.status == 200)
     btn.addEventListener("click", (e)=>{
       const id = e.target.dataset.id;
       var urlScript = url + '/play_quiz.php/?id=' + id;
-      console.log(urlScript);
       var xmlhttp2 = new XMLHttpRequest();
       xmlhttp2.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200)
         {
           var myQuizz = JSON.parse(this.responseText);
           var previous = myQuizz.previous;
-          console.log(previous);
           const divQuizz = document.createElement("div");
           divQuizz.classList.add("quizPlay");
           document.body.appendChild(divQuizz);
@@ -63,15 +60,21 @@ if(this.readyState == 4 && this.status == 200)
           <div class="timer">
           <label id="minutes">00</label>:<label id="seconds">00</label>
           </div>
+          <div class="progress">
+            <div class="progressDone" data-done=""><span class="percentage"></span></div>
+          </div>
           `;
           
             let currentSlide = 0;
             let myQuestions = myQuizz.questions;
+            let actualpercent = 0;
+            let percent = (currentSlide + 1 / myQuestions.length) * 100;
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const submitButton = document.getElementById('submit');
             const btns = document.querySelector('.btns');
-                        
+            const progress = document.querySelector('.progressDone');
+            const percentage = document.querySelector('.percentage');
             const timer = document.querySelector('.timer');
             var minutesLabel = document.getElementById("minutes");
             var secondsLabel = document.getElementById("seconds");
@@ -83,14 +86,13 @@ if(this.readyState == 4 && this.status == 200)
             {
               var totalSeconds = 0;
             }
-            console.log(totalSeconds);
+            // console.log(totalSeconds);
             var setInt = setInterval(setTime, 1000);
 
             function setTime() {
               ++totalSeconds;
               secondsLabel.innerHTML = pad(totalSeconds % 60);
               minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-              // console.log(totalSeconds);
             }
 
             function pad(val) {
@@ -105,9 +107,7 @@ if(this.readyState == 4 && this.status == 200)
             function shuffle(array)
             {
               array.sort(()=> Math.random()-0.5);
-              // console.log(array);
             }
-            // console.log(myQuestions);
 
             shuffle(myQuestions);
             if(previous.length > 0)
@@ -129,11 +129,22 @@ if(this.readyState == 4 && this.status == 200)
                 }
               }
             }
-            console.log(myQuestions);
-            console.log(tableLostQuestions);
+            // console.log(myQuestions);
+            // console.log(tableLostQuestions);
+
+            function progressBar()
+            {
+              actualpercent += parseFloat(percent);
+              progress.dataset.done = Math.ceil(actualpercent);
+              progress.style.width = progress.getAttribute('data-done')+ '%';
+              progress.style.opacity = 1;
+              console.log(parseFloat(percent));
+              percentage.innerHTML = `${Math.ceil(actualpercent)} %`;
+            }
 
             function buildQuiz(){
 
+            progressBar();
             // variable to store the HTML output
             const output = [];
 
@@ -177,7 +188,6 @@ if(this.readyState == 4 && this.status == 200)
               
               // gather answer containers from our quiz
               const answerContainers = quizContainer.querySelectorAll('.answers');
-              
               // keep track of user's answers
               // let userSelect = [];
               let numCorrect = 0;
@@ -193,8 +203,8 @@ if(this.readyState == 4 && this.status == 200)
                     numCorrect += 1;
                     points += parseFloat(tableLostQuestions[i].points);
                   }
-                  console.log(points);
-                  console.log(numCorrect);
+                  // console.log(points);
+                  // console.log(numCorrect);
                 }
               }
               myQuestions.forEach( 
@@ -218,7 +228,7 @@ if(this.readyState == 4 && this.status == 200)
                   numCorrect+= 1;
                   points += parseFloat(currentQuestion.points);
                   // console.log(userAnswer);
-                  console.log(numCorrect);
+                  // console.log(numCorrect);
                 }
                 // if answer is wrong or blank
                 else{
@@ -228,11 +238,15 @@ if(this.readyState == 4 && this.status == 200)
               });
               points = Math.ceil(points);
               clearInterval(setInt);
-              console.log(points);
-              console.log(numCorrect);
+              // console.log(points);
+              // console.log(numCorrect);
 
-              for (let i = 0; i < tableLostQuestions.length; i++) {
-                myQuestions.splice(0,0, tableLostQuestions[i]);
+              if(previous.length >0)
+              {
+                for (let i = 0; i < tableLostQuestions.length; i++) 
+                {
+                  myQuestions.splice(0,0, tableLostQuestions[i]);
+                }
               }
               
               // show number of correct answers out of total
@@ -244,7 +258,6 @@ if(this.readyState == 4 && this.status == 200)
               <div class="recap">
               </div>
               `;
-              // <p class="btnBackMenu btn">Revenir au menu Quiz</p>
 
               const recap = document.querySelector('.recap');
 
@@ -274,7 +287,6 @@ if(this.readyState == 4 && this.status == 200)
                     answerRecap.appendChild(pAnswerDiv);
                     pAnswerDiv.innerHTML = `${letters[f]}: ${myQuestions[i].answers[f].content}`;
                     const pAnswer = document.querySelector(`.answerTF${[f]}${[i]}`);
-                    // console.log(pAnswer);
                     if(myQuestions[i].answers[f].is_true == "true")
                     {
                       pAnswer.style.color = "#3AD29F";
@@ -308,9 +320,9 @@ if(this.readyState == 4 && this.status == 200)
               xmlhttp = new XMLHttpRequest();
               xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                  console.log("ok");
-                  console.log(dbParam);
-                  console.log(this.responseText);
+                  // console.log("ok");
+                  // console.log(dbParam);
+                  // console.log(this.responseText);
                 }
               };
               xmlhttp.open("POST", url + "/quiz_result.php/", true);
@@ -321,7 +333,6 @@ if(this.readyState == 4 && this.status == 200)
             // display quiz right away
             buildQuiz();
 
-            // const previousButton = document.getElementById("previous");
             const nextButton = document.getElementById("next");
             const slides = document.querySelectorAll(".slide");
             
@@ -349,11 +360,11 @@ if(this.readyState == 4 && this.status == 200)
               id_answer = null;
               is_True = "false";
               
-              console.log(myQuestions[currentSlide].answers.length);
+              // console.log(myQuestions[currentSlide].answers.length);
               
               for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
                 let input = document.querySelector(`.input${currentSlide}${i}`);
-                console.log(input);
+                // console.log(input);
                 if(input.checked)
                 {
                   is_True = input.value;
@@ -368,10 +379,11 @@ if(this.readyState == 4 && this.status == 200)
             
             function showNextSlide() {
               recupIds();
-              console.log(is_True);
-              console.log(id_answer);
-              console.log(id_question);
+              // console.log(is_True);
+              // console.log(id_answer);
+              // console.log(id_question);
 
+              console.log(currentSlide + 1);
               var obj = { 
                 "questions": id_question, 
                 "answer": id_answer,
@@ -379,30 +391,32 @@ if(this.readyState == 4 && this.status == 200)
                 "id_quiz" : myQuizz.id,
                 "is_True" : is_True,
               };
-
+              
 
               dbParam = JSON.stringify(obj);
               xmlhttp = new XMLHttpRequest();
               xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                  console.log("ok");
-                  console.log(dbParam);
-                  console.log(this.responseText);
+                  // console.log("ok");
+                  // console.log(dbParam);
+                  // console.log(this.responseText);
                   showSlide(currentSlide + 1);
+                  // percent += percent;
+                  progressBar();
                 }
                 else
                 {
-                  console.log("pas ok");
+                  // console.log("pas ok");
                 }
               };
               xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
               xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
               xmlhttp.send(dbParam);
+
             
             }
 
             // Event listeners
-            // previousButton.addEventListener("click", showPreviousSlide);
             nextButton.addEventListener("click", showNextSlide);
 
             // on submit, show results
