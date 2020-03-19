@@ -15,7 +15,7 @@ include($path.'wp-load.php');
 
 //JSON encode 
 
-$quizs = $wpdb->get_results( "SELECT id, name, tag_id, img_path FROM quiz" );
+$modules = $wpdb->get_results( "SELECT id, name, tag_id, img_path FROM module" );
 $quizArray = [];
         foreach ($quizs as $q){
             $quizTmp = new Quiz();

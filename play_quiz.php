@@ -55,11 +55,14 @@ $quizArray = [];
     {
         $answerId = $q->id_answer;
         $answer =  $wpdb->get_var("SELECT is_true FROM answer WHERE id='$answerId'");
+        $questionId = $q->id_question;
+        $points =  $wpdb->get_var("SELECT points FROM question WHERE id='$questionId'");
         $previous[] = array(
             "id_question" => $q->id_question,
             "id_answer" => $q->id_answer,
             "time" => $q->time,
             "is_true" => $answer,
+            "points" => $points
         );
     }
     $quiz["previous"] = $previous;
