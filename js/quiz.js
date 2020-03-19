@@ -174,19 +174,30 @@ if(this.readyState == 4 && this.status == 200)
               quizContainer.innerHTML = output.join('');
             }
 
-            let numCorrect = 0;
-            let points = 0;
             function showResults(){
               
               // gather answer containers from our quiz
               const answerContainers = quizContainer.querySelectorAll('.answers');
-            
-              // let numCorrect = 0 + numCorrectPrevious;
-              // let points = 0 + pointsPrevious;
+              
               // keep track of user's answers
               // let userSelect = [];
+              let numCorrect = 0;
+              let points = 0;
 
               // for each question...
+              if(previous.length >0)
+              {
+                for (let i = 0; i < tableLostQuestions.length; i++) {
+                  
+                  if(tableLostQuestions[i].is_True === "true")
+                  {
+                    numCorrect += 1;
+                    points += parseFloat(currentQuestion.points);
+                  }
+                  console.log(points);
+                  console.log(numCorrect);
+                }
+              }
               myQuestions.forEach( 
                 (currentQuestion, questionNumber) => {
                   
@@ -201,18 +212,6 @@ if(this.readyState == 4 && this.status == 200)
                 //     userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
                 //   }
                 // });
-                if(previous.length >0)
-                {
-                  for (let i = 0; i < tableLostQuestions.length; i++) {
-                    
-                    if(tableLostQuestions[i].is_True == "true")
-                    {
-                      numCorrect += 1;
-                      points += parseFloat(currentQuestion.points);
-                    }
-                    console.log(points);
-                  }
-                }
                 
                 // if answer is correct
                 if(userAnswer === "true"){
@@ -220,6 +219,7 @@ if(this.readyState == 4 && this.status == 200)
                   numCorrect+= 1;
                   points += parseFloat(currentQuestion.points);
                   // console.log(userAnswer);
+                  console.log(numCorrect);
                 }
                 // if answer is wrong or blank
                 else{
@@ -230,6 +230,7 @@ if(this.readyState == 4 && this.status == 200)
               points = Math.ceil(points);
               clearInterval(setInt);
               console.log(points);
+              console.log(numCorrect);
 
               // show number of correct answers out of total
               resultsContainer.style.opacity = "1";
@@ -344,6 +345,7 @@ if(this.readyState == 4 && this.status == 200)
               id_question = myQuestions[currentSlide].id;
               id_answer = null;
               is_True = "false";
+              answer_points = myQuestions[currentSlide].points;
               
               console.log(myQuestions[currentSlide].answers.length);
               
@@ -367,6 +369,7 @@ if(this.readyState == 4 && this.status == 200)
               console.log(is_True);
               console.log(id_answer);
               console.log(id_question);
+              console.log(answer_points);
 
               var obj = { 
                 "questions": id_question, 
@@ -374,6 +377,7 @@ if(this.readyState == 4 && this.status == 200)
                 "time": totalSeconds,
                 "id_quiz" : myQuizz.id,
                 "is_True" : is_True,
+                "answer_points" : answer_points,
               };
 
 
