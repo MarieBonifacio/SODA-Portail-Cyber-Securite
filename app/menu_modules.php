@@ -15,21 +15,25 @@ include($path.'wp-load.php');
 
 //JSON encode 
 
-$modules = $wpdb->get_results( "SELECT id, name, tag_id, img_path FROM module" );
-$quizArray = [];
-        foreach ($quizs as $q){
-            $quizTmp = new Quiz();
-            $quizTmp->selectById($q->id);
+$modules = $wpdb->get_results( "SELECT id, title, content,tag_id, img_path, author_id FROM module" );
+$moduleArray = [];
+        foreach ($modules as $q){
+            $moduleTmp = new Module();
+            $moduleTmp->selectById($q->id);
             
-            $quiz = array(
-                "id" => $quizTmp->getId(),
-                "name" => $quizTmp->getName(),
-                "tag_id" => $quizTmp->getTag()->getId(),
-                "tag_name" => $quizTmp->getTag()->getName(),
-                "img" => $quizTmp->getImgPath(),
+            $module = array(
+                "id" => $articleTmp->getId(),
+                "title" => $articleTmp->getTitle(),
+                "content" => $articleTmp->getContent(),
+                "tag_id" => $articleTmp->getTag()->getId(),
+                "tag_name" => $articleTmp->getTag()->getName(),
+                "img" => $articleTmp->getImgPath(),
+                "view" => $articleTmp->getView(),
+                "author_id" => $articleTmp->getAuthor()->getId(),
+                "author_name" => $articleTmp->getAuthor()->getName()
             );
- $quizArray[] = $quiz;
+ $moduleArray[] = $module;
 }
 
-echo json_encode($quizArray);
+echo json_encode($moduleArray);
 ?>

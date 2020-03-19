@@ -15,7 +15,7 @@ include($path.'wp-load.php');
 
 //JSON encode 
 
-$articles = $wpdb->get_results( "SELECT id, title, content, view, tag_id, img_path FROM quiz" );
+$articles = $wpdb->get_results( "SELECT id, title, content, view, tag_id, img_path, author_id FROM quiz" );
 $articleArray = [];
         foreach ($article as $a){
             $articleTmp = new Article();
@@ -28,6 +28,8 @@ $articleArray = [];
                 "tag_id" => $articleTmp->getTag()->getId(),
                 "tag_name" => $articleTmp->getTag()->getName(),
                 "img" => $articleTmp->getImgPath(),
+                "author_id" => $articleTmp->getAuthor()->getId(),
+                "author_name" => $articleTmp->getAuthor()->getName()
             );
  $articleArray[] = $quiz;
 }

@@ -4,20 +4,26 @@ class Module {
     private $id;
     private $title;
     private $content;
-    private $imgPath;
+    private $tag;
+    private $img_path;
     private $author;
-    private $createdAt;
+    private $created_at;
 
 
 
     public function selectById($id){
         $r = $wpdb->get_row("SELECT * FROM 'module' where id=".$id."");
-        $this->id = $r['id'];
-        $this->title = $r['title'];
-        $this->content = $r['content'];
-        $this->imgPath = $r['img_path'];
-        $this->author = (new User())->selectById($r->id);
-        $this->createAt = $r['create_at'];
+        $this->id = $r->id;
+        $this->title = $r->title;
+        $this->content = $r->content;
+        $tagId = new tag();
+        $tagId->selectById($r->tag_id);
+        $this->tag = $tagId;
+        $this->img_path = $r->img_path;
+        $author = new User();
+        $author->selectById($r->author_id);
+        $this->author = $author;
+        $this->created_at = $r->created_at;
     }
 
 
@@ -37,6 +43,14 @@ class Module {
     }
     public function setContent($content){
         $this->content = $content;
+    }
+
+    public function getTag(){
+        return $this->tag;
+    }
+
+    public function setTag($tag){
+        $this->tag = $tag;
     }
 
     public function getImgPath(){
@@ -74,9 +88,9 @@ class Module {
             global $wpdb;
             $wpdb->insert(
                 'module', array(
-                    "id"  => $this->id,
                     "title" => $this->title,
                     "content" => $this->content,
+                    "tag_id" => $this->tag->getId(),
                     "img_path" => $this->imgPath,
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,
@@ -85,10 +99,10 @@ class Module {
         }else{
             global $wpdb;
             $wpdb->update(
-                'module', array(
-                    
+                'module', array(   
                     "title" => $this->title,
                     "content" => $this->content,
+                    "tag_id" => $this->tag->getId(),
                     "img_path" => $this->imgPath,
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,

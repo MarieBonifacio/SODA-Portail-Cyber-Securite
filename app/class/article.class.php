@@ -8,10 +8,11 @@ class Article {
     private $id;
     private $title;
     private $content;
-    private $imgPath;
+    private $tag;
+    private $img_path;
     private $view;
     private $author;
-    private $createdAt;
+    private $created_at;
 
 
     // $article = new Article()
@@ -22,13 +23,18 @@ class Article {
     //
     public function selectById($id){
         $r = $wpdb->get_row("SELECT * FROM 'article' where id=".$id."");
-        $this->id = $r['id'];
-        $this->title = $r['title'];
-        $this->content = $r['content'];
-        $this->imgPath = $r['img_path'];
-        $this->view = $r['view'];
-        $this->author = (new User())->selectById($r['id']);
-        $this->createAt = $r['create_at'];
+        $this->id = $r->id;
+        $this->title = $r->title;
+        $this->content = $r->content;
+        $tagId = new tag();
+        $tagId->selectById($r->tag_id);
+        $this->tag = $tagId;
+        $this->img_path = $r->img_path;
+        $this->view = $r->$view;
+        $author = new User();
+        $author->selectById($r->author_id);
+        $this->author = $author;
+        $this->created_at = $r->created_at;
     }
 
     public function getId(){
@@ -49,6 +55,14 @@ class Article {
         $this->content = $content;
     }
 
+    public function getTag(){
+        return $this->tag;
+    }
+
+    public function setTag($tag){
+        $this->tag = $tag;
+    }
+
     public function getImgPath(){
         return $this->imgPath;
     }
@@ -56,7 +70,7 @@ class Article {
         $this->imgPath = $imgPath;
     }
 
-    public function getViewt(){
+    public function getView(){
         return $this->view;
     }
     public function setView($view){
@@ -87,12 +101,13 @@ class Article {
     public function save(){
         if ($this->id == null){
             global $wpdb;
+            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'article', array(
-                    "id"  =>  $this->id,
                     "title" => $this->title,
                     "content" => $this->content,
-                    "img_path" => $this->imgPath,
+                    "tag_id" => $this->tag->getId(),
+                    "img_path" => $this->img_path,
                     "view" => $this->view,
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,
@@ -104,7 +119,8 @@ class Article {
                 'article', array(
                     "title" => $this->title,
                     "content" => $this->content,
-                    "img_path" => $this->imgPath,
+                    "tag_id" => $this->tag->getId(),
+                    "img_path" => $this->img_path,
                     "view" => $this->view,
                     "author_id" => $this->author->getId(),
                     "created_at" => $this->created_at,
