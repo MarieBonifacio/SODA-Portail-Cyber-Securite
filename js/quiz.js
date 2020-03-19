@@ -4,7 +4,7 @@ xmlhttp.onreadystatechange = function () {
 if(this.readyState == 4 && this.status == 200)
 {
   var myArray = JSON.parse(this.responseText);
-  console.log(myArray);
+  // console.log(myArray);
   const grid = document.querySelector(".grid");
   for($i = 0; $i<myArray.length; $i ++)
   {
@@ -16,7 +16,7 @@ if(this.readyState == 4 && this.status == 200)
     <span class="tag">${myArray[$i].tag_name}</span>
     <h3>${myArray[$i].name}</h3>
     <span class="score">`;
-    console.log( myArray[$i].user_score);
+    // console.log( myArray[$i].user_score);
     if( myArray[$i].user_score != null){
       quizContent += ``+myArray[$i].user_score+``;
     }else{
@@ -48,9 +48,8 @@ if(this.readyState == 4 && this.status == 200)
         if(this.readyState == 4 && this.status == 200)
         {
           var myQuizz = JSON.parse(this.responseText);
-          if(myQuizz.previous.length > 0)
-          {
-          console.log(myQuizz.previous);
+          var previous = myQuizz.previous;
+          console.log(previous);
           const divQuizz = document.createElement("div");
           divQuizz.classList.add("quizPlay");
           document.body.appendChild(divQuizz);
@@ -67,6 +66,7 @@ if(this.readyState == 4 && this.status == 200)
           </div>
           `;
           
+            let currentSlide = 0;
             let myQuestions = myQuizz.questions;
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
@@ -76,7 +76,15 @@ if(this.readyState == 4 && this.status == 200)
             const timer = document.querySelector('.timer');
             var minutesLabel = document.getElementById("minutes");
             var secondsLabel = document.getElementById("seconds");
-            var totalSeconds = 0;
+            if(previous.length > 0)
+            {
+              var totalSeconds = previous[previous.length -1].time;
+            }
+            else
+            {
+              var totalSeconds = 0;
+            }
+            console.log(totalSeconds);
             var setInt = setInterval(setTime, 1000);
 
             function setTime() {
@@ -100,9 +108,30 @@ if(this.readyState == 4 && this.status == 200)
               array.sort(()=> Math.random()-0.5);
               // console.log(array);
             }
-
+            // console.log(myQuestions);
 
             shuffle(myQuestions);
+            if(previous.length > 0)
+            {
+              var tableLostQuestions = [];
+              for (let i = 0; i < previous.length; i++) 
+              {
+                for (let f = 0; f < myQuestions.length; f++) 
+                {
+                  if(myQuestions[f].id == previous[i].id_question)
+                  {
+                    var idCurrentQuestion = myQuestions.indexOf(myQuestions[f]);
+                    if(idCurrentQuestion > -1)
+                    {
+                      myQuestions.splice(idCurrentQuestion, 1);
+                      tableLostQuestions.splice(0, 0, previous[i]);
+                    }
+                  }
+                }
+              }
+            }
+            console.log(myQuestions);
+            console.log(tableLostQuestions);
 
             function buildQuiz(){
 
@@ -113,6 +142,7 @@ if(this.readyState == 4 && this.status == 200)
               // for each question...
               myQuestions.forEach(
                 (currentQuestion, questionNumber) => {
+                  
                   // variable to store the list of possible answers
                   const currentAnswers = currentQuestion.answers;
                   
@@ -144,47 +174,62 @@ if(this.readyState == 4 && this.status == 200)
               quizContainer.innerHTML = output.join('');
             }
 
+            let numCorrect = 0;
+            let points = 0;
             function showResults(){
-
+              
               // gather answer containers from our quiz
               const answerContainers = quizContainer.querySelectorAll('.answers');
-
+            
+              // let numCorrect = 0 + numCorrectPrevious;
+              // let points = 0 + pointsPrevious;
               // keep track of user's answers
-              let numCorrect = 0;
-              let points = 0;
-              let userSelect = [];
+              // let userSelect = [];
 
               // for each question...
               myQuestions.forEach( 
                 (currentQuestion, questionNumber) => {
                   
-                  // find selected answer
-                  const answerContainer = answerContainers[questionNumber];
-                  const selector = `input[name=question${questionNumber}]:checked`;
-                  let userAnswer = (answerContainer.querySelector(selector) || {}).value;
-                  // let inputs = document.querySelectorAll(`.input[name=question${questionNumber}`)
-                  // inputs.forEach(input => {
-                  //   if(input.checked)
-                  //   {
-                  //     userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
-                  //   }
-                  // });
+                // find selected answer
+                const answerContainer = answerContainers[questionNumber];
+                const selector = `input[name=question${questionNumber}]:checked`;
+                let userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                // let inputs = document.querySelectorAll(`.input[name=question${questionNumber}`)
+                // inputs.forEach(input => {
+                //   if(input.checked)
+                //   {
+                //     userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
+                //   }
+                // });
+                if(previous.length >0)
+                {
+                  for (let i = 0; i < tableLostQuestions.length; i++) {
+                    
+                    if(tableLostQuestions[i].is_True == "true")
+                    {
+                      numCorrect += 1;
+                      points += parseFloat(currentQuestion.points);
+                    }
+                    console.log(points);
+                  }
+                }
                 
                 // if answer is correct
                 if(userAnswer === "true"){
                   // add to the number of correct answers
                   numCorrect+= 1;
                   points += parseFloat(currentQuestion.points);
-                  console.log(userAnswer);
+                  // console.log(userAnswer);
                 }
                 // if answer is wrong or blank
                 else{
-                  userAnswer = "vide";
-                  console.log(userAnswer);
+                  // userAnswer = "vide";
+                  // console.log(userAnswer);
                 }
               });
               points = Math.ceil(points);
               clearInterval(setInt);
+              console.log(points);
 
               // show number of correct answers out of total
               resultsContainer.style.opacity = "1";
@@ -275,7 +320,6 @@ if(this.readyState == 4 && this.status == 200)
             // const previousButton = document.getElementById("previous");
             const nextButton = document.getElementById("next");
             const slides = document.querySelectorAll(".slide");
-            let currentSlide = 0;
             
             function showSlide(n) {
               slides[currentSlide].classList.remove('active-slide');
@@ -293,31 +337,34 @@ if(this.readyState == 4 && this.status == 200)
 
             var id_question;
             var id_answer;
+            var is_True;
 
             function recupIds(){
 
               id_question = myQuestions[currentSlide].id;
               id_answer = null;
-
+              is_True = "false";
+              
               console.log(myQuestions[currentSlide].answers.length);
-
+              
               for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
                 let input = document.querySelector(`.input${currentSlide}${i}`);
                 console.log(input);
                 if(input.checked)
                 {
+                  is_True = input.value;
                   id_answer = input.id;
                   return
                 }
-                console.log(id_answer);
               }
             }
             
             // Show the first slide
             showSlide(currentSlide);
-
+            
             function showNextSlide() {
               recupIds();
+              console.log(is_True);
               console.log(id_answer);
               console.log(id_question);
 
@@ -326,6 +373,7 @@ if(this.readyState == 4 && this.status == 200)
                 "answer": id_answer,
                 "time": totalSeconds,
                 "id_quiz" : myQuizz.id,
+                "is_True" : is_True,
               };
 
 
@@ -355,11 +403,6 @@ if(this.readyState == 4 && this.status == 200)
 
             // on submit, show results
             submitButton.addEventListener('click', showResults);
-          }
-          // else
-          // {
-          //   alert("coucou");
-          // }
         }
       };
 
