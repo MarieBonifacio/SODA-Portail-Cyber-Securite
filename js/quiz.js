@@ -28,11 +28,10 @@ if(this.readyState == 4 && this.status == 200)
       <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
       <div class="filter"></div>
     </div>
-    <p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>
   `;
-  // if( myArray[$i].user_score == null){
-  //   quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
-  // }
+  if( myArray[$i].user_score == null){
+    quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+  }
   //-----------------------------------------------------------------------------
   gridElement.innerHTML = quizContent;
     grid.appendChild(gridElement);
@@ -123,8 +122,8 @@ if(this.readyState == 4 && this.status == 200)
                     var idCurrentQuestion = myQuestions.indexOf(myQuestions[f]);
                     if(idCurrentQuestion > -1)
                     {
+                      tableLostQuestions.splice(0, 0, myQuestions[f]);
                       myQuestions.splice(idCurrentQuestion, 1);
-                      tableLostQuestions.splice(0, 0, previous[i]);
                     }
                   }
                 }
@@ -187,12 +186,12 @@ if(this.readyState == 4 && this.status == 200)
               // for each question...
               if(previous.length >0)
               {
-                for (let i = 0; i < tableLostQuestions.length; i++) {
-                  
-                  if(tableLostQuestions[i].is_True === "true")
+                for (let i = 0; i < previous.length; i++) 
+                {  
+                  if(previous[i].is_true === "true")
                   {
                     numCorrect += 1;
-                    points += parseFloat(currentQuestion.points);
+                    points += parseFloat(tableLostQuestions[i].points);
                   }
                   console.log(points);
                   console.log(numCorrect);
@@ -232,6 +231,10 @@ if(this.readyState == 4 && this.status == 200)
               console.log(points);
               console.log(numCorrect);
 
+              for (let i = 0; i < tableLostQuestions.length; i++) {
+                myQuestions.splice(0,0, tableLostQuestions[i]);
+              }
+              
               // show number of correct answers out of total
               resultsContainer.style.opacity = "1";
               resultsContainer.innerHTML = `
@@ -345,7 +348,6 @@ if(this.readyState == 4 && this.status == 200)
               id_question = myQuestions[currentSlide].id;
               id_answer = null;
               is_True = "false";
-              answer_points = myQuestions[currentSlide].points;
               
               console.log(myQuestions[currentSlide].answers.length);
               
@@ -369,7 +371,6 @@ if(this.readyState == 4 && this.status == 200)
               console.log(is_True);
               console.log(id_answer);
               console.log(id_question);
-              console.log(answer_points);
 
               var obj = { 
                 "questions": id_question, 
@@ -377,7 +378,6 @@ if(this.readyState == 4 && this.status == 200)
                 "time": totalSeconds,
                 "id_quiz" : myQuizz.id,
                 "is_True" : is_True,
-                "answer_points" : answer_points,
               };
 
 
