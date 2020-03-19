@@ -50,7 +50,19 @@ $quizArray = [];
 
     $userId = $_SESSION['userConnected'];
     $query = $wpdb->get_results("SELECT id_question, id_answer, time FROM quiz_progress WHERE id_user= '$userId' AND id_quiz = '$quizId'");
-    $quiz["previous"] = $query;
+    $previous = array();
+    foreach($query as $q)
+    {
+        $answerId = $q->id_answer;
+        $answer =  $wpdb->get_var("SELECT is_true FROM answer WHERE id='$answerId'");
+        $previous[] = array(
+            "id_question" => $q->id_question,
+            "id_answer" => $q->id_answer,
+            "time" => $q->time,
+            "is_true" => $answer,
+        );
+    }
+    $quiz["previous"] = $previous;
 
 echo json_encode($quiz);
 

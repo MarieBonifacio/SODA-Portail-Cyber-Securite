@@ -110,7 +110,7 @@ function html5blank_header_scripts()
 function html5blank_conditional_scripts()
 {
     if (is_page("menu-quiz")) {
-        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/quiz.js');
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/quiz.js', null, true);
         wp_localize_script('my-script', 'myScript', array(
             'theme_directory' => get_template_directory_uri() 
         ));
