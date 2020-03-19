@@ -9,7 +9,10 @@ if(!empty($_SESSION['userConnected']))
     $id = $_SESSION['userConnected'];
     $userConnected = new User();
     $userConnected->selectById($id);
+}else{
+	wp_redirect( home_url() );
 }
+
 
 ?>
 <!doctype html>
@@ -41,7 +44,8 @@ if(!empty($_SESSION['userConnected']))
 
 	</head>
 	<body>
-	
+
+
 		<nav class="above">
 			<div class="logo">
 				<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">

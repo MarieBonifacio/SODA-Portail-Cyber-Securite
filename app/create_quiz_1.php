@@ -6,6 +6,8 @@ require('class/quiz.class.php');
 require('class/quiz_score.class.php');
 require('class/user.class.php');
 
+
+
 //J'initialise la variable session
 if(!empty($_SESSION['quizData'])){
     unset($_SESSION['quizData']);
