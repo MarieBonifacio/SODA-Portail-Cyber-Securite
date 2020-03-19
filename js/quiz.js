@@ -67,7 +67,6 @@ if(this.readyState == 4 && this.status == 200)
             let currentSlide = 0;
             let myQuestions = myQuizz.questions;
             let actualpercent = 0;
-            let percent = (currentSlide + 1 / myQuestions.length) * 100;
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const submitButton = document.getElementById('submit');
@@ -128,6 +127,7 @@ if(this.readyState == 4 && this.status == 200)
                 }
               }
             }
+            let percent = (currentSlide + 1 / myQuestions.length) * 100;
             // console.log(myQuestions);
             // console.log(tableLostQuestions);
 
