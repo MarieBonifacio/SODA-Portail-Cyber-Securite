@@ -15,7 +15,6 @@ body
     color: $police;
     font-family: "Muli", sans-serif;
     font-weight: 100;
-    word-wrap: break-word;
   }
   i
   {
@@ -983,6 +982,7 @@ body
               font-weight: 600;
               text-align: center;
               padding: 0 20px 0 20px;
+              word-wrap: break-word;
             }
           }
           .answers
@@ -1009,6 +1009,7 @@ body
                 p
                 {
                   width: 80%;
+                  word-wrap: break-word;
                 }
               }
               div
