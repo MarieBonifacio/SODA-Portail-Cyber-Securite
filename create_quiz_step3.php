@@ -57,7 +57,7 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
               echo'
                 <div>
                   <div class="spanP">
-                    <span>'.$lettre[$lettreNum].'</span>
+                    <span>'.$lettre[$lettreNum].'.</span>
                     <p>'.$a['text'].'</p>
                   </div>
               ';

@@ -977,29 +977,30 @@ body
           }
           .answers
           {
-            width: 60%;
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
             div
             {
               position: relative;
-              width: 50%;
+              width: 100%;
               @include flex(center, center, row);
               .spanP
               {
                 position: relative;
-                width: 70%;
+                width: 100%;
                 @include flex(flex-start, center, row);
                 span
                 {
                   margin-right: 15px;
+                  font-weight: 600;
                 }
               }
               div
               {
                 position: relative;
-                width: 25%;
-                @include flex(space-evenly, center, row);
+                width: 8%;
+                @include flex(space-between, center, row);
               }
             }
           }
@@ -1259,18 +1260,18 @@ body
     @include flex(center, center, column);
     .quiz
     {
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      top: 20%;
+      // position: absolute;
+      width: 80%;
+      height: 80%;
+      // top: 20%;
       @include flex(space-between, center, column);
       z-index: inherit;
     }
     .btns
     {
-      position: absolute;
+      // position: absolute;
       width: 50%;
-      bottom: 20%;
+      margin-bottom: 10%;
       @include flex(space-around, center, row);
       z-index: inherit;
       button
@@ -1328,14 +1329,14 @@ body
       top: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
-      height: 50%;
+      margin-top: -7%;
       z-index: 1;
       opacity: 0;
       transition: opacity 0.5s;
       @include flex(center, center, column);
       .question
       {
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         font-size: $fontSize3;
         font-weight: 600;
         // @include flex(center, center, column);
@@ -1343,7 +1344,7 @@ body
       .answers
       {
         position: relative;
-        width: 80%;
+        width: 70%;
         display:flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -1351,7 +1352,7 @@ body
         label
         {
           position: relative;
-          width: 40%;
+          width: 50%;
           margin: 5px 5px;
         }
         input
@@ -1369,13 +1370,14 @@ body
         p
         {
           position: relative;
-          text-align: center;
+          text-align: left;
+          word-wrap: break-word;  
           width: 100%;
-          // height: 100px;
           background: $color-btn;
           padding: 10px 10px;
           color: $color1;
           font-weight: 600;
+          margin: 0;
         }
         label:hover
         {
