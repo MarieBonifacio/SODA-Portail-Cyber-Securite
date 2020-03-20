@@ -44,7 +44,6 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
         echo '
             <span class="numQ">'.$num.'</span>
             <div class="question">
-              <span>'.$num.'.</span>
               <p>'.$q['info']['text'].'</p>
             </div>
             <div class="answers">

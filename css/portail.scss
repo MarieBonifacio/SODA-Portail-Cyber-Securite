@@ -15,6 +15,7 @@ body
     color: $police;
     font-family: "Muli", sans-serif;
     font-weight: 100;
+    word-wrap: break-word;
   }
   i
   {
@@ -970,9 +971,18 @@ body
             width: 100%;
             font-weight: 600;
             @include flex(center, center, row);
-            span
+            // span
+            // {
+            //   margin-right: 5px;
+            // }
+            p
             {
-              margin-right: 15px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+              width: 100%;
+              font-weight: 600;
+              text-align: center;
+              padding: 0 20px 0 20px;
             }
           }
           .answers
@@ -988,19 +998,25 @@ body
               .spanP
               {
                 position: relative;
-                width: 100%;
+                width: 92%;
                 @include flex(flex-start, center, row);
                 span
                 {
                   margin-right: 15px;
+                  margin-left: 2px;
                   font-weight: 600;
+                }
+                p
+                {
+                  width: 80%;
                 }
               }
               div
               {
                 position: relative;
                 width: 8%;
-                @include flex(space-between, center, row);
+                // margin-right: 2px;
+                @include flex(space-evenly, center, row);
               }
             }
           }
