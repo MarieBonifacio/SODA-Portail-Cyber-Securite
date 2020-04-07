@@ -30,7 +30,7 @@ function inputFile()
 
 inputFile();
 
-var id = 1;
+var id = parseInt(document.querySelector("input[name=nbrQuestion]").value);
 var nbrQuestions = 1;
 
 let questions = document.querySelectorAll(".question");

@@ -14,6 +14,7 @@ include($path.'wp-load.php');
 
 $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
+$_SESSION['formQuizStep2'] = $_POST;
 
 if(!empty($_SESSION['quizData'])){
     $_SESSION['quizData']['quiz']['questions'] = null;
@@ -117,7 +118,6 @@ if($_SESSION['errorQuiz'] == "")
 {
     wp_redirect( home_url().'/creationquizetape3' );
 }else{
-    $_SESSION['formQuizStep2'] = $_POST;
     wp_redirect( home_url().'/creationquizetape2' );
 }
 
