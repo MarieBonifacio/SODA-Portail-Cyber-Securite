@@ -25,7 +25,7 @@ if(this.readyState == 4 && this.status == 200)
     <div class="imgQ">
       <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
       <div class="filter"></div>
-    </div>
+      </div>
   `;
   if( myArray[$i].user_score == null){
     quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
