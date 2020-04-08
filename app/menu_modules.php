@@ -17,9 +17,9 @@ include($path.'wp-load.php');
 
 $modules = $wpdb->get_results( "SELECT id, title, content,tag_id, img_path, author_id FROM module" );
 $moduleArray = [];
-        foreach ($modules as $q){
+        foreach ($modules as $m){
             $moduleTmp = new Module();
-            $moduleTmp->selectById($q->id);
+            $moduleTmp->selectById($m->id);
             
             $module = array(
                 "id" => $articleTmp->getId(),
@@ -28,7 +28,6 @@ $moduleArray = [];
                 "tag_id" => $articleTmp->getTag()->getId(),
                 "tag_name" => $articleTmp->getTag()->getName(),
                 "img" => $articleTmp->getImgPath(),
-                "view" => $articleTmp->getView(),
                 "author_id" => $articleTmp->getAuthor()->getId(),
                 "author_name" => $articleTmp->getAuthor()->getName()
             );

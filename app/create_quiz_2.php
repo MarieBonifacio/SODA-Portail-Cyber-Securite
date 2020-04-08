@@ -66,7 +66,7 @@ if($nbrQuestion >= 1){
 
                 if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
                 {
-                    $errorQuiz = "Impossible de copier le fichier $name_file dans $content_dir";
+                    $error_quiz = "Impossible de copier le fichier $name_file dans $content_dir";
                     wp_redirect( home_url().'/creationquizetape2' );
                 }
 

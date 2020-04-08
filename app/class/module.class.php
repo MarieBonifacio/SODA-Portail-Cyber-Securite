@@ -89,6 +89,7 @@ class Module {
     public function save(){
         if ($this->id != null){
             global $wpdb;
+            $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'module', array(
                     "title" => $this->title,
@@ -96,7 +97,7 @@ class Module {
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->imgPath,
                     "author_id" => $this->author->getId(),
-                    "created_at" => $this->created_at,
+                    "created_at" => $this->created_at
                     )
                 );
         }else{

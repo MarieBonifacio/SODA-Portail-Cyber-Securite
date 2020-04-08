@@ -14,8 +14,6 @@ include($path.'wp-load.php');
 
 
 /* SAVE TO BDD  */
-
-
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
