@@ -61,4 +61,7 @@ foreach($_SESSION['quizData']['questions'] as $q)
     }
 
 }
+
+wp_redirect( home_url().'/menu-quiz' );
+
 ?>
