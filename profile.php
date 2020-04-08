@@ -7,7 +7,7 @@ if(!empty($_SESSION['userConnected']))
     $userConnected->selectById($id);
 }
 ?>
-  <h2>Mon profil</h2>
+  <h2 class="h2">Mon profil</h2>
 
   <div class="profile">
     <?php

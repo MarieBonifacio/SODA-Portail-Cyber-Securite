@@ -1,6 +1,6 @@
 <?php /* Template Name: Menu Quiz */ get_header(); ?>
 
-<h2>Nos quiz</h2>
+<h2 class="h2">Nos quiz</h2>
 <div class="quiz">
   <div class="button-group filters-button-group">
     <button class="button" data-filter="*">tout</button>

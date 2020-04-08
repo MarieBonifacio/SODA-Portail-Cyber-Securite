@@ -1,6 +1,6 @@
 <?php /* Template Name: Create Quiz Etape 2 */ get_header();?>
 <?php echo '<pre>';print_r($_SESSION);echo '</pre>';?>
-<h2><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
+<h2 class="h2"><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
 
 <div class="step2">
 

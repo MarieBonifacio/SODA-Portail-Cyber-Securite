@@ -1,7 +1,7 @@
 <?php /* Template Name: Create Quiz Etape 1 */ get_header();?>
 <?php unset($_SESSION['quizData']);?>
 
-<h2>Créez votre quiz</h2>
+<h2 class="h2">Créez votre quiz</h2>
 
 <div class="createQuiz">
     <h3>Étape 1: Le sujet</h3>
