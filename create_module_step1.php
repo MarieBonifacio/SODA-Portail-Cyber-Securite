@@ -1,7 +1,5 @@
-<?php /* Template Name: Create Quiz Etape 1 */ get_header();?>
-<?php unset($_SESSION['quizData']);?>
-
-<h2 class="h2">Créez votre quiz</h2>
+<?php /* Template Name: Create Module Etape 1 */ get_header();?>
+<h2 class="h2">Créez votre module</h2>
 
 <div class="createQuizModule">
     <h3>Étape 1: Le sujet</h3>
@@ -12,25 +10,25 @@
         <div class="stick"></div>
     </div>
 
-    <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_1.php" method="post" enctype="multipart/form-data">
+    <form action="<?php echo get_template_directory_uri(); ?>/app/create_module_1.php" method="post" enctype="multipart/form-data">
         <?php
-            if(!empty($_SESSION["errorQuiz"])){
-                echo "<p class='mess error'>".$_SESSION["errorQuiz"]."</p>";
-                unset($_SESSION["errorQuiz"]);
+            if(!empty($_SESSION["errorModule"])){
+                echo "<p class='mess error'>".$_SESSION["errorModule"]."</p>";
+                unset($_SESSION["errorModule"]);
             }
-            elseif(!empty($_SESSION["quizOk"])){
-                echo "<p class='mess good'>".$_SESSION["quizOk"]."</p>";
-                unset($_SESSION["quizOk"]);
+            elseif(!empty($_SESSION["moduleOk"])){
+                echo "<p class='mess good'>".$_SESSION["moduleOk"]."</p>";
+                unset($_SESSION["moduleOk"]);
             }
         ?>
         <div>
-            <label for="">Titre du quiz :</label>
+            <label for="">Titre du module :</label>
             <input type="text" name="title">
         </div>
         <div>
-            <label for="">Thème du quiz :</label>
+            <label for="" class="moduleThemeLabel">Thème du module :</label>
             <select name="theme" id="sites">
-                <option value="">Thème de votre quiz</option>
+                <option value="">Thème de votre module</option>
                 <?php 
                     //ajout boucle tags db
                     $tags = $wpdb->get_results( "SELECT name FROM tag");
@@ -46,7 +44,7 @@
             <label for="">Image :</label>
             <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
             <span id="img_select">Aucune image sélectionnée.</span>
-            <input id="realbtn" type="file" name="img_quiz" hidden>
+            <input id="realbtn" type="file" name="img_module" hidden>
         </div>
         <input type="submit" value="Suivant">
         <!-- <iframe src="https://www.youtube.com/embed/VLbMXG8lvjI?list=RDZdQLWg2E1fg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
@@ -146,6 +144,6 @@
     </svg>
 </div>
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/quiz_step1.js">
+<script src="<?php echo get_template_directory_uri(); ?>/js/module_step1.js">
 
 <?php get_footer(); ?>

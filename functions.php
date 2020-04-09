@@ -115,6 +115,12 @@ function html5blank_conditional_scripts()
             'theme_directory' => get_template_directory_uri() 
         ));
     }
+    if (is_page("menu-modules")) {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/modules.js', null, true);
+        wp_localize_script('my-script', 'myScript', array(
+            'theme_directory' => get_template_directory_uri() 
+        ));
+    }
 }
 
 // Load HTML5 Blank styles

@@ -77,7 +77,7 @@ if(!empty($_SESSION['userConnected']))
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="modules">
-				<a id="a" href=""><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
+				<a id="a" href="<?php echo home_url()."/menu-modules" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<div class="tools">

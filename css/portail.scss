@@ -575,7 +575,7 @@ body
         z-index: 1;
       }
     }
-    .createQuiz
+    .createQuizModule
     {
       width: 100%;
       height: 100%;
@@ -599,6 +599,10 @@ body
         font-family: "Muli";
         font-weight: 600;
         @include flex(space-around, center, column);
+        .moduleThemeLabel
+        {
+          width: 60%;
+        }
         div
         {
           position: relative;
@@ -736,7 +740,7 @@ body
         {
           display: none !important;
         }
-        .question
+        .questionPage
         {
           position: relative;
           width: 80%;
@@ -759,6 +763,19 @@ body
               background: none;
               border:none;
               border-bottom: 1px solid $police;
+            }
+            textarea
+            {
+              width: 100%;
+              max-width: 100%;
+              min-width: 100%;
+              min-height: 150px;
+              outline: none;
+              background: $color1;
+              color: $police;
+              border: none;
+              border-radius: 5px;
+              padding: 10px;
             }
             label
             {
@@ -1141,7 +1158,7 @@ body
         }
       }
     }
-    .quiz
+    .quizModules
     {
       position: relative;
       width: 100%;

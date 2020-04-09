@@ -8,8 +8,6 @@ function inputFile()
         real = document.querySelector(`#realbtn${id}`),
         span = document.querySelector(`#img_select${id}`);
 
-      console.log(id);
-      
       real.click();
 
       real.addEventListener("change", ()=>{
@@ -33,7 +31,7 @@ inputFile();
 var id = parseInt(document.querySelector("input[name=nbrQuestion]").value);
 var nbrQuestions = 1;
 
-let questions = document.querySelectorAll(".question");
+let questions = document.querySelectorAll(".questionPage");
 nbrQuestions = questions.length;
 
 const plus = document.querySelector(".plus"),
@@ -57,17 +55,17 @@ plus.addEventListener("click", ()=>{
     nbrQuestionsTotal.value = `${nbrQuestions}`;
     total.innerHTML=`Total de questions: ${nbrQuestions}`;
     var div = document.createElement("div");
-    div.classList.add("question");
+    div.classList.add("questionPage");
     div.innerHTML=`
     <div>
-    <label for="">Votre question:</label>
+    <label>Votre question:</label>
       <input type="text" name="question_${id}" value="">
     </div>
     <div class="answers">
-    <label for="">Vos réponses:</label>
+    <label>Vos réponses:</label>
     <div class="abcd">
           <div class="answer">
-          <label for="">A.</label>
+          <label>A.</label>
               <input type="text" name="q_${id}_reponse_1" value="">
               <label class="true" id="truea">
                   <input type="radio" value="true" name="q_${id}_isTrue_1" checked>
@@ -83,7 +81,7 @@ plus.addEventListener("click", ()=>{
                   </label>
                   </div>
             <div class="answer">
-            <label for="">B.</label>
+            <label>B.</label>
                 <input type="text" name="q_${id}_reponse_2" value="">
                 <label class="true" id="trueb">
                     <input type="radio" value="true" name="q_${id}_isTrue_2">
@@ -99,7 +97,7 @@ plus.addEventListener("click", ()=>{
                 </label>
                 </div>
                 <div class="answer">
-                <label for="">C.</label>
+                <label>C.</label>
                 <input type="text" name="q_${id}_reponse_3"  value="">
                 <label class="true" id="truec">
                 <input type="radio" value="true" name="q_${id}_isTrue_3">
@@ -115,7 +113,7 @@ plus.addEventListener("click", ()=>{
                 </label>
             </div>
             <div class="answer">
-                <label for="">D.</label>
+                <label>D.</label>
                 <input type="text" name="q_${id}_reponse_4"  value="">
                 <label class="true" id="trued">
                 <input type="radio" value="true" name="q_${id}_isTrue_4">
@@ -137,14 +135,14 @@ plus.addEventListener("click", ()=>{
     </div>
     <div class="media">
     <div>
-    <label for="">Image :</label>
+    <label>Image :</label>
     <button type="button" disabled><p id="fakebtn" data-id="${id}">Séléctionnez une image</p></button>
     <span id="img_select${id}">Aucune image sélectionnée.</span>
         <input id="realbtn${id}" type="file" name="q_${id}_img" hidden>
         </div>
         <p>ou</p>
       <div>
-        <label for="">Video :</label>
+        <label>Video :</label>
         <input type="text" name="q_${id}_video" value="">
       </div>
       </div>
@@ -153,7 +151,6 @@ plus.addEventListener("click", ()=>{
   
     var trash = document.querySelector(`.trash${id}`);
     
-
     trash.addEventListener("click", (e)=>{
       if(e.target.dataset.id == nbrQuestions)
       {
@@ -162,19 +159,11 @@ plus.addEventListener("click", ()=>{
         id -= 1;
         total.innerHTML=`Total de questions: ${nbrQuestions}`;
         nbrQuestionsTotal.value = `${nbrQuestions}`;
-        console.log(nbrQuestionsTotal.value);
       }
     })
     inputFile();
-    console.log(nbrQuestionsTotal.value);
-    console.log(id);
   }
 })
-
-
-
-
-console.log(nbrQuestionsTotal.value);
 
 const validate = document.querySelector(".validate");
 

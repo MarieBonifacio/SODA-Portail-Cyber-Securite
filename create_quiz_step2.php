@@ -37,16 +37,16 @@
     <?php
       for($i=1; $i<=$nbrQuestion; $i++){
         echo '
-        <div class="question">
+        <div class="questionPage">
           <div>
-            <label for="">Votre question:</label>
+            <label>Votre question:</label>
             <input type="text" name="question_'.$i.'" value="'.$p['question_'.$i].'">
           </div>
           <div class="answers">
-            <label for="">Vos réponses:</label>
+            <label>Vos réponses:</label>
             <div class="abcd">
               <div class="answer">
-                <label for="">A.</label>
+                <label>A.</label>
                 <input type="text" name="q_'.$i.'_reponse_1" value="'.$p['q_'.$i.'_reponse_1'].'">
                 <label class="true" id="truea">
                   <input '.( ($p["q_".$i."_isTrue_1"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_1">
@@ -62,7 +62,7 @@
                 </label>
               </div>
               <div class="answer">
-                <label for="">B.</label>
+                <label>B.</label>
                 <input type="text" name="q_'.$i.'_reponse_2" value="'.$p['q_'.$i.'_reponse_2'].'">
                 <label class="true" id="trueb">
                   <input '.( ($p["q_".$i."_isTrue_2"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_2">
@@ -78,7 +78,7 @@
                 </label>
               </div>
               <div class="answer">
-                <label for="">C.</label>
+                <label>C.</label>
                 <input type="text" name="q_'.$i.'_reponse_3"  value="'.$p['q_'.$i.'_reponse_3'].'">
                 <label class="true" id="truec">
                   <input '.( ($p["q_".$i."_isTrue_3"] == "true")? "checked":"" ).' checked type="radio" value="true" name="q_'.$i.'_isTrue_3">
@@ -94,7 +94,7 @@
                 </label>
               </div>
               <div class="answer">
-                <label for="">D.</label>
+                <label>D.</label>
                 <input type="text" name="q_'.$i.'_reponse_4"  value="'.$p['q_'.$i.'_reponse_4'].'">
                 <label class="true" id="trued">
                   <input '.( ($p["q_".$i."_isTrue_4"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_4">
@@ -116,14 +116,14 @@
           </div>
           <div class="media">
             <div>
-              <label for="">Image :</label>
+              <label>Image :</label>
               <button type="button" disabled><p id="fakebtn" data-id="'.$i.'">Séléctionnez une image</p></button>
               <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
               <input id="realbtn'.$i.'" type="file" name="q_'.$i.'_img" hidden>
             </div>
             <p>ou</p>
             <div>
-              <label for="">Video :</label>
+              <label>Video :</label>
               <input type="text" name="q_'.$i.'_video" value="">
             </div>
           </div>

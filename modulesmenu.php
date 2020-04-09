@@ -1,6 +1,6 @@
-<?php /* Template Name: Menu Quiz */ get_header(); ?>
+<?php /* Template Name: Modules */ get_header(); ?>
 
-<h2 class="h2">Nos quiz</h2>
+<h2 class="h2">Nos modules</h2>
 <div class="quizModules">
   <div class="button-group filters-button-group">
     <button class="button" data-filter="*">tout</button>
@@ -18,4 +18,4 @@
   </div>
 </div>
 
-<?php get_footer()?>
+<?php  get_footer(); ?>
