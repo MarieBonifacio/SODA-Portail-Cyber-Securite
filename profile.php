@@ -8,7 +8,7 @@ if(!empty($_SESSION['userConnected']))
 }
 ?>
   <h2 class="h2">Mon profil</h2>
-
+  <pre><?php print_r(wp_get_current_user());?></pre>
   <div class="profile">
     <?php
       if(!empty($_SESSION["errorRegister"])){
@@ -34,25 +34,25 @@ if(!empty($_SESSION['userConnected']))
         
         <div>
             <label for="last_name">Nom :</label>
-            <input type="text" name="last_name" value="<?php echo $userConnected->getLastName();?>">
+            <input type="text" name="last_name" value="<?php echo get_user_meta(get_current_user_id() , 'last_name', true);?>">
         </div>
         <div>
             <label for="first_name">Prénom :</label>            
-            <input type="text" name="first_name" value="<?php echo $userConnected->getName();?>">
+            <input type="text" name="first_name" value="<?php get_user_meta(get_current_user_id() , 'first_name', true);?>">
         </div>
         <div>
             <label for="id_user">Identifiant :</label>  
-            <input type="text" name="id_user" value="<?php echo $userConnected->getIdUser();?>">
+            <input type="text" name="id_user" value="<?php get_user_meta(get_current_user_id() , 'id_alc', true);?>">
         </div>
         <div>
             <label for="firs-mail">Adresse mail :</label>
-            <input type="mail" name="first_mail"  value="<?php echo $userConnected->getMail();?>">
+            <input type="mail" name="first_mail"  value="<?php echo get_current_user()->user_email;?>">
         </div>
         <div>
             <label for="location">Votre site :</label>
             <div class="select">
                 <select name="location" id="sites">
-                    <option value="<?php echo $userConnected->getLocation();?>"><?php echo $userConnected->getLocation();?></option>
+                    <option value="<?php echo get_user_meta(get_current_user_id() , 'location', true);;?>"><?php echo get_user_meta(get_current_user_id() , 'location', true);;?></option>
                     <?php 
 
                     $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");

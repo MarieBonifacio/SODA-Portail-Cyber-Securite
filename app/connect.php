@@ -9,16 +9,25 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
     $mail = $_POST['mail'];
     $password = $_POST['mdp'];
 
-    $r = $wpdb->get_row("SELECT * FROM user where mail='".$mail."'");
+    $r = $wpdb->get_row("SELECT * FROM wp_users where user_email='".$mail."'");
    
-    if($r == null || !password_verify($password, $r->password)){
+    if($r == null || !wp_check_password($password, $r->user_pass)){
         $_SESSION['errorConnect'] = "L'adresse mail ou le mot de passe ne sont pas corrects";
         wp_redirect( home_url() );
     }else{
-        $_SESSION['userConnected'] = $r->id;
-
+        $_SESSION['userConnected'] = $r->ID;
+        $creds = array(
+            'user_login'    => $r->user_login,
+            'user_password' => $password,
+            'remember'      => true
+        );
+     
+        $user = wp_signon( $creds, false );
+        echo "<h1>";
+        print_r($user);
+        echo "</h1>";
         setcookie('user', json_encode([
-            "userConnected" => $r->id,
+            "userConnected" => $r->ID,
         ]), time() + 3600 * 24 * 30);
 
         wp_redirect( home_url().'/profil' );

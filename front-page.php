@@ -1,3 +1,7 @@
+<?php
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+require($path.'wp-load.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,62 +147,7 @@
 
 
     <div class="form">
-        <h2>Inscription</h2>  
-        <form action="<?php echo get_template_directory_uri(); ?>/app/register.php" method="post">
-            <?php
-                if(!empty($_SESSION["errorRegister"])){
-                echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
-                unset($_SESSION["errorRegister"]);
-                }
-                elseif(!empty($_SESSION["register"])){
-                echo "<p class='mess good'>".$_SESSION["register"]."</p>";
-                unset($_SESSION["register"]);
-                }
-            ?>
-            <div>
-                <label for="">Nom :</label>
-                <input type="text" name="last_name">
-            </div>
-            <div>
-                <label for="">Prénom :</label>            
-                <input type="text" name="first_name">
-            </div>
-            <div>
-                <label for="">Identifiant :</label>  
-                <input type="text" name="id_user">
-            </div>
-            <div>
-                <label for="">Adresse mail :</label>
-                <input type="mail" name="first_mail">
-            </div>
-            <div>
-                <label for="">Mot de passe :</label>
-                <input type="password" name="first_password">
-            </div>
-            <div>
-                <label for="">Vérifiez votre mot de passe :</label>
-                <input type="password" name="check_password">
-            </div>
-            <div>
-                <label for="location">Votre site :</label>
-                <div class="select">
-                    <select name="location" id="sites">
-                        <option value="">Veuillez choisir votre site</option>
-                        <?php 
-    
-                        $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
-    
-                        for($i=0; $i<count($sites); $i++){
-                            echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
-                        }
-                        ?>
-                    </select>
-                    <i class="fas fa-sort-down"></i>
-                </div>
-            </div>
-            <input type="submit" value="S'inscrire">
-        </form>
-
+        <?php echo do_shortcode('[ps_registration_form]'); ?>
     </div>
 </section>
 <script src="https://kit.fontawesome.com/06909fb3de.js"></script>
