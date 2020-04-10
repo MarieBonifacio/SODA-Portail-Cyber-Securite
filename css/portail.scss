@@ -1074,13 +1074,12 @@ body
               max-height: 80%;
             }
           }
-         
           .content
           {
             position: relative;
             width: 50%;
             height: 90%;
-            @include flex('', center, column);
+            @include flex(flex-start, center, column);
             overflow-y: scroll;
             p
             {
