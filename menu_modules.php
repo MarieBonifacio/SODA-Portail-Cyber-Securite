@@ -2,13 +2,9 @@
 
 header('content-type:application/json');
 
-require('app/class/answer.class.php');
-require('app/class/question.class.php');
-require('app/class/quiz.class.php');
-require('app/class/quiz_score.class.php');
 require('app/class/tag.class.php');
-require('app/class/user.class.php');
 require('app/class/module.class.php');
+require('app/class/module_slide.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -22,17 +18,16 @@ $moduleArray = [];
             $moduleTmp->selectById($m->id);
             
             $module = array(
-                "id" => $articleTmp->getId(),
-                "title" => $articleTmp->getTitle(),
-                "content" => $articleTmp->getContent(),
-                "tag_id" => $articleTmp->getTag()->getId(),
-                "tag_name" => $articleTmp->getTag()->getName(),
-                "img" => $articleTmp->getImgPath(),
-                "author_id" => $articleTmp->getAuthor()->getId(),
-                "author_name" => $articleTmp->getAuthor()->getName()
+                "id" => $moduleTmp->getId(),
+                "title" => $moduleTmp->getTitle(),
+                "content" => $moduleTmp->getContent(),
+                "tag_id" => $moduleTmp->getTag()->getId(),
+                "tag_name" => $moduleTmp->getTag()->getName(),
+                "img" => $moduleTmp->getImgPath(),
+                "author_id" => $moduleTmp->getAuthor(),
+                "author_name" => get_user_meta($moduleTmp->getAuthor(), 'first_name', true) . ' ' . get_user_meta($moduleTmp->getAuthor(), 'last_name', true),
             );
  $moduleArray[] = $module;
 }
-
 echo json_encode($moduleArray);
 ?>

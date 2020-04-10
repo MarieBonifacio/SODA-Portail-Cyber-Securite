@@ -15,7 +15,8 @@ class Module {
 
 
     public function selectById($id){
-        $r = $wpdb->get_row("SELECT * FROM 'module' where id=".$id."");
+        global $wpdb;
+        $r = $wpdb->get_row("SELECT * FROM module where id='".$id."'");
         $this->id = $r->id;
         $this->title = $r->title;
         $this->content = $r->content;
@@ -23,9 +24,7 @@ class Module {
         $tagId->selectById($r->tag_id);
         $this->tag = $tagId;
         $this->img_path = $r->img_path;
-        $author = new User();
-        $author->selectById($r->author_id);
-        $this->author = $author;
+        $this->author = $r->author_id;
         $this->created_at = $r->created_at;
     }
 
