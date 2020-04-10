@@ -38,7 +38,7 @@ class Module {
         return $this->title;
     }
     public function setTitle($title){
-        $this->name = $title;
+        $this->title = $title;
     }
 
     public function getContent(){
@@ -60,14 +60,14 @@ class Module {
         return $this->imgPath;
     }
     public function setImgPath($imgPath){
-        $this->imgPath = $imgPath;
+        $this->img_path = $imgPath;
     }
 
     public function getAuthor(){
         return $this->author;
     }
      //Set author with instance of author
-     public function setAuthor(User $author){
+     public function setAuthor(int $author){
         $this->author = $author;
     }
 
@@ -87,19 +87,20 @@ class Module {
 
 
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
-            $wpdb->insert(
+            $r = $wpdb->insert(
                 'module', array(
                     "title" => $this->title,
-                    "content" => $this->content,
+                    "content" => '123',
                     "tag_id" => $this->tag->getId(),
-                    "img_path" => $this->imgPath,
-                    "author_id" => $this->author->getId(),
+                    "img_path" => $this->img_path,
+                    "author_id" => $this->author,
                     "created_at" => $this->created_at
                     )
                 );
+            return $r;
         }else{
             global $wpdb;
             $wpdb->update(
@@ -108,13 +109,15 @@ class Module {
                     "content" => $this->content,
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->imgPath,
-                    "author_id" => $this->author->getId(),
+                    "author_id" => $this->author,
                     "created_at" => $this->created_at,
                 ), array(
                     "id"  => $this->id,
                 )
             );
+            return $r;
         }
+        return 'fail';
     }
 
     public static function delete(){

@@ -32,7 +32,7 @@ class ModuleSlide {
         return $this->moduleId;
     }
     public function setModuleId($moduleId){
-        $this->moduleId = $moduleId;
+        $this->module_id = $moduleId;
     }
 
     public function getTitle(){
@@ -66,7 +66,7 @@ class ModuleSlide {
 
 
     public function save(){
-        if ($this->id != null){
+        if ($this->id == null){
             global $wpdb;
             $wpdb->insert('module_slide', array(
             "module_id" => $this->module_id,

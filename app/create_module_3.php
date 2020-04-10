@@ -13,23 +13,22 @@ if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
 }
-
 //recuperation module
 $newModule = new Module();
 $newModule->setTitle($_SESSION['moduleData']['module']['title']);
 
-
 $tag = new Tag();
 $tag->selectByName($_SESSION['moduleData']['module']['theme']);
 $newModule->setTag($tag);
-$newModule->setAuthorById($_SESSION['userConnected']);
+$newModule->setAuthor($_SESSION['userConnected']);
 $newModule->setImgPath($_SESSION['moduleData']['module']['img']);
-$newModule->save();
+$t = $newModule->save();
 $newModuleId = $wpdb->insert_id;
 
 
+
 //recupération slides
-foreach($_SESSION['moduleData']['pages'][$i] as $m)
+foreach($_SESSION['moduleData']['pages'] as $m)
 {
     $newSlide = new ModuleSlide();
     $newSlide->setModuleId($newModuleId);
