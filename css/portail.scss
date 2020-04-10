@@ -926,6 +926,11 @@ body
       width: 100%;
       @include flex(space-around, center, column);
       @include positionTL(absolute, 10%, 0);
+      .img
+      {
+        position: relative;
+        max-width: 50%;
+      }
       h3
       {
         font-weight: 200;
