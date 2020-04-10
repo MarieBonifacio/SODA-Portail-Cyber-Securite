@@ -1,11 +1,28 @@
 <?php
+global $wpdb;
+$path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
+include($path.'wp-load.php');
+
 
 class ModuleSlide {
     private $id;
-    private $moduleId;
+    private $module_id;
     private $title;
+    private $img_path;
     private $content;
     private $order;
+
+
+    public function selectById($id){
+        $r = $wpdb->get_row("SELECT * FROM 'module_slide' where id=".$id."");
+        $this->id = $r->id;
+        $moduleId = new Module();
+        $moduleId = selectById($r->module_id);
+        $this->module_id = $moduleId;
+        $this->title = $r->title;
+        $this->content = $r->content;
+        $this->img_path = $r->img_path;
+    }
 
     public function getId(){
         return $this->id;
@@ -23,6 +40,13 @@ class ModuleSlide {
     }
     public function setTitle($title){
         $this->title = $title;
+    }
+
+    public function getImgPath(){
+        return $this->img_path;
+    }
+    public function setImgPath($img_path){
+        $this->img_path = $img_path;
     }
 
     public function getContent(){
@@ -45,24 +69,25 @@ class ModuleSlide {
         if ($this->id != null){
             global $wpdb;
             $wpdb->insert('module_slide', array(
-            "id"  => $this->id,
-            "moduleId" => $this->moduleId;
-            "title" => $this->title;
-            "content" => $this->content;
-            "order" => $this->order;
+            "module_id" => $this->module_id,
+            "title" => $this->title,
+            "img_path" => $this->img_path,
+            "content" => $this->content,
+            "order" => $this->order,
             ));
         }else{
             global $wpdb;
             $wpdb->update('module_slide', array(
+                "module_id" => $this->module_id,
+                "title" => $this->title,
+                "content" => $this->content,
+                "order" => $this->order,
+            ), array(
                 "id"  => $this->id,
-                "moduleId" => $this->moduleId;
-                "title" => $this->title;
-                "content" => $this->content;
-                "order" => $this->order;
-            ));
-            
-        }
+            )
+        );    
     }
+}
 
     public static function delete(){
         global $wpdb;

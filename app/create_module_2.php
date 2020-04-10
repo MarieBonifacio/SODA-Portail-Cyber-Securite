@@ -2,6 +2,9 @@
 define('WP_USE_THEMES', false);
 require('class/user.class.php');
 require('class/module.class.php');
+require('class/module_slide.class.php');
+require('class/tag.class.php');
+
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -17,9 +20,12 @@ if(!empty($_SESSION['moduleData'])){
 if($nbrPage >= 1){
     for( $i = 1; $i <= $nbrPage; $i++) 
     {
-        if(!empty($_POST['content_'.$i]))
+        $page = array();
+        if(!empty($_POST['content_'.$i]) && !empty($_POST['content_'.$i.'_title']))
         {
-            $page['info'] =  $_POST['content_'.$i];
+            $page['info']['content'] =  $_POST['content_'.$i];
+            $page['info']['title'] = $_POST['content_'.$i.'_title'];
+            $page['info']['order'] =  $i;
 
             if($_FILES['content_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['content_'.$i.'_img']))
             {
@@ -61,7 +67,7 @@ if($nbrPage >= 1){
             $_SESSION['moduleData']['pages'][$i] = $page;
             
         }else{
-            $_SESSION['errorModule'] = "Veuillez remplir le champ.";
+            $_SESSION['errorModule'] = "Veuillez remplir tous les champs.";
         }
     }
 }

@@ -2,6 +2,8 @@
 define('WP_USE_THEMES', false);
 require('class/user.class.php');
 require('class/module.class.php');
+require('class/module_slide.class.php');
+require('class/tag.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -10,8 +12,6 @@ include($path.'wp-load.php');
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
-    $userConnected = new User();
-    $userConnected->selectById($id);
 }
 
 //recuperation module
@@ -28,33 +28,20 @@ $newModule->save();
 $newModuleId = $wpdb->insert_id;
 
 
-//recupération questions/réponses
-foreach($_SESSION['moduleData']['pages'] as $m)
+//recupération slides
+foreach($_SESSION['moduleData']['pages'][$i] as $m)
 {
-    $newQuestion = new ModuleSlide();
-    $newQuestion->setIdQuiz($newQuizId);
-    $newQuestion->setContent($q['info']['text']);
-    $points = 100/sizeof($_SESSION['quizData']['questions']);
-    $newQuestion->setImgPath($q['info']['img']);
-    $newQuestion->setUrl($q['info']['video']);
-    $newQuestion->setPoints($points);
-    $newQuestion->save();
-    $newQuestionId = $wpdb->insert_id;
-   
-    foreach($q['answers'] as $a)
-    {
-        $newAnswer = new Answer();
-        $newAnswer->setIdQuestion($newQuestionId);
-        $newAnswer->setContent($a['text']);
-        $newAnswer->setIsTrue($a['isTrue']);
-        $newAnswer->save();
-        
-    }
+    $newSlide = new ModuleSlide();
+    $newSlide->setModuleId($newModuleId);
+    $newSlide->setContent($m['info']['content']);
+    $newSlide->setTitle($m['info']['title']);
+    $newSlide->setOrder($m['info']['order']);
+    $newSlide->setImgPath($m['info']['img']);
+    $newSlide->save();
+    $newSlideId = $wpdb->insert_id;
 
 }
 
 wp_redirect( home_url().'/menu-module' );
-
-?>
 
 ?>
