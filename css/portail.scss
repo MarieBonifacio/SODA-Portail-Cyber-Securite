@@ -1505,11 +1505,6 @@ body
       opacity: 1;
       z-index: 2;
     }
-    .quiz-container{
-      position: relative;
-      height: 200px;
-      margin-top: 40px;
-    }
     #results
     {
       width: 100%;
@@ -1593,34 +1588,47 @@ body
     background: $color2;
     @include positionTL(fixed, 0, 0);
     @include flex(center, center, "");
+    .btns
+    {
+      @include positionBL(absolute, 10%, 50%);
+      transform: translateX(-50%);
+      button
+      {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        background: $color-btn;
+        color: $color1;
+        font-family: "Muli";
+        font-size: $fontSize2;
+        font-weight: 600;
+        transition: .2s;
+        outline: none;
+      }
+      button:hover
+      {
+        background: $police;
+      }
+    }
     .module
     {
       position: relative;
       width: 95%;
       height: 95%;
-      background: red;
       @include flex(space-evenly, center, column);
-      .btns
-      {
-        @include positionBL(absolute, 10%, 50%);
-        transform: translateX(-50%);
-        button
-        {
-          padding: 10px 15px;
-          border-radius: 5px;
-          border: none;
-          background: $color-btn;
-          color: $color1;
-          font-family: "Muli";
-          font-size: $fontSize2;
-          font-weight: 600;
-          transition: .2s;
-          outline: none;
-        }
-        button:hover
-        {
-          background: $police;
-        }
+      .slide{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.5s;
+        color: $police;
+      }
+      .active-slide{
+        opacity: 1;
+        z-index: 2;
       }
     }
     .progress

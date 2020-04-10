@@ -128,8 +128,6 @@ if(this.readyState == 4 && this.status == 200)
               }
             }
             let percent = (currentSlide + 1 / myQuestions.length) * 100;
-            // console.log(myQuestions);
-            // console.log(tableLostQuestions);
 
             function progressBar()
             {
