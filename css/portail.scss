@@ -1038,6 +1038,76 @@ body
             }
           }
         }
+        .pages
+        {
+          position: relative;
+          width: 800px;
+          height: 500px;
+          background: $color3;
+          border-radius: 5px;
+          padding: 5px 5px;
+          margin-bottom: 45px;
+          overflow-y: hidden;
+          @include flex(space-evenly, center, row);
+          span
+          {
+            font-size: $fontSize3;
+            font-weight: 600;
+            color: $color-imp;
+            @include positionTL(absolute, 10px, 10px);
+          }
+          .medias
+          {
+            position: relative;
+            width: 40%;
+            height: 100%;
+            @include flex(space-around, center, row);
+            img
+            {
+              position: relative;
+              width:auto;
+              max-height: 80%;
+            }
+          }
+         
+          .content
+          {
+            position: relative;
+            width: 50%;
+            height: 90%;
+            @include flex('', center, column);
+            overflow-y: scroll;
+            p
+            {
+              padding: 30px;
+            }
+          }
+          .contentFull
+          {
+            width: 100%;
+          }
+          .content::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+          }
+          .content::-webkit-scrollbar-thumb {
+            background: $color-btn;
+            border-radius: 100px;
+          }
+          .content::-webkit-scrollbar-thumb:hover {
+            background: $color-btn;
+          }
+          .content::-webkit-scrollbar-thumb:active {
+            background: $color-btn;
+          }
+          .content::-webkit-scrollbar-track {
+            background: $color2;
+            border-radius: 50px;
+          }
+          .content::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+        }
       }
     }
     .svg_step1

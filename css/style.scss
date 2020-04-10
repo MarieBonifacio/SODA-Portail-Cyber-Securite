@@ -8,7 +8,7 @@ body
     padding: 0;
     margin: 0;
     font-family: "Muli", sans-serif;
-    overflow: hidden;
+    // overflow: hidden;
     a *
     {
         font-family: 'Montserrat', sans-serif;
@@ -376,7 +376,7 @@ body
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            // justify-content: center;
             width: 60%;
             height: 100%;
             h2
@@ -386,6 +386,22 @@ body
                 font-size: 30px;
                 font-family: "Montserrat", sans-serif;
             }
+            .mess
+            {
+                margin: 0;
+                padding: 0;
+                font-weight: 600;
+                font-size: 14px;
+                text-align: center;
+            }
+            .error
+            {
+                color: red;
+            }
+            .good
+            {
+                color: #3AD29F;
+            }
             form
             {
                 position: relative;
@@ -394,24 +410,6 @@ body
                 align-items: center;
                 flex-direction: column;
                 width: 60%;
-                .mess
-                {
-                    position: absolute;
-                    top: -45px;
-                    margin: 0;
-                    padding: 0;
-                    font-weight: 600;
-                    font-size: 14px;
-                    text-align: center;
-                }
-                .error
-                {
-                    color: red;
-                }
-                .good
-                {
-                    color: #3AD29F;
-                }
                 div
                 {
                     position: relative;
