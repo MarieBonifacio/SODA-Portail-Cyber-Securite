@@ -30,7 +30,7 @@
           {
             echo ' 
             <div class="medias">
-              <img src="'.$img.'/img/modules/'.$_SESSION['moduleData']['module']['title'].'/questions/tonimage" alt="votre image">
+            <img src="'.$img.'/img/modules/'.$_SESSION['moduleData']['module']['title'].'/pages/'.$q['info']['img'].'" alt="votre image">
             </div>
             <span class="numP">'.$num.'</span>
             <div class="content">

@@ -31,7 +31,7 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
           {
             echo ' 
             <div class="medias">
-              <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/questions/tonimage" alt="votre image">
+            <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/pages/'.$q['info']['img'].'" alt="votre image">
             </div>
             ';
           }
