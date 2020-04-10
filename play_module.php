@@ -12,8 +12,8 @@ $module = new Module();
 $module->selectById($_GET['id']);
 
 $moduleId = $module->getId();
-$pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$moduleId' ORDER BY order");
-
+$pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$moduleId' ORDER BY 'order' DESC");
+print_r($moduleId);
     $module = array(
         'id' => $module->getId(),
         'title' => $module->getTitle(),
