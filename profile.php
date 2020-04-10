@@ -3,12 +3,9 @@
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
-    $userConnected = new User();
-    $userConnected->selectById($id);
 }
 ?>
   <h2 class="h2">Mon profil</h2>
-  <pre><?php print_r(wp_get_current_user());?></pre>
   <div class="profile">
     <?php
       if(!empty($_SESSION["errorRegister"])){
@@ -23,7 +20,7 @@ if(!empty($_SESSION['userConnected']))
     <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post" enctype="multipart/form-data">
         <div class="picture">
           <div class="img">
-          <img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil"> 
+          <img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil"> 
           </div>
           <button type="button" disabled>
             <i class="fas fa-pencil-alt" id="custom-button"></i>
@@ -38,15 +35,15 @@ if(!empty($_SESSION['userConnected']))
         </div>
         <div>
             <label for="first_name">Prénom :</label>            
-            <input type="text" name="first_name" value="<?php get_user_meta(get_current_user_id() , 'first_name', true);?>">
+            <input type="text" name="first_name" value="<?php echo get_user_meta(get_current_user_id() , 'first_name', true);?>">
         </div>
         <div>
             <label for="id_user">Identifiant :</label>  
-            <input type="text" name="id_user" value="<?php get_user_meta(get_current_user_id() , 'id_alc', true);?>">
+            <input type="text" name="id_user" value="<?php echo get_user_meta(get_current_user_id() , 'id_alc', true);?>">
         </div>
         <div>
             <label for="firs-mail">Adresse mail :</label>
-            <input type="mail" name="first_mail"  value="<?php echo get_current_user()->user_email;?>">
+            <input type="mail" name="first_mail"  value="<?php echo $current_user->user_email;?>">
         </div>
         <div>
             <label for="location">Votre site :</label>

@@ -61,7 +61,7 @@ if(!empty($_SESSION['userConnected']))
 				</div>
 				<div class="profile_pic">
 					<a href="<?php echo home_url()."/profil" ?>" class="circle">
-						<img src="<?php echo get_template_directory_uri()."/img/avatar/".$userConnected->getImgPath(); ?>" alt="votre photo de profil"> 
+						<img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil"> 
 						<!-- <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="photo de votre profil"> -->
 					</a>
 				</div>

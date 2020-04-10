@@ -1,7 +1,6 @@
 <?php
 define('WP_USE_THEMES', false);
 global $wpdb;
-require('class/user.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
@@ -19,9 +18,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     $location = $_POST['location'];
     
     $id = $_SESSION['userConnected'];
-    
-    $newUser = new User();  
-    $newUser->selectById($id);
 
     $error = '';
     if($_FILES['avatar']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['avatar']))
@@ -53,7 +49,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
 
         $imgPath = $name_file;
-        $newUser->setImgPath($imgPath);
+        update_user_meta($user, 'avatar', $imgPath);
+        
     } 
     if( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail))
     {
@@ -66,12 +63,16 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     
     if($error == "")
     {
-        $newUser->setName($name);
-        $newUser->setLastName($lastName);
-        $newUser->setIdUser($idUser);
-        $newUser->setMail($mail);
-        $newUser->setLocation($location);
-        $newUser->save();
+        update_user_meta($user, 'id_alc', $idUser);
+        update_user_meta($user, 'location', $location);
+        $userdata = array(
+            'ID' => $_SESSION['userConnected'],
+            'first_name' =>   $name,
+            'last_name' =>   $lastName,
+            'user_login' =>   esc_attr($mail),
+            'user_email' =>   esc_attr($mail),
+           );
+           $user = wp_update_user( $userdata );
         
         $updateOk = "Modifications validées.";
     }
