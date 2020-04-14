@@ -1,5 +1,4 @@
 <?php
-require('app/class/user.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
@@ -7,8 +6,6 @@ include($path.'wp-load.php');
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
-    $userConnected = new User();
-    $userConnected->selectById($id);
 }else{
 	wp_redirect( home_url() );
 }

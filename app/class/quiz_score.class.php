@@ -14,8 +14,7 @@ class Quiz_score {
         global $wpdb;
         $r = $wpdb->get_row("SELECT * FROM 'quiz_score' where id=".$id."");
         $this->id = $r->id;
-        $user = new User();
-        $user->selectById($r->user_id);
+        $this->user = $r->user_id;
         $this->user = $user;
         $quiz = new Quiz();
         $quiz->selectById($r->quiz_id);
@@ -35,13 +34,6 @@ class Quiz_score {
     public function setUserId($user){
         $this->user = $user;
     }
-
-    //Set user_id with id of user
-    public function setUserIdById(int $UserId){
-        $this->user = new User();
-        $this->user->selectById($UserId);
-    }
-
 
     public function getQuiz(){
         return $this->quiz;
@@ -91,7 +83,7 @@ class Quiz_score {
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'quiz_score', array(
-                    "user_id" => $this->user->getId(),
+                    "user_id" => $this->user,
                     "quiz_id" => $this->quiz->getId(),
                     "score" => $this->score,
                     "time" => $this->time,
@@ -101,7 +93,7 @@ class Quiz_score {
             global $wpdb;
             $wpdb->update(
                 'quiz_score', array(
-                    "user_id" => $this->user->getId(),
+                    "user_id" => $this->user,
                     "quiz_id" => $this->quiz->getId(),
                     "score" => $this->score,
                     "time" => $this->time,

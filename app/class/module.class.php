@@ -72,8 +72,7 @@ class Module {
 
     //Set author with id of author
     public function setAuthorById(int $authorId){
-        $this->author = new User();
-        $this->author->selectById($authorId);
+        $this->author = $authorId;
     }
 
 

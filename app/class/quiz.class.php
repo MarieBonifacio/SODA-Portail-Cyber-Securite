@@ -21,9 +21,7 @@ class Quiz {
         $tagId->selectById($r->tag_id);
         $this->tag = $tagId;
         $this->img_path = $r->img_path;
-        $author = new User();
-        $author->selectById($r->author_id);
-        $this->author = $author;
+        $this->author = $r->author_id;
         $this->created_at = $r->created_at;
         return $r;
     }
@@ -64,8 +62,7 @@ class Quiz {
 
     //Set author with id of author
     public function setAuthorById(int $authorId){
-        $this->author = new User();
-        $this->author->selectById($authorId);
+        $this->author = $authorId;
     }
 
     public function getCreatedAt(){
@@ -84,7 +81,7 @@ class Quiz {
                     "name" => $this->name,
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
-                    "author_id" => $this->author->getId(),
+                    "author_id" => $this->author,
                     "created_at" => $this->created_at
                 )
             );

@@ -33,12 +33,12 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
     }
 
     $userId = $_SESSION['userConnected'];
-    $query = $wpdb->get_results("SELECT slide_id FROM module_progress WHERE id_user= '$userId' AND module_id = '$moduleId'");
+    $query = $wpdb->get_results("SELECT slide_id FROM module_progress WHERE user_id= '$userId' AND module_id = '$moduleId'");
     $previous = array();
     foreach($query as $q)
     {
         $previous[] = array(
-            "id_module" => $q->module_id,
+            "id_module" => $moduleId,
             "id_slide" => $q->slide_id
         );
     }
