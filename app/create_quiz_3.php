@@ -6,7 +6,6 @@ require('class/question.class.php');
 require('class/quiz.class.php');
 require('class/quiz_score.class.php');
 require('class/tag.class.php');
-require('class/user.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -17,8 +16,6 @@ include($path.'wp-load.php');
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
-    $userConnected = new User();
-    $userConnected->selectById($id);
 }
 
 //recuperation quiz
@@ -29,7 +26,7 @@ $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 $tag = new Tag();
 $tag->selectByName($_SESSION['quizData']['quiz']['theme']);
 $newQuiz->setTag($tag);
-$newQuiz->setAuthorById($_SESSION['userConnected']);
+$newQuiz->setAuthorById($id);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
 $newQuizId = $wpdb->insert_id;

@@ -23,6 +23,7 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
     foreach($pages as $p){
         $page = array(  
             "id" => $p->id,
+            "title" => $p->title,
             "module_id" => $p->module_id,
             "content" => $p->content,
             "img_path" => $p->img_path,
