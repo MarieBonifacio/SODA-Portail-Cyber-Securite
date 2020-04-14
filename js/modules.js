@@ -4,6 +4,7 @@ xmlhttp.onreadystatechange = function () {
 if(this.readyState == 4 && this.status == 200)
 {
   var myArray = JSON.parse(this.responseText);
+  console.log(myArray);
   const grid = document.querySelector(".grid");
   for (let i = 0; i < myArray.length; i++) {
     
@@ -21,12 +22,24 @@ if(this.readyState == 4 && this.status == 200)
       moduleContent += `0`;
     }
 
-    moduleContent +=` %</span>
-    <div class="imgQ">
-      <img src="${ url + '/img/myAvatar.png'}" alt="photo du module"/>
-      <div class="filter"></div>
+    if(myArray[i].img === null)
+    {
+      moduleContent +=` pts</span>
+      <div class="imgQ">
+        <img src="${ url + `/img/imgModuleDefault.jpg}`}" alt="photo du module"/>
+        <div class="filter"></div>
       </div>
-  `;
+    `;
+    }
+    else
+    {
+      moduleContent +=` pts</span>
+      <div class="imgQ">
+        <img src="${ url + `/img/modules/${myArray[i].name}/${myArray[i].img}`}" alt="photo du module"/>
+        <div class="filter"></div>
+      </div>
+    `;
+    }
     if( myArray[i].user_score == null){
       moduleContent += `<p class="btnModule" data-id="${myArray[i].id}">Commencez</p>`;
     }
@@ -56,8 +69,8 @@ if(this.readyState == 4 && this.status == 200)
           <div class="module" id="module">
           </div>
           <div class="btns"> 
-            <button id="next">Prochaine page</button>
             <button id="previous">Précédente page</button>
+            <button id="next">Prochaine page</button>
             <button id="submit">Terminer le module</button>
           </div>
           <div class="progress">
@@ -82,7 +95,7 @@ if(this.readyState == 4 && this.status == 200)
             {
               for (let f = 0; f < myPages.length; f++) 
               {
-                if(myPages[f].id == previous[i].id_page)
+                if(myPages[f].id == previous[i].id_slide)
                 {
                   var idCurrentPage = myPages.indexOf(myPages[f]);
                   if(idCurrentPage > -1)
@@ -94,6 +107,8 @@ if(this.readyState == 4 && this.status == 200)
               }
             }
           }
+          console.log(tableLostPages);
+          console.log(myPages);
           console.log(previous);
           let percent = (currentSlide + 1 / myPages.length) * 100;
 
@@ -118,7 +133,7 @@ if(this.readyState == 4 && this.status == 200)
                   
                   numPage += 1;
                   // add this page and its content to the output
-                  if(myPages.img_path)
+                  if(currentPage.img_path === "")
                   {
                     output.push(
                       `<div class="slide">
@@ -126,8 +141,8 @@ if(this.readyState == 4 && this.status == 200)
                           ${numPage}
                         </span>
                         <div class="content">
-                          <div class="media">
-                            <img src="${ url + '/img/myAvatar.png'}" alt="photo de la page"/>
+                          <div class="medias">
+                            <img src="${ url + `/img/modules/${myModule.name}/pages/${currentPage.img_path}`}" alt="photo de la page"/>
                           </div>
                           <div class="para">
                             <h3>${currentPage.title}</h3>
@@ -148,6 +163,7 @@ if(this.readyState == 4 && this.status == 200)
                           <div class="para paraFull">
                             <h3>${currentPage.title}</h3>
                             <p>${currentPage.content}</p>
+                            <div class="shadow"></div>
                           </div>
                         </div>
                       </div>`
@@ -197,6 +213,7 @@ if(this.readyState == 4 && this.status == 200)
             var obj = { 
               "slide_id": id_page,
               "module_id" : myModule.id,
+              "module_prog" : actualpercent
             };
             
 

@@ -5,30 +5,41 @@ if(this.readyState == 4 && this.status == 200)
 {
   var myArray = JSON.parse(this.responseText);
   const grid = document.querySelector(".grid");
-  for($i = 0; $i<myArray.length; $i ++)
+  for(i = 0; i<myArray.length; i ++)
   {
     const gridElement = document.createElement("div");
-    gridElement.classList.add(`element-item` , `${myArray[$i].tag_name}`);
-    gridElement.setAttribute('category', `${myArray[$i].tag_name}`);
+    gridElement.classList.add(`element-item` , `${myArray[i].tag_name}`);
+    gridElement.setAttribute('category', `${myArray[i].tag_name}`);
     //---------------------------------------------------------
     let quizContent = `
-    <span class="tag">${myArray[$i].tag_name}</span>
-    <h3>${myArray[$i].name}</h3>
+    <span class="tag">${myArray[i].tag_name}</span>
+    <h3>${myArray[i].name}</h3>
     <span class="score">`;
-    if( myArray[$i].user_score != null){
-      quizContent += ``+myArray[$i].user_score+``;
+    if( myArray[i].user_score != null){
+      quizContent += ``+myArray[i].user_score+``;
     }else{
       quizContent += `0`;
     }
-
-    quizContent +=` pts</span>
-    <div class="imgQ">
-      <img src="${ url + '/img/myAvatar.png'}" alt="photo du quiz"/>
-      <div class="filter"></div>
-      </div>
-  `;
-  if( myArray[$i].user_score == null){
-    quizContent += `<p class="btnQuiz" data-id="${myArray[$i].id}">Jouer</p>`;
+    if(myArray[i].img === null)
+    {
+      quizContent +=` pts</span>
+      <div class="imgQ">
+        <img src="${ url + `/img/imgQuizDefault.jpg}`}" alt="photo du quiz"/>
+        <div class="filter"></div>
+        </div>
+    `;
+    }
+    else
+    {
+      quizContent +=` pts</span>
+      <div class="imgQ">
+        <img src="${ url + `/img/quizs/${myArray[i].name}/${myArray[i].img}`}" alt="photo du quiz"/>
+        <div class="filter"></div>
+        </div>
+    `;
+    }
+  if( myArray[i].user_score == null){
+    quizContent += `<p class="btnQuiz" data-id="${myArray[i].id}">Jouer</p>`;
   }
   //-----------------------------------------------------------------------------
   gridElement.innerHTML = quizContent;
@@ -64,9 +75,10 @@ if(this.readyState == 4 && this.status == 200)
           </div>
           `;
           
-            let currentSlide = 0;
-            let myQuestions = myQuizz.questions;
-            let actualpercent = 0;
+          let currentSlide = 0;
+          let myQuestions = myQuizz.questions;
+          let actualpercent = 0;
+          console.log(myQuestions);
             const quizContainer = document.getElementById('quiz');
             const resultsContainer = document.getElementById('results');
             const submitButton = document.getElementById('submit');
@@ -164,17 +176,32 @@ if(this.readyState == 4 && this.status == 200)
                     answers.push(
                       `<label>
                         <input id="${currentAnswers[i].id}" class="input${myQuestions.indexOf(currentQuestion)}${[i]}" type="radio" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
-                        <p class="answer">${letters[i]}. ${currentAnswers[i].content}</p>
+                        <p class="answer"><span>${letters[i]}.</span> ${currentAnswers[i].content}</p>
                       </label>`
                     );
                   }
                   // add this question and its answers to the output
-                  output.push(
-                    `<div class="slide">
-                      <div class="question">${numQuestion}. ${currentQuestion.content} </div>
-                      <div class="answers">${answers.join('')}</div>
-                    </div>`
-                  );
+                  if(currentQuestion.img_path === "")
+                  {
+                    output.push(
+                      `<div class="slide">
+                        <div class="question">${numQuestion}. ${currentQuestion.content} </div>
+                        <div class="answers">${answers.join('')}</div>
+                      </div>`
+                    );
+                  }
+                  else
+                  {
+                    output.push(
+                      `<div class="slide">
+                        <div class="img">
+                          <img src="${ url + `/img/quizs/${myQuizz.name}/questions/${currentQuestion.img_path}`}" alt="photo de la question"/>
+                        </div>
+                        <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
+                        <div class="answers">${answers.join('')}</div>
+                      </div>`
+                    );
+                  }
                 }
               );
               // finally combine our output list into one string of HTML and put it on the page
@@ -250,7 +277,7 @@ if(this.readyState == 4 && this.status == 200)
                   p.classList.add(`questionRecap`);
                   question.appendChild(p);
                   numQuestion = i+1;
-                  p.innerHTML =`${numQuestion}. ${myQuestions[i].content}`;
+                  p.innerHTML =`<span>${numQuestion}.</span> ${myQuestions[i].content}`;
                   const divAnswer = document.createElement("div");
                   divAnswer.classList.add(`answerRecap${[i]}`, "answerRecap");
                   question.appendChild(divAnswer);
@@ -262,7 +289,7 @@ if(this.readyState == 4 && this.status == 200)
                     const pAnswerDiv = document.createElement("div");
                     pAnswerDiv.classList.add(`answerTF${[f]}${[i]}`, 'answerTF');
                     answerRecap.appendChild(pAnswerDiv);
-                    pAnswerDiv.innerHTML = `${letters[f]}: ${myQuestions[i].answers[f].content}`;
+                    pAnswerDiv.innerHTML = `<span>${letters[f]}:</span> ${myQuestions[i].answers[f].content}`;
                     const pAnswer = document.querySelector(`.answerTF${[f]}${[i]}`);
                     if(myQuestions[i].answers[f].is_true == "true")
                     {
@@ -419,6 +446,10 @@ if(this.readyState == 4 && this.status == 200)
       $( this ).addClass('is-checked');
     });
   });
+}
+else
+{
+  console.log('pas ok')
 }
 };
 

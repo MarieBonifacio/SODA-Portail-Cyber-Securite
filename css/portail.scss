@@ -1367,18 +1367,17 @@ body
     @include flex(center, center, column);
     .quiz
     {
-      // position: absolute;
-      width: 80%;
-      height: 80%;
-      // top: 20%;
+      @include positionTL(relative, 0 ,0);
+      width: 100%;
+      height: 100%;
       @include flex(space-between, center, column);
       z-index: inherit;
     }
     .btns
     {
-      // position: absolute;
+      position: relative;
       width: 50%;
-      margin-bottom: 10%;
+      margin: 4%;
       @include flex(space-around, center, row);
       z-index: inherit;
       button
@@ -1400,7 +1399,7 @@ body
     }
     .progress
     {
-      @include positionBL(absolute, 5%, 50%);
+      @include positionBL(absolute, 2%, 50%);
       transform: translateX(-50%);
       width: 70%;
       height: 20px;
@@ -1411,7 +1410,6 @@ body
     {
       @include flex(center, center, "");
       @include positionBL(absolute, 0%, 0%);
-      // transform: translate(-50%);
       background: $color-imp;
       font-size: $fontSize2;
       color: $color1;
@@ -1432,40 +1430,64 @@ body
     }
     .slide{
       position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      top: 5%;
       width: 100%;
-      margin-top: -7%;
+      height: 100%;
       z-index: 1;
       opacity: 0;
       transition: opacity 0.5s;
       @include flex(center, center, column);
+      .img
+      {
+        position: relative;
+        height: 30%;
+        @include flex(center, center, "");
+        img
+        {
+          position: relative;
+          max-width: auto;
+          max-height: 100%;
+        }
+      }
       .question
       {
-        margin-bottom: 50px;
+        position: relative;
+        margin: 25px;
         font-size: $fontSize3;
+        width: 50%;
+        word-break: break-word;
+        text-align: center;
+        padding-left: 25px;
         font-weight: 600;
-        // @include flex(center, center, column);
+        span
+        {
+          position: absolute;
+          top: 0;
+          left: 0;
+          color: $color-imp;
+        }
       }
       .answers
       {
         position: relative;
-        width: 70%;
+        width: 50%;
         display:flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        background: $color3;
+        border-radius: 5px;
+        overflow-y: scroll;
+        padding: 15px;
         label
         {
           position: relative;
-          width: 50%;
-          margin: 5px 5px;
+          width: 80%;
+          margin: 15px;
         }
         input
         {
           outline: none;
-          // width: 60%;
         }
         input[type=radio]
         {
@@ -1477,14 +1499,21 @@ body
         p
         {
           position: relative;
-          text-align: left;
+          text-align: initial;
           word-wrap: break-word;  
           width: 100%;
-          background: $color-btn;
-          padding: 10px 10px;
-          color: $color1;
-          font-weight: 600;
+          padding-left: 25px;
+          color: $police;
           margin: 0;
+          font-size: $fontSize3;
+          span
+          {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-weight: 600;
+            color: $color-imp;
+          }
         }
         label:hover
         {
@@ -1492,13 +1521,33 @@ body
         }
         label:hover input ~ p
         {
-          background: $police;
+          color: $color-imp;
         }
         label input:checked ~ p        
         {
-          background: $color1;
           color: $color-imp;
         }
+      }
+      .answers::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      .answers::-webkit-scrollbar-thumb {
+        background: $color-btn;
+        border-radius: 100px;
+      }
+      .answers::-webkit-scrollbar-thumb:hover {
+        background: $color-btn;
+      }
+      .answers::-webkit-scrollbar-thumb:active {
+        background: $color-btn;
+      }
+      .answers::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 50px;
+      }
+      .answers::-webkit-scrollbar-corner {
+        background: transparent;
       }
     }
     .active-slide{
@@ -1544,20 +1593,44 @@ body
         overflow-y: scroll;
         .question
         {
+          position: relative;
           @include flex(center, center, column);
-          width: 100%;
+          width: 90%;
+          background: $color2;
+          border-radius: 5px;
+          margin-bottom: 15px;
+          padding: 15px;
           .questionRecap
           {
+            position: relative;
             width: 100%;
             text-align: center;
             font-weight: 600;
             padding-right: 30px;
             padding-left: 30px;
             word-wrap: break-word;
+            span
+            {
+              position: absolute;
+              left: 0;
+            }
           }
           .answerRecap
           {
+            position: relative;
             @include flex(center, center, column);
+            .answerTF
+            {
+              width: 100%;
+              text-align: initial;
+              word-break: break-word;
+              padding-left: 25px;
+              span
+              {
+                position: absolute;
+                left: 0;
+              }
+            }
           }
         }
       }
@@ -1610,6 +1683,7 @@ body
         font-weight: 600;
         transition: .2s;
         outline: none;
+        margin: 10px;
       }
       button:hover
       {
@@ -1629,7 +1703,6 @@ body
         transform: translate(-50%);
         width: 90%;
         height: 90%;
-        z-index: 10;
         opacity: 0;
         transition: opacity 0.5s;
         color: $police;
@@ -1644,12 +1717,12 @@ body
         .content
         {
           position: absolute;
-          width: 100%;
-          height: 100%;
+          width: 90%;
+          height: 90%;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          @include flex(center, center, row);
+          @include flex(space-evenly, center, row);
           .medias
           {
             position: relative;
@@ -1668,8 +1741,9 @@ body
             position: relative;
             width: 50%;
             height: 90%;
+            z-index: 100;
             @include flex(flex-start, center, column);
-            overflow-y: scroll;
+            border-bottom: 15px solid rgba(25, 34, 49, 0.4);
             h3
             {
               font-size: $fontSize3;
@@ -1678,32 +1752,41 @@ body
             {
               font-size: $fontSize2;
               padding: 30px;
+              overflow-y: scroll;
+            }
+            .shadow
+            {
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              height: 10%;
+              background: linear-gradient(0deg, rgba(25,34,49,1) 0%, rgba(25,34,49,0.7483368347338936) 25%, rgba(25,34,49,0.4990371148459384) 50%, rgba(25,34,49,0.24693627450980393) 75%, rgba(25,34,49,0) 100%);
+            }
+            p::-webkit-scrollbar {
+              width: 5px;
+              height: 5px;
+            }
+            p::-webkit-scrollbar-thumb {
+              background: $color-btn;
+              border-radius: 100px;
+            }
+            p::-webkit-scrollbar-thumb:hover {
+              background: $color-btn;
+            }
+            p::-webkit-scrollbar-thumb:active {
+              background: $color-btn;
+            }
+            p::-webkit-scrollbar-track {
+              background: $color2;
+              border-radius: 50px;
+            }
+            p::-webkit-scrollbar-corner {
+              background: transparent;
             }
           }
           .paraFull
           {
             width: 100%;
-          }
-          .para::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-          }
-          .para::-webkit-scrollbar-thumb {
-            background: $color-btn;
-            border-radius: 100px;
-          }
-          .para::-webkit-scrollbar-thumb:hover {
-            background: $color-btn;
-          }
-          .para::-webkit-scrollbar-thumb:active {
-            background: $color-btn;
-          }
-          .para::-webkit-scrollbar-track {
-            background: $color2;
-            border-radius: 50px;
-          }
-          .para::-webkit-scrollbar-corner {
-            background: transparent;
           }
         }
       }
