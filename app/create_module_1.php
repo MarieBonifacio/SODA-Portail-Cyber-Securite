@@ -18,7 +18,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     }else{
         $dir = $_POST['title'];
         mkdir("../img/modules/".$dir, 0700, true);
-        $content_dir =  get_template_directory()."../img/modules/".$dir."/";
+        $content_dir =  get_template_directory()."/img/modules/".$dir."/";
         $tmp_file = $_FILES['img_module']['tmp_name'];
 
         if(!is_uploaded_file($tmp_file))
