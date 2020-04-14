@@ -7,7 +7,6 @@ require('app/class/question.class.php');
 require('app/class/quiz.class.php');
 require('app/class/quiz_score.class.php');
 require('app/class/tag.class.php');
-require('app/class/user.class.php');
 require('app/class/article.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);

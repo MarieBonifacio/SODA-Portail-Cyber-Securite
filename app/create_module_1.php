@@ -1,6 +1,5 @@
 <?php
 define('WP_USE_THEMES', false);
-require('class/user.class.php');
 require('class/module.class.php');
 require('class/module_slide.class.php');
 require('class/tag.class.php');

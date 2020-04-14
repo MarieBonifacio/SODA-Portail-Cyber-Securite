@@ -4,7 +4,6 @@ require('app/class/question.class.php');
 require('app/class/quiz.class.php');
 require('app/class/quiz_score.class.php');
 require('app/class/tag.class.php');
-require('app/class/user.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -19,8 +18,7 @@ $response = json_decode($str_json, true); // decoding received JSON to array
 
 $newScore = new Quiz_score();
 
-$user = new User();
-$user->selectById($response['id_user']);
+$user->$_SESSION['userConnected'];
 $newScore->setUserId($user);
 
 $quiz = new Quiz();
