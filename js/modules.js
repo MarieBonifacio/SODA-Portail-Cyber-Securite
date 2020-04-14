@@ -1,4 +1,3 @@
-console.log("coucou bite");
 var url = myScript.theme_directory;
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -49,6 +48,7 @@ if(this.readyState == 4 && this.status == 200)
         {
           var myModule = JSON.parse(this.responseText);
           console.log(myModule);
+          var previous = myModule.previous;
           const divModule = document.createElement("div");
           divModule.classList.add("modulePlay");
           document.body.appendChild(divModule);
@@ -65,15 +65,15 @@ if(this.readyState == 4 && this.status == 200)
           </div>
           `;
 
-          let currentSlide = 0;
-          let myPages = myModule.slides,
+          let currentSlide = 0,
+          myPages = myModule.slides,
           actualpercent = 0;
+          console.log(myPages)
           const moduleContainer = document.getElementById('module'),
           submitButton = document.getElementById('submit'),
           btns = document.querySelector('.btns'),
           progress = document.querySelector('.progressDone'),
           percentage = document.querySelector('.percentage');
-          console.log(myPages);
 
           if(previous.length > 0)
           {
@@ -94,20 +94,19 @@ if(this.readyState == 4 && this.status == 200)
               }
             }
           }
+          console.log(previous);
           let percent = (currentSlide + 1 / myPages.length) * 100;
 
           function progressBar()
           {
-            actualpercent += parseFloat(percent);
             progress.dataset.done = Math.ceil(actualpercent);
             progress.style.width = progress.getAttribute('data-done')+ '%';
             progress.style.opacity = 1;
-            console.log(parseFloat(percent));
             percentage.innerHTML = `${Math.ceil(actualpercent)} %`;
           }
 
           function buildModule(){
-
+            actualpercent += parseFloat(percent);
             progressBar();
             // variable to store the HTML output
             const output = [];
@@ -126,11 +125,14 @@ if(this.readyState == 4 && this.status == 200)
                         <span>
                           ${numPage}
                         </span>
-                        <div class="media">
-                          <img src="${ url + '/img/myAvatar.png'}" alt="photo de la page"/>
-                        </div>
                         <div class="content">
-                          ${currentPage.content}
+                          <div class="media">
+                            <img src="${ url + '/img/myAvatar.png'}" alt="photo de la page"/>
+                          </div>
+                          <div class="para">
+                            <h3>${currentPage.title}</h3>
+                            <p>${currentPage.content}</p>
+                          </div>
                         </div>
                       </div>`
                     );
@@ -142,8 +144,11 @@ if(this.readyState == 4 && this.status == 200)
                         <span>
                           ${numPage}
                         </span>
-                        <div class="content contentFull">
-                          ${currentPage.content}
+                        <div class="content">
+                          <div class="para paraFull">
+                            <h3>${currentPage.title}</h3>
+                            <p>${currentPage.content}</p>
+                          </div>
                         </div>
                       </div>`
                     );
@@ -164,6 +169,12 @@ if(this.readyState == 4 && this.status == 200)
             slides[currentSlide].classList.remove('active-slide');
             slides[n].classList.add('active-slide');
             currentSlide = n;
+            if(currentSlide === 0){
+              previousButton.style.display = 'none';
+            }
+            else{
+              previousButton.style.display = 'inline-block';
+            }
             if(currentSlide === slides.length-1){
               nextButton.style.display = 'none';
               submitButton.style.display = 'inline-block';
@@ -183,9 +194,8 @@ if(this.readyState == 4 && this.status == 200)
             console.log(id_page);
             console.log(myModule.id);
 
-            console.log(currentSlide + 1);
             var obj = { 
-              "slide_id": id_page, 
+              "slide_id": id_page,
               "module_id" : myModule.id,
             };
             
@@ -194,16 +204,10 @@ if(this.readyState == 4 && this.status == 200)
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {
-                // console.log("ok");
-                // console.log(dbParam);
-                // console.log(this.responseText);
+                actualpercent += parseFloat(percent);
                 showSlide(currentSlide + 1);
-                // percent += percent;
                 progressBar();
-              }
-              else
-              {
-                // console.log("pas ok");
+                console.log(obj);
               }
             };
             xmlhttp.open("POST", url + "/module_user.php/", true);
@@ -213,6 +217,8 @@ if(this.readyState == 4 && this.status == 200)
 
           function showPreviousSlide() {
             showSlide(currentSlide - 1);
+            actualpercent -= parseFloat(percent);
+            progressBar();
           }
 
           nextButton.addEventListener("click", showNextSlide);

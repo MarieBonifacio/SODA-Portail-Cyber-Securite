@@ -211,32 +211,16 @@ if(this.readyState == 4 && this.status == 200)
                 const answerContainer = answerContainers[questionNumber];
                 const selector = `input[name=question${questionNumber}]:checked`;
                 let userAnswer = (answerContainer.querySelector(selector) || {}).value;
-                // let inputs = document.querySelectorAll(`.input[name=question${questionNumber}`)
-                // inputs.forEach(input => {
-                //   if(input.checked)
-                //   {
-                //     userSelect.push(`${(answerContainer.querySelector(selector)|| {}).dataset.answer  }`);
-                //   }
-                // });
                 
                 // if answer is correct
                 if(userAnswer === "true"){
                   // add to the number of correct answers
                   numCorrect+= 1;
                   points += parseFloat(currentQuestion.points);
-                  // console.log(userAnswer);
-                  // console.log(numCorrect);
-                }
-                // if answer is wrong or blank
-                else{
-                  // userAnswer = "vide";
-                  // console.log(userAnswer);
                 }
               });
               points = Math.ceil(points);
               clearInterval(setInt);
-              // console.log(points);
-              // console.log(numCorrect);
 
               if(previous.length >0)
               {
@@ -270,10 +254,6 @@ if(this.readyState == 4 && this.status == 200)
                   const divAnswer = document.createElement("div");
                   divAnswer.classList.add(`answerRecap${[i]}`, "answerRecap");
                   question.appendChild(divAnswer);
-                  // const yourAnswer = document.createElement("p");
-                  // yourAnswer.classList.add(`userAnswer`);
-                  // question.appendChild(yourAnswer);
-                  // yourAnswer.innerHTML = `Votre réponse : ${userSelect[i]}`;
 
                   const answerRecap = document.querySelector(`.answerRecap${[i]}`);
                   for(f=0; f<myQuestions[i].answers.length; f++)
@@ -361,7 +341,6 @@ if(this.readyState == 4 && this.status == 200)
               
               for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
                 let input = document.querySelector(`.input${currentSlide}${i}`);
-                // console.log(input);
                 if(input.checked)
                 {
                   is_True = input.value;
@@ -376,9 +355,6 @@ if(this.readyState == 4 && this.status == 200)
             
             function showNextSlide() {
               recupIds();
-              // console.log(is_True);
-              // console.log(id_answer);
-              // console.log(id_question);
 
               console.log(currentSlide + 1);
               var obj = { 
@@ -398,18 +374,12 @@ if(this.readyState == 4 && this.status == 200)
                   // console.log(dbParam);
                   // console.log(this.responseText);
                   showSlide(currentSlide + 1);
-                  // percent += percent;
                   progressBar();
-                }
-                else
-                {
-                  // console.log("pas ok");
                 }
               };
               xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
               xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
               xmlhttp.send(dbParam);
-
             
             }
 
