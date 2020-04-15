@@ -1,7 +1,6 @@
 <?php 
 
 header('content-type:application/json');
-
 require('app/class/tag.class.php');
 require('app/class/module.class.php');
 require('app/class/module_slide.class.php');
@@ -23,8 +22,8 @@ $moduleArray = [];
             if($query > 0){
                 $moduleProg = 100;
             }else{
-                $userProgress = $swpdb->get_var("SELECT count(*) FROM module_progress WHERE user_id = ".$userId." AND module_id = ".$moduleId." ");
-                $moduleNbSlides = $swpdb->get_var("SELECT count(*) FROM module_slide WHERE module_id = ".$moduleId." ");
+                $userProgress = $wpdb->get_var("SELECT count(*) FROM module_progress WHERE user_id = ".$userId." AND module_id = ".$moduleId." ");
+                $moduleNbSlides = $wpdb->get_var("SELECT count(*) FROM module_slide WHERE module_id = ".$moduleId." ");
                 $moduleProg = ceil(($userProgress * 100)/$moduleNbSlides);
             }
 

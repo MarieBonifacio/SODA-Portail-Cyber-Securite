@@ -195,7 +195,7 @@ if(this.readyState == 4 && this.status == 200)
                 console.log('pas ok');
               }
             };
-            xmlhttp.open("POST", url + "/module_finish.php/", true);
+            xmlhttp.open("POST", url + "/module_finish.php", true);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(dbParam);
           }

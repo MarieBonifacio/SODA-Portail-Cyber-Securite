@@ -39,6 +39,6 @@ $wpdb->delete( 'quiz_progress' ,
     )
 );
      
-
+wp_redirect( home_url().'/menu-module/' );
 
 ?>
