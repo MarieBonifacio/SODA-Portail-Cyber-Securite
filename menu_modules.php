@@ -10,12 +10,13 @@ include($path.'wp-load.php');
 
 //JSON encode 
 
-$modules = $wpdb->get_results( "SELECT id, title, content,tag_id, img_path, author_id FROM module" );
+$modules = $wpdb->get_results( "SELECT * FROM module" );
 $moduleArray = [];
         foreach ($modules as $m){
             $moduleProg = 0;
             $moduleTmp = new Module();
             $moduleTmp->selectById($m->id);
+
             $userId = $_SESSION['userConnected'];
             $moduleId = $m->id;
             $query = $wpdb->get_var("SELECT id FROM module_finish WHERE user_id = ".$userId." AND module_id = ".$moduleId." ");
@@ -26,8 +27,6 @@ $moduleArray = [];
                 $moduleNbSlides = $wpdb->get_var("SELECT count(*) FROM module_slide WHERE module_id = ".$moduleId." ");
                 $moduleProg = ceil(($userProgress * 100)/$moduleNbSlides);
             }
-
-            
             $module = array(
                 "id" => $moduleTmp->getId(),
                 "title" => $moduleTmp->getTitle(),
