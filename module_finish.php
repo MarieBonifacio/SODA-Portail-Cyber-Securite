@@ -13,6 +13,11 @@ $wpdb->delete( 'module_progress' ,
     )
 );
 
+$wpdb->insert("module_finish", array(
+    "user_id" => $_SESSION['userConnected'],
+    "module_id" => $module->getId(),
+));
+
 wp_redirect( home_url().'/menu-module' );
 
 ?>
