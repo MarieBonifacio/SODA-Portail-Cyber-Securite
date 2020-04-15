@@ -30,11 +30,11 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
           {
             echo ' 
             <div class="medias">
-            <img src="'.$img.'/img/fall1.jpg" alt="votre image">
+            <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/pages/'.$q['info']['img'].'" alt="votre image">
             </div>
             ';
           }
-          elseif ($_SESSION['quizData']['quiz']['video']) {
+          elseif ($_SESSION['quizData']['quiz']['video'] !== null) {
             $regex = "ton regex";
             echo ' 
             <iframe width="725" height="408" src="https://www.youtube.com/embed/'.$regex.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
