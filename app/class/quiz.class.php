@@ -46,7 +46,7 @@ class Quiz {
     }
 
     public function getImgPath(){
-        $this->img_path->$img_path;
+        return $this->img_path;
     }
 
     public function setImgPath($img_path){
