@@ -2,7 +2,6 @@
 <h2 class="h2"><?php echo $_SESSION['moduleData']['module']['title']; ?></h2>
 
 <div class="step2">
-  <?php echo '<pre>';print_r($_SESSION);echo '</pre>';?>
 
   <img src="<?php echo get_template_directory_uri(); ?>/img/modules/<?php echo $_SESSION['moduleData']['module']['title']; ?>/<?php echo $_SESSION['moduleData']['module']['img']; ?>" alt="votre image">
 
