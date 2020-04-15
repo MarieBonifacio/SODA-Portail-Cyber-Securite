@@ -24,7 +24,7 @@ if(this.readyState == 4 && this.status == 200)
 
     if(myArray[i].img === null)
     {
-      moduleContent +=` pts</span>
+      moduleContent +=` %</span>
       <div class="imgQ">
         <img src="${ url + `/img/imgModuleDefault.jpg}`}" alt="photo du module"/>
         <div class="filter"></div>
@@ -33,7 +33,7 @@ if(this.readyState == 4 && this.status == 200)
     }
     else
     {
-      moduleContent +=` pts</span>
+      moduleContent +=` %</span>
       <div class="imgQ">
         <img src="${ url + `/img/modules/${myArray[i].name}/${myArray[i].img}`}" alt="photo du module"/>
         <div class="filter"></div>
@@ -69,8 +69,8 @@ if(this.readyState == 4 && this.status == 200)
           <div class="module" id="module">
           </div>
           <div class="btns"> 
-            <button id="previous">Précédente page</button>
-            <button id="next">Prochaine page</button>
+            <button id="previous">Page précédente</button>
+            <button id="next">Page suivante</button>
             <button id="submit">Terminer le module</button>
           </div>
           <div class="progress">
@@ -81,15 +81,18 @@ if(this.readyState == 4 && this.status == 200)
           let currentSlide = 0,
           myPages = myModule.slides,
           actualpercent = 0;
+          // actualpercentModule = 0;
           console.log(myPages)
           const moduleContainer = document.getElementById('module'),
           submitButton = document.getElementById('submit'),
-          btns = document.querySelector('.btns'),
           progress = document.querySelector('.progressDone'),
           percentage = document.querySelector('.percentage');
 
+          let percentModule = (currentSlide + 1 / myPages.length) * 100;
+
           if(previous.length > 0)
           {
+            // actualpercentModule = myModule.prog;
             var tableLostPages = [];
             for (let i = 0; i < previous.length; i++) 
             {
@@ -107,9 +110,6 @@ if(this.readyState == 4 && this.status == 200)
               }
             }
           }
-          console.log(tableLostPages);
-          console.log(myPages);
-          console.log(previous);
           let percent = (currentSlide + 1 / myPages.length) * 100;
 
           function progressBar()
@@ -122,6 +122,8 @@ if(this.readyState == 4 && this.status == 200)
 
           function buildModule(){
             actualpercent += parseFloat(percent);
+            // actualpercentModule += parseFloat(percentModule);
+            // console.log(actualpercentModule);
             progressBar();
             // variable to store the HTML output
             const output = [];
@@ -174,7 +176,30 @@ if(this.readyState == 4 && this.status == 200)
               // finally combine our output list into one string of HTML and put it on the page
               moduleContainer.innerHTML = output.join('');
           }
-          
+
+          function endModule(){
+            var obj = { 
+              "module_id" : myModule.id,
+              "module_prog" : 100
+            };
+            console.log(obj);
+
+            dbParam = JSON.stringify(obj);
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                console.log("ok");
+              }
+              else
+              {
+                console.log('pas ok');
+              }
+            };
+            xmlhttp.open("POST", url + "/module_finish.php/", true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send(dbParam);
+          }
+
           buildModule();
 
           const nextButton = document.getElementById("next");
@@ -213,18 +238,19 @@ if(this.readyState == 4 && this.status == 200)
             var obj = { 
               "slide_id": id_page,
               "module_id" : myModule.id,
-              "module_prog" : actualpercent
+              // "module_prog" : actualpercentModule
             };
+            // console.log(actualpercentModule);
             
 
             dbParam = JSON.stringify(obj);
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {
+                // actualpercentModule += parseFloat(percentModule);
                 actualpercent += parseFloat(percent);
                 showSlide(currentSlide + 1);
                 progressBar();
-                console.log(obj);
               }
             };
             xmlhttp.open("POST", url + "/module_user.php/", true);
@@ -234,6 +260,7 @@ if(this.readyState == 4 && this.status == 200)
 
           function showPreviousSlide() {
             showSlide(currentSlide - 1);
+            // actualpercentModule -= parseFloat(percentModule);
             actualpercent -= parseFloat(percent);
             progressBar();
           }
@@ -242,6 +269,7 @@ if(this.readyState == 4 && this.status == 200)
 
           previousButton.addEventListener("click", showPreviousSlide);
 
+          submitButton.addEventListener('click', endModule);
         }
       };
 
