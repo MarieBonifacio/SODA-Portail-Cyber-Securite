@@ -91,11 +91,11 @@ if(!empty($_SESSION['userConnected']))
 				<?php } ?>
 			</div>
 			<div id="link"  class="tools">
-				<a id="a" href=""><i class="fas fa-tools"></i><p id="p">Outils</p></a>
+				<a id="a" href="<?php echo home_url()."/generateur-de-mots-de-passe"?>"><i class="fas fa-tools"></i><p id="p">Outils</p></a>
 				<i class="fas fa-sort-down" data-id="tools"></i>
 				<ul class="dropMenu" id="tools">
 						<li>
-							<a href="<?php echo home_url()."/"?>">Générateur de mot de passe solide</a>
+							<a href="<?php echo home_url()."/generateur-de-mots-de-passe"?>">Générateur de mot de passe solide</a>
 						</li>
 					</ul>	
 			</div>

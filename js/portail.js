@@ -57,10 +57,10 @@ const arrows = document.querySelectorAll(".fas");
 
 arrows.forEach(arrow => {
     arrow.addEventListener("click", (e)=>{
-        console.log(e.target.dataset.id);
+        // console.log(e.target.dataset.id);
         let id = e.target.dataset.id;
         let menu = document.querySelector(`#${id}`);
-        console.log(menu);
+        // console.log(menu);
         dropMenus.forEach(dropMenu => {
             if(dropMenu.id == id)
             {
