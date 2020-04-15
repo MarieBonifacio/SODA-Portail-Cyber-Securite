@@ -59,7 +59,7 @@ class Module {
         return $this->img_path;
     }
     public function setImgPath($imgPath){
-        $this->img_path = $img_path;
+        $this->img_path = $imgPath;
     }
 
     public function getAuthor(){
