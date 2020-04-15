@@ -1,8 +1,7 @@
 <?php /* Template Name: Create Quiz Etape 3 */ get_header();?>
 
 <h2 class="h2"><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
-<?php 
-echo '<pre>';print_r($_SESSION);echo '</pre>';?>
+<!-- <?php echo '<pre>';print_r($_SESSION);echo '</pre>';?> -->
 <div class="step3">
 
   <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title'].'/'.$_SESSION['quizData']['quiz']['img']?>" alt="votre image">
@@ -26,19 +25,23 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
         echo '
           <div class="questions">
           ';
-          if($_SESSION['quizData']['quiz']['img'] !== null)
+          if($q['info']['img'] !== "")
           {
             echo ' 
             <div class="medias">
-            <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/pages/'.$q['info']['img'].'" alt="votre image">
+            <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/questions/'.$q['info']['img'].'" alt="votre image">
             </div>
             ';
           }
-          elseif ($_SESSION['quizData']['quiz']['video'] !== null) {
+          elseif ($q['info']['video']  !== "") {
             $regex = "ton regex";
             echo ' 
             <iframe width="725" height="408" src="https://www.youtube.com/embed/'.$regex.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             ';
+          }
+          else
+          {
+            echo '';
           }
         echo '
             <span class="numQ">'.$num.'</span>

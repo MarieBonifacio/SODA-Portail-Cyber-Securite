@@ -59,37 +59,62 @@ if(!empty($_SESSION['userConnected']))
 				<div class="profile_pic">
 					<a href="<?php echo home_url()."/profil" ?>" class="circle">
 						<img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil"> 
-						<!-- <img src="<?php echo get_template_directory_uri(); ?>/img/myAvatar.png" alt="photo de votre profil"> -->
 					</a>
 				</div>
 				<div class="settings"></div>
 			</div>
 		</nav>
 		<nav class="side">
-			<div class="home">
+			<div id="link" class="home">
 				<a id="a" href="<?php echo home_url()."/accueil" ?>"><i class="fas fa-home"></i><p id="p">Accueil</p></a>
 			</div>
-			<div class="articles">
+			<div id="link" class="articles">
 				<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
-				<i class="fas fa-sort-down"></i>
+				<i class="fas fa-sort-down" data-id="articles"></i>
+				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+					<ul class="dropMenu" id="articles">
+						<li>
+							<a target="_blank" href="<?php echo home_url()."/ajouter-un-nouvel-article"?>">Ajoutez un article</a>
+						</li>
+					</ul>	
+				<?php } ?>
 			</div>
-			<div class="modules">
+			<div id="link" class="modules">
 				<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
-				<i class="fas fa-sort-down"></i>
+				<i class="fas fa-sort-down" data-id="modules"></i>
+				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+					<ul class="dropMenu" id="modules">
+						<li>
+							<a href="<?php echo home_url()."/creationmoduleetape1"?>">Créez votre module</a>
+						</li>
+					</ul>	
+				<?php } ?>
 			</div>
-			<div class="tools">
+			<div id="link"  class="tools">
 				<a id="a" href=""><i class="fas fa-tools"></i><p id="p">Outils</p></a>
-				<i class="fas fa-sort-down"></i>
+				<i class="fas fa-sort-down" data-id="tools"></i>
+				<ul class="dropMenu" id="tools">
+						<li>
+							<a href="<?php echo home_url()."/"?>">Générateur de mot de passe solide</a>
+						</li>
+					</ul>	
 			</div>
-			<div class="quiz">
+			<div id="link"  class="quiz">
 				<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
-				<i class="fas fa-sort-down"></i>
+				<i class="fas fa-sort-down" data-id="quizs"></i>
+				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+					<ul class="dropMenu" id="quizs">
+						<li>
+							<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>
+						</li>
+					</ul>	
+				<?php } ?>
 			</div>
-			<div class="games">
+			<div id="link" class="games">
 				<a id="a" href=""><i class="fas fa-gamepad"></i><p id="p">Jeux</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
-			<div class="rank">
+			<div id="link" class="rank">
 				<a id="a" href=""><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>

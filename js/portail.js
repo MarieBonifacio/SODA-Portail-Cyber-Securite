@@ -50,3 +50,33 @@ searchIcon.addEventListener("click", ()=>{
         searchBar.classList.remove("growUp");
     }
 });
+
+// click event for dropDown list menu
+const dropMenus = document.querySelectorAll(".dropMenu");
+const arrows = document.querySelectorAll(".fas");
+
+arrows.forEach(arrow => {
+    arrow.addEventListener("click", (e)=>{
+        console.log(e.target.dataset.id);
+        let id = e.target.dataset.id;
+        let menu = document.querySelector(`#${id}`);
+        console.log(menu);
+        dropMenus.forEach(dropMenu => {
+            if(dropMenu.id == id)
+            {
+                if(menu.classList.contains("dropMenuAppear"))
+                {
+                    menu.classList.remove("dropMenuAppear");
+                }
+                else
+                {
+                    menu.classList.add("dropMenuAppear");
+                }
+            }
+            else if(dropMenu.id != id)
+            {
+                dropMenu.classList.remove("dropMenuAppear");
+            }
+        });
+    })
+});

@@ -42,7 +42,7 @@ window.addEventListener('load', function () {
       `;
       }
 
-      if( myArray[i].user_prog == null){
+      if( myArray[i].user_prog == 0){
         moduleContent += `<p class="btnModule" data-id="${myArray[i].id}">Commencez</p>`;
       }
       else if( myArray[i].user_prog == 100 )

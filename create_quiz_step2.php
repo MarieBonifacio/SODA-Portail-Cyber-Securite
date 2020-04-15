@@ -1,10 +1,12 @@
 <?php /* Template Name: Create Quiz Etape 2 */ get_header();?>
-<?php echo '<pre>';print_r($_SESSION);echo '</pre>';?>
+<!-- <?php echo '<pre>';print_r($_SESSION);echo '</pre>';?> -->
 <h2 class="h2"><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
 
 <div class="step2">
 
-  <img src="<?php echo get_template_directory_uri(); ?>/img/fall.jpg" alt="votre image">
+  <!-- <img src="<?php echo get_template_directory_uri(); ?>/img/fall.jpg" alt="votre image"> -->
+  <img src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title']; ?>/<?php echo $_SESSION['quizData']['quiz']['img']; ?>" alt="votre image">
+
   <h3>Étape 2: Les questions</h3>
 
 
