@@ -7,6 +7,12 @@ require('class/tag.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
+
+//J'initialise la variable session
+if(!empty($_SESSION['moduleData'])){
+    unset($_SESSION['moduleData']);
+}
+
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
     if(!isset($_FILES['img_module']) || $_FILES['img_module']['error'] == UPLOAD_ERR_NO_FILE) 
