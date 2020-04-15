@@ -15,7 +15,6 @@ class Quiz_score {
         $r = $wpdb->get_row("SELECT * FROM 'quiz_score' where id=".$id."");
         $this->id = $r->id;
         $this->user = $r->user_id;
-        $this->user = $user;
         $quiz = new Quiz();
         $quiz->selectById($r->quiz_id);
         $this->quiz = $quiz;

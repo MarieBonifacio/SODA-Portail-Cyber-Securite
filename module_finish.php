@@ -13,5 +13,6 @@ $wpdb->delete( 'module_progress' ,
     )
 );
 
+wp_redirect( home_url().'/menu-module' );
 
 ?>

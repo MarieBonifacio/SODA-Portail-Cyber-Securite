@@ -18,7 +18,7 @@ $response = json_decode($str_json, true); // decoding received JSON to array
 
 $newScore = new Quiz_score();
 
-$user->$_SESSION['userConnected'];
+$user = $_SESSION['userConnected'];
 $newScore->setUserId($user);
 
 $quiz = new Quiz();
