@@ -5,7 +5,6 @@
 <div class="step2">
 
   <img src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title']; ?>/<?php echo $_SESSION['quizData']['quiz']['img']; ?>" alt="votre image">
-
   <h3>Étape 2: Les questions</h3>
 
 

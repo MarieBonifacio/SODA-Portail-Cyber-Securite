@@ -710,6 +710,10 @@ body
       width: 100%;
       @include flex(space-around, center, column);
       @include positionTL(absolute, 10%, 0);
+      img
+      {
+        max-width: 30%;
+      }
       .plus
       {
         margin-bottom: 10px;
@@ -929,7 +933,7 @@ body
       .img
       {
         position: relative;
-        max-width: 50%;
+        max-width: 30%;
       }
       h3
       {
@@ -961,7 +965,7 @@ body
           width: 70%;
           background: $color3;
           border-radius: 5px;
-          padding: 5px 5px;
+          padding: 15px;
           margin-bottom: 45px;
           @include flex(space-around, center, column);
           .numQ
@@ -973,7 +977,7 @@ body
           }
           .medias
           {
-            width: 30%;
+            width: 35%;
             margin-top: 5px;
             img
             {

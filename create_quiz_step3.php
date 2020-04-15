@@ -5,8 +5,7 @@
 echo '<pre>';print_r($_SESSION);echo '</pre>';?>
 <div class="step3">
 
-  <img src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title'].'/'.$_SESSION['quizData']['quiz']['img']?>" alt="votre image">
-
+  <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title'].'/'.$_SESSION['quizData']['quiz']['img']?>" alt="votre image">
   <h3>Étape 3: Confirmation</h3>
 
   <div class="steps">
@@ -27,11 +26,11 @@ echo '<pre>';print_r($_SESSION);echo '</pre>';?>
         echo '
           <div class="questions">
           ';
-          if($_SESSION['quizData']['quiz']['img'])
+          if($_SESSION['quizData']['quiz']['img'] !== null)
           {
             echo ' 
             <div class="medias">
-            <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/pages/'.$q['info']['img'].'" alt="votre image">
+            <img src="'.$img.'/img/fall1.jpg" alt="votre image">
             </div>
             ';
           }
