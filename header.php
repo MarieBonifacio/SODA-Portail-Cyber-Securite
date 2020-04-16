@@ -19,8 +19,8 @@ if(!empty($_SESSION['userConnected']))
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-        <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/portail.min.css">
-    	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/portail.min.css">
+    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +58,11 @@ if(!empty($_SESSION['userConnected']))
 				</div>
 				<div class="profile_pic">
 					<a href="<?php echo home_url()."/profil" ?>" class="circle">
-						<img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil"> 
+						<?php if(get_user_meta(get_current_user_id() , 'avatar', true)){?>
+							<img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil">
+						<?php } else{ ?>
+							<img src="<?php echo get_template_directory_uri(); ?>/img/avatar/default.jpg" alt="logo portail SODA cyber Défense">
+						<?php } ?>
 					</a>
 				</div>
 				<div class="settings"></div>

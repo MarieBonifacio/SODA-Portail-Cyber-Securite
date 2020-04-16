@@ -20,7 +20,17 @@ if(!empty($_SESSION['userConnected']))
     <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post" enctype="multipart/form-data">
         <div class="picture">
           <div class="img">
-          <img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil"> 
+          <?php
+          if (get_user_meta(get_current_user_id() , 'avatar', true))
+          {
+          ?>
+          <img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil">
+          <?php }
+          else{?>
+          <img src="<?php echo get_template_directory_uri()."/img/avatar/default.jpg"?>" alt="votre photo de profil">
+          <?php
+          }
+          ?>
           </div>
           <button type="button" disabled>
             <i class="fas fa-pencil-alt" id="custom-button"></i>
