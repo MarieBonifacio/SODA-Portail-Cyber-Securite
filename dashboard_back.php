@@ -43,7 +43,10 @@ $userId = $_SESSION['userConnected'];
 
     //Derniers articles
 
-    //Scores 
+    function getLastArticles(){
+
+    }
+
 
     //dernier quiz
 function getLastQuiz(){ 
