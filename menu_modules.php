@@ -1,6 +1,6 @@
 <?php 
-
 header('content-type:application/json');
+
 require('app/class/tag.class.php');
 require('app/class/module.class.php');
 require('app/class/module_slide.class.php');

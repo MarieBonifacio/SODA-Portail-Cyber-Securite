@@ -49,7 +49,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
 
         $imgPath = $name_file;
-        update_user_meta($user, 'avatar', $imgPath);
+        echo "..." .update_user_meta($id, 'avatar', $imgPath);
         
     } 
     if( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail))
@@ -63,8 +63,8 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     
     if($error == "")
     {
-        update_user_meta($user, 'id_alc', $idUser);
-        update_user_meta($user, 'location', $location);
+        update_user_meta($id, 'id_alc', $idUser);
+        update_user_meta($id, 'location', $location);
         $userdata = array(
             'ID' => $_SESSION['userConnected'],
             'first_name' =>   $name,
@@ -81,6 +81,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 $_SESSION["updateOk"] = $updateOk;
 $_SESSION["errorRegister"] = $error;
 
-wp_redirect( home_url()."/profil" ); 
+// wp_redirect( home_url()."/profil" ); 
 
 ?>

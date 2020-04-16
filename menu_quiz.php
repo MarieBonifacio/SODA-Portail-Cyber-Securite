@@ -43,3 +43,4 @@ $quizArray[] = $quiz;
 echo json_encode($quizArray);
 
 ?>
+
