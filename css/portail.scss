@@ -1469,8 +1469,8 @@ body
     }
     .svg_pass
     {
-      @include positionBR(absolute, 5px, 0px);
-      width: 45%;
+      @include positionBR(absolute, 15px, 15px);
+      width: 40%;
       height: auto;
       z-index: 1;
       #tree

@@ -466,6 +466,7 @@ body
                             outline: none;
                             border-radius: 20px;
                             box-shadow: none;
+                            transition: .2s;
                             cursor: pointer;
                             option
                             {
@@ -477,6 +478,10 @@ body
                         select:focus
                         {
                             outline: none;
+                        }
+                        select:hover
+                        {
+                            background: $police;
                         }
                     }
                     i
