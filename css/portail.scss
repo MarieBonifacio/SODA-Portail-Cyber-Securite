@@ -175,7 +175,8 @@ body
           img
           {
             position: relative;
-            width: 100%;
+            min-width:100%;
+            min-height: 100%;
           }
         }
       }
@@ -357,7 +358,8 @@ body
             img
             {
               position: relative;
-              max-width: 110%;
+              min-width:100%;
+              min-height: 100%;
             }
           }
         }
