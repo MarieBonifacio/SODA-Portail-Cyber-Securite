@@ -26,8 +26,20 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         // $directoryName = $r->id;
         // mkdir(public_path(home_url().'img/avatar/').$directoryName, 0775);
         //upload image 
-        $content_dir =  get_template_directory().'/img/avatar/';
+        $content_dir_plug =  get_template_directory().'/img/avatar/';
+        $content_dir = wp_upload_dir()['basedir']."/avatars/".$id."/";
+        echo $content_dir;
         $tmp_file = $_FILES['avatar']['tmp_name'];
+
+        if(!is_dir($content_dir))
+        {
+            mkdir($content_dir, 0700, true);
+        }
+
+        if(!is_dir($content_dir_plug))
+        {
+            mkdir($content_dir_plug, 0700, true);
+        }
 
         if(!is_uploaded_file($tmp_file))
         {
@@ -40,13 +52,24 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
             $error="Le format du fichier n'est pas pris en charge";
         }
         // on copie le fichier dans le dossier de destination
-        $name_file = $id .'.'.preg_replace("#image\/#","",$type_file);
+        $name_file = $id .'-bpfull.'.preg_replace("#image\/#","",$type_file);
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
         { 
             $error = "Impossible de copier le fichier $name_file dans $content_dir";
         }
 
+        $name_file_tb = $id .'-bpthumb.'.preg_replace("#image\/#","",$type_file);
+        if( !copy($content_dir.$name_file, $content_dir.$name_file_tb) ) 
+        { 
+            $error = "Impossible de copier le fichier $name_file dans $content_dir";
+        }
+
+        if( !copy($content_dir.$name_file, $content_dir_plug . $name_file) )
+        { 
+            $error = "Impossible de copier le fichier $name_file dans $content_dir";
+        }
+        
 
         $imgPath = $name_file;
         echo "..." .update_user_meta($id, 'avatar', $imgPath);

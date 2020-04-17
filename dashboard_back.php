@@ -16,28 +16,33 @@ $userId = $_SESSION['userConnected'];
 
 //JSON ENCODE
 
-    //classements par villes
-    function getClassement($ville = null){
-        $sql = "SELECT quiz_score.user_id,  quiz_score.score, wp_users.display_name  FROM  quiz_score,  wp_users, wp_usermeta WHERE quiz_score.user_id = wp_users.ID AND wp_users.ID = wp_usermeta.user_id ";
-
-        if($ville != null){
-            $sql .= "AND wp_usermeta.meta_key = 'location' AND wp_usermeta.meta_value='".$ville."'";
-        }
-
-        $sql .= "ORDER BY score DESC LIMIT 10";
-        return $wpdb->get_results($sql);
-    }
-
     //classements par utilisateur
-    function getClassementById($id){
-        $sql = "SELECT quiz_score.user_id,  quiz_score.score, wp_users.display_name  FROM  quiz_score,  wp_users, wp_usermeta WHERE quiz_score.user_id = wp_users.ID AND wp_users.ID = wp_usermeta.user_id ";
+    function getClassement($userId, $ville=null){
+        global $wpdb;
+        $sql = "SELECT quiz_score.user_id, avg(quiz_score.score),  sum(quiz_score.time), count(quiz_score.id),  wp_users.display_name,  wp_usermeta.meta_value ";
+        $sql .= "FROM quiz_score LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' ";
 
-        if($ville != null){
-            $sql .= "AND wp_usermeta.meta_key = 'location' AND wp_usermeta.meta_value='".$ville."'";
+        if($ville !== null){
+            $sql .= "WHERE wp_usermeta.meta_value='".$ville."'";
         }
 
-        $sql .= "ORDER BY score DESC LIMIT 10";
-        return $wpdb->get_results($sql);
+        $sql .= "group by quiz_score.user_id order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC";
+        
+        
+        $q = $wpdb->get_results($sql);
+
+        $place = null;
+        $userStat = null;
+        if (array_search($userId, array_column($q,'user_id')) !== false){
+            $place = array_search($userId, array_column($q,'user_id')) + 1;
+            $userStat = $q[array_search($userId, array_column($q,'user_id'))];
+        }
+
+        return array(
+            "top10" => array_slice($q, 0, 10),
+            "userPlace" => $place,
+            "userStat" => $userStat,
+        );
     }
 
 
@@ -65,10 +70,15 @@ function getLastQuiz(){
     );
 }
 
+print_r(getClassement(5,'Calais'));
+/*
 $response['lastQuiz'] = getLastQuiz();
 $response['classementVille'] = getClassement($ville);
+$response['classementGénéral'] = getClassementById($userId);
+
 echo getClassement('Calais').'<br/>';
 echo getClassement().'<br/>';
+*/
 //echo json_encode($response);
 
 ?>
