@@ -37,7 +37,8 @@ if(!empty($_SESSION['userConnected']))
 		</script>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-
+		<!-- <script src="https://unpkg.com/packery@2/dist/packery.pkgd.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/draggabilly/2.2.0/draggabilly.pkgd.min.js" integrity="sha256-M8sar7tX1FUCUAetmwH0DiWc03emEfpnkqyatz1iSAM=" crossorigin="anonymous"></script> -->
 
 	</head>
 	<body>
