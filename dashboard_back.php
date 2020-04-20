@@ -48,9 +48,7 @@ $userId = $_SESSION['userConnected'];
 
     //Derniers articles
 
-    function getLastArticles(){
-
-    }
+  
 
 
     //dernier quiz
@@ -71,14 +69,11 @@ function getLastQuiz(){
 }
 
 print_r(getClassement(5,'Calais'));
-/*
+
 $response['lastQuiz'] = getLastQuiz();
 $response['classementVille'] = getClassement($ville);
 $response['classementGénéral'] = getClassementById($userId);
 
-echo getClassement('Calais').'<br/>';
-echo getClassement().'<br/>';
-*/
-//echo json_encode($response);
+echo json_encode($response);
 
 ?>
