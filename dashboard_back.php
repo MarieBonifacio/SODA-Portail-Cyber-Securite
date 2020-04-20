@@ -109,7 +109,7 @@ $response['classementUserVille'] = getUserClassement($userId, $ville);
 $response['classementUserGeneral'] = getUserClassement($userId);
 $response['classementVilleQuiz'] = getCityClassement($quizId);
 $response['classementVilleGeneral'] = getCityClassement();
-$response['userResults'] = getUserResults();
+$response['userResults'] = getUserResults($userId);
 
 
 echo json_encode($response);
