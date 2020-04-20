@@ -64,15 +64,21 @@ function getLastQuiz(){
     $quizTmp->selectById($quiz->id);  
 
     return array(
-
+        "id" => $quizTmp->getId(),
+        "name" => $quizTmp->getName(),
+        "tag_id" => $quizTmp->getTag()->getId(),
+        "tag_name" => $quizTmp->getTag()->getName(),
+        "img" => $quizTmp->getImgPath(),
+        "user_score" => $score->score,
+        "user_time" => $score->time,
     );
 }
 
 print_r(getClassement(5,'Calais'));
 
 $response['lastQuiz'] = getLastQuiz();
-$response['classementVille'] = getClassement($ville);
-$response['classementGénéral'] = getClassementById($userId);
+$response['classementVille'] = getClassement($userId, $ville);
+$response['classementGénéral'] = getClassement($userId);
 
 echo json_encode($response);
 
