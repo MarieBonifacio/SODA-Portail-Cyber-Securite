@@ -17,9 +17,9 @@ $userId = $_SESSION['userConnected'];
 //JSON ENCODE
 
     //classements par utilisateur
-    function getClassement($userId, $ville=null){
+    function getUserClassement($userId, $ville=null){
         global $wpdb;
-        $sql = "SELECT quiz_score.user_id, avg(quiz_score.score),  sum(quiz_score.time), count(quiz_score.id),  wp_users.display_name,  wp_usermeta.meta_value ";
+        $sql = "SELECT quiz_score.user_id, avg(quiz_score.score) AS moyenne,  sum(quiz_score.time) AS time, count(quiz_score.id) AS count,  wp_users.display_name,  wp_usermeta.meta_value ";
         $sql .= "FROM quiz_score LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' ";
 
         if($ville !== null){
@@ -46,9 +46,37 @@ $userId = $_SESSION['userConnected'];
     }
 
 
-    //Derniers articles
+    // classements par ville
 
+    //ville/moyenne globale
+    //ville//moyennes par quiz
+
+    function getCityClassement($quizId = null){
+        global $wpdb;
+        //Select la moyenne du score de la table quiz_score comme "moyenne" + la somme du temps dans la table quiz_score comme "temps" 
+        //+ le nombre d'idi dans quiz_score comme "compteur de quizs" + le nom de la ville (meta value) dans la table wp_usermeta comme "ville"
+        $sql = "SELECT avg(quiz_score.score) AS moyenne,  sum(quiz_score.time) AS time, count(quiz_score.id) AS quizCount, wp_usermeta.meta_value AS city ";
+        //
+        $sql .= "FROM quiz_score LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' ";
+
+        if($quizId !== null){
+            $sql .= "WHERE quiz_score.quiz_id='".$quizId."'";
+        }
+
+        $sql .= "group by wp_usermeta.meta_value order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC";
+        
+        return $wpdb->get_results($sql);
+
+    }
   
+// Tous les résultats de l'user
+
+function getUserResults($userId){
+    global $wpdb;
+    return $wpdb->get_results( "SELECT quiz.name, quiz_score.score, quiz_score.time FROM quiz_score left join quiz ON quiz_score.quiz_id = quiz.id WHERE quiz_score.user_id=$userId
+    " );
+
+}
 
 
     //dernier quiz
@@ -73,9 +101,16 @@ function getLastQuiz($userId){
     );
 }
 
+$userId = $_SESSION['userConnected'];
+$quizId = 1;
+
 $response['lastQuiz'] = getLastQuiz($userId);
-$response['classementVille'] = getClassement($userId, $ville);
-$response['classementGénéral'] = getClassement($userId);
+$response['classementUserVille'] = getUserClassement($userId, $ville);
+$response['classementUserGeneral'] = getUserClassement($userId);
+$response['classementVilleQuiz'] = getCityClassement($quizId);
+$response['classementVilleGeneral'] = getCityClassement();
+$response['userResults'] = getUserResults();
+
 
 echo json_encode($response);
 
