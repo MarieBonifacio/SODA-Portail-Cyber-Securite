@@ -74,8 +74,6 @@ function getLastQuiz(){
     );
 }
 
-print_r(getClassement(5,'Calais'));
-
 $response['lastQuiz'] = getLastQuiz();
 $response['classementVille'] = getClassement($userId, $ville);
 $response['classementGénéral'] = getClassement($userId);
