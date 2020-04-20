@@ -1,5 +1,5 @@
 <?php
-//header('content-type:application/json');
+header('content-type:application/json');
 
 require('app/class/answer.class.php');
 require('app/class/question.class.php');
