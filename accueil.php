@@ -5,40 +5,48 @@
     <div class="window actu">
       <h3>Fil d'actualité</h3>
     </div>
+    <div class="window quiz lastQ">
+      <h3>Dernier quiz</h3>
+    </div>
     <div class="window results">
       <h3>Vos résultats</h3>
     </div>
     <div class="window news">
       <h3>Dernières news</h3>
+      <div class="newsContent content">
+        <!-- <div>
+          <a href="">	
+            <div class="filter"></div>
+            <img src="<?php echo get_template_directory_uri(); ?>/img/fall.jpg" alt="logo portail SODA cyber Défense">
+            <h2>Article sur la sécurité des données</h2>
+            <p>Catégorie 1</p>
+          </a>
+        </div>
+        <div>
+        </div>
+        <div></div> -->
+      </div>
     </div>
     <div class="window leaderboard">
       <h3>Classement</h3>
+      
+      <div class="btns">
+        <button class="gen">Général</button>
+        <button class="town">Votre ville</button>
+      </div>
+      <table class="leadboard">
+        <thead>
+            <tr>
+                <th colspan="1">Pos</th>
+                <th colspan="1">Joueur</th>
+                <th colspan="1">Score</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+      </table>
     </div>
   </div>
-  <!-- <div class="grid">
-    <div class="grid-sizer"></div>
-    <div class="grid-item grid-item--width2 grid-item--height2"></div>
-    <div class="grid-item grid-item--width2"></div>
-    <div class="grid-item"></div>
-    <div class="grid-item"></div>
-  </div> -->
 </div>
-
-<!-- <script>
-  var $grid = $('.grid').packery({
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  gutter: 22.5,
-  percentPosition: true
-});
-// make all grid-items draggable
-$grid.find('.grid-item').each( function( i, gridItem ) {
-  var draggie = new Draggabilly( gridItem );
-  // bind drag events to Packery
-  $grid.packery( 'bindDraggabillyEvents', draggie );
-});
-
-
-</script> -->
 
 <?php  get_footer(); ?>
