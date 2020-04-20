@@ -52,12 +52,11 @@ $userId = $_SESSION['userConnected'];
 
 
     //dernier quiz
-function getLastQuiz(){ 
+function getLastQuiz($userId){ 
     global $wpdb;   
-    $quiz = $wpdb->get_results( "SELECT id, name, tag_id, img_path FROM quiz ORDER BY created_at DESC LIMIT 1" );
+    $quiz = $wpdb->get_row( "SELECT id, name, tag_id, img_path FROM quiz ORDER BY created_at DESC LIMIT 1" );
 
-    $score = null;
-    $userId = $_SESSION['userConnected'];
+    $score= null;
     $score = $wpdb->get_row( "SELECT score, time FROM quiz_score where quiz_id = ".$quiz->id." AND user_id = ".$userId." ");
 
     $quizTmp = new Quiz();
@@ -74,7 +73,7 @@ function getLastQuiz(){
     );
 }
 
-$response['lastQuiz'] = getLastQuiz();
+$response['lastQuiz'] = getLastQuiz($userId);
 $response['classementVille'] = getClassement($userId, $ville);
 $response['classementGénéral'] = getClassement($userId);
 
