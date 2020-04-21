@@ -2462,9 +2462,16 @@ body
       .comment-respond
       {
         display:flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        textarea
+        {
+          max-width: 800px;
+          max-height: 1000px;
+          min-height: 300px;
+          min-width: 500px;
+        }
       }
       .comment-form-comment
       {
