@@ -42,7 +42,7 @@ if($nbrQuestion >= 1){
                 $path = "../img/quizs/".$dir."/questions";
                 if(!is_dir($path))
                 {
-                    mkdir($path, 0700, true);
+                    mkdir($path, 0775, true);
                 }
                 $content_dir =  get_template_directory()."/img/quizs/".$dir."/questions/";
                 $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
