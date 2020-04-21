@@ -4,6 +4,7 @@
   <div class="dashboard">
     <div class="window actu">
       <h3>Fil d'actualité</h3>
+      <?php echo do_shortcode( '[activity-listing]' ); ?>
     </div>
     <div class="window quiz lastQ">
       <h3>Dernier quiz</h3>
@@ -14,7 +15,7 @@
     </div>
     <div class="window news">
       <h3>Dernières news</h3>
-      <div class="newsContent content">
+      <div class="content">
         <!-- <div>
           <a href="">	
             <div class="filter"></div>

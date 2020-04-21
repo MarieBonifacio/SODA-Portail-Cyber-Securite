@@ -400,7 +400,6 @@ body
             position: relative;
             height: 100%;
             width: 90%;
-            margin-bottom: 1em;
             @include flex(space-between, center, row);
             overflow: hidden;
             div
@@ -1556,6 +1555,7 @@ body
           font-weight: 600;
           font-size: $fontSize2;
           overflow: hidden;
+          box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
           @include flex(space-between, center, column);
           h3
           {
@@ -2373,6 +2373,7 @@ body
         overflow: hidden;
         background: $color3;
         color: $color1;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
       }
       .vc_gitem-zone
       {

@@ -183,7 +183,7 @@ window.addEventListener('load', function () {
           data: points,
           pointBackgroundColor: '#E2B34A',
           borderWidth: 3,
-			    borderColor: 'rgba(226, 179, 74, 0.3)',
+          borderColor: 'rgba(226, 179, 74, 0.3)',
           backgroundColor: 'rgba(25,34,49,0.5)',
         }]
       },
