@@ -176,9 +176,20 @@ window.addEventListener('load', function () {
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
       type: 'line',
+      data: {
+        labels : labels,
+        datasets: [{
+          label: 'score',
+          data: points,
+          pointBackgroundColor: '#E2B34A',
+          borderWidth: 3,
+			    borderColor: 'rgba(226, 179, 74, 0.3)',
+          backgroundColor: 'rgba(25,34,49,0.5)',
+        }]
+      },
       options: {
         legend: {
-          display: false
+          display: false,
         },
         animation: {
           easing: 'easeInOutQuad',
@@ -187,48 +198,37 @@ window.addEventListener('load', function () {
         scales: {
           xAxes: [{
             gridLines: {
-              color: 'rgba(200, 200, 200, 0.05)',
-              lineWidth: 1
+              color: 'rgba(0,0,0,0)',
             }
           }],
           yAxes: [{
             gridLines: {
-              color: 'rgba(200, 200, 200, 0.08)',
-              lineWidth: 1
-            }
+              color: 'rgba(0,0,0,0)',
+            },
+          //   ticks: {
+          //     beginAtZero:true,
+          //     fontColor: '#E2B34A'
+          // },
           }]
         },
         elements: {
           line: {
-            tension: 0.4
+            tension: 0.3
           }
-        },
-        point: {
-          backgroundColor: 'white'
         },
         tooltips: {
           titleFontFamily: 'Muli',
           backgroundColor: 'rgba(0,0,0,0.3)',
-          titleFontColor: 'red',
           caretSize: 5,
           cornerRadius: 2,
           xPadding: 10,
           yPadding: 10
-        }
+        },
       },
-      data: {
-        labels : labels,
-        datasets: [{
-          label: 'score',
-          data: points,
-          borderWidth: 1,
-          borderColor: '#911215',
-          pointBackgroundColor: 'white',
-          backgroundColor: 'red',
-        }]
-      }
     })
-    
+    Chart.defaults.global.defaultFontColor='white';
+    Chart.defaults.global.defaultFontFamily='Muli';
+
   }
   else
   {
