@@ -27,8 +27,7 @@ $userId = $_SESSION['userConnected'];
         }
 
         $sql .= "group by quiz_score.user_id order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC";
-        
-        
+
         $q = $wpdb->get_results($sql);
 
         $place = null;
@@ -102,8 +101,10 @@ function getLastQuiz($userId){
 }
 
 $userId = $_SESSION['userConnected'];
+$ville = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='location' AND user_id='".$userId."'");
 $quizId = 1;
 
+$response['ville']= $ville;
 $response['lastQuiz'] = getLastQuiz($userId);
 $response['classementUserVille'] = getUserClassement($userId, $ville);
 $response['classementUserGeneral'] = getUserClassement($userId);

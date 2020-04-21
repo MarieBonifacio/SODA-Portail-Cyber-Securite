@@ -32,7 +32,7 @@ if($nbrPage >= 1){
                 $path = "../img/modules/".$dir."/pages";
                 if(!is_dir($path))
                 {
-                    mkdir($path, 0700, true);
+                    mkdir($path, 0775, true);
                 }
                 $content_dir =  get_template_directory()."/img/modules/".$dir."/pages/";
                 $tmp_file = $_FILES['content_'.$i.'_img']['tmp_name'];
