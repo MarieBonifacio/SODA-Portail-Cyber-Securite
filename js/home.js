@@ -161,10 +161,18 @@ window.addEventListener('load', function () {
     `;
     lastQ.appendChild(elementQuiz);
 
-    let lastResults = userResults.slice(Math.max(userResults.length - 10, 1));
-    console.log(lastResults),
+    let lastResults,
     labels = [],
     points = [];
+    if(userResults.length > 10)
+    {
+      lastResults = userResults.slice(Math.max(userResults.length - 10, 1));
+      console.log(lastResults);
+    }
+    else
+    {
+      lastResults = userResults;
+    }
 
     for ( i = 0; i < lastResults.length; i++) {
       labels.push(lastResults[i].name);
@@ -205,10 +213,6 @@ window.addEventListener('load', function () {
             gridLines: {
               color: 'rgba(0,0,0,0)',
             },
-          //   ticks: {
-          //     beginAtZero:true,
-          //     fontColor: '#E2B34A'
-          // },
           }]
         },
         elements: {
