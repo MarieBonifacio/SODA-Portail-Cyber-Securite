@@ -34,11 +34,11 @@ $newScore->save();
 
 $wpdb->delete( 'quiz_progress' ,
     array(
-        'id_user' => $user->getId(),
+        'id_user' => $user,
         'id_quiz' => $quiz->getId(),
     )
 );
      
-wp_redirect( home_url().'/menu-module' );
+
 
 ?>
