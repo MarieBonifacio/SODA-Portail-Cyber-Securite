@@ -456,6 +456,11 @@ body
         {
           grid-column: 3/5;
           grid-row: 3/6;
+          #myChart
+          {
+            width: 80% !important;
+            height: 80% !important;
+          }
         }
         .leaderboard
         {

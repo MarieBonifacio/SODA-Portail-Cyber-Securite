@@ -10,6 +10,7 @@
     </div>
     <div class="window results">
       <h3>Vos résultats</h3>
+      <canvas id="myChart"></canvas>
     </div>
     <div class="window news">
       <h3>Dernières news</h3>
@@ -29,7 +30,6 @@
     </div>
     <div class="window leaderboard">
       <h3>Classement</h3>
-      
       <div class="btns">
         <button class="gen">Général</button>
         <button class="town">Votre ville</button>

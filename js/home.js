@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
   {
     var myArray = JSON.parse(this.responseText),
     lastQuiz = myArray.lastQuiz,
+    userResults = myArray.userResults,
     leadTown = myArray.classementUserVille,
     leadGen = myArray.classementUserGeneral,
     top10Gen = leadGen.top10,
@@ -22,52 +23,107 @@ window.addEventListener('load', function () {
     leaderboard = document.querySelector(".leaderboard");
     let tableContent;
     console.log(myArray);
-    for (i = 0; i < top10Gen.length; i++) 
-      {
-        console.log(parseInt(top10Gen[i].user_id) , parseInt(userStat.user_id));
-        pos = i + 1;
-        if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+    if(userStat != null)
+    {
+      for (i = 0; i < top10Gen.length; i++) 
         {
-          console.log("ok")
-          tbody.innerHTML += `
-          <tr class="imp">
-            <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>      
-            <td>${top10Gen[i].moyenne}</td>
-          </tr>
-          `
-        }
-        else
+          pos = i + 1;
+          if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+          {
+            tbody.innerHTML += `
+            <tr class="imp">
+              <td>${pos}</td>
+              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else
+          {
+            tbody.innerHTML += `
+            <tr>
+              <td>${pos}</td>
+              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+      }
+      gen.addEventListener("click", ()=>{
+  
+        tbody.innerHTML ='';
+        for (i = 0; i < top10Gen.length; i++) 
         {
-          tbody.innerHTML += `
-          <tr>
-            <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>      
-            <td>${top10Gen[i].moyenne}</td>
-          </tr>
-          `
+          pos = i + 1;
+          if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+          {
+            tbody.innerHTML += `
+            <tr class="imp">
+              <td>${pos}</td>
+              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else
+          {
+            tbody.innerHTML += `
+            <tr>
+              <td>${pos}</td>
+              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
         }
+      })
+      town.addEventListener("click", ()=>{
+        tbody.innerHTML ='';
+        for (i = 0; i < top10Gen.length; i++) 
+        {
+          pos = i + 1;
+          if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+          {
+            tbody.innerHTML += `
+            <tr class="imp">
+              <td>${pos}</td>
+              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else
+          {
+            tbody.innerHTML += `
+            <tr>
+              <td>${pos}</td>
+              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+        }
+      })
     }
-    gen.addEventListener("click", ()=>{
-
-      tbody.innerHTML ='';
+    else
+    {
       for (i = 0; i < top10Gen.length; i++) 
       {
-        console.log(parseInt(top10Gen[i].user_id) , parseInt(userStat.user_id));
         pos = i + 1;
-        if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+        tbody.innerHTML += `
+        <tr>
+          <td>${pos}</td>
+          <td>${top10Gen[i].display_name}</td>      
+          <td>${top10Gen[i].moyenne}</td>
+        </tr>
+        `
+      }
+      gen.addEventListener("click", ()=>{
+  
+        tbody.innerHTML ='';
+        for (i = 0; i < top10Gen.length; i++) 
         {
-          console.log("ok")
-          tbody.innerHTML += `
-          <tr class="imp">
-            <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>      
-            <td>${top10Gen[i].moyenne}</td>
-          </tr>
-          `
-        }
-        else
-        {
+          pos = i + 1;
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
@@ -76,27 +132,12 @@ window.addEventListener('load', function () {
           </tr>
           `
         }
-      }
-    })
-    town.addEventListener("click", ()=>{
-      tbody.innerHTML ='';
-      for (i = 0; i < top10Gen.length; i++) 
-      {
-        console.log(parseInt(top10Gen[i].user_id) , parseInt(userStat.user_id));
-        pos = i + 1;
-        if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+      })
+      town.addEventListener("click", ()=>{
+        tbody.innerHTML ='';
+        for (i = 0; i < top10Gen.length; i++) 
         {
-          console.log("ok")
-          tbody.innerHTML += `
-          <tr class="imp">
-            <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>      
-            <td>${top10Gen[i].moyenne}</td>
-          </tr>
-          `
-        }
-        else
-        {
+          pos = i + 1;
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
@@ -105,8 +146,8 @@ window.addEventListener('load', function () {
           </tr>
           `
         }
-      }
-    })
+      })
+    }
     
     const elementQuiz = document.createElement("div");
     elementQuiz.classList.add("contentQ");
@@ -119,6 +160,75 @@ window.addEventListener('load', function () {
       </a>
     `;
     lastQ.appendChild(elementQuiz);
+
+    let lastResults = userResults.slice(Math.max(userResults.length - 10, 1));
+    console.log(lastResults),
+    labels = [],
+    points = [];
+
+    for ( i = 0; i < lastResults.length; i++) {
+      labels.push(lastResults[i].name);
+      points.push(parseInt(lastResults[i].score));
+    }
+    console.log(points);
+
+
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      options: {
+        legend: {
+          display: false
+        },
+        animation: {
+          easing: 'easeInOutQuad',
+          duration: 520
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              color: 'rgba(200, 200, 200, 0.05)',
+              lineWidth: 1
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              color: 'rgba(200, 200, 200, 0.08)',
+              lineWidth: 1
+            }
+          }]
+        },
+        elements: {
+          line: {
+            tension: 0.4
+          }
+        },
+        point: {
+          backgroundColor: 'white'
+        },
+        tooltips: {
+          titleFontFamily: 'Muli',
+          backgroundColor: 'rgba(0,0,0,0.3)',
+          titleFontColor: 'red',
+          caretSize: 5,
+          cornerRadius: 2,
+          xPadding: 10,
+          yPadding: 10
+        }
+      },
+      data: {
+        labels : labels,
+        datasets: [{
+          label: 'score',
+          data: points,
+          borderWidth: 1,
+          borderColor: '#911215',
+          pointBackgroundColor: 'white',
+          backgroundColor: 'red',
+        }]
+      }
+    })
+    
   }
   else
   {
