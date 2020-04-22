@@ -196,7 +196,8 @@ body
     transition: .3s;
     z-index: 10;
     @include flex(flex-start, center, column);
-    .home
+    .rank,
+    .home 
     {
       @include flex(flex-start, center, row);
       a
@@ -327,20 +328,45 @@ body
         display: grid;
         width: 100%;
         height: 100%;
-        @include gridRepeat(1fr, 5, 1fr ,5, 25px);
+        @include gridRepeat(1fr, 7, 1fr ,5, 25px);
         .actu
         {
           grid-column: 1/3;
           grid-row: 1/6;
+          #buddypress
+          {
+            overflow-y: scroll;
+          }
+          #buddypress::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+          }
+          #buddypress::-webkit-scrollbar-thumb {
+            background: $color-btn;
+            border-radius: 100px;
+          }
+          #buddypress::-webkit-scrollbar-thumb:hover {
+            background: $color-btn;
+          }
+          #buddypress::-webkit-scrollbar-thumb:active {
+            background: $color-btn;
+          }
+          #buddypress::-webkit-scrollbar-track {
+            background: $color2;
+            border-radius: 50px;
+          }
+          #buddypress::-webkit-scrollbar-corner {
+            background: transparent;
+          }
         }
         .quiz
         {
-          grid-column: 5/6;
+          grid-column: 6/8;
           grid-row: 4/6;
           .contentQ
           {
             position:relative;
-            width: 70%;
+            width: 50%;
             height: 70%;
             margin-bottom: 5px;
             a
@@ -389,87 +415,101 @@ body
         }
         .news
         {
-          grid-column: 3/5;
+          grid-column: 3/6;
           grid-row: 1/3;
           h3
           {
             height: 10%;
           }
-          .content
-          {
-            position: relative;
-            height: 70%;
-            width: 90%;
-            @include flex(space-between, center, row);
-            overflow: hidden;
-            div
-            {
-              position: relative;
-              background: $color1;
-              border-radius: 10px;
-              height: 100%;
-              width: 30%;
-              overflow: hidden;
-              a
+          .display-posts-listing.grid {
+              display: grid;
+              grid-gap: 16px;
+              height: 60%;
+              width: 80%;
+              .listing-item
               {
-                .filter
-                {
-                  position: absolute;
-                  width: 200%;
-                  height: 200%;
-                  background: rgba(0,0,0, 0.7);
-                }
-                h2
-                {
-                  position: absolute;
-                  top: 40%;
-                  transform: translateY(-50%);
-                  width: 100%;
-                  font-size: 12px;
-                  margin: 0;
-                  word-break: break-word;
-                  padding: 15px;
-                  text-align: center;
-                  color: $police;
-                }
+                position: relative;
+                background: $color1;
+                border-radius: 10px;
+                overflow: hidden;
+                // height: 70%;
                 img
                 {
-                  max-width: 100%;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
                   min-height: 100%;
+                  min-width: 130%;
+                  z-index:1;
                 }
-                p
+                .image::before
+                {
+                  content: '';
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 120%;
+                  height: 100%;
+                  background: rgba(0,0,0,0.5);
+                  z-index:2;
+                }
+                .title
                 {
                   position: absolute;
-                  bottom: 0%;
-                  width: 100%;
-                  text-align: center;
-                  color: $color-imp;
-                  font-size: 12px;
+                  z-index: 3;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
                   font-weight: 600;
                 }
               }
-            }
+          }
+          
+          .display-posts-listing.grid .title {
+              display: block;
+              color: white;
+              text-align:center;
+          }
+          
+          .display-posts-listing.grid img { 
+              display: block; 
+              max-width: 100%; 
+              height: auto; 
+          }
+          
+          @media (min-width: 600px) {
+              .display-posts-listing.grid {
+                  grid-template-columns: repeat( 1, 1fr );
+              }
+          }
+          
+          @media (min-width: 1024px) {
+              .display-posts-listing.grid {
+                  grid-template-columns: repeat( 3, 1fr );
+              }
           }
         }
         .results
         {
-          grid-column: 3/5;
+          grid-column: 3/6;
           grid-row: 3/6;
           #myChart
           {
-            width: 90% !important;
+            width: 85% !important;
             height: 70% !important;
             color:rgba(226, 179, 74, 0.5);
           }
         }
         .leaderboard
         {
-          grid-column: 5/6;
-          grid-row: 4/6;
-          grid-column: 5/6;
+          grid-column: 6/8;
           grid-row: 1/4;
+          @include flex(flex-start, center, column);
           .btns
           {
+            margin-bottom: 10px;
             button
             {
               background: $color-btn;
@@ -479,7 +519,7 @@ body
               color: $color1;
               font-weight: 600;
               transition: .2s;
-              font-size: 13px;
+              font-size: 12px;
               outline: none;
             }
             button:hover
@@ -490,38 +530,79 @@ body
           .leadboard
           {
             border-collapse: collapse;
-            font-size: $fontSize2;
-            thead
+            font-size: 12px;
+            overflow-y: scroll;
+            width: 98%;
+            height: 80%;
+            padding: 10px;
+            table
             {
               position: relative;
-              width: 100%;
-              border-bottom: 1px solid white;
-            }
-            tr
-            {
-              text-align: center;
-              :nth-child(1)
+              left: 50%;
+              transform: translateX(-50%);
+              thead
               {
-                border-right: 1px solid white;
+                position: relative;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+                :nth-child(1)
+                {
+                  border-left: none;
+                }
+                th
+                {
+                  padding: 10px;
+                  border-left: 1px solid rgba(255, 255, 255, 0.5);
+                }
               }
-              :nth-child(2)
+              tr
               {
-                border-right: 1px solid white;
+                text-align: center;
+                :nth-child(1)
+                {
+                  border-left: none;
+                }
+                td
+                {
+                  padding: 10px;
+                  border-left: 1px solid rgba(255, 255, 255, 0.5);
+                  border-top: 1px solid rgba(255, 255, 255, 0.5);
+                }
               }
-            }
-            .imp
-            {
-              font-weight: 600;
-              color: $color-imp;
+              .imp
+              {
+                font-weight: 600;
+                color: $color-imp;
+              }
             }
           }
+          .leadboard::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+          }
+          .leadboard::-webkit-scrollbar-thumb {
+            background: $color-btn;
+            border-radius: 100px;
+          }
+          .leadboard::-webkit-scrollbar-thumb:hover {
+            background: $color-btn;
+          }
+          .leadboard::-webkit-scrollbar-thumb:active {
+            background: $color-btn;
+          }
+          .leadboard::-webkit-scrollbar-track {
+            background: $color2;
+            border-radius: 50px;
+          }
+          .leadboard::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+
         }
         .window
         {
           position: relative;
           background: $color3;
           border-radius: 10px;
-          overflow: hidden;
           box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
           @include flex(space-evenly, center, column);
           h3

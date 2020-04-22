@@ -15,21 +15,7 @@
     </div>
     <div class="window news">
       <h3>Dernières news</h3>
-      <div class="content">
-
         <?php echo do_shortcode( '[display-posts image_size="medium" wrapper="div" wrapper_class="display-posts-listing grid"  posts_per_page="3"]' ); ?>
-        <!-- <div>
-          <a href="">	
-            <div class="filter"></div>
-            <img src="<?php echo get_template_directory_uri(); ?>/img/fall.jpg" alt="logo portail SODA cyber Défense">
-            <h2>Article sur la sécurité des données</h2>
-            <p>Catégorie 1</p>
-          </a>
-        </div>
-        <div>
-        </div>
-        <div></div> -->
-      </div>
     </div>
     <div class="window leaderboard">
       <h3>Classement</h3>
@@ -37,17 +23,20 @@
         <button class="gen">Général</button>
         <button class="town">Votre ville</button>
       </div>
-      <table class="leadboard">
-        <thead>
-            <tr>
-                <th colspan="1">Pos</th>
-                <th colspan="1">Joueur</th>
-                <th colspan="1">Score</th>
-            </tr>
-        </thead>
-        <tbody class="tbody">
-        </tbody>
-      </table>
+      <div class="leadboard">
+        <table>
+          <thead>
+              <tr>
+                  <th colspan="1">Pos</th>
+                  <th colspan="1">Joueur</th>
+                  <th colspan="1">Ville</th>
+                  <th colspan="1">Score</th>
+              </tr>
+          </thead>
+          <tbody class="tbody">
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

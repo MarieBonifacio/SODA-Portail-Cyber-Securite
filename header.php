@@ -118,10 +118,12 @@ if(!empty($_SESSION['userConnected']))
 				<a id="a" href=""><i class="fas fa-gamepad"></i><p id="p">Jeux</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div> -->
-			<div id="link" class="rank">
-				<a id="a" href="<?php echo home_url()."/classements" ?>"><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
-				<i class="fas fa-sort-down"></i>
-			</div>
+			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+				<div id="link" class="rank">
+					<a id="a" href="<?php echo home_url()."/classements" ?>"><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
+					<!-- <i class="fas fa-sort-down"></i> -->
+				</div>
+			<?php } ?>
 			<i class="fas fa-question"></i>
 		</nav>
 

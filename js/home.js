@@ -7,10 +7,10 @@ window.addEventListener('load', function () {
     var myArray = JSON.parse(this.responseText),
     lastQuiz = myArray.lastQuiz,
     userResults = myArray.userResults,
-    leadTown = myArray.classementUserVille,
-    leadGen = myArray.classementUserGeneral,
-    top10Gen = leadGen.top10,
-    top10Town = leadTown.top10,
+    leadTown = myArray.top10UserVille,
+    leadGen = myArray.top10User,
+    top10Gen = leadGen.classement,
+    top10Town = leadTown.classement,
     userStat = leadGen.userStat,
     gen = document.querySelector(".gen"),
     lastQ = document.querySelector(".lastQ"),
@@ -21,19 +21,25 @@ window.addEventListener('load', function () {
     quiz = document.querySelector(".quiz"),
     tbody = document.querySelector(".tbody"),
     leaderboard = document.querySelector(".leaderboard");
-    let tableContent;
+    let tableContent,
+    isPresent;
     console.log(myArray);
+    // condition for user whithout any user stats
     if(userStat != null)
     {
+      // loop for leaderboard's making
       for (i = 0; i < top10Gen.length; i++) 
         {
           pos = i + 1;
+          // condition in order to know if user is in top 10 or not
           if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
           {
+            isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].display_name}</td>  
+              <td>${top10Gen[i].meta_value}</td>
               <td>${top10Gen[i].moyenne}</td>
             </tr>
             `
@@ -43,11 +49,23 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].display_name}</td>  
+              <td>${top10Gen[i].meta_value}</td>
               <td>${top10Gen[i].moyenne}</td>
             </tr>
             `
           }
+      }
+      if(isPresent != true)
+      {
+        tbody.innerHTML += `
+        <tr class="imp">
+          <td>${leadGen.userPlace}</td>
+          <td>${userStat.display_name}</td> 
+          <td>${userStat.meta_value}</td>
+          <td>${userStat.moyenne}</td>
+        </tr>
+        `
       }
       gen.addEventListener("click", ()=>{
   
@@ -60,7 +78,8 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].display_name}</td> 
+              <td>${top10Gen[i].meta_value}</td>
               <td>${top10Gen[i].moyenne}</td>
             </tr>
             `
@@ -70,11 +89,23 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>      
+              <td>${top10Gen[i].display_name}</td>
+              <td>${top10Gen[i].meta_value}</td>
               <td>${top10Gen[i].moyenne}</td>
             </tr>
             `
           }
+        }
+        if(isPresent != true)
+        {
+          tbody.innerHTML += `
+          <tr class="imp">
+            <td>${leadGen.userPlace}</td>
+            <td>${userStat.display_name}</td>    
+            <td>${userStat.meta_value}</td>
+            <td>${userStat.moyenne}</td>
+          </tr>
+          `
         }
       })
       town.addEventListener("click", ()=>{
@@ -84,24 +115,39 @@ window.addEventListener('load', function () {
           pos = i + 1;
           if(parseInt(userStat.user_id) == parseInt(top10Town[i].user_id))
           {
+            isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Town[i].display_name}</td>      
+              <td>${top10Town[i].display_name}</td> 
+              <td>${top10Town[i].meta_value}</td>
               <td>${top10Town[i].moyenne}</td>
             </tr>
             `
           }
           else
           {
+            isPresent = false;
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Town[i].display_name}</td>      
+              <td>${top10Town[i].display_name}</td>  
+              <td>${top10Town[i].meta_value}</td>
               <td>${top10Town[i].moyenne}</td>
             </tr>
             `
           }
+        }
+        if(isPresent != true)
+        {
+          tbody.innerHTML += `
+          <tr class="imp">
+            <td>${leadGen.userPlace}</td>
+            <td>${userStat.display_name}</td>  
+            <td>${userStat.meta_value}</td>
+            <td>${userStat.moyenne}</td>
+          </tr>
+          `
         }
       })
     }
@@ -113,7 +159,8 @@ window.addEventListener('load', function () {
         tbody.innerHTML += `
         <tr>
           <td>${pos}</td>
-          <td>${top10Gen[i].display_name}</td>      
+          <td>${top10Gen[i].display_name}</td>  
+          <td>${top10Gen[i].meta_value}</td>
           <td>${top10Gen[i].moyenne}</td>
         </tr>
         `
@@ -127,7 +174,8 @@ window.addEventListener('load', function () {
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>      
+            <td>${top10Gen[i].display_name}</td>  
+            <td>${top10Gen[i].meta_value}</td>
             <td>${top10Gen[i].moyenne}</td>
           </tr>
           `
@@ -141,7 +189,8 @@ window.addEventListener('load', function () {
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
-            <td>${top10Town[i].display_name}</td>      
+            <td>${top10Town[i].display_name}</td>  
+            <td>${top10Town[i].meta_value}</td>
             <td>${top10Town[i].moyenne}</td>
           </tr>
           `
@@ -149,6 +198,7 @@ window.addEventListener('load', function () {
       })
     }
     
+    // creation of last quiz ancer
     const elementQuiz = document.createElement("div");
     elementQuiz.classList.add("contentQ");
     elementQuiz.innerHTML = `
