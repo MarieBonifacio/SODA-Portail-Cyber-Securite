@@ -100,9 +100,12 @@ function getLastQuiz($userId){
     );
 }
 
+$str_json = file_get_contents('php://input'); //($_POST doesn't work here)
+$response = json_decode($str_json, true); // decoding received JSON to array
+
 $userId = $_SESSION['userConnected'];
 $ville = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='location' AND user_id='".$userId."'");
-$quizId = 1;
+$quizId = isset($response['quizId'])?$response['quizId']:null;
 
 $response['ville']= $ville;
 $response['lastQuiz'] = getLastQuiz($userId);
