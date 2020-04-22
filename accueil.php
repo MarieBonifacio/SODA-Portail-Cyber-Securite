@@ -17,7 +17,7 @@
       <h3>Dernières news</h3>
       <div class="content">
 
-        <?php echo do_shortcode( '[display-posts posts_per_page="3" post_type="post" image_size="thumbnail"]' ); ?>
+        <?php echo do_shortcode( '[display-posts image_size="medium" wrapper="div" wrapper_class="display-posts-listing grid"  posts_per_page="3"]' ); ?>
         <!-- <div>
           <a href="">	
             <div class="filter"></div>
