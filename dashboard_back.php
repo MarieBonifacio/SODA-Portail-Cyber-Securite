@@ -117,6 +117,7 @@ $response['lastQuiz'] = getLastQuiz($userId);
 //dashboard user
 $response['top10User'] = getUserClassement($userId, null, 10);
 $response['top10UserVille'] = getUserClassement($userId, $ville, 10);
+$response['userResults'] = getUserResults($userId);
 
 //dashboard admin
 $response['classementVilleGeneral'] = getCityClassement();
@@ -126,7 +127,7 @@ $response['classementUser'] = getUserClassement();
 //$response['classementUserGeneral'] = getUserClassement($userId);
 //$response['classementVilleQuiz'] = getCityClassement($quizId);
 //$response['classementVilleGeneral'] = getCityClassement();
-//$response['userResults'] = getUserResults($userId);
+
 
 
 echo json_encode($response);
