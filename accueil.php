@@ -16,6 +16,8 @@
     <div class="window news">
       <h3>Dernières news</h3>
       <div class="content">
+
+        <?php echo do_shortcode( '[display-posts posts_per_page="3" post_type="post" image_size="thumbnail"]' ); ?>
         <!-- <div>
           <a href="">	
             <div class="filter"></div>

@@ -17,7 +17,7 @@ $userId = $_SESSION['userConnected'];
 //JSON ENCODE
 
     //classements par utilisateur
-    function getUserClassement($userId, $ville=null){
+    function getUserClassement($userId = null, $ville=null, $limit=null){
         global $wpdb;
         $sql = "SELECT quiz_score.user_id, avg(quiz_score.score) AS moyenne,  sum(quiz_score.time) AS time, count(quiz_score.id) AS count,  wp_users.display_name,  wp_usermeta.meta_value ";
         $sql .= "FROM quiz_score LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' ";
@@ -26,7 +26,11 @@ $userId = $_SESSION['userConnected'];
             $sql .= "WHERE wp_usermeta.meta_value='".$ville."'";
         }
 
-        $sql .= "group by quiz_score.user_id order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC";
+        $sql .= "group by quiz_score.user_id order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC ";
+
+        if($limit != null){
+            $sql .= "LIMIT ".$limit;
+        }
 
         $q = $wpdb->get_results($sql);
 
@@ -38,7 +42,7 @@ $userId = $_SESSION['userConnected'];
         }
 
         return array(
-            "top10" => array_slice($q, 0, 10),
+            "classement" => array_slice($q, 0, 10),
             "userPlace" => $place,
             "userStat" => $userStat,
         );
@@ -109,11 +113,20 @@ $quizId = isset($response['quizId'])?$response['quizId']:null;
 
 $response['ville']= $ville;
 $response['lastQuiz'] = getLastQuiz($userId);
-$response['classementUserVille'] = getUserClassement($userId, $ville);
-$response['classementUserGeneral'] = getUserClassement($userId);
-$response['classementVilleQuiz'] = getCityClassement($quizId);
+
+//dashboard user
+$response['top10User'] = getUserClassement($userId, null, 10);
+$response['top10UserVille'] = getUserClassement($userId, $ville, 10);
+
+//dashboard admin
 $response['classementVilleGeneral'] = getCityClassement();
-$response['userResults'] = getUserResults($userId);
+$response['classementUser'] = getUserClassement();
+
+//$response['classementUserVille'] = getUserClassement($userId, $ville);
+//$response['classementUserGeneral'] = getUserClassement($userId);
+//$response['classementVilleQuiz'] = getCityClassement($quizId);
+//$response['classementVilleGeneral'] = getCityClassement();
+//$response['userResults'] = getUserResults($userId);
 
 
 echo json_encode($response);
