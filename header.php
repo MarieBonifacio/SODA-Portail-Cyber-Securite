@@ -114,12 +114,12 @@ if(!empty($_SESSION['userConnected']))
 					</ul>	
 				<?php } ?>
 			</div>
-			<div id="link" class="games">
+			<!-- <div id="link" class="games">
 				<a id="a" href=""><i class="fas fa-gamepad"></i><p id="p">Jeux</p></a>
 				<i class="fas fa-sort-down"></i>
-			</div>
+			</div> -->
 			<div id="link" class="rank">
-				<a id="a" href=""><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
+				<a id="a" href="<?php echo home_url()."/classements" ?>"><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
 				<i class="fas fa-sort-down"></i>
 			</div>
 			<i class="fas fa-question"></i>

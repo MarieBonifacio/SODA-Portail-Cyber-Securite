@@ -79,16 +79,16 @@ window.addEventListener('load', function () {
       })
       town.addEventListener("click", ()=>{
         tbody.innerHTML ='';
-        for (i = 0; i < top10Gen.length; i++) 
+        for (i = 0; i < top10Town.length; i++) 
         {
           pos = i + 1;
-          if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+          if(parseInt(userStat.user_id) == parseInt(top10Town[i].user_id))
           {
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>      
-              <td>${top10Gen[i].moyenne}</td>
+              <td>${top10Town[i].display_name}</td>      
+              <td>${top10Town[i].moyenne}</td>
             </tr>
             `
           }
@@ -97,8 +97,8 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>      
-              <td>${top10Gen[i].moyenne}</td>
+              <td>${top10Town[i].display_name}</td>      
+              <td>${top10Town[i].moyenne}</td>
             </tr>
             `
           }
@@ -135,14 +135,14 @@ window.addEventListener('load', function () {
       })
       town.addEventListener("click", ()=>{
         tbody.innerHTML ='';
-        for (i = 0; i < top10Gen.length; i++) 
+        for (i = 0; i < top10Town.length; i++) 
         {
           pos = i + 1;
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>      
-            <td>${top10Gen[i].moyenne}</td>
+            <td>${top10Town[i].display_name}</td>      
+            <td>${top10Town[i].moyenne}</td>
           </tr>
           `
         }
