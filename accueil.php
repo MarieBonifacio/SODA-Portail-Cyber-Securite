@@ -4,7 +4,7 @@
   <div class="dashboard">
     <div class="window actu">
       <h3>Fil d'actualité</h3>
-      <!-- <?php echo do_shortcode( '[activity-stream allow_posting=true]' ); ?> -->
+      <?php echo do_shortcode( '[activity-stream allow_posting=true]' ); ?>
     </div>
     <div class="window quiz lastQ">
       <h3>Dernier quiz</h3>
