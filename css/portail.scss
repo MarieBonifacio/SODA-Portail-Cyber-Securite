@@ -336,6 +336,108 @@ body
           #buddypress
           {
             overflow-y: scroll;
+            width: 95%;
+            padding: 10px;
+            .bpas-post-form-wrapper
+            {
+              border: none;
+              background: $color2;
+              border-radius: 5px;
+              padding: 10px;
+              transition: .2s;
+              form
+              {
+                height: 100%;
+              }
+              .activity-greeting
+              {
+                height: 15px;
+                line-height: 1.5 !important;
+                color: $color-imp;
+              }
+              #whats-new-content
+              {
+                width: 80%;
+                padding: 20px !important;
+                #whats-new-textarea
+                {
+                  textarea
+                  {
+                    min-height: 100px;
+                    max-width: 100% !important;
+                    max-height: 200px;
+                    background: $color3 !important;
+                    border: none;
+                    border-radius: 5px;
+                    outline: none;
+                    color: $police;
+                  }
+                }
+              }
+              #whats-new-submit
+              {
+                margin-bottom: 10px;
+                input
+                {
+                  background: $color-btn;
+                  border:none;
+                  color: $color1;
+                }
+                input:hover
+                {
+                  background: $police;
+                }
+              }
+            }
+            .activity-header
+            {
+              a
+              {
+                color: $color-imp;
+              }
+            }
+            .activity-meta
+            {
+              margin-top: 10px;
+              padding: 5px;
+              border-top: 1px solid white;
+              // background: $color3;
+              width: 130px;
+              a
+              {
+                margin-top: 10px !important;
+                background:none;
+                border: none;
+                color: $police;
+                span
+                {
+                  background: $color-imp;
+                  color: $color1;
+                }
+              }
+              .delete-activity
+              {
+                color: rgb(235, 13, 13);
+                // font-weight: 600;
+              }
+              .fav
+              {
+                color: #3AD29F;
+              }
+              a:hover
+              {
+                font-weight: 600;
+              }
+            }
+            .activity, .activity-list
+            {
+              border:none;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              background: $color2;
+              padding: 5px;
+              border-radius: 5px;
+            }
           }
           #buddypress::-webkit-scrollbar {
             width: 5px;
@@ -530,10 +632,10 @@ body
           .leadboard
           {
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 13px;
             overflow-y: scroll;
             width: 98%;
-            height: 80%;
+            height: 70%;
             padding: 10px;
             table
             {
@@ -548,9 +650,16 @@ body
                 {
                   border-left: none;
                 }
+                :nth-child(2)
+                {
+                  width: 35%;
+                }
+                :nth-child(3)
+                {
+                  width: 35%;
+                }
                 th
                 {
-                  padding: 10px;
                   border-left: 1px solid rgba(255, 255, 255, 0.5);
                 }
               }
@@ -563,7 +672,8 @@ body
                 }
                 td
                 {
-                  padding: 10px;
+                  // padding: 10px;
+                  word-break: break-word;
                   border-left: 1px solid rgba(255, 255, 255, 0.5);
                   border-top: 1px solid rgba(255, 255, 255, 0.5);
                 }
