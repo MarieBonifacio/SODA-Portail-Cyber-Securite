@@ -350,6 +350,7 @@ body
               border-radius: 5px;
               padding: 15px;
               transition: .2s;
+              margin-bottom: 10px;
               form
               {
                 height: 100%;
@@ -436,13 +437,17 @@ body
                 font-weight: 600;
               }
             }
-            .activity, .activity-list
+            .activity-list, .activity
             {
+              margin-top: 10px;
               border:none;
+            }
+            li.activity
+            {
               margin-top: 10px;
               margin-bottom: 10px;
               background: $color2;
-              padding: 5px;
+              padding: 15px;
               border-radius: 5px;
             }
             .pag-count
@@ -2137,6 +2142,130 @@ body
         100%{
           fill: #3AD29F;
         }
+      }
+    }
+    .board
+    {
+      width: 100%;
+      height: 100%;
+      font-size: $fontSize2;
+      color: $police;
+      .span_above
+      {
+        @include positionTR(absolute, 5%, 5%);
+        color: #3AD29F;
+        font-weight: 600;
+      }
+      .span_under
+      {
+        @include positionTR(absolute, 10%, 5%);
+        color: rgb(235, 13, 13);
+        font-weight: 600;
+      }
+      .btns
+      {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        button
+        {
+          background: $color-btn;
+          border: none;
+          padding: 6px 12px;
+          border-radius: 2px;
+          color: $color1;
+          font-weight: 600;
+          transition: .2s;
+          outline: none;
+        }
+        button:hover
+        {
+          background: $police;
+        }
+      }
+      .leadboard
+      {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 80%;
+        border-collapse: collapse;
+        overflow-y: scroll;
+        padding: 10px;
+        table
+        {
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+          thead
+          {
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            :nth-child(1)
+            {
+              width: 5%;
+              border-left: none;
+            }
+            th
+            {
+              width: 15%;
+              border-left: 1px solid rgba(255, 255, 255, 0.5);
+            }
+          }
+          tr
+          {
+            text-align: center;
+            :nth-child(1)
+            {
+              border-left: none;
+            }
+            td
+            {
+              word-break: break-word;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              border-left: 1px solid rgba(255, 255, 255, 0.5);
+              border-top: 1px solid rgba(255, 255, 255, 0.5);
+            }
+          }
+          .imp
+          {
+            font-weight: 600;
+            color: $color-imp;
+          }
+          .green
+          {
+            color: #3AD29F;
+            font-weight: 600;
+          }
+          .red
+          {
+            color: rgb(235, 13, 13);
+            font-weight: 600;
+          }
+        }
+      }
+      .leadboard::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      .leadboard::-webkit-scrollbar-thumb {
+        background: $color-btn;
+        border-radius: 100px;
+      }
+      .leadboard::-webkit-scrollbar-thumb:hover {
+        background: $color-btn;
+      }
+      .leadboard::-webkit-scrollbar-thumb:active {
+        background: $color-btn;
+      }
+      .leadboard::-webkit-scrollbar-track {
+        background: $color2;
+        border-radius: 50px;
+      }
+      .leadboard::-webkit-scrollbar-corner {
+        background: transparent;
       }
     }
   }

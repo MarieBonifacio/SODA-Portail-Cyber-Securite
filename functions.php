@@ -122,8 +122,13 @@ function html5blank_conditional_scripts()
         ));
     }
     if (is_page("accueil")) {
-       
         wp_enqueue_script('my-script', get_template_directory_uri() . '/js/home.js', null, true);
+        wp_localize_script('my-script', 'myScript', array(
+            'theme_directory' => get_template_directory_uri() 
+        ));
+    }
+    if (is_page("classements")) {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/board.js', null, true);
         wp_localize_script('my-script', 'myScript', array(
             'theme_directory' => get_template_directory_uri() 
         ));
