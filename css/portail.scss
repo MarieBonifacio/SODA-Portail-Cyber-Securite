@@ -339,12 +339,16 @@ body
             width: 95%;
             height: 85%;
             padding: 10px;
+            .activity-shortcode-title
+            {
+              display: none;
+            }
             .bpas-post-form-wrapper
             {
               border: none;
               background: $color2;
               border-radius: 5px;
-              padding: 10px;
+              padding: 15px;
               transition: .2s;
               form
               {
@@ -364,9 +368,8 @@ body
                 {
                   textarea
                   {
-                    min-height: 100px;
+                    min-height: 50px;
                     max-width: 100% !important;
-                    max-height: 200px;
                     background: $color3 !important;
                     border: none;
                     border-radius: 5px;
@@ -403,7 +406,7 @@ body
               padding: 5px;
               border-top: 1px solid white;
               // background: $color3;
-              width: 130px;
+              width: 150px;
               a
               {
                 margin-top: 10px !important;
@@ -419,11 +422,14 @@ body
               .delete-activity
               {
                 color: rgb(235, 13, 13);
-                // font-weight: 600;
               }
               .fav
               {
                 color: #3AD29F;
+              }
+              .unfav
+              {
+                color: rgb(235, 13, 13);
               }
               a:hover
               {
@@ -442,6 +448,99 @@ body
             .pag-count
             {
               color: $police;
+            }
+            .ac-reply-content
+            {
+              margin: -10px;
+              padding: 0;
+              .ac-textarea
+              {
+                background: none;
+                border: none;
+                textarea
+                {
+                  margin-top: 10px;
+                  min-height: 50px;
+                  width: 100%;
+                  max-width: 100%;
+                  padding: 5px;
+                  background: $color3;
+                  border-radius: 5px;
+                  color: $police;
+                }
+              }
+              input[type="submit"]
+              {
+                background: $color-btn;
+                color: $color1;
+                border:none;
+                outline: none;
+                font-weight: 600;
+                transition: .2s;
+              }
+              input[type="submit"]:hover
+              {
+                background: $police;
+              }
+              .ac-reply-cancel
+              {
+                color: rgb(235, 13, 13);
+              }
+              .ac-reply-cancel:hover
+              {
+                font-weight: 600;
+              }
+            }
+            .activity-comments
+            {
+              margin: 0;
+              padding: 10px;
+              border-radius: 5px;
+              ul
+              {
+                padding: 0;
+                li
+                {
+                  color: $police;
+                  padding:10px;
+                  margin-bottom: 10px;
+                  background: $color3;
+                  border-radius: 5px;
+                  border: none;
+                  ul
+                  {
+                    margin: 0;
+                    li
+                    {
+                      background: $color2;
+                    }
+                  }
+                } 
+              }
+              a
+              {
+                color: $color-imp;
+              }
+              a:hover
+              {
+                font-weight: 600;
+              }
+              .acomment-reply
+              {
+                color: #3AD29F;
+              }
+              .delete
+              {
+                color: rgb(235, 13, 13);
+              }
+              .acomment-meta
+              {
+                color: $police;
+              }
+              .acomment-options
+              {
+                margin: 0;
+              }
             }
           }
           #buddypress::-webkit-scrollbar {
