@@ -42,7 +42,7 @@ $userId = $_SESSION['userConnected'];
         }
 
         return array(
-            "classement" => array_slice($q, 0, 10),
+            "classement" => array_slice($q, 0, 30),
             "userPlace" => $place,
             "userStat" => $userStat,
         );
@@ -115,8 +115,8 @@ $response['ville']= $ville;
 $response['lastQuiz'] = getLastQuiz($userId);
 
 //dashboard user
-$response['top10User'] = getUserClassement($userId, null, 10);
-$response['top10UserVille'] = getUserClassement($userId, $ville, 10);
+$response['top30User'] = getUserClassement($userId, null, 30);
+$response['top30UserVille'] = getUserClassement($userId, $ville, 30);
 $response['userResults'] = getUserResults($userId);
 
 //dashboard admin

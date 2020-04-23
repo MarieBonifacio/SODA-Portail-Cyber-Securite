@@ -42,7 +42,7 @@ class Tag {
                     "name" => $this->name
                 )
             );
-            return $wpdb->last_query;
+            return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update(

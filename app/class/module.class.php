@@ -98,7 +98,7 @@ class Module {
                     "created_at" => $this->created_at
                     )
                 );
-            return $r;
+                return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update(

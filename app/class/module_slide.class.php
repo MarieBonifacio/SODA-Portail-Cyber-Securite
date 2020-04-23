@@ -74,7 +74,9 @@ class ModuleSlide {
             "img_path" => $this->img_path,
             "content" => $this->content,
             "order" => $this->order,
-            ));
+            )
+        );
+        return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update('module_slide', array(

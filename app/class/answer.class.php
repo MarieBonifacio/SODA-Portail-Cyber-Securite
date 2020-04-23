@@ -61,6 +61,7 @@ class Answer {
                     "is_true" => $this->is_true,
                     )
                 );
+                return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update(

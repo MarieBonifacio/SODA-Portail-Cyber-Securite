@@ -82,6 +82,7 @@ class Question {
                     "points" => $this->points,
                     )
                 );
+                return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update(

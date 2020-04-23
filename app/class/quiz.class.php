@@ -85,7 +85,7 @@ class Quiz {
                     "created_at" => $this->created_at
                 )
             );
-            return $wpdb->last_query;
+            return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update(

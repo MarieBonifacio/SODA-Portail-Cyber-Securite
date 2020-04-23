@@ -87,7 +87,9 @@ class Quiz_score {
                     "score" => $this->score,
                     "time" => $this->time,
                     "created_at" => $this->created_at
-            ));
+            )
+        );
+        return $wpdb->insert_id;
         }else{
             global $wpdb;
             $wpdb->update(
