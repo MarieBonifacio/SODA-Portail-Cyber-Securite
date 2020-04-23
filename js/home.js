@@ -7,10 +7,10 @@ window.addEventListener('load', function () {
     var myArray = JSON.parse(this.responseText),
     lastQuiz = myArray.lastQuiz,
     userResults = myArray.userResults,
-    leadTown = myArray.top10UserVille,
-    leadGen = myArray.top10User,
-    top10Gen = leadGen.classement,
-    top10Town = leadTown.classement,
+    leadTown = myArray.top30UserVille,
+    leadGen = myArray.top30User,
+    top30Gen = leadGen.classement,
+    top30Town = leadTown.classement,
     userStat = leadGen.userStat,
     gen = document.querySelector(".gen"),
     lastQ = document.querySelector(".lastQ"),
@@ -28,19 +28,19 @@ window.addEventListener('load', function () {
     if(userStat != null)
     {
       // loop for leaderboard's making
-      for (i = 0; i < top10Gen.length; i++) 
+      for (i = 0; i < top30Gen.length; i++) 
         {
           pos = i + 1;
           // condition in order to know if user is in top 10 or not
-          if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+          if(parseInt(userStat.user_id) == parseInt(top30Gen[i].user_id))
           {
             isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>  
-              <td>${top10Gen[i].meta_value}</td>
-              <td>${top10Gen[i].moyenne}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
             </tr>
             `
           }
@@ -49,9 +49,9 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>  
-              <td>${top10Gen[i].meta_value}</td>
-              <td>${top10Gen[i].moyenne}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
             </tr>
             `
           }
@@ -70,17 +70,17 @@ window.addEventListener('load', function () {
       gen.addEventListener("click", ()=>{
   
         tbody.innerHTML ='';
-        for (i = 0; i < top10Gen.length; i++) 
+        for (i = 0; i < top30Gen.length; i++) 
         {
           pos = i + 1;
-          if(parseInt(userStat.user_id) == parseInt(top10Gen[i].user_id))
+          if(parseInt(userStat.user_id) == parseInt(top30Gen[i].user_id))
           {
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td> 
-              <td>${top10Gen[i].meta_value}</td>
-              <td>${top10Gen[i].moyenne}</td>
+              <td>${top30Gen[i].display_name}</td> 
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
             </tr>
             `
           }
@@ -89,9 +89,9 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Gen[i].display_name}</td>
-              <td>${top10Gen[i].meta_value}</td>
-              <td>${top10Gen[i].moyenne}</td>
+              <td>${top30Gen[i].display_name}</td>
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
             </tr>
             `
           }
@@ -110,18 +110,18 @@ window.addEventListener('load', function () {
       })
       town.addEventListener("click", ()=>{
         tbody.innerHTML ='';
-        for (i = 0; i < top10Town.length; i++) 
+        for (i = 0; i < top30Town.length; i++) 
         {
           pos = i + 1;
-          if(parseInt(userStat.user_id) == parseInt(top10Town[i].user_id))
+          if(parseInt(userStat.user_id) == parseInt(top30Town[i].user_id))
           {
             isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
-              <td>${top10Town[i].display_name}</td> 
-              <td>${top10Town[i].meta_value}</td>
-              <td>${top10Town[i].moyenne}</td>
+              <td>${top30Town[i].display_name}</td> 
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
             </tr>
             `
           }
@@ -131,9 +131,9 @@ window.addEventListener('load', function () {
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
-              <td>${top10Town[i].display_name}</td>  
-              <td>${top10Town[i].meta_value}</td>
-              <td>${top10Town[i].moyenne}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
             </tr>
             `
           }
@@ -153,45 +153,45 @@ window.addEventListener('load', function () {
     }
     else
     {
-      for (i = 0; i < top10Gen.length; i++) 
+      for (i = 0; i < top30Gen.length; i++) 
       {
         pos = i + 1;
         tbody.innerHTML += `
         <tr>
           <td>${pos}</td>
-          <td>${top10Gen[i].display_name}</td>  
-          <td>${top10Gen[i].meta_value}</td>
-          <td>${top10Gen[i].moyenne}</td>
+          <td>${top30Gen[i].display_name}</td>  
+          <td>${top30Gen[i].meta_value}</td>
+          <td>${top30Gen[i].moyenne}</td>
         </tr>
         `
       }
       gen.addEventListener("click", ()=>{
   
         tbody.innerHTML ='';
-        for (i = 0; i < top10Gen.length; i++) 
+        for (i = 0; i < top30Gen.length; i++) 
         {
           pos = i + 1;
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
-            <td>${top10Gen[i].display_name}</td>  
-            <td>${top10Gen[i].meta_value}</td>
-            <td>${top10Gen[i].moyenne}</td>
+            <td>${top30Gen[i].display_name}</td>  
+            <td>${top30Gen[i].meta_value}</td>
+            <td>${top30Gen[i].moyenne}</td>
           </tr>
           `
         }
       })
       town.addEventListener("click", ()=>{
         tbody.innerHTML ='';
-        for (i = 0; i < top10Town.length; i++) 
+        for (i = 0; i < top30Town.length; i++) 
         {
           pos = i + 1;
           tbody.innerHTML += `
           <tr>
             <td>${pos}</td>
-            <td>${top10Town[i].display_name}</td>  
-            <td>${top10Town[i].meta_value}</td>
-            <td>${top10Town[i].moyenne}</td>
+            <td>${top30Town[i].display_name}</td>  
+            <td>${top30Town[i].meta_value}</td>
+            <td>${top30Town[i].moyenne}</td>
           </tr>
           `
         }

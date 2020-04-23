@@ -8,8 +8,8 @@ window.addEventListener('load', function () {
     var genTown = myArray.classementVilleGeneral,
     genUser = myArray.classementUser,
     genUserBoard = genUser.classement,
-    userId = myArray.top10User.userStat.user_id;
-    console.log(myArray, genUserBoard);
+    userId = myArray.top30User.userStat.user_id;
+    console.log(myArray);
     const leadBoard = document.querySelector(".leadboard"),
     genUserBtn = document.querySelector(".gen"),
     genTownBtn = document.querySelector(".town");
