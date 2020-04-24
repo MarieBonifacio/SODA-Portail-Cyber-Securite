@@ -197,8 +197,10 @@ window.addEventListener('load', function () {
         if(genTown[i].moyenne<50)
         {
           isUnder += 1;
-          tbody.innerHTML += `
-            <tr>
+          if(genTown[i].city == myArray.ville)
+          {
+            tbody.innerHTML += `
+            <tr class="imp">
             <td>${pos}</td>
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
@@ -206,6 +208,19 @@ window.addEventListener('load', function () {
             <td class="red">${genTown[i].moyenne}</td>
             </tr>
           `
+          }
+          else
+          {
+            tbody.innerHTML += `
+              <tr>
+              <td>${pos}</td>
+              <td>${genTown[i].city}</td>
+              <td>${genTown[i].quizCount}</td>
+              <td>${genTown[i].time}</td>
+              <td class="red">${genTown[i].moyenne}</td>
+              </tr>
+            `
+          }
         }
         else
         {
