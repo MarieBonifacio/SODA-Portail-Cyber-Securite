@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
     isPresent = false;
     console.log(myArray);
     // condition for user whithout any user stats
-    if(userStat != null)
+    if(userResults.length != 0)
     {
       // loop for leaderboard's making
       for (i = 0; i < top30Gen.length; i++) 
@@ -75,6 +75,7 @@ window.addEventListener('load', function () {
           pos = i + 1;
           if(parseInt(userStat.user_id) == parseInt(top30Gen[i].user_id))
           {
+            isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>

@@ -80,3 +80,23 @@ arrows.forEach(arrow => {
         });
     })
 });
+
+window.addEventListener('load', function () {
+    var urlNotif = myScript.theme_directory;
+    var xmlhttpNotif = new XMLHttpRequest();
+    xmlhttpNotif.onreadystatechange = function () {
+    if(this.readyState == 4 && this.status == 200)
+    {
+        var notif = JSON.parse(this.responseText);
+        console.log(notif);
+    }
+    else
+    {
+        console.log('pas ok')
+    }
+    };
+
+    // url a trouver
+    xmlhttpNotif.open("GET", urlNotif  + '/notification.php', true);
+    xmlhttpNotif.send();
+});
