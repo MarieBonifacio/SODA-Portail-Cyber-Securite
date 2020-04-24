@@ -35,8 +35,8 @@ function clean(){
     $wpdb->query($wpdb->prepare( "DELETE FROM wp_users WHERE ID != 1"));
     $wpdb->query($wpdb->prepare( "DELETE FROM wp_usermeta WHERE user_id != 1 OR meta_key = 'location' OR meta_key = 'id_alc' OR meta_key = 'avatar' OR meta_key = 'notification'"));
 
-    delTree('../img/quizs/');
-    delTree('../img/modules/');
+    delTree('../img/quizs');
+    delTree('../img/modules');
 }
 
 function createUsers(){
