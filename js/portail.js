@@ -81,22 +81,70 @@ arrows.forEach(arrow => {
     })
 });
 
-window.addEventListener('load', function () {
-    var urlNotif = myScript.theme_directory;
-    var xmlhttpNotif = new XMLHttpRequest();
-    xmlhttpNotif.onreadystatechange = function () {
-    if(this.readyState == 4 && this.status == 200)
+const profil = document.querySelector(".circle"),
+dropMenuProfile = document.querySelector(".dropMenuProfile");
+
+profil.addEventListener("click", ()=>{
+    if(dropMenuProfile.classList.contains("dropMenuProfileAppear"))
     {
-        var notif = JSON.parse(this.responseText);
-        console.log(notif);
+        dropMenuProfile.classList.remove("dropMenuProfileAppear");
     }
     else
     {
-        console.log('pas ok')
+        dropMenuProfile.classList.add("dropMenuProfileAppear");
     }
-    };
+})
 
-    // url a trouver
-    xmlhttpNotif.open("GET", urlNotif  + '/notification.php', true);
-    xmlhttpNotif.send();
-});
+// window.addEventListener('load', function () {
+//     var urlNotif = myScript.theme_directory;
+//     var xmlhttpNotif = new XMLHttpRequest();
+//     xmlhttpNotif.onreadystatechange = function () {
+//     if(this.readyState == 4 && this.status == 200)
+//     {
+//         var notifTable = JSON.parse(this.responseText),
+//         number = notifTable.nombre,
+//         articles = notifTable.article,
+//         modules = notifTable.module,
+//         quiz = notifTable.quiz;
+//         const notif = document.querySelector(".notif"),
+//         notifs = document.querySelector(".notifs");
+//         console.log(notifTable);
+//         notifs.innerHTML='';
+//         if(number > 0)
+//         {
+//             if(articles.length > 0)
+//             {
+//                 for (let i = 0; i < articles.length; i++) {
+//                     notifs.innerHTML += `
+//                         <p>L'article <span>${articles[i].post_title}</span> a été publie le <span>${articles[i].post_date}</span></p>
+//                     `;
+//                 }
+//             }
+//             if(quiz.length > 0)
+//             {
+//                 for (let f = 0; f < quiz.length; f++) {
+//                     notifs.innerHTML += `
+//                         <p>Le quiz <span>${quiz[f].name}</span> a ete cree le <span>${quiz[i].created_at}</span></p>
+//                     `;
+//                 }
+//             }
+//             if(modules.length > 0)
+//             {
+//                 for (let f = 0; f < modules.length; f++) {
+//                     notifs.innerHTML += `
+//                         <p>Le module <span>${modules[f].title}</span> a ete cree le <span>${modules[i].created_at}</span></p>
+//                     `;
+//                 }
+//             }
+//         }
+//     }
+//     else
+//     {
+//         console.log('pas ok')
+//     }
+//     };
+
+//     // url a trouver
+//     xmlhttpNotif.open("GET", urlNotif  + '/notification.php', true);
+//     xmlhttpNotif.send();
+// });

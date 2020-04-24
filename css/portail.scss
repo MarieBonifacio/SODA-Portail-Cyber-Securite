@@ -153,6 +153,24 @@ body
           width: 100%;
           opacity: 1;
         }
+        .notifs
+        {
+          @include positionBR(absolute, -50px, 100px);
+          // display: none;
+          transform: translate(-50%, 50%);
+          font-size: $fontSize1;
+          background: $color1;
+          border-radius: 5px;
+          width: 250px;
+          height: 300px;
+          overflow-y: scroll;
+          box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+          span
+          {
+            font-weight: 600;
+            color: $color-imp;
+          }
+        }
       }
         // class which grows the container of bell icon and search icon/bar
       .iconsGrow
@@ -161,6 +179,7 @@ body
       }
       .profile_pic
       {
+        // position: relative;
         width: 10%;
         height: 100%;
         @include flex(center, center, row);
@@ -179,12 +198,42 @@ body
             min-height: 100%;
           }
         }
+        .circle:hover{
+          cursor: pointer;
+        }
+        .dropMenuProfile
+        {
+        display: none;
+          @include positionBR(absolute, -50px, 40px);
+          background: $color1;
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+          a
+          {
+            margin: 5px;
+            text-align:center;
+            color: $police;
+            font-weight: 600; 
+            font-size:12px;
+            font-family: "Montserrat";
+          }
+          a:hover
+          {
+            color: $color-imp;
+          }
+        }
       }
       .settings
       {
         display: none;
       }
     }
+  }
+  .dropMenuProfileAppear
+  {
+    display: flex!important;
+    @include flex(center, center, column);
   }
   .side
   {

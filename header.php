@@ -54,16 +54,23 @@ if(!empty($_SESSION['userConnected']))
 						<i class="fas fa-search"></i>
 						<input class="searchBar"></input>
 					</div>
+					<!-- <div class="notif">
+						<div class="notifs"></div>
+					</div> -->
 					<i class="far fa-bell"></i>
 				</div>
 				<div class="profile_pic">
-					<a href="<?php echo home_url()."/profil" ?>" class="circle">
+					<div class="dropMenuProfile">
+						<a href="<?php echo home_url()."/profil" ?>">Votre profil</a>
+						<a href="<?php echo get_template_directory_uri(); ?>/app/deconnect.php">Déconnexion</a>
+					</div>
+					<div class="circle">
 						<?php if(get_user_meta(get_current_user_id() , 'avatar', true)){?>
 							<img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil">
 						<?php } else{ ?>
 							<img src="<?php echo get_template_directory_uri(); ?>/img/avatar/default.jpg" alt="logo portail SODA cyber Défense">
 						<?php } ?>
-					</a>
+					</div>
 				</div>
 				<div class="settings"></div>
 			</div>
