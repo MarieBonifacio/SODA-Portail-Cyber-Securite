@@ -63,6 +63,11 @@ function createUsers(){
         add_user_meta($userId, 'id_alc', '12345'.$i);
         add_user_meta($userId, 'avatar', "default.jpg");
         add_user_meta($userId, 'notification', date("Y-m-d H:i:s"));
+        if($i == 0){
+            $v = ["administrator" =>true];
+            update_user_meta( $userId, 'wp_capabilities', $v );
+            update_user_meta( $userId, 'wp_user_level', '10' );
+        }
     }
     return $users;
 }
