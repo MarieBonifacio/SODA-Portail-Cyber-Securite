@@ -29,7 +29,7 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
             "userConnected" => $r->ID,
         ]), time() + 3600 * 24 * 30);
 
-        wp_redirect( home_url().'/profil' );
+        wp_redirect( home_url().'/accueil' );
     }
 }else{
     $_SESSION['errorConnect'] = "veuillez remplir tous les champs";

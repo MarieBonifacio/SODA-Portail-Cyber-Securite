@@ -34,8 +34,10 @@ $userId = $_SESSION['userConnected'];
 
         $q = $wpdb->get_results($sql);
 
+        $userQuery = $wpdb->get_row("SELECT wp_users.display_name AS name,  wp_usermeta.meta_value as city FROM quiz_score LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' WHERE wp_users.ID='.$userId.'");
+
         $place = null;
-        $userStat = ['user_id'=>0];
+        $userStat = null;
         if (array_search($userId, array_column($q,'user_id')) !== false){
             $place = array_search($userId, array_column($q,'user_id')) + 1;
             $userStat = $q[array_search($userId, array_column($q,'user_id'))];

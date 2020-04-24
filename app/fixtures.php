@@ -32,8 +32,8 @@ function clean(){
     $wpdb->query($wpdb->prepare( "DELETE FROM quiz_score"));
     $wpdb->query($wpdb->prepare( "DELETE FROM tag"));
 
-    $wpdb->query($wpdb->prepare( "DELETE FROM wp_users WHERE ID != 1"));
-    $wpdb->query($wpdb->prepare( "DELETE FROM wp_usermeta WHERE user_id != 1 OR meta_key = 'location' OR meta_key = 'id_alc' OR meta_key = 'avatar' OR meta_key = 'notification'"));
+    $wpdb->query($wpdb->prepare( "DELETE FROM wp_users"));
+    $wpdb->query($wpdb->prepare( "DELETE FROM wp_usermeta"));
 
     delTree('../img/quizs');
     delTree('../img/modules');
@@ -41,10 +41,10 @@ function clean(){
 
 function createUsers(){
     $users = array();
-    add_user_meta(1, 'location', 'Calais');
-    add_user_meta(1, 'id_alc', '111111');
-    add_user_meta(1, 'avatar', "default.jpg");
-    add_user_meta(1, 'notification', date("Y-m-d H:i:s"));
+    // add_user_meta(1, 'location', 'Calais');
+    // add_user_meta(1, 'id_alc', '111111');
+    // add_user_meta(1, 'avatar', "default.jpg");
+    // add_user_meta(1, 'notification', date("Y-m-d H:i:s"));
     for($i = 0; $i < 20; $i++){
         $userdata = array(
             'first_name' =>   'firstname_'.$i,
@@ -110,12 +110,17 @@ function createQuizs($users, $tags){
 
 function createQuestions($quizs){
     $questions = array();
-    foreach ($quizs as $key => $quiz) {
+    foreach ($quizs as $key => $quizId) {
+        $quiz = new Quiz();
+        $quiz->selectById($quizId);
+        $path = '../img/quizs/'.$quiz->getName().'/questions/';
+        mkdir($path, 0775, true);
         for ($k = 0; $k < 5 ; $k++) {
+            copy('../img/fall.jpg', $path.'/question_'.$k.'.jpg');
             $q = new Question();
-            $q->setIdQuiz($quiz);
-            $q->setContent('quiz_'.$quiz.'_question_'.$k);
-            $q->setImgPath('default.jpg');
+            $q->setIdQuiz($quizId);
+            $q->setContent('quiz_'.$quizId.'_question_'.$k);
+            $q->setImgPath('question_'.$k.'.jpg');
             $q->setPoints(20);
             $questions[] = $q->save();
         }
@@ -220,12 +225,17 @@ function createModules($users, $tags){
 function createSlides($modules){
     $slides = array();
 
-    foreach ($modules as $key => $m) {
+    foreach ($modules as $key => $moduleId) {
+        $module = new Module();
+        $module->selectById($moduleId);
+        $path = '../img/modules/'.$module->getTitle().'/pages/';
+        mkdir($path, 0775, true);
         for ($i=0; $i < 4; $i++) {
+            copy('../img/fall.jpg', $path.'/page_'.$i.'.jpg');
             $slide = new ModuleSlide();
-            $slide->setModuleId($m);
-            $slide->setTitle('module_'.$key.'_slide_'.$i);
-            $slide->setImgPath('default.jpg');
+            $slide->setModuleId($moduleId);
+            $slide->setTitle('module_'.$moduleId.'_slide_'.$i);
+            $slide->setImgPath('/page_'.$i.'.jpg');
             $slide->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
             $slide->setOrder($i);
             $slideId = $slide->save();

@@ -191,7 +191,7 @@ window.addEventListener('load', function () {
               xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                   // console.log("ok");
-                  window.location.href = "http://localhost/wordpress/menu-module";
+                  document.location.reload(true);
                 }
               };
               xmlhttp.open("POST", url + "/module_finish.php", true);
