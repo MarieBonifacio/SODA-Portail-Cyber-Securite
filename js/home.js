@@ -75,6 +75,7 @@ window.addEventListener('load', function () {
           pos = i + 1;
           if(parseInt(userStat.user_id) == parseInt(top30Gen[i].user_id))
           {
+            isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
               <td>${pos}</td>
