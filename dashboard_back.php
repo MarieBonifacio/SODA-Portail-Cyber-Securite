@@ -26,7 +26,7 @@ $userId = $_SESSION['userConnected'];
             $sql .= "WHERE wp_usermeta.meta_value='".$ville."'";
         }
 
-        $sql .= "group by quiz_score.user_id order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC ";
+        $sql .= "group by quiz_score.user_id ORDER BY avg(quiz_score.score) DESC, sum(quiz_score.time) ASC, count(quiz_score.id) DESC ";
 
         if($limit != null){
             $sql .= "LIMIT ".$limit;
@@ -66,7 +66,7 @@ $userId = $_SESSION['userConnected'];
             $sql .= "WHERE quiz_score.quiz_id='".$quizId."'";
         }
 
-        $sql .= "group by wp_usermeta.meta_value order by  count(quiz_score.id) DESC, avg(quiz_score.score) DESC, sum(quiz_score.time) DESC";
+        $sql .= "group by wp_usermeta.meta_value order by avg(quiz_score.score) DESC, sum(quiz_score.time) ASC, count(quiz_score.id) DESC";
         
         return $wpdb->get_results($sql);
 
