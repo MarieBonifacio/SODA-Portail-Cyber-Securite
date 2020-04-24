@@ -35,7 +35,7 @@ $userId = $_SESSION['userConnected'];
         $q = $wpdb->get_results($sql);
 
         $place = null;
-        $userStat = null;
+        $userStat = ['user_id'=>0];
         if (array_search($userId, array_column($q,'user_id')) !== false){
             $place = array_search($userId, array_column($q,'user_id')) + 1;
             $userStat = $q[array_search($userId, array_column($q,'user_id'))];
