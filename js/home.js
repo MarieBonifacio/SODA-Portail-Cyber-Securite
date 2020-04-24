@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
     tbody = document.querySelector(".tbody"),
     leaderboard = document.querySelector(".leaderboard");
     let tableContent,
-    isPresent;
+    isPresent = false;
     console.log(myArray);
     // condition for user whithout any user stats
     if(userStat != null)
@@ -68,7 +68,7 @@ window.addEventListener('load', function () {
         `
       }
       gen.addEventListener("click", ()=>{
-  
+        isPresent= false;
         tbody.innerHTML ='';
         for (i = 0; i < top30Gen.length; i++) 
         {
@@ -110,6 +110,7 @@ window.addEventListener('load', function () {
       })
       town.addEventListener("click", ()=>{
         tbody.innerHTML ='';
+        isPresent = false;
         for (i = 0; i < top30Town.length; i++) 
         {
           pos = i + 1;
@@ -127,7 +128,6 @@ window.addEventListener('load', function () {
           }
           else
           {
-            isPresent = false;
             tbody.innerHTML += `
             <tr>
               <td>${pos}</td>
