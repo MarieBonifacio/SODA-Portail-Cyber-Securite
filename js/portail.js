@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
                     if(this.readyState == 4 && this.status == 200)
                     {
                         // window.location.reload();
-                        number = '';
+                        number = 0;
                         nbrNotifs.innerHTML = number;
                         notifs.innerHTML = "Vous n'avez pas de notifications";
                     }
@@ -50,7 +50,7 @@ window.addEventListener('load', function () {
             {
                 for (let i = 0; i < articles.length; i++) {
                     notifs.innerHTML += `
-                        <p>L'article <a href="${articles[i].guid}}"><span>${articles[i].post_title}</span></a> a été publie le <span>${articles[i].post_date}</span></p>
+                        <p>L'article <a href="${articles[i].guid}}"><span>${articles[i].post_title}</span></a> a été publié(e) le <span>${articles[i].post_date}</span></p>
                     `;
                 }
             }
@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
             {
                 for (let j = 0; j < quiz.length; j++) {
                     notifs.innerHTML += `
-                        <p>Le quiz <a href="http://localhost/wordpress/menu-quiz/><span>${quiz[j].name}</span></a> a ete cree le <span>${quiz[j].created_at}</span></p>
+                        <p>Le quiz <a href="http://localhost/wordpress/menu-quiz/><span>${quiz[j].name}</span></a> a été créé le <span>${quiz[j].created_at}</span></p>
                     `;
                 }
             }
@@ -66,7 +66,7 @@ window.addEventListener('load', function () {
             {
                 for (let f = 0; f < modules.length; f++) {
                     notifs.innerHTML += `
-                        <p>Le module <a href="http://localhost/wordpress/menu-module/"><span>${modules[f].title}</span></a> a ete cree le <span>${modules[f].created_at}</span></p>
+                        <p>Le module <a href="http://localhost/wordpress/menu-module/"><span>${modules[f].title}</span></a> a été créé le <span>${modules[f].created_at}</span></p>
                     `;
                 }
             }
