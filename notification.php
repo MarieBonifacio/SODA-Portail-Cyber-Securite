@@ -6,7 +6,7 @@ $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
 ///récupération utilisateur
-$user = $_SESSION["user_connected"];
+$user = $_SESSION["userConnected"];
 $lastCheck = get_user_meta( $user, $key = 'notification', true );
 //récupération valeur dernier check
 
@@ -30,7 +30,6 @@ foreach ($lastModule as $m){
     $tag->selectById($m->tag_id);
     $m->tag= $tag->getName();
 }
-
 
 $notification['nombre'] = $nombre;
 
