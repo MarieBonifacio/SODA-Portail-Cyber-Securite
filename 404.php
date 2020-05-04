@@ -391,5 +391,7 @@
 	</clipPath>
 	</defs>
 	</svg>
+	<a id="a" href="<?php echo home_url()."/accueil" ?>"><i class="fas fa-home"></i><p id="p">Accueil</p></a>
+
 </div>
 </body>

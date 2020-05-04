@@ -157,7 +157,7 @@ body
         {
           @include positionTR(absolute, 100%, 0px);
           display: none;
-          font-size: $fontSize1;
+          font-size: $fontSize2;
           background: $color1;
           border-radius: 5px;
           min-width: 250px;
@@ -281,7 +281,7 @@ body
     height: 88%;
     z-index: 5;
     background: $color1;
-    transition: .3s;
+    transition: .2s;
     z-index: 10;
     @include flex(flex-start, center, column);
     .rank,
@@ -697,6 +697,7 @@ body
                 top: 0;
                 z-index: 1;
                 background: rgba(0,0,0, 0.7);
+                transition: .2s;
               }
               p,h2
               {
@@ -714,6 +715,13 @@ body
               {
                 top: 0;
               }
+            }
+          }
+          .contentQ:hover
+          {
+            .filter
+            {
+              background: rgba(0,0,0, 0.5);
             }
           }
         }
