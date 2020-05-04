@@ -14,7 +14,7 @@ $lastCheck = get_user_meta( $user, $key = 'notification', true );
 $lastQuiz = $wpdb->get_results("SELECT id, name, tag_id, created_at FROM quiz WHERE created_at > '".$lastCheck."' ");
 
 $lastModule = $wpdb->get_results("SELECT id, title, tag_id, created_at FROM module WHERE created_at > '".$lastCheck."' ");
-$lastArticle = $wpdb->get_results("SELECT ID, post_date, post_title  FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' AND post_date > '".$lastCheck."' ");
+$lastArticle = $wpdb->get_results("SELECT ID as pid, post_date, post_title, guid  FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' AND post_date > '".$lastCheck."' ");
 //calcul nombre total
 $nombre = count($lastModule) + count($lastArticle) + count($lastQuiz);
 //return json

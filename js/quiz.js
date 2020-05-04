@@ -184,12 +184,39 @@ window.addEventListener('load', function () {
                     // add this question and its answers to the output
                     if(currentQuestion.img_path === "")
                     {
+                      if(currentQuestion.url === "")
+                      {
                       output.push(
                         `<div class="slide">
                           <div class="question">${numQuestion}. ${currentQuestion.content} </div>
                           <div class="answers">${answers.join('')}</div>
                         </div>`
                       );
+                      }else{
+                        if( currentQuestion.url.match(/^.*(youtube).*/) == null ){
+                          output.push(
+                            `<div class="slide">
+                              <div class="img">
+                                <a href="`+currentQuestion.url+`">Voir la vidéo</a>
+                              </div>
+                              <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
+                              <div class="answers">${answers.join('')}</div>
+                            </div>`
+                          );
+                        }
+                        let youtubeHash = currentQuestion.url.match(/^.*v=(.*)$/);
+                        console.log(youtubeHash);
+                        output.push(
+                          `<div class="slide">
+                            <div class="img">
+                            <iframe width="500" height="300" src="https://www.youtube.com/embed/`+youtubeHash[1]+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
+                            <div class="answers">${answers.join('')}</div>
+                          </div>`
+                        );
+                      }
+
                     }
                     else
                     {
