@@ -50,14 +50,16 @@ if(!empty($_SESSION['userConnected']))
 			<div class="search">
 				<i class="arrow fas fa-arrow-left"></i>
 				<div class="icons">
-					<div class="searchContainer">
+					<!-- <div class="searchContainer">
 						<i class="fas fa-search"></i>
 						<input class="searchBar"></input>
-					</div>
-					<!-- <div class="notif">
-						<div class="notifs"></div>
 					</div> -->
-					<i class="far fa-bell"></i>
+					<div class="notif">
+						<div class="notifs"></div>
+					</div>
+					<i class="far fa-bell">
+						<span class="nbr_notifs"></span>
+					</i>
 				</div>
 				<div class="profile_pic">
 					<div class="dropMenuProfile">

@@ -155,8 +155,8 @@ body
         }
         .notifs
         {
-          @include positionBR(absolute, -50px, 100px);
-          // display: none;
+          @include positionBL(absolute, -135px, 30px);
+          display: none;
           transform: translate(-50%, 50%);
           font-size: $fontSize1;
           background: $color1;
@@ -165,12 +165,49 @@ body
           height: 300px;
           overflow-y: scroll;
           box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+          padding: 10px;
           span
           {
             font-weight: 600;
             color: $color-imp;
           }
         }
+        .nbr_notifs
+        {
+          @include positionBR(absolute, -3px, -3px);
+          transform: translate(50%, 50%);
+          font-weight: 600;
+          font-size: $fontSize2;
+          color: $color-imp;
+          z-index: 25;
+          font-family: "Muli", sans-serif;
+        }
+        .notifsAppear
+        {
+          display: block;
+        }
+        .notifs::-webkit-scrollbar {
+          width: 5px;
+          height: 5px;
+        }
+        .notifs::-webkit-scrollbar-thumb {
+          background: $color-btn;
+          border-radius: 100px;
+        }
+        .notifs::-webkit-scrollbar-thumb:hover {
+          background: $color-btn;
+        }
+        .notifs::-webkit-scrollbar-thumb:active {
+          background: $color-btn;
+        }
+        .notifs::-webkit-scrollbar-track {
+          background: $color1;
+          border-radius: 50px;
+        }
+        .notifs::-webkit-scrollbar-corner {
+          background: transparent;
+        }
+
       }
         // class which grows the container of bell icon and search icon/bar
       .iconsGrow
@@ -418,6 +455,7 @@ body
                 {
                   textarea
                   {
+                    min-width: 100% !important;
                     min-height: 50px;
                     max-width: 100% !important;
                     background: $color3 !important;

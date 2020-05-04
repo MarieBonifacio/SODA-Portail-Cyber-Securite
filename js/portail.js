@@ -1,9 +1,12 @@
 // click event on the arrow which will activate the growth side nav or shrink it
+console.log("ok")
 
 const arrow = document.querySelector(".arrow");
 const p = document.querySelectorAll("#p");
 const sideNav = document.querySelector(".side");
 const contenu = document.querySelector(".content");
+
+console.log(arrow);
 
 arrow.addEventListener("click", ()=>{
     if(arrow.classList.contains("fa-arrow-left"))
@@ -28,28 +31,28 @@ arrow.addEventListener("click", ()=>{
     }
 });
 
-// click event listenner on search Icon which will activate the search bar or desactivate it
+// // click event listenner on search Icon which will activate the search bar or desactivate it
 
-const searchIcon = document.querySelector(".fa-search");
-const searchBar = document.querySelector(".searchBar");
-const container = document.querySelector(".searchContainer");
-const icons = document.querySelector(".icons");
+// const searchIcon = document.querySelector(".fa-search");
+// const searchBar = document.querySelector(".searchBar");
+// const container = document.querySelector(".searchContainer");
+// const icons = document.querySelector(".icons");
 
 
-searchIcon.addEventListener("click", ()=>{
-    if(!icons.classList.contains("iconsGrow"))
-    {
-        icons.classList.add("iconsGrow");
-        container.classList.add("opacitySearch");
-        searchBar.classList.add("growUp");
-    }
-    else
-    {
-        icons.classList.remove("iconsGrow");
-        container.classList.remove("opacitySearch");
-        searchBar.classList.remove("growUp");
-    }
-});
+// searchIcon.addEventListener("click", ()=>{
+//     if(!icons.classList.contains("iconsGrow"))
+//     {
+//         icons.classList.add("iconsGrow");
+//         container.classList.add("opacitySearch");
+//         searchBar.classList.add("growUp");
+//     }
+//     else
+//     {
+//         icons.classList.remove("iconsGrow");
+//         container.classList.remove("opacitySearch");
+//         searchBar.classList.remove("growUp");
+//     }
+// });
 
 // click event for dropDown list menu
 const dropMenus = document.querySelectorAll(".dropMenu");
@@ -95,56 +98,88 @@ profil.addEventListener("click", ()=>{
     }
 })
 
-// window.addEventListener('load', function () {
-//     var urlNotif = myScript.theme_directory;
-//     var xmlhttpNotif = new XMLHttpRequest();
-//     xmlhttpNotif.onreadystatechange = function () {
-//     if(this.readyState == 4 && this.status == 200)
-//     {
-//         var notifTable = JSON.parse(this.responseText),
-//         number = notifTable.nombre,
-//         articles = notifTable.article,
-//         modules = notifTable.module,
-//         quiz = notifTable.quiz;
-//         const notif = document.querySelector(".notif"),
-//         notifs = document.querySelector(".notifs");
-//         console.log(notifTable);
-//         notifs.innerHTML='';
-//         if(number > 0)
-//         {
-//             if(articles.length > 0)
-//             {
-//                 for (let i = 0; i < articles.length; i++) {
-//                     notifs.innerHTML += `
-//                         <p>L'article <span>${articles[i].post_title}</span> a été publie le <span>${articles[i].post_date}</span></p>
-//                     `;
-//                 }
-//             }
-//             if(quiz.length > 0)
-//             {
-//                 for (let f = 0; f < quiz.length; f++) {
-//                     notifs.innerHTML += `
-//                         <p>Le quiz <span>${quiz[f].name}</span> a ete cree le <span>${quiz[i].created_at}</span></p>
-//                     `;
-//                 }
-//             }
-//             if(modules.length > 0)
-//             {
-//                 for (let f = 0; f < modules.length; f++) {
-//                     notifs.innerHTML += `
-//                         <p>Le module <span>${modules[f].title}</span> a ete cree le <span>${modules[i].created_at}</span></p>
-//                     `;
-//                 }
-//             }
-//         }
-//     }
-//     else
-//     {
-//         console.log('pas ok')
-//     }
-//     };
+window.addEventListener('load', function () {
+    var urlNotif = 'http://localhost/wordpress/wp-content/themes/html5blank-stable';
+    var xmlhttpNotif = new XMLHttpRequest();
+    xmlhttpNotif.onreadystatechange = function () {
+    if(this.readyState == 4 && this.status == 200)
+    {
+        var notifTable = JSON.parse(this.responseText),
+        number = notifTable.nombre,
+        articles = notifTable.article,
+        modules = notifTable.module,
+        quiz = notifTable.quiz;
+        const bell = document.querySelector(".fa-bell"),
+        nbrNotifs = document.querySelector(".nbr_notifs"),
+        notifs = document.querySelector(".notifs");
+        console.log(notifTable);
+        notifs.innerHTML='';
+        bell.addEventListener("click", ()=>{
+            // window.location = urlNotif  + '/notif_checked.php';
+            if(notifs.classList.contains("notifsAppear"))
+            {   
+                notifs.classList.remove("notifsAppear")
+                var xmlhttpNotifChecked = new XMLHttpRequest();
+                xmlhttpNotifChecked.onreadystatechange = function () {
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        console.log("pas ok")
+                    }
+                };
 
-//     // url a trouver
-//     xmlhttpNotif.open("GET", urlNotif  + '/notification.php', true);
-//     xmlhttpNotif.send();
-// });
+                // url a trouver
+                xmlhttpNotifChecked.open("GET", urlNotif  + '/notif_checked.php', true);
+                xmlhttpNotifChecked.send();
+            }
+            else
+            {
+                notifs.classList.add("notifsAppear")
+            }
+        })
+        if(number > 0)
+        {
+            nbrNotifs.innerHTML = number;
+            if(articles.length > 0)
+            {
+                for (let i = 0; i < articles.length; i++) {
+                    notifs.innerHTML += `
+                        <p>L'article <span>${articles[i].post_title}</span> a été publie le <span>${articles[i].post_date}</span></p>
+                    `;
+                }
+            }
+            if(quiz.length > 0)
+            {
+                for (let j = 0; j < quiz.length; j++) {
+                    notifs.innerHTML += `
+                        <p>Le quiz <span>${quiz[j].name}</span> a ete cree le <span>${quiz[j].created_at}</span></p>
+                    `;
+                }
+            }
+            if(modules.length > 0)
+            {
+                for (let f = 0; f < modules.length; f++) {
+                    notifs.innerHTML += `
+                        <p>Le module <span>${modules[f].title}</span> a ete cree le <span>${modules[f].created_at}</span></p>
+                    `;
+                }
+            }
+        }
+        else
+        {
+            notifs.innerHTML = "Vous n'avez pas de notifications";
+        }
+    }
+    else
+    {
+        console.log('pas ok')
+    }
+    };
+
+    // url a trouver
+    xmlhttpNotif.open("GET", urlNotif  + '/notification.php', true);
+    xmlhttpNotif.send();
+});
