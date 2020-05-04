@@ -155,17 +155,19 @@ body
         }
         .notifs
         {
-          @include positionBL(absolute, -135px, 30px);
+          @include positionTR(absolute, 100%, 0px);
           display: none;
-          transform: translate(-50%, 50%);
           font-size: $fontSize1;
           background: $color1;
           border-radius: 5px;
-          width: 250px;
-          height: 300px;
+          min-width: 250px;
+          max-width: 250px;
+          max-height: 300px;
           overflow-y: scroll;
           box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
           padding: 10px;
+          color: $police;
+          font-family: "Muli", sans-serif;
           span
           {
             font-weight: 600;
@@ -399,6 +401,10 @@ body
       font-family: "Montserrat", sans-serif;
       @include positionTL(absolute, 2%, 50%);
     }
+    h3
+    {
+      color: $police;
+    }
     .home
     {
       position: relative;
@@ -436,7 +442,7 @@ body
               border-radius: 5px;
               padding: 15px;
               transition: .2s;
-              margin-bottom: 10px;
+              margin-bottom: 15px;
               form
               {
                 height: 100%;
@@ -492,8 +498,7 @@ body
             {
               margin-top: 10px;
               padding: 5px;
-              border-top: 1px solid white;
-              // background: $color3;
+              border-top: 1px solid $police;
               width: 150px;
               a
               {
@@ -554,9 +559,10 @@ body
                   margin-top: 10px;
                   min-height: 50px;
                   width: 100%;
+                  min-width: 100%;
                   max-width: 100%;
                   padding: 5px;
-                  background: $color3;
+                  background: $color1;
                   border-radius: 5px;
                   color: $police;
                 }
@@ -761,13 +767,21 @@ body
                   left: 50%;
                   transform: translate(-50%, -50%);
                   font-weight: 600;
+                  color: $police;
+                }
+              }
+              .listing-item:hover
+              {
+                .title
+                {
+                  color: $color-btn;
                 }
               }
           }
           
           .display-posts-listing.grid .title {
               display: block;
-              color: white;
+              color: $police;
               text-align:center;
           }
           
@@ -1040,7 +1054,7 @@ body
         select:hover
         {
           cursor: pointer;
-          background: white;
+          background: $police;
         }
       }
     }
@@ -2188,7 +2202,7 @@ body
       }
       @keyframes star2 {
         20%{
-          fill: white;
+          fill: $police;
         }
         21%{
           fill: #3AD29F;
@@ -2199,7 +2213,7 @@ body
       }
       @keyframes star3 {
         40%{
-          fill: white;
+          fill: $police;
         }
         41%{
           fill: #3AD29F;
@@ -2210,7 +2224,7 @@ body
       }
       @keyframes star4 {
         60%{
-          fill: white;
+          fill: $police;
         }
         61%{
           fill: #3AD29F;
@@ -2221,7 +2235,7 @@ body
       }
       @keyframes star5 {
         80%{
-          fill: white;
+          fill: $police;
         }
         81%{
           fill: #3AD29F;
@@ -2865,16 +2879,26 @@ body
           margin: 5px !important;
         }
       }
-      .vc_active
+      .vc_grid-filter-item
       {
+        background: $color-btn !important;
+        font-weight: 600;
         span{
           color: $color1 !important;
         }
       }
       .vc_grid-filter-item:hover
       {
+        background-color: $police !important;
         span
         {
+          color: $color1 !important;
+        }
+      }
+      .vc_active
+      {
+        background-color: $police !important;
+        span{
           color: $color1 !important;
         }
       }
@@ -2902,6 +2926,12 @@ body
         color: $color1 !important;
         transform: translateX(-50%);
         left: 50%;
+        font-weight: 600;
+        transition: .2s;
+      }
+      .vc_btn3:hover
+      {
+        background: $police !important;
       }
       .post-edit-link, .vc_inline-link
       {

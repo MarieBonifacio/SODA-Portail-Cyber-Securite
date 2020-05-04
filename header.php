@@ -54,10 +54,10 @@ if(!empty($_SESSION['userConnected']))
 						<i class="fas fa-search"></i>
 						<input class="searchBar"></input>
 					</div> -->
-					<div class="notif">
-						<div class="notifs"></div>
-					</div>
 					<i class="far fa-bell">
+						<div class="notif">
+							<div class="notifs"></div>
+						</div>
 						<span class="nbr_notifs"></span>
 					</i>
 				</div>

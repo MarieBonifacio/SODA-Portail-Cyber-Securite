@@ -123,7 +123,10 @@ window.addEventListener('load', function () {
                 xmlhttpNotifChecked.onreadystatechange = function () {
                     if(this.readyState == 4 && this.status == 200)
                     {
-                        window.location.reload();
+                        // window.location.reload();
+                        number = '';
+                        nbrNotifs.innerHTML = number;
+                        notifs.innerHTML = "Vous n'avez pas de notifications";
                     }
                     else
                     {
@@ -170,6 +173,7 @@ window.addEventListener('load', function () {
         }
         else
         {
+            nbrNotifs.innerHTML = number;
             notifs.innerHTML = "Vous n'avez pas de notifications";
         }
     }
