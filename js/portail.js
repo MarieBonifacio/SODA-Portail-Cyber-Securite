@@ -58,7 +58,7 @@ window.addEventListener('load', function () {
             {
                 for (let j = 0; j < quiz.length; j++) {
                     notifs.innerHTML += `
-                        <p>Le quiz <a href="http://localhost/wordpress/menu-quiz/><span>${quiz[j].name}</span></a> a été créé le <span>${quiz[j].created_at}</span></p>
+                        <p>Le quiz <a href="http://localhost/wordpress/menu-quiz/"><span>${quiz[j].name}</span></a> a été créé le <span>${quiz[j].created_at}</span></p>
                     `;
                 }
             }

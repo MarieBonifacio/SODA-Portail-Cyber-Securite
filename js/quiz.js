@@ -5,6 +5,7 @@ window.addEventListener('load', function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
+    console.log(myArray);
     const grid = document.querySelector(".grid");
     for(i = 0; i<myArray.length; i ++)
     {
@@ -79,7 +80,6 @@ window.addEventListener('load', function () {
             let currentSlide = 0;
             let myQuestions = myQuizz.questions;
             let actualpercent = 0;
-            console.log(myQuestions);
               const quizContainer = document.getElementById('quiz');
               const resultsContainer = document.getElementById('results');
               const submitButton = document.getElementById('submit');
@@ -97,7 +97,6 @@ window.addEventListener('load', function () {
               {
                 var totalSeconds = 0;
               }
-              // console.log(totalSeconds);
               var setInt = setInterval(setTime, 1000);
 
               function setTime() {
@@ -148,7 +147,6 @@ window.addEventListener('load', function () {
                 progress.dataset.done = Math.ceil(actualpercent);
                 progress.style.width = progress.getAttribute('data-done')+ '%';
                 progress.style.opacity = 1;
-                console.log(parseFloat(percent));
                 percentage.innerHTML = `${Math.ceil(actualpercent)} %`;
               }
 
@@ -170,7 +168,6 @@ window.addEventListener('load', function () {
                     numQuestion += 1;
                     // and for each available answer...
                     shuffle(currentAnswers);
-                    // console.log(currentAnswers);
                     for(i = 0; i<currentAnswers.length ; i++){
                       const letters = ['A', 'B' , 'C', 'D'];
                       // ...add an HTML radio button
@@ -184,6 +181,7 @@ window.addEventListener('load', function () {
                     // add this question and its answers to the output
                     if(currentQuestion.img_path === "")
                     {
+                      console.log(currentQuestion.url)
                       if(currentQuestion.url === "")
                       {
                       output.push(
@@ -209,7 +207,7 @@ window.addEventListener('load', function () {
                         output.push(
                           `<div class="slide">
                             <div class="img">
-                            <iframe width="500" height="300" src="https://www.youtube.com/embed/`+youtubeHash[1]+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/`+youtubeHash[1]+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                             <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
                             <div class="answers">${answers.join('')}</div>
@@ -255,8 +253,6 @@ window.addEventListener('load', function () {
                       numCorrect += 1;
                       points += parseFloat(tableLostQuestions[i].points);
                     }
-                    // console.log(points);
-                    // console.log(numCorrect);
                   }
                 }
                 myQuestions.forEach( 
@@ -352,9 +348,6 @@ window.addEventListener('load', function () {
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
-                    // console.log("ok");
-                    // console.log(dbParam);
-                    // console.log(this.responseText);
                   }
                 };
                 xmlhttp.open("POST", url + "/quiz_result.php/", true);
@@ -392,8 +385,6 @@ window.addEventListener('load', function () {
                 id_answer = null;
                 is_True = "false";
                 
-                // console.log(myQuestions[currentSlide].answers.length);
-                
                 for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
                   let input = document.querySelector(`.input${currentSlide}${i}`);
                   if(input.checked)
@@ -411,7 +402,6 @@ window.addEventListener('load', function () {
               function showNextSlide() {
                 recupIds();
 
-                console.log(currentSlide + 1);
                 var obj = { 
                   "questions": id_question, 
                   "answer": id_answer,
@@ -425,9 +415,6 @@ window.addEventListener('load', function () {
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
-                    // console.log("ok");
-                    // console.log(dbParam);
-                    // console.log(this.responseText);
                     showSlide(currentSlide + 1);
                     progressBar();
                   }

@@ -285,7 +285,7 @@ body
     z-index: 10;
     @include flex(flex-start, center, column);
     .rank,
-    .home 
+    .home, .admin
     {
       @include flex(flex-start, center, row);
       a
@@ -2464,7 +2464,8 @@ body
       .img
       {
         position: relative;
-        height: 30%;
+        width: 53.4vh;
+        height: 30vh;
         @include flex(center, center, "");
         img
         {
@@ -2472,11 +2473,16 @@ body
           max-width: auto;
           max-height: 100%;
         }
+        iframe
+        {
+          height: 100%;
+          width: 100%;
+        }
       }
       .question
       {
         position: relative;
-        margin: 25px;
+        margin: 10px;
         font-size: $fontSize3;
         width: 50%;
         word-break: break-word;
