@@ -34,7 +34,7 @@ require($path.'wp-load.php');
                     <div> 
                         <label for="">Mot de passe :</label>
                         <input type="password" name="mdp">
-                        <a class="mdpForget" href="">Mot de passe oublié ?</a>
+                        <a class="mdpForget" href= "<?php echo get_site_url()."/wp-login.php?action=lostpassword" ?>">Mot de passe oublié ?</a>
                     </div>
                     <input class="loginButton" type="submit" value="Connexion">
                 </form>
