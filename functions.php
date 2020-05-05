@@ -138,7 +138,20 @@ function html5blank_conditional_scripts()
             'theme_directory' => get_template_directory_uri() 
         ));
     }
-    
+    if(is_page("liste-quizs"))
+    {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/list_quiz.js', null, true);
+        wp_localize_script('my-script', 'myScript', array(
+            'theme_directory' => get_template_directory_uri() 
+        ));
+    }
+    if(is_page("liste-modules"))
+    {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/list_module.js', null, true);
+        wp_localize_script('my-script', 'myScript', array(
+            'theme_directory' => get_template_directory_uri() 
+        ));
+    }
 }
 
 // Load HTML5 Blank styles

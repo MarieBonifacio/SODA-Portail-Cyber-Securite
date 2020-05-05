@@ -55,8 +55,6 @@
 
         for(i=0 ; i<eyes.length ; i++)
         {
-            // eyes[i].style.left = x;
-            // eyes[i].style.top = y;
             eyes[i].style.transform = `translate(${x}, ${y})`;
         }
     }

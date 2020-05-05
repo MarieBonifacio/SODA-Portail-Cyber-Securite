@@ -62,11 +62,11 @@ if(!empty($_SESSION['userConnected']))
 					</i>
 				</div>
 				<div class="profile_pic">
-					<div class="dropMenuProfile">
-						<a href="<?php echo home_url()."/profil" ?>">Votre profil</a>
-						<a href="<?php echo get_template_directory_uri(); ?>/app/deconnect.php">Déconnexion</a>
-					</div>
 					<div class="circle">
+						<div class="dropMenuProfile">
+							<a href="<?php echo home_url()."/profil" ?>">Votre profil</a>
+							<a href="<?php echo get_template_directory_uri(); ?>/app/deconnect.php">Déconnexion</a>
+						</div>
 						<?php if(get_user_meta(get_current_user_id() , 'avatar', true)){?>
 							<img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil">
 						<?php } else{ ?>
@@ -100,6 +100,9 @@ if(!empty($_SESSION['userConnected']))
 						<li>
 							<a href="<?php echo home_url()."/creationmoduleetape1"?>">Créez votre module</a>
 						</li>
+						<li>
+							<a href="<?php echo home_url()."/liste-modules"?>">Liste des modules</a>
+						</li>
 					</ul>	
 				<?php } ?>
 			</div>
@@ -113,12 +116,15 @@ if(!empty($_SESSION['userConnected']))
 					</ul>	
 			</div>
 			<div id="link"  class="quiz">
-				<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
+				<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
 				<i class="fas fa-sort-down" data-id="quizs"></i>
 				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 					<ul class="dropMenu" id="quizs">
 						<li>
 							<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>
+						</li>
+						<li>
+							<a href="<?php echo home_url()."/liste-quizs"?>">Liste des quizs</a>
 						</li>
 					</ul>	
 				<?php } ?>
