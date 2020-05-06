@@ -86,6 +86,8 @@ class Module {
 
     public function save(){
         if ($this->id == null){
+            $timeZone = get_option("timezone_string");
+            date_default_timezone_set($timeZone); 
             global $wpdb;
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $r = $wpdb->insert(

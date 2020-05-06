@@ -11,6 +11,10 @@ require('./class/tag.class.php');
 require('./class/module.class.php');
 require('./class/module_slide.class.php');
 
+
+$timeZone = get_option("timezone_string");
+date_default_timezone_set($timeZone);
+
 function delTree($dir) {
     $files = array_diff(scandir($dir), array('.','..'));
     foreach ($files as $file) {
