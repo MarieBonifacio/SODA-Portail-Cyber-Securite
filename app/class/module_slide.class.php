@@ -9,6 +9,7 @@ class ModuleSlide {
     private $module_id;
     private $title;
     private $img_path;
+    private $url;
     private $content;
     private $order;
 
@@ -22,6 +23,7 @@ class ModuleSlide {
         $this->title = $r->title;
         $this->content = $r->content;
         $this->img_path = $r->img_path;
+        $this->url = $r->url;
     }
 
     public function getId(){
@@ -49,6 +51,13 @@ class ModuleSlide {
         $this->img_path = $img_path;
     }
 
+    public function getUrl(){
+        return $this->url;
+    }
+    public function setUrl($url){
+        $this->url = $url;
+    }
+
     public function getContent(){
         return $this->content;
     }
@@ -72,6 +81,7 @@ class ModuleSlide {
             "module_id" => $this->module_id,
             "title" => $this->title,
             "img_path" => $this->img_path,
+            "url" => $this->url,
             "content" => $this->content,
             "order" => $this->order,
             )
@@ -82,6 +92,8 @@ class ModuleSlide {
             $wpdb->update('module_slide', array(
                 "module_id" => $this->module_id,
                 "title" => $this->title,
+                "img_path" => $this->img_path,
+                "url" => $this->url,
                 "content" => $this->content,
                 "order" => $this->order,
             ), array(
@@ -93,7 +105,7 @@ class ModuleSlide {
 
     public static function delete(){
         global $wpdb;
-        $wpdb->delete( 'user', array( 'id' => $id ) );
+        $wpdb->delete( 'module_slide', array( 'id' => $id ) );
     }
 }
 

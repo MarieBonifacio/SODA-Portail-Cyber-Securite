@@ -27,6 +27,7 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
             "module_id" => $p->module_id,
             "content" => $p->content,
             "img_path" => $p->img_path,
+            "video" => $p->url,
             "order" => $p->order,
         );
         $module['slides'][] = $page;

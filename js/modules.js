@@ -156,6 +156,28 @@ window.addEventListener('load', function () {
                           </div>
                         </div>`
                       );
+                    }else if(currentPage.video !== null){
+                      let youtubeHash = currentPage.video.match(/^.*v=(.*)$/);
+                      var video = ' <iframe width="560" height="315" src="https://www.youtube.com/embed/'+youtubeHash[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> ';
+                      if(currentPage.video.match(/^.*(youtube).*/) == null  ){
+                        video = ' <a href="'+currentPage.video+'">Voir la vidéo</a> ';
+                      }
+                      output.push(
+                        `<div class="slide">
+                          <span>
+                            ${numPage}
+                          </span>
+                          <div class="content">
+                            <div class="medias">
+                              ${video}
+                            </div>
+                            <div class="para">
+                              <h3>${currentPage.title}</h3>
+                              <p>${currentPage.content}</p>
+                            </div>
+                          </div>
+                        </div>`
+                      );
                     }
                     else
                     {

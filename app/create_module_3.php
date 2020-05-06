@@ -35,6 +35,7 @@ foreach($_SESSION['moduleData']['pages'] as $m)
     $newSlide->setTitle($m['info']['title']);
     $newSlide->setOrder($m['info']['order']);
     $newSlide->setImgPath($m['info']['img']);
+    $newSlide->setUrl($m['info']['video']);
     $newSlide->save();
     $newSlideId = $wpdb->insert_id;
 

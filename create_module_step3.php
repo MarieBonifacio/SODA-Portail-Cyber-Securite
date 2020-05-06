@@ -39,6 +39,24 @@
             </div>
             ';
           }
+          elseif ($q['info']['video'] !== ""){
+            preg_match("/^.*v=(.*)$/", $q['info']['video'], $keywords);
+            if(isset($keywords)){
+              echo ' 
+              <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <span class="numP">'.$num.'</span>
+                <div class="content">
+                  <h2>'.$q['info']['title'].'</h2>
+                  <p>'.$q['info']['content'].'</p>
+                </div>
+                ';
+            }else{
+              echo '
+              <div class="img">
+              <a href="'.$q['info']['video'].'>Voir la vidéo</a>
+            </div>';
+            }
+          }
           else
           {
             echo '

@@ -203,7 +203,6 @@ window.addEventListener('load', function () {
                           );
                         }
                         let youtubeHash = currentQuestion.url.match(/^.*v=(.*)$/);
-                        console.log(youtubeHash);
                         output.push(
                           `<div class="slide">
                             <div class="img">

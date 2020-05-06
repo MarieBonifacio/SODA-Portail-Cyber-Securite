@@ -26,6 +26,16 @@ if($nbrPage >= 1){
             $page['info']['title'] = $_POST['content_'.$i.'_title'];
             $page['info']['order'] =  $i;
 
+            //videos
+            $page['info']['video'] = "";
+
+            if(!empty($_POST['content_'.$i.'_video']))
+            {
+                $url = $_POST['content_'.$i.'_video'];
+                $page['info']['video'] = $url;
+            }
+///////////////////////////////////////////////////
+            //images
             if($_FILES['content_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['content_'.$i.'_img']))
             {
                 $dir = $_SESSION['moduleData']['module']['title'];

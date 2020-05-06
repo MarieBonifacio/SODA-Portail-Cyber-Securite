@@ -52,6 +52,11 @@
               <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
               <input id="realbtn'.$i.'" type="file" name="content_'.$i.'_img" hidden>
             </div>
+            <p><strong>OU</strong></p>
+            <div>
+              <label>Video :</label>
+              <input type="text" name="content_'.$i.'_video" value="">
+            </div>
           </div>
           <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>
         </div>
