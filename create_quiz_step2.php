@@ -122,7 +122,7 @@
               <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
               <input id="realbtn'.$i.'" type="file" name="q_'.$i.'_img" hidden>
             </div>
-            <p>ou</p>
+            <p><strong>OU</strong></p>
             <div>
               <label>Video :</label>
               <input type="text" name="q_'.$i.'_video" value="">

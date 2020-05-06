@@ -140,7 +140,7 @@ plus.addEventListener("click", ()=>{
     <span id="img_select${id}">Aucune image sélectionnée.</span>
         <input id="realbtn${id}" type="file" name="q_${id}_img" hidden>
         </div>
-        <p>ou</p>
+        <p><strong>OU</strong></p>
       <div>
         <label>Video :</label>
         <input type="text" name="q_${id}_video" value="">
