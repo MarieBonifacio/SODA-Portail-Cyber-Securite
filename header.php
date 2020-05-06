@@ -81,21 +81,24 @@ if(!empty($_SESSION['userConnected']))
 			<div id="link" class="home">
 				<a id="a" href="<?php echo home_url()."/accueil" ?>"><i class="fas fa-home"></i><p id="p">Accueil</p></a>
 			</div>
-			<div id="link" class="articles">
-				<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
-				<i class="fas fa-sort-down" data-id="articles"></i>
-				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+				<div id="link" class="articles">
+					<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
+					<i class="fas fa-sort-down" data-id="articles"></i>
 					<ul class="dropMenu" id="articles">
 						<li>
 							<a target="_blank" href="<?php echo home_url()."/ajouter-un-nouvel-article"?>">Ajoutez un article</a>
 						</li>
 					</ul>	
+				<?php } else { ?>
+					<div id="link" class="articles left">
+						<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
 				<?php } ?>
 			</div>
-			<div id="link" class="modules">
-				<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
-				<i class="fas fa-sort-down" data-id="modules"></i>
-				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+				<div id="link" class="modules">
+					<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
+					<i class="fas fa-sort-down" data-id="modules"></i>
 					<ul class="dropMenu" id="modules">
 						<li>
 							<a href="<?php echo home_url()."/creationmoduleetape1"?>">Créez votre module</a>
@@ -104,7 +107,10 @@ if(!empty($_SESSION['userConnected']))
 							<a href="<?php echo home_url()."/liste-modules"?>">Liste des modules</a>
 						</li>
 					</ul>	
-				<?php } ?>
+			<?php } else { ?>		
+				<div id="link" class="modules left">
+					<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
+			<?php }?>
 			</div>
 			<div id="link"  class="tools">
 				<a id="a" href="<?php echo home_url()."/generateur-de-mots-de-passe"?>"><i class="fas fa-tools"></i><p id="p">Outils</p></a>
@@ -115,18 +121,21 @@ if(!empty($_SESSION['userConnected']))
 						</li>
 					</ul>	
 			</div>
-			<div id="link"  class="quiz">
-				<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
-				<i class="fas fa-sort-down" data-id="quizs"></i>
-				<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
-					<ul class="dropMenu" id="quizs">
-						<li>
-							<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>
-						</li>
-						<li>
-							<a href="<?php echo home_url()."/liste-quizs"?>">Liste des quizs</a>
-						</li>
-					</ul>	
+			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+				<div id="link"  class="quiz">
+					<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
+					<i class="fas fa-sort-down" data-id="quizs"></i>
+						<ul class="dropMenu" id="quizs">
+							<li>
+								<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>
+							</li>
+							<li>
+								<a href="<?php echo home_url()."/liste-quizs"?>">Liste des quizs</a>
+							</li>
+						</ul>	
+				<?php }  else {?>
+					<div id="link"  class="quiz left">
+						<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
 				<?php } ?>
 			</div>
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>

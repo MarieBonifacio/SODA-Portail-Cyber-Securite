@@ -50,7 +50,7 @@
                 <label>A.</label>
                 <input type="text" name="q_'.$i.'_reponse_1" value="'.$p['q_'.$i.'_reponse_1'].'">
                 <label class="true" id="truea">
-                  <input '.( ($p["q_".$i."_isTrue_1"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_1">
+                  <input '.( ($p["q_".$i."_isTrue_1"] == "true")? "checked":"" ).' checked type="radio" value="true" name="q_'.$i.'_isTrue_1">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
@@ -82,13 +82,13 @@
                 <label>C.</label>
                 <input type="text" name="q_'.$i.'_reponse_3"  value="'.$p['q_'.$i.'_reponse_3'].'">
                 <label class="true" id="truec">
-                  <input '.( ($p["q_".$i."_isTrue_3"] == "true")? "checked":"" ).' checked type="radio" value="true" name="q_'.$i.'_isTrue_3">
+                  <input '.( ($p["q_".$i."_isTrue_3"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_3">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
                 </label>
                 <label class="false" id="falsec">
-                  <input '.( ($p["q_".$i."_isTrue_3"] == "false")?"checked":"" ).' type="radio" value="false" name="q_'.$i.'_isTrue_3">
+                  <input '.( ($p["q_".$i."_isTrue_3"] == "false")?"checked":"" ).' checked type="radio" value="false" name="q_'.$i.'_isTrue_3">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>

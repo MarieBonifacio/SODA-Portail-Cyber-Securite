@@ -43,8 +43,8 @@ body
   input[type=submit]
   {
     background: $color-btn;
-    border-radius: 20px;
-    padding: 5px 20px;
+    border-radius: 3px;
+    padding: 5px 10px;
     border: none;
     font-size: $fontSize3;
     font-weight: 600;
@@ -307,7 +307,7 @@ body
         background: $color3;
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
         position: absolute;
-        top: 0%;
+        top: -50%;
         right: 10%;
         border-radius: 5px;
         transform: translate(100%);
@@ -335,6 +335,7 @@ body
       {
         width: 30%;
         text-align: center;
+        transform: rotate(-90deg);
       }
       #a
       {
@@ -373,6 +374,14 @@ body
       @include positionTR(absolute, "", 10px);
       bottom: 10px;
       font-size: $fontSize3;
+    }
+    .left
+    {
+      @include flex(flex-start, center, row);
+      a
+      {
+        margin-left: 5%;
+      }
     }
   }
   // class to shrink the side nav
@@ -433,6 +442,10 @@ body
             {
               display: none;
             }
+            img
+            {
+              border-radius: 50%;
+            }
             .bpas-post-form-wrapper
             {
               border: none;
@@ -478,6 +491,7 @@ body
                   background: $color-btn;
                   border:none;
                   color: $color1;
+                  border-radius: 3px;
                 }
                 input:hover
                 {
@@ -487,6 +501,10 @@ body
             }
             .activity-header
             {
+              p
+              {
+                line-height: 1.5;
+              }
               a
               {
                 color: $color-imp;
@@ -740,7 +758,7 @@ body
               {
                 position: relative;
                 background: $color1;
-                border-radius: 10px;
+                border-radius: 5px;
                 overflow: hidden;
                 // height: 70%;
                 img
@@ -832,7 +850,7 @@ body
             {
               background: $color-btn;
               border: none;
-              border-radius: 2px;
+              border-radius: 3px;
               padding: 3px 6px;
               color: $color1;
               font-weight: 600;
@@ -1051,8 +1069,8 @@ body
           background: $color-btn;
           color: $color1;
           border: none;
-          border-radius: 20px;
-          padding: 5px 20px;
+          border-radius: 5px;
+          padding: 5px 15px;
           font-size: $fontSize2;
           font-weight: 600;
           transition: .2s;
@@ -1296,7 +1314,7 @@ body
             color: $police;
             outline: none;
             text-align: center;
-            text-transform: uppercase;
+            // text-transform: uppercase;
           }
           select
           {
@@ -1305,9 +1323,9 @@ body
             background: $color-btn;
             color: $color1;
             appearance: none;
-            padding: 5px 20px;
+            padding: 5px 15px;
             border: none;
-            border-radius: 20px;
+            border-radius: 3px;
             outline: none;
             transition: .2s;
             font-size: $fontSize1;
@@ -1337,7 +1355,7 @@ body
               width: 100%;
               background: $color-btn;
               border: none;
-              border-radius: 20px;
+              border-radius: 3px;
               color: $color1;
               outline: none;
               transition: .2s;
@@ -1535,7 +1553,7 @@ body
                 width: 100%;
                 background: $color-btn;
                 border: none;
-                border-radius: 20px;
+                border-radius: 3px;
                 color: $color1;
                 outline: none;
                 transition: .2s;
@@ -1571,9 +1589,9 @@ body
       }
       .validate
       {
-        padding: 5px 20px;
+        padding: 5px 10px;
         background: $color-btn;
-        border-radius: 20px;
+        border-radius: 3px;
         color: $color1;
         font-weight: 600;
         transition: .2s;
@@ -1604,11 +1622,11 @@ body
       }
       a
       {
-        padding: 5px 20px;
+        padding: 5px 10px;
         background: $color-btn;
         color: $color1;
         margin-bottom: 35px;
-        border-radius: 20px;
+        border-radius: 3px;
         transition: .2s;
         font-size: $fontSize2;
         font-weight: 600;
@@ -1717,7 +1735,7 @@ body
           height: 500px;
           background: $color3;
           border-radius: 5px;
-          padding: 5px 5px;
+          padding: 5px 10px;
           margin-bottom: 45px;
           overflow-y: hidden;
           @include flex(space-evenly, center, row);
@@ -1910,8 +1928,8 @@ body
       .button-group
       {
         // width: 70%;
-        background: $color3;
-        padding: 10px 40px;
+        // background: $color3;
+        // padding: 10px 40px;
         border-radius: 100px;
         transform: translate(-50%, -50%);
         z-index: 2;
@@ -1921,11 +1939,11 @@ body
         {
           background-color: $color-btn;
           border: none;
-          border-radius: 100px;
+          border-radius: 3px;
           color: $color1;
           font-weight: 600;
           text-transform: capitalize;
-          padding: 5px 15px;
+          padding: 5px 10px;
           outline: none;
           margin-right: 5px;
           margin-left: 5px;
@@ -2006,8 +2024,8 @@ body
           {
             position: relative;
             background: $color-btn;
-            padding: 5px 20px;
-            border-radius: 100px;
+            padding: 5px 10px;
+            border-radius: 3px;
             transition: .2s;
             color: $color1;
             font-weight: 600;
@@ -2062,7 +2080,7 @@ body
           color: $police;
           border: none;
           padding: 10px;
-          border-radius: 5px;
+          border-radius: 3px;
         }
         ::placeholder
         {
@@ -2072,7 +2090,7 @@ body
         {
           background: $color-btn;
           border: none;
-          border-radius: 5px;
+          border-radius: 3px;
           padding: 5px 10px;
           outline: none;
           transition: .2s;
@@ -2280,7 +2298,7 @@ body
           background: $color-btn;
           border: none;
           padding: 6px 12px;
-          border-radius: 2px;
+          border-radius: 3px;
           color: $color1;
           font-weight: 600;
           transition: .2s;
@@ -2429,7 +2447,7 @@ body
           {
             color: $color1;
             padding: 5px 10px;
-            border-radius: 2px;
+            border-radius: 3px;
             background: $color-imp;
             transition: .2s;
             font-weight: 600;
@@ -2538,7 +2556,7 @@ body
       button
       {
         background: $color-btn;
-        border-radius: 150px;
+        border-radius: 3px;
         border: none;
         padding: 7px 14px;
         color: $color1;
@@ -2727,7 +2745,7 @@ body
       .btn
       {
         background: $color-btn;
-        padding: 5px 15px;
+        padding: 5px 10px;
         border-radius: 150px;
         font-weight: 600;
         color: $color1;
@@ -2834,8 +2852,8 @@ body
       button
       {
         position: relative;
-        padding: 10px 15px;
-        border-radius: 5px;
+        padding: 5px 10px;
+        border-radius: 3px;
         border: none;
         background: $color-btn;
         color: $color1;
@@ -3028,6 +3046,7 @@ body
       {
         background: $color-btn !important;
         font-weight: 600;
+        border-radius: 2px !important;
         span{
           color: $color1 !important;
         }
@@ -3065,8 +3084,8 @@ body
       .vc_btn3
       {
         position: absolute;
-        padding: 5px 15px !important;
-        // border-radius: 120px !important;
+        padding: 5px 10px !important;
+        border-radius: 2px !important;
         background: $color-btn !important;
         color: $color1 !important;
         transform: translateX(-50%);
@@ -3133,7 +3152,7 @@ body
     {
       margin: 30px;
       background: $color3;
-      padding: 10px 25px;
+      padding: 10px 20px;
       border-radius: 5px;
       .comment-author.vcard
       {
@@ -3153,10 +3172,16 @@ body
         flex-direction: column;
         textarea
         {
+          background: $color1;
+          border-radius: 5px;
+          border: none;
+          outline:none;
           max-width: 800px;
           max-height: 1000px;
           min-height: 300px;
           min-width: 500px;
+          color: $police;
+          padding: 5px;
         }
       }
       .comment-form-comment
