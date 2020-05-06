@@ -173,6 +173,20 @@ body
             font-weight: 600;
             color: $color-imp;
           }
+          p{
+            a:hover
+            {
+              span
+              {
+                color: #ff5e00;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        .notifs:hover
+        {
+          cursor: default;
         }
         .nbr_notifs
         {
