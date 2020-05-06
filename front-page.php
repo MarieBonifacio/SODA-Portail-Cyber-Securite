@@ -1,6 +1,10 @@
 <?php
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 require($path.'wp-load.php'); 
+
+if(isset($_SESSION['userConnected'])){
+    wp_redirect( home_url().'/accueil' );
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
