@@ -9,21 +9,21 @@ $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
 
-$id = $_POST["idModule"];
+$id = $_GET["idModule"];
 
 $table = "module";
 
 
-$wpdb::delete($table, array('id' => $id));
+$wpdb->delete($table, array('id' => $id));
 
 //delete slides 
-$wpdb::delete('module_slide', array('module_id' => $id));
+$wpdb->delete('module_slide', array('module_id' => $id));
 
 //delete module progress
-$wpdb::delete('module_progress', array('module_id' => $id));
+$wpdb->delete('module_progress', array('module_id' => $id));
 
 //delete module finish
-$wpdb::delete('module_finish', array('module_id' => $id));
+$wpdb->delete('module_finish', array('module_id' => $id));
 
 
 
