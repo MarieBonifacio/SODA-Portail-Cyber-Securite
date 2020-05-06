@@ -72,6 +72,11 @@ plus.addEventListener("click", ()=>{
       <span id="img_select${id}">Aucune image sélectionnée.</span>
       <input id="realbtn${id}" type="file" name="content_${id}_img" hidden>
     </div>
+    <p><strong>OU</strong></p>
+    <div>
+      <label>Video :</label>
+      <input type="text" name="content_${id}_video" value="">
+    </div>
   </div>
   <i class="trash${id} trash fas fa-trash" data-id="${id}"></i>`;
     form.appendChild(div);

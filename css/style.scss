@@ -118,8 +118,8 @@ body
                         position: relative;
                         background: $color-btn;
                         border-bottom: none;
-                        border-radius: 20px;
-                        padding: 5px 20px;
+                        border-radius: 3px;
+                        padding: 7px 0px;
                         width: 150px;
                         transition: .2s;
                         color: $color1;
@@ -414,7 +414,7 @@ body
                     position: relative;
                     width: 100%;
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: center;
                     font-weight: 600;
                     margin-bottom: 30px;
                     label
@@ -436,7 +436,7 @@ body
                     border: none;
                     border-bottom: 1px solid $police;
                     background: transparent !important;
-                    width: 60%;
+                    width: 40%;
                     }
                     input::selection
                     {
@@ -459,21 +459,21 @@ body
                     {
                         position: relative;
                         background: $color-btn;
-                        width: 60%;
-                        border-radius: 20px;
+                        width: 40%;
+                        border-radius: 3px;
                         overflow: hidden;
                         select
                         {
                             background: $color-btn;
                             color: $color1;
-                            padding: 5px 20px;
+                            padding: 5px 10px;
                             width: 100%;
                             border: none;
                             font-weight: 600;
                             font-family: "Muli", sans-serif;
                             appearance: none;
                             outline: none;
-                            border-radius: 20px;
+                            border-radius: 3px;
                             box-shadow: none;
                             transition: .2s;
                             cursor: pointer;
@@ -507,8 +507,8 @@ body
                     margin-bottom: 20px;
                     background: $color-btn;
                     border: none;
-                    padding: 5px 25px;
-                    border-radius: 20px;
+                    padding: 5px 10px;
+                    border-radius: 3px;
                     color: $color1;
                     font-size: 20px;
                     font-weight: bold;

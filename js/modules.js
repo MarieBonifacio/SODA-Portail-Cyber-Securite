@@ -158,7 +158,7 @@ window.addEventListener('load', function () {
                       );
                     }else if(currentPage.video !== null){
                       let youtubeHash = currentPage.video.match(/^.*v=(.*)$/);
-                      var video = ' <iframe width="560" height="315" src="https://www.youtube.com/embed/'+youtubeHash[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> ';
+                      var video = ' <iframe src="https://www.youtube.com/embed/'+youtubeHash[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> ';
                       if(currentPage.video.match(/^.*(youtube).*/) == null  ){
                         video = ' <a href="'+currentPage.video+'">Voir la vidéo</a> ';
                       }

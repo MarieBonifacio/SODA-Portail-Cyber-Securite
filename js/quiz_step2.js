@@ -134,19 +134,19 @@ plus.addEventListener("click", ()=>{
     <label>Le media:</label>
     </div>
     <div class="media">
-    <div>
-    <label>Image :</label>
-    <button type="button" disabled><p id="fakebtn" data-id="${id}">Séléctionnez une image</p></button>
-    <span id="img_select${id}">Aucune image sélectionnée.</span>
+      <div>
+        <label>Image :</label>
+        <button type="button" disabled><p id="fakebtn" data-id="${id}">Séléctionnez une image</p></button>
+        <span id="img_select${id}">Aucune image sélectionnée.</span>
         <input id="realbtn${id}" type="file" name="q_${id}_img" hidden>
-        </div>
-        <p><strong>OU</strong></p>
+      </div>
+      <p><strong>OU</strong></p>
       <div>
         <label>Video :</label>
         <input type="text" name="q_${id}_video" value="">
       </div>
-      </div>
-      <i class='trash${id} trash fas fa-trash' data-id="${id}"></i>`;
+    </div>
+    <i class='trash${id} trash fas fa-trash' data-id="${id}"></i>`;
     form.appendChild(div);
   
     var trash = document.querySelector(`.trash${id}`);
