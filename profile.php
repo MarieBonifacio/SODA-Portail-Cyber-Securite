@@ -1,83 +1,144 @@
 <?php /* Template Name: Profil */ get_header(); 
 
+$canEdit = false;
+
 if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
 }
-?>
-  <h2 class="h2">Mon profil</h2>
-  <div class="profile">
-    <?php
-      if(!empty($_SESSION["errorRegister"])){
-        echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
-        unset($_SESSION["errorRegister"]);
-      }
-      elseif(!empty($_SESSION["updateOk"])){
-        echo "<p class='mess good'>".$_SESSION["updateOk"]."</p>";
-        unset($_SESSION["updateOk"]);
-      }
-    ?>
-    <form action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post" enctype="multipart/form-data">
+
+if(!empty($_GET['u'])){
+  $id = $_GET['u'];
+}
+
+if($_SESSION['userConnected'] === $id){
+  $canEdit = true;
+}
+
+if( $canEdit ){
+  ?>
+    <h2 class="h2">Mon profil</h2>
+    <div class="profile">
+      <?php
+        if(!empty($_SESSION["errorRegister"])){
+          echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
+          unset($_SESSION["errorRegister"]);
+        }
+        elseif(!empty($_SESSION["updateOk"])){
+          echo "<p class='mess good'>".$_SESSION["updateOk"]."</p>";
+          unset($_SESSION["updateOk"]);
+        }
+      ?>
+      <form id="profil" action="<?php echo get_template_directory_uri(); ?>/app/update_profile.php" method="post" enctype="multipart/form-data">
+          <div class="picture">
+            <div class="img">
+            <?php
+            if (get_user_meta($id , 'avatar', true))
+            {
+            ?>
+            <img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta($id , 'avatar', true) ?>" alt="votre photo de profil">
+            <?php }
+            else{?>
+            <img src="<?php echo get_template_directory_uri()."/img/avatar/default.jpg"?>" alt="votre photo de profil">
+            <?php
+            }
+            ?>
+            </div>
+            <button type="button" disabled>
+              <i class="fas fa-pencil-alt" id="custom-button"></i>
+            </button>
+            <span id="custom-text">Aucune image séléctionnée</span>
+            <input id="real-file" type="file" name="avatar" hidden>
+          </div>
+          
+          <div>
+              <label for="last_name">Nom :</label>
+              <input class="field" type="text" name="last_name" value="<?php echo get_user_meta($id , 'last_name', true);?>">
+          </div>
+          <div>
+              <label for="first_name">Prénom :</label>            
+              <input class="field" type="text" name="first_name" value="<?php echo get_user_meta($id , 'first_name', true);?>">
+          </div>
+          <div>
+              <label for="id_user">Identifiant :</label>  
+              <input class="field" type="text" name="id_user" value="<?php echo get_user_meta($id , 'id_alc', true);?>">
+          </div>
+          <div>
+              <label for="firs-mail">Adresse mail :</label>
+              <input class="field" type="mail" name="first_mail"  value="<?php echo $current_user->user_email;?>">
+          </div>
+          <div>
+              <label for="location">Votre site :</label>
+              <div class="select">
+                  <select name="location" id="sites">
+                      <option value="<?php echo get_user_meta($id , 'location', true);?>"><?php echo get_user_meta($id , 'location', true);;?></option>
+                      <?php 
+
+                      $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
+
+                      for($i=0; $i<count($sites); $i++){
+                          echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
+                      }
+
+                      ?>
+                  </select>
+                  <i class="fas fa-sort-down"></i>
+              </div>
+          </div>
+          <input type="submit" value="Modifier">
+      </form>
+
+    </div>
+<?php
+}else{
+  ?>
+  <h2 class="h2">Profil</h2>
+    <div class="profile">
+      <?php
+        if(!empty($_SESSION["errorRegister"])){
+          echo "<p class='mess error'>".$_SESSION["errorRegister"]."</p>";
+          unset($_SESSION["errorRegister"]);
+        }
+        elseif(!empty($_SESSION["updateOk"])){
+          echo "<p class='mess good'>".$_SESSION["updateOk"]."</p>";
+          unset($_SESSION["updateOk"]);
+        }
+      ?>
+      <div id="profil">
         <div class="picture">
           <div class="img">
           <?php
-          if (get_user_meta(get_current_user_id() , 'avatar', true))
+          if (get_user_meta($id , 'avatar', true))
           {
-          ?>
-          <img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta(get_current_user_id() , 'avatar', true) ?>" alt="votre photo de profil">
-          <?php }
-          else{?>
-          <img src="<?php echo get_template_directory_uri()."/img/avatar/default.jpg"?>" alt="votre photo de profil">
-          <?php
+            ?>
+            <img src="<?php echo get_template_directory_uri()."/img/avatar/".get_user_meta($id , 'avatar', true) ?>" alt="Photo de profil">
+            <?php 
+          }else{
+            ?>
+            <img src="<?php echo get_template_directory_uri()."/img/avatar/default.jpg"?>" alt="Photo de profil">
+            <?php
           }
           ?>
           </div>
-          <button type="button" disabled>
-            <i class="fas fa-pencil-alt" id="custom-button"></i>
-          </button>
-          <span id="custom-text">Aucune image séléctionnée</span>
-          <input id="real-file" type="file" name="avatar" hidden>
         </div>
         
         <div>
             <label for="last_name">Nom :</label>
-            <input type="text" name="last_name" value="<?php echo get_user_meta(get_current_user_id() , 'last_name', true);?>">
+            <span class="field"><?php echo get_user_meta($id , 'last_name', true);?></span>
         </div>
         <div>
             <label for="first_name">Prénom :</label>            
-            <input type="text" name="first_name" value="<?php echo get_user_meta(get_current_user_id() , 'first_name', true);?>">
+            <span class="field"><?php echo get_user_meta($id , 'first_name', true);?></span>
         </div>
         <div>
-            <label for="id_user">Identifiant :</label>  
-            <input type="text" name="id_user" value="<?php echo get_user_meta(get_current_user_id() , 'id_alc', true);?>">
+            <label for="location">Site :</label>
+            <span class="field"><?php echo get_user_meta($id , 'location', true);?></span>
         </div>
-        <div>
-            <label for="firs-mail">Adresse mail :</label>
-            <input type="mail" name="first_mail"  value="<?php echo $current_user->user_email;?>">
-        </div>
-        <div>
-            <label for="location">Votre site :</label>
-            <div class="select">
-                <select name="location" id="sites">
-                    <option value="<?php echo get_user_meta(get_current_user_id() , 'location', true);;?>"><?php echo get_user_meta(get_current_user_id() , 'location', true);;?></option>
-                    <?php 
-
-                    $sites = array('Auxerre', 'Bielsko-Biala', 'Bordeaux', 'Boulogne-Sur-Mer', 'Caen', 'Calais', 'Caldas da Rainha', 'Châteauroux', 'Cracovie', 'Guimarães', 'Île de France', 'Lisbonne', 'Nevers', 'Poitiers', 'Porto', 'Porto Ferreira Dias', 'Stalowa Wola', 'Tauxigny', 'Tunis', 'Varsovie', "Villeneuve d'Ascq");
-
-                    for($i=0; $i<count($sites); $i++){
-                        echo '<option value="'.$sites[$i].'">'.$sites[$i].'</option>';
-                    }
-
-                    ?>
-                </select>
-                <i class="fas fa-sort-down"></i>
-            </div>
-        </div>
-        <input type="submit" value="Modifier">
-    </form>
-
-  </div>
-
+                  </div>
+    </div>
+  <?php
+}
+?>
   <div class="svg">
     <svg class="svg_profile" width="1140" height="811" viewBox="0 0 1140 811" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="undraw_freelancer_b0my (1) 1">

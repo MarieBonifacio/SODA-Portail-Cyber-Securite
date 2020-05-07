@@ -521,4 +521,25 @@ function monprefixe_session_start() {
  
  add_action( 'init', 'monprefixe_session_start', 1 );
 
+ add_action( 'bp_insert_activity_meta', 'bp_insert_activity_meta_override' );
+
+ function bp_insert_activity_meta_override( $content = '' ) {
+     // on supprime le lien autour de "il y a ..."
+    $new_content = preg_replace('/(<a.*?\/a>.*)<a.*?>(<span.*?\/span>)<\/a>/', '$1$2', $content);
+
+    // on recupérer le "nicename" de l'user
+    preg_match('/.*href=".*\/(.*)\/".*/', $new_content, $matches);   
+    $userNicename = $matches[1];
+    
+    // on recupère l'id de l'user cible
+    global $wpdb;
+    $userInfo = $wpdb->get_row($wpdb->prepare("SELECT id FROM wp_users WHERE user_nicename = '".$userNicename."'"));
+    $userId = $userInfo->id;
+
+    // on génère et on remplace le lien vers son profil
+    $profileUrl = home_url().'/profil/?u='.$userId;
+    $new_content = preg_replace('/(.*href=").*\/(".*)/', '$1'.$profileUrl.'$2', $new_content);
+    
+    return $new_content;
+}
 ?>
