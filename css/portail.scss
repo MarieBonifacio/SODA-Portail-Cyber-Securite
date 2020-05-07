@@ -1,5 +1,8 @@
 @import 'colors', 'mixin', 'fontSize', 'import';
-
+html
+{
+  scroll-behavior: smooth;
+}
 body
 {  
   height: 100vh;
@@ -9,6 +12,19 @@ body
   margin: 0;
   font-family: "Muli", sans-serif;
   overflow-x: hidden;
+  .wp-embedded-content{
+    width: 210px;
+  }
+
+  #buddypress .activity-inner a{
+      color: $police !important;
+      text-decoration: underline;
+  }
+
+  #buddypress .activity-inner a:hover{
+      color: $color-imp !important;
+      text-decoration: underline;
+  }
   p
   {
     font-size: $fontSize2;
@@ -929,6 +945,21 @@ body
                 font-weight: 600;
                 color: $color-imp;
               }
+              .gold
+              {
+                font-weight: 600;
+                color: #FFD700;
+              }
+              .silver
+              {
+                font-weight: 600;
+                color: #C0C0C0;
+              }
+              .bronze
+              {
+                font-weight: 600;
+                color: #CD7F32;
+              }
             }
           }
           .leadboard::-webkit-scrollbar {
@@ -978,7 +1009,7 @@ body
       font-size: $fontSize2;
       font-family: "Muli";
       @include flex(space-evenly, center, column);
-      form
+      #profil
       {
         position: relative;
         width: 100%;
@@ -1030,13 +1061,14 @@ body
             font-family: "Montserrat";
           }
           @include flex(space-between, center, row);
-          input
+          .field
           {
             width: 62%;
             background: none;
             border: none;
             border-bottom: 1px solid $police;
             color: $color-imp;
+            text-align: center;
           }
           input:focus
           {
@@ -1354,7 +1386,8 @@ body
           {
             color: $color1;
             font-size: $fontSize2;
-            @include positionTR(absolute, 0px, 5px);
+            margin-bottom: 5px;
+            @include positionTR(absolute, "", 5px);
           }
           button
           {
@@ -1401,7 +1434,7 @@ body
       font-family: "Muli";
       font-size: $fontSize2;
       color: $police;
-      z-index: 1;
+      z-index: 2;
       width: 100%;
       @include flex(space-around, center, column);
       @include positionTL(absolute, 10%, 0);
@@ -1426,8 +1459,9 @@ body
       }
       .total
       {
+        margin: 0;
         font-weight: 600;
-        @include positionBR(fixed, 15px, 15px);
+        @include positionTR(fixed, 20%, 25px);
       }
       form
       {
@@ -1443,7 +1477,7 @@ body
         {
           position: relative;
           width: 80%;
-          background: $color3;
+          background: rgba(36, 51, 76, 0.5);
           border-radius: 5px;
           padding: 10px 10px;
           font-size: $fontSize2;
@@ -1931,6 +1965,57 @@ body
         }
       }
     }
+    .svg_step2_quiz
+    {
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+      @include positionBR(fixed, 0, 0);
+      @include flex(center, center, row);
+      svg
+      {
+        @include positionBR(absolute, 15px, 15px);
+        width: 60%;
+        #leaf1
+        {
+          animation: leaf 1s infinite linear;
+        }
+        @keyframes leaf
+        {
+          0%{
+            transform: rotate(0deg)
+          }
+          25%{
+            transform: rotate(0deg)
+          }
+          50%{
+            transform: rotate(0deg)
+          }
+          75%{
+            transform: rotate(0deg)
+          }
+          100%{
+            transform: rotate()
+          }
+        }
+      }
+    }
+    .svg_step2_module
+    {
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+      @include positionTR(absolute, 0, 0);
+      @include flex(center, center, row);
+    }
+    .svg_step3
+    {
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+      @include positionTR(absolute, 0, 0);
+      @include flex(center, center, row);
+    }
     .quizModules
     {
       position: relative;
@@ -1975,8 +2060,36 @@ body
           background-color: $police;
         }
       }
+      /* ---- ancre ---- */
       
-      
+      .ancreTop, .ancreDown
+      {
+        z-index: 24;
+        i
+        {
+          color: $police;
+          font-size:25px;
+          transition:.2s;
+        }
+        i:hover
+        {
+          color: $color-imp;
+        }
+      }
+      .ancreTop
+      {
+        z-index: 25;
+        @include positionBR(fixed, 20px, 10px);
+      }
+      .ancreDown
+      {
+        @include positionBR(fixed, 10px, 10px);
+      }
+
+      #end
+      {
+        @include positionBL(absolute, 0, 0);
+      }
       /* ---- isotope ---- */
       
       .grid {
@@ -2289,6 +2402,82 @@ body
       height: 100%;
       font-size: $fontSize2;
       color: $police;
+      .legend
+      {
+        width: 100px;
+        // height: 150px;
+        border-radius: 5px;
+        padding: 10px;
+        background: $color1;
+        font-size: 13px;
+        overflow: hidden;
+        z-index: 34;
+        @include positionTL(absolute, 10px, 10px);
+        @include flex(space-around, center, column);
+        p
+        {
+          width: 100%;
+          position: relative;
+          text-align: left;
+          padding: 0;
+          margin: 0;
+          font-weight: 600;
+          i
+          {
+            @include positionTR(absolute, 50%, 5px);
+            padding-bottom: 5px;
+            transform: translateY(-50%);
+          }
+        }
+        .square_legend
+        {
+          @include flex(space-around, center, column);
+          .you, .gold, .silver, .bronze
+          {
+            width: 80px;
+            margin: 5px;
+            @include flex(space-between, center, "");
+            div
+            {
+              border-radius: 2px;
+              width: 30px;
+              height: 15px;
+            }
+          }
+          .you
+          {
+            div
+            {
+              background: $color-imp;
+            }
+          }
+          .gold
+          {
+            div
+            {
+              background: #FFD700;
+            }
+          }
+          .silver
+          {
+            div
+            {
+              background: #C0C0C0;
+            }
+          }
+          .bronze
+          {
+            div
+            {
+              background: #CD7F32;
+            }
+          }
+        }
+      }
+      .dropLegend
+      {
+        display: none !important;  
+      }
       .span_above
       {
         @include positionTR(absolute, 5%, 5%);
@@ -2382,6 +2571,21 @@ body
           {
             color: rgb(235, 13, 13);
             font-weight: 600;
+          }
+          .gold
+          {
+            font-weight: 600;
+            color: #FFD700;
+          }
+          .silver
+          {
+            font-weight: 600;
+            color: #C0C0C0;
+          }
+          .bronze
+          {
+            font-weight: 600;
+            color: #CD7F32;
           }
         }
       }
@@ -3044,7 +3248,31 @@ body
       }
       article
       {
+        position: relative;
         width: 100%;
+        .ancreTop, .ancreDown
+        {
+          z-index: 24;
+          i
+          {
+            color: $police;
+            font-size:25px;
+            transition:.2s;
+          }
+          i:hover
+          {
+            color: $color-imp;
+          }
+        }
+        .ancreTop
+        {
+          z-index: 25;
+          @include positionBR(fixed, 20px, 10px);
+        }
+        .ancreDown
+        {
+          @include positionBR(fixed, 10px, 10px);
+        }
       }
       h1
       {
@@ -3252,5 +3480,26 @@ body::-webkit-scrollbar-track {
   border-radius: 50px;
 }
 body::-webkit-scrollbar-corner {
+  background: transparent;
+}
+body::scrollbar-color {
+  width: 5px;
+  height: 5px;
+}
+body::-ms-scrollbar-thumb {
+  background: $color-btn;
+  border-radius: 100px;
+}
+body::-ms-scrollbar-thumb:hover {
+  background: $color-btn;
+}
+body::-ms-scrollbar-thumb:active {
+  background: $color-btn;
+}
+body::-ms-scrollbar-track {
+  background: $color1;
+  border-radius: 50px;
+}
+body::-ms-scrollbar-corner {
   background: transparent;
 }

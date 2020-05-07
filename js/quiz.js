@@ -213,7 +213,6 @@ window.addEventListener('load', function () {
                           </div>`
                         );
                       }
-
                     }
                     else
                     {

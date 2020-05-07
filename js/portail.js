@@ -131,7 +131,7 @@ window.addEventListener('load', function () {
         
         // click event for dropDown list menu
         const dropMenus = document.querySelectorAll(".dropMenu");
-        const arrows = document.querySelectorAll(".fas");
+        const arrows = document.querySelectorAll(".drop");
         
         arrows.forEach(arrow => {
             arrow.addEventListener("click", (e)=>{

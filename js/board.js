@@ -65,6 +65,99 @@ window.addEventListener('load', function () {
           `
         }
       }
+      else if(pos == 1)
+      {   
+        if(genUserBoard[i].moyenne<50)
+        {
+          isUnder += 1;
+          tbody.innerHTML += `
+            <tr class="gold">
+            <td>${pos}</td>
+            <td>${genUserBoard[i].display_name}</td>
+            <td>${genUserBoard[i].meta_value}</td>
+            <td>${genUserBoard[i].count}</td>
+            <td>${genUserBoard[i].time}</td>
+            <td class="red">${genUserBoard[i].moyenne}</td>
+            </tr>
+          `
+        }
+        else
+        {
+          isAbove += 1; 
+          tbody.innerHTML += `
+          <tr class="gold">
+          <td>${pos}</td>
+          <td>${genUserBoard[i].display_name}</td>
+          <td>${genUserBoard[i].meta_value}</td>
+          <td>${genUserBoard[i].count}</td>
+          <td>${genUserBoard[i].time}</td>
+          <td class="green">${genUserBoard[i].moyenne}</td>
+          </tr>
+          `
+        }
+      }
+      else if(pos == 2)
+      {   
+        if(genUserBoard[i].moyenne<50)
+        {
+          isUnder += 1;
+          tbody.innerHTML += `
+            <tr class="silver">
+            <td>${pos}</td>
+            <td>${genUserBoard[i].display_name}</td>
+            <td>${genUserBoard[i].meta_value}</td>
+            <td>${genUserBoard[i].count}</td>
+            <td>${genUserBoard[i].time}</td>
+            <td class="red">${genUserBoard[i].moyenne}</td>
+            </tr>
+          `
+        }
+        else
+        {
+          isAbove += 1; 
+          tbody.innerHTML += `
+          <tr class="silver">
+          <td>${pos}</td>
+          <td>${genUserBoard[i].display_name}</td>
+          <td>${genUserBoard[i].meta_value}</td>
+          <td>${genUserBoard[i].count}</td>
+          <td>${genUserBoard[i].time}</td>
+          <td class="green">${genUserBoard[i].moyenne}</td>
+          </tr>
+          `
+        }
+      }
+      else if(pos == 3)
+      {   
+        if(genUserBoard[i].moyenne<50)
+        {
+          isUnder += 1;
+          tbody.innerHTML += `
+            <tr class="bronze">
+            <td>${pos}</td>
+            <td>${genUserBoard[i].display_name}</td>
+            <td>${genUserBoard[i].meta_value}</td>
+            <td>${genUserBoard[i].count}</td>
+            <td>${genUserBoard[i].time}</td>
+            <td class="red">${genUserBoard[i].moyenne}</td>
+            </tr>
+          `
+        }
+        else
+        {
+          isAbove += 1; 
+          tbody.innerHTML += `
+          <tr class="bronze">
+          <td>${pos}</td>
+          <td>${genUserBoard[i].display_name}</td>
+          <td>${genUserBoard[i].meta_value}</td>
+          <td>${genUserBoard[i].count}</td>
+          <td>${genUserBoard[i].time}</td>
+          <td class="green">${genUserBoard[i].moyenne}</td>
+          </tr>
+          `
+        }
+      }
       else
       {
         if(genUserBoard[i].moyenne<50)
@@ -145,6 +238,99 @@ window.addEventListener('load', function () {
             `
           }
         }
+        else if(pos == 1)
+        {   
+          if(genUserBoard[i].moyenne<50)
+          {
+            isUnder += 1;
+            tbody.innerHTML += `
+              <tr class="gold">
+              <td>${pos}</td>
+              <td>${genUserBoard[i].display_name}</td>
+              <td>${genUserBoard[i].meta_value}</td>
+              <td>${genUserBoard[i].count}</td>
+              <td>${genUserBoard[i].time}</td>
+              <td class="red">${genUserBoard[i].moyenne}</td>
+              </tr>
+            `
+          }
+          else
+          {
+            isAbove += 1; 
+            tbody.innerHTML += `
+            <tr class="gold">
+            <td>${pos}</td>
+            <td>${genUserBoard[i].display_name}</td>
+            <td>${genUserBoard[i].meta_value}</td>
+            <td>${genUserBoard[i].count}</td>
+            <td>${genUserBoard[i].time}</td>
+            <td class="green">${genUserBoard[i].moyenne}</td>
+            </tr>
+            `
+          }
+        }
+        else if(pos == 2)
+        {   
+          if(genUserBoard[i].moyenne<50)
+          {
+            isUnder += 1;
+            tbody.innerHTML += `
+              <tr class="silver">
+              <td>${pos}</td>
+              <td>${genUserBoard[i].display_name}</td>
+              <td>${genUserBoard[i].meta_value}</td>
+              <td>${genUserBoard[i].count}</td>
+              <td>${genUserBoard[i].time}</td>
+              <td class="red">${genUserBoard[i].moyenne}</td>
+              </tr>
+            `
+          }
+          else
+          {
+            isAbove += 1; 
+            tbody.innerHTML += `
+            <tr class="silver">
+            <td>${pos}</td>
+            <td>${genUserBoard[i].display_name}</td>
+            <td>${genUserBoard[i].meta_value}</td>
+            <td>${genUserBoard[i].count}</td>
+            <td>${genUserBoard[i].time}</td>
+            <td class="green">${genUserBoard[i].moyenne}</td>
+            </tr>
+            `
+          }
+        }
+        else if(pos == 3)
+        {   
+          if(genUserBoard[i].moyenne<50)
+          {
+            isUnder += 1;
+            tbody.innerHTML += `
+              <tr class="bronze">
+              <td>${pos}</td>
+              <td>${genUserBoard[i].display_name}</td>
+              <td>${genUserBoard[i].meta_value}</td>
+              <td>${genUserBoard[i].count}</td>
+              <td>${genUserBoard[i].time}</td>
+              <td class="red">${genUserBoard[i].moyenne}</td>
+              </tr>
+            `
+          }
+          else
+          {
+            isAbove += 1; 
+            tbody.innerHTML += `
+            <tr class="bronze">
+            <td>${pos}</td>
+            <td>${genUserBoard[i].display_name}</td>
+            <td>${genUserBoard[i].meta_value}</td>
+            <td>${genUserBoard[i].count}</td>
+            <td>${genUserBoard[i].time}</td>
+            <td class="green">${genUserBoard[i].moyenne}</td>
+            </tr>
+            `
+          }
+        }
         else
         {
           if(genUserBoard[i].moyenne<50)
@@ -209,6 +395,42 @@ window.addEventListener('load', function () {
             </tr>
           `
           }
+          else if (pos == 1)
+          {
+            tbody.innerHTML += `
+            <tr class="gold">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
+          `
+          }
+          else if (pos == 2)
+          {
+            tbody.innerHTML += `
+            <tr class="silver">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
+          `
+          }
+          else if (pos == 3)
+          {
+            tbody.innerHTML += `
+            <tr class="bronze">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
+          `
+          }
           else
           {
             tbody.innerHTML += `
@@ -224,23 +446,86 @@ window.addEventListener('load', function () {
         }
         else
         {
-          isAbove += 1; 
-          tbody.innerHTML += `
-          <tr>
-          <td>${pos}</td>
-          <td>${genTown[i].city}</td>
-          <td>${genTown[i].quizCount}</td>
-          <td>${genTown[i].time}</td>
-          <td class="green">${genTown[i].moyenne}</td>
-          </tr>
+          isAbove += 1;
+          if(genTown[i].city == myArray.ville)
+          {
+            tbody.innerHTML += `
+            <tr class="imp">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
           `
+          }
+          else if (pos == 1)
+          {
+            tbody.innerHTML += `
+            <tr class="gold">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
+          `
+          }
+          else if (pos == 2)
+          {
+            tbody.innerHTML += `
+            <tr class="silver">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
+          `
+          }
+          else if (pos == 3)
+          {
+            tbody.innerHTML += `
+            <tr class="bronze">
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="red">${genTown[i].moyenne}</td>
+            </tr>
+          `
+          }
+          else
+          {
+            tbody.innerHTML += `
+            <tr>
+            <td>${pos}</td>
+            <td>${genTown[i].city}</td>
+            <td>${genTown[i].quizCount}</td>
+            <td>${genTown[i].time}</td>
+            <td class="green">${genTown[i].moyenne}</td>
+            </tr>
+            `
+          }
         }
       }
     })
 
     spanAbove.innerHTML = `Moyenne de score > 50 : ${isAbove}`;
     spanUnder.innerHTML = `Moyenne de score < 50 : ${isUnder}`;
-    console.log(isUnder , isAbove)
+
+    const dropIcon = document.querySelector(".dropIcon"),
+    legend = document.querySelector(".square_legend");
+    dropIcon.addEventListener("click", ()=>{
+      if(legend.classList.contains("dropLegend"))
+      {
+        legend.classList.remove("dropLegend");
+      }
+      else
+      {
+        legend.classList.add("dropLegend");
+      }
+    })
   }
   else
   {

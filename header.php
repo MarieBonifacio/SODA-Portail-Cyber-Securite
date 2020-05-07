@@ -84,7 +84,7 @@ if(!empty($_SESSION['userConnected']))
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 				<div id="link" class="articles">
 					<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
-					<i class="fas fa-sort-down" data-id="articles"></i>
+					<i class="drop fas fa-sort-down" data-id="articles"></i>
 					<ul class="dropMenu" id="articles">
 						<li>
 							<a target="_blank" href="<?php echo home_url()."/ajouter-un-nouvel-article"?>">Ajoutez un article</a>
@@ -98,7 +98,7 @@ if(!empty($_SESSION['userConnected']))
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 				<div id="link" class="modules">
 					<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
-					<i class="fas fa-sort-down" data-id="modules"></i>
+					<i class="drop fas fa-sort-down" data-id="modules"></i>
 					<ul class="dropMenu" id="modules">
 						<li>
 							<a href="<?php echo home_url()."/creationmoduleetape1"?>">Créez votre module</a>
@@ -114,7 +114,7 @@ if(!empty($_SESSION['userConnected']))
 			</div>
 			<div id="link"  class="tools">
 				<a id="a" href="<?php echo home_url()."/generateur-de-mots-de-passe"?>"><i class="fas fa-tools"></i><p id="p">Outils</p></a>
-				<i class="fas fa-sort-down" data-id="tools"></i>
+				<i class="drop fas fa-sort-down" data-id="tools"></i>
 				<ul class="dropMenu" id="tools">
 						<li>
 							<a href="<?php echo home_url()."/generateur-de-mots-de-passe"?>">Générateur de mot de passe solide</a>
@@ -124,7 +124,7 @@ if(!empty($_SESSION['userConnected']))
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 				<div id="link"  class="quiz">
 					<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
-					<i class="fas fa-sort-down" data-id="quizs"></i>
+					<i class="drop fas fa-sort-down" data-id="quizs"></i>
 						<ul class="dropMenu" id="quizs">
 							<li>
 								<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>

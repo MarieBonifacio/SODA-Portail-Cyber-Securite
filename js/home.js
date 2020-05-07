@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
     {
       // loop for leaderboard's making
       for (i = 0; i < top30Gen.length; i++) 
-        {
+      {
           pos = i + 1;
           // condition in order to know if user is in top 10 or not
           if(parseInt(userStat.user_id) == parseInt(top30Gen[i].user_id))
@@ -37,6 +37,42 @@ window.addEventListener('load', function () {
             isPresent = true;
             tbody.innerHTML += `
             <tr class="imp">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 1)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="gold">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 2)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="silver">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 3)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="bronze">
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
@@ -85,6 +121,42 @@ window.addEventListener('load', function () {
             </tr>
             `
           }
+          else if (pos == 1)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="gold">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 2)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="silver">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 3)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="bronze">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
           else
           {
             tbody.innerHTML += `
@@ -127,6 +199,42 @@ window.addEventListener('load', function () {
             </tr>
             `
           }
+          else if (pos == 1)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="gold">
+              <td>${pos}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 2)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="silver">
+              <td>${pos}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 3)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="bronze">
+              <td>${pos}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
+            </tr>
+            `
+          }
           else
           {
             tbody.innerHTML += `
@@ -157,14 +265,53 @@ window.addEventListener('load', function () {
       for (i = 0; i < top30Gen.length; i++) 
       {
         pos = i + 1;
-        tbody.innerHTML += `
-        <tr>
-          <td>${pos}</td>
-          <td>${top30Gen[i].display_name}</td>  
-          <td>${top30Gen[i].meta_value}</td>
-          <td>${top30Gen[i].moyenne}</td>
-        </tr>
-        `
+          if (pos == 1)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="gold">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 2)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="silver">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 3)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="bronze">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else
+          {
+            tbody.innerHTML += `
+              <tr>
+                <td>${pos}</td>
+                <td>${top30Gen[i].display_name}</td>  
+                <td>${top30Gen[i].meta_value}</td>
+                <td>${top30Gen[i].moyenne}</td>
+              </tr>
+            `
+          }
       }
       gen.addEventListener("click", ()=>{
   
@@ -172,14 +319,53 @@ window.addEventListener('load', function () {
         for (i = 0; i < top30Gen.length; i++) 
         {
           pos = i + 1;
-          tbody.innerHTML += `
-          <tr>
-            <td>${pos}</td>
-            <td>${top30Gen[i].display_name}</td>  
-            <td>${top30Gen[i].meta_value}</td>
-            <td>${top30Gen[i].moyenne}</td>
-          </tr>
-          `
+          if (pos == 1)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="gold">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 2)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="silver">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 3)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="bronze">
+              <td>${pos}</td>
+              <td>${top30Gen[i].display_name}</td>  
+              <td>${top30Gen[i].meta_value}</td>
+              <td>${top30Gen[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else
+          {
+            tbody.innerHTML += `
+              <tr>
+                <td>${pos}</td>
+                <td>${top30Gen[i].display_name}</td>  
+                <td>${top30Gen[i].meta_value}</td>
+                <td>${top30Gen[i].moyenne}</td>
+              </tr>
+            `
+          }
         }
       })
       town.addEventListener("click", ()=>{
@@ -187,14 +373,53 @@ window.addEventListener('load', function () {
         for (i = 0; i < top30Town.length; i++) 
         {
           pos = i + 1;
-          tbody.innerHTML += `
-          <tr>
-            <td>${pos}</td>
-            <td>${top30Town[i].display_name}</td>  
-            <td>${top30Town[i].meta_value}</td>
-            <td>${top30Town[i].moyenne}</td>
-          </tr>
-          `
+          if (pos == 1)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="gold">
+              <td>${pos}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 2)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="silver">
+              <td>${pos}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else if (pos == 3)
+          {
+            isPresent = true;
+            tbody.innerHTML += `
+            <tr class="bronze">
+              <td>${pos}</td>
+              <td>${top30Town[i].display_name}</td>  
+              <td>${top30Town[i].meta_value}</td>
+              <td>${top30Town[i].moyenne}</td>
+            </tr>
+            `
+          }
+          else
+          {
+            tbody.innerHTML += `
+              <tr>
+                <td>${pos}</td>
+                <td>${top30Town[i].display_name}</td>  
+                <td>${top30Town[i].meta_value}</td>
+                <td>${top30Town[i].moyenne}</td>
+              </tr>
+            `
+          }
         }
       })
     }
