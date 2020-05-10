@@ -2,20 +2,28 @@
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
-
-if(!empty($_SESSION['userConnected']))
-{
-    $id = $_SESSION['userConnected'];
-}else{
-	wp_redirect( home_url() );
+if(get_current_user_id() !== 0 && !isset($_SESSION['userConnected'])){
+	$_SESSION['userConnected'] = get_current_user_id();
 }
 
+if(!isset($_SESSION['needLog'])){
+	$_SESSION['needLog'] = true;
+}
+if(!isset($_SESSION['needAdmin'])){
+	$_SESSION['needAdmin'] = false;
+}
+if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
+	unset($_SESSION['needAdmin']);
+	unset($_SESSION['needLog']);
+    wp_redirect( home_url() );  exit;
+}
 
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?> class="no-js">
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
+		<meta test="<?php echo $needAdmin; ?>">
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">

@@ -5,6 +5,10 @@ require('app/class/tag.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
+if(!checkAuthorized(false, true)){
+    wp_redirect( home_url() );  exit;
+}
+
 ///récupération utilisateur
 $user = $_SESSION["userConnected"];
 $lastCheck = get_user_meta( $user, $key = 'notification', true );

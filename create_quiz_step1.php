@@ -1,4 +1,7 @@
-<?php /* Template Name: Create Quiz Etape 1 */ get_header();?>
+<?php /* Template Name: Create Quiz Etape 1 */ 
+$_SESSION['needAdmin'] = true;
+get_header();
+?>
 <?php unset($_SESSION['quizData']);?>
 
 <h2 class="h2">Créez votre quiz</h2>

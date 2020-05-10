@@ -1,4 +1,7 @@
-<?php /* Template Name: Create Module Etape 2 */ get_header();?>
+<?php /* Template Name: Create Module Etape 2 */ 
+$_SESSION['needAdmin'] = true;
+get_header();
+?>
 <h2 class="h2"><?php echo $_SESSION['moduleData']['module']['title']; ?></h2>
 
 <div class="step2">

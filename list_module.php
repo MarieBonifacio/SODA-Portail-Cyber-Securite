@@ -1,4 +1,7 @@
-<?php /* Template Name: Liste Module */ get_header(); ?>
+<?php /* Template Name: Liste Module */ 
+$_SESSION['needAdmin'] = true;
+get_header(); 
+?>
 
 <h2 class="h2"> Liste Modules </h2>
 

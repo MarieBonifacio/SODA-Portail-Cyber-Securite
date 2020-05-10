@@ -1,4 +1,7 @@
-<?php /* Template Name: Liste Quiz */ get_header(); ?>
+<?php /* Template Name: Liste Quiz */ 
+$_SESSION['needAdmin'] = true;
+get_header(); 
+?>
 
 <h2 class="h2"> Liste Quizs </h2>
 

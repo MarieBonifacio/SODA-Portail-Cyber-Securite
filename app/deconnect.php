@@ -3,10 +3,9 @@ define('WP_USE_THEMES', false);
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
-if(!empty($_SESSION['userConnected'])){
-    session_destroy();
-    wp_redirect( home_url() );
-}
+session_destroy();
+wp_logout();
+wp_redirect( home_url() );
 
 
 ?>

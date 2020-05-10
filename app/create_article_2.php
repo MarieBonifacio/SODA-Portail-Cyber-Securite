@@ -5,6 +5,10 @@ require('class/article.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
+if(!checkAuthorized(true)){
+    wp_redirect( home_url() );  exit;
+}
+
 //enregistrement en db
 
 if(!empty($_SESSION['userConnected']))

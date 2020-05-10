@@ -1,4 +1,7 @@
-<?php /* Template Name: Create Module Etape 1 */ get_header();?>
+<?php /* Template Name: Create Module Etape 1 */ 
+$_SESSION['needAdmin'] = true;
+get_header();
+?>
 <h2 class="h2">Créez votre module</h2>
 
 <div class="createQuizModule">

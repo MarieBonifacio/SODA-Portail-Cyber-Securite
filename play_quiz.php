@@ -8,6 +8,11 @@ require('app/class/tag.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
+
+if(!checkAuthorized(false, true)){
+    wp_redirect( home_url() );  exit;
+}
+
 //JSON encode 
 $quiz = new Quiz();
 $quiz->selectById($_GET['id']);

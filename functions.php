@@ -542,4 +542,35 @@ function monprefixe_session_start() {
     
     return $new_content;
 }
+
+add_action( 'bp_get_activity_user_link', 'bp_get_activity_user_link_override' );
+
+function bp_get_activity_user_link_override( $link){
+    //return $link;
+    // on recupérer le "nicename" de l'user
+    preg_match('/.*\/(.*)\/$/', $link, $matches);   
+    $userNicename = $matches[1];
+    
+    // on recupère l'id de l'user cible
+    global $wpdb;
+    $userInfo = $wpdb->get_row($wpdb->prepare("SELECT id FROM wp_users WHERE user_nicename = '".$userNicename."'"));
+    $userId = $userInfo->id;
+
+    // on génère et on remplace le lien vers son profil
+    return home_url().'/profil/?u='.$userId;
+}
+function checkAuthorized($needAdmin = false, $needLog = true){
+    if($needLog){
+        if(get_current_user_id() == 0){
+            return false;
+        }
+        if($needAdmin){
+            $currentUser = wp_get_current_user();
+            if(!user_can($currentUser,"administrator") ){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 ?>

@@ -1,4 +1,7 @@
-<?php /* Template Name: Classement */ get_header(); ?>
+<?php /* Template Name: Classement */ 
+$_SESSION['needAdmin'] = true;
+get_header(); ?>
+
 <h2 class="h2">Classements</h2>
 <div class="board">
   <div class="legend">
