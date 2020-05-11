@@ -58,10 +58,10 @@ foreach($query as $q)
         $maxTime = $q->time;
     }
 
-    // echo "nb good answer : ".count($answersTrue)."<br/>";
-    // echo "=> "; print_r($answersTrue);echo "<br/>";
-    // echo "nb user answer : ".count($answersUser)."<br/>";
-    // echo "=> "; print_r($answersUser);echo "<br/>";
+     //echo "nb good answer : ".count($answersTrue)."<br/>";
+     //echo "=> "; print_r($answersTrue);echo "<br/>";
+     //echo "nb user answer : ".count($answersUser)."<br/>";
+     //echo "=> "; print_r($answersUser);echo "<br/>";
 
     if(count($answersUser) != count($answersTrue)){
         $result['questions'][] = $question;
@@ -89,6 +89,7 @@ foreach($query as $q)
 
 $quiz = new Quiz();
 $quiz->selectById($response['id_quiz']);
+//print_r($query);
 
 $score = round(100/count($query) * $questionsGood);
 
@@ -110,13 +111,13 @@ $result['good'] = $questionsGood;
 // echo "</pre>";
 // echo "<br/>";
 // echo "<hr/>";
-
+/*
 $wpdb->delete( 'quiz_progress' ,
     array(
         'id_user' => $id_user,
         'id_quiz' => $id_quiz,
     )
 );
-
+*/
 echo json_encode($result);
 ?>
