@@ -32,7 +32,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         //upload image 
         $content_dir_plug =  get_template_directory().'/img/avatar/';
         $content_dir = wp_upload_dir()['basedir']."/avatars/".$id."/";
-        echo $content_dir;
         $tmp_file = $_FILES['avatar']['tmp_name'];
 
         if(!is_dir($content_dir))
@@ -76,7 +75,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
         
 
         $imgPath = $name_file;
-        echo "..." .update_user_meta($id, 'avatar', $imgPath);
         
     } 
     if( !preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ ", $mail))
@@ -108,6 +106,6 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 $_SESSION["updateOk"] = $updateOk;
 $_SESSION["errorRegister"] = $error;
 
-// wp_redirect( home_url()."/profil" ); 
+wp_redirect( home_url()."/profil" ); 
 
 ?>

@@ -11,7 +11,7 @@ if(!empty($_GET['u'])){
   $id = $_GET['u'];
 }
 
-if($_SESSION['userConnected'] === $id){
+if($_SESSION['userConnected'] == $id){
   $canEdit = true;
 }
 
