@@ -511,8 +511,8 @@ window.addEventListener('load', function () {
       }
     })
 
-    spanAbove.innerHTML = `Moyenne de score > 50 : ${isAbove}`;
-    spanUnder.innerHTML = `Moyenne de score < 50 : ${isUnder}`;
+    spanAbove.innerHTML = `score > 50 : ${isAbove}`;
+    spanUnder.innerHTML = `score < 50 : ${isUnder}`;
 
     const dropIcon = document.querySelector(".dropIcon"),
     legend = document.querySelector(".square_legend");

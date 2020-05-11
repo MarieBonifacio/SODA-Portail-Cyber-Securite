@@ -36,8 +36,10 @@ get_header(); ?>
       <tbody></tbody>
     </table>
   </div>
-  <span class="span_above"></span>
-  <span class="span_under"></span>
+  <div class="spans">
+    <span class="span_above"></span>
+    <span class="span_under"></span>
+  </div>
 </div>
 
 <?php get_footer();?>
