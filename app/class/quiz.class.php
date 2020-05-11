@@ -80,7 +80,7 @@ class Quiz {
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
                 'quiz', array(
-                    "name" => $this->name,
+                    "name" => stripslashes($this->name),
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
                     "author_id" => $this->author,
@@ -92,7 +92,7 @@ class Quiz {
             global $wpdb;
             $wpdb->update(
                 'quiz', array(
-                    "name" => $this->name,
+                    "name" => stripslashes($this->name),
                     "tag_id" => $this->tag_id,
                     "img_path" => $this->img_path,
                     "author_id" => $this->author,

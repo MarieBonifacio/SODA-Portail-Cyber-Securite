@@ -57,7 +57,7 @@ get_header();
         echo '
             <span class="numQ">'.$num.'</span>
             <div class="question">
-              <p>'.$q['info']['text'].'</p>
+              <p>'.stripslashes($q['info']['text']).'</p>
             </div>
             <div class="answers">
           ';
@@ -70,7 +70,7 @@ get_header();
                 <div>
                   <div class="spanP">
                     <span>'.$lettre[$lettreNum].'.</span>
-                    <p>'.$a['text'].'</p>
+                    <p>'.stripslashes($a['text']).'</p>
                   </div>
               ';
               if($a['isTrue'] == "true")

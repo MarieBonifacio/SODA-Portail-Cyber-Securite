@@ -63,7 +63,7 @@ window.addEventListener('load', function () {
             document.body.appendChild(divQuizz);
             divQuizz.innerHTML = `
             <div class="quiz" id="quiz"></div>
-            <div class="btns"> 
+            <div class="btns">
             <button id="next">Prochaine question</button>
             <button id="submit">Terminer le quiz</button>
             </div>
@@ -76,7 +76,7 @@ window.addEventListener('load', function () {
               <div class="progressDone" data-done=""><span class="percentage"></span></div>
             </div>
             `;
-            
+
             let currentSlide = 0;
             let myQuestions = myQuizz.questions;
             let actualpercent = 0;
@@ -113,7 +113,7 @@ window.addEventListener('load', function () {
                   return valString;
                 }
               }
-              
+
               function shuffle(array)
               {
                 array.sort(()=> Math.random()-0.5);
@@ -123,9 +123,9 @@ window.addEventListener('load', function () {
               if(previous.length > 0)
               {
                 var tableLostQuestions = [];
-                for (let i = 0; i < previous.length; i++) 
+                for (let i = 0; i < previous.length; i++)
                 {
-                  for (let f = 0; f < myQuestions.length; f++) 
+                  for (let f = 0; f < myQuestions.length; f++)
                   {
                     if(myQuestions[f].id == previous[i].id_question)
                     {
@@ -160,10 +160,10 @@ window.addEventListener('load', function () {
                 // for each question...
                 myQuestions.forEach(
                   (currentQuestion, questionNumber) => {
-                    
+
                     // variable to store the list of possible answers
                     const currentAnswers = currentQuestion.answers;
-                    
+
                     const answers = [];
                     numQuestion += 1;
                     // and for each available answer...
@@ -173,7 +173,7 @@ window.addEventListener('load', function () {
                       // ...add an HTML radio button
                       answers.push(
                         `<label>
-                          <input id="${currentAnswers[i].id}" class="input${myQuestions.indexOf(currentQuestion)}${[i]}" type="radio" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
+                          <input id="${currentAnswers[i].id}" class="input${myQuestions.indexOf(currentQuestion)}${[i]}" type="checkbox" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
                           <p class="answer"><span>${letters[i]}.</span> ${currentAnswers[i].content}</p>
                         </label>`
                       );
@@ -233,7 +233,7 @@ window.addEventListener('load', function () {
               }
 
               function showResults(){
-                
+
                 // gather answer containers from our quiz
                 const answerContainers = quizContainer.querySelectorAll('.answers');
                 // keep track of user's answers
@@ -244,8 +244,8 @@ window.addEventListener('load', function () {
                 // for each question...
                 if(previous.length >0)
                 {
-                  for (let i = 0; i < previous.length; i++) 
-                  {  
+                  for (let i = 0; i < previous.length; i++)
+                  {
                     if(previous[i].is_true === "true")
                     {
                       numCorrect += 1;
@@ -253,14 +253,14 @@ window.addEventListener('load', function () {
                     }
                   }
                 }
-                myQuestions.forEach( 
+                myQuestions.forEach(
                   (currentQuestion, questionNumber) => {
-                    
+
                   // find selected answer
                   const answerContainer = answerContainers[questionNumber];
                   const selector = `input[name=question${questionNumber}]:checked`;
                   let userAnswer = (answerContainer.querySelector(selector) || {}).value;
-                  
+
                   // if answer is correct
                   if(userAnswer === "true"){
                     // add to the number of correct answers
@@ -273,12 +273,12 @@ window.addEventListener('load', function () {
 
                 if(previous.length >0)
                 {
-                  for (let i = 0; i < tableLostQuestions.length; i++) 
+                  for (let i = 0; i < tableLostQuestions.length; i++)
                   {
                     myQuestions.splice(0,0, tableLostQuestions[i]);
                   }
                 }
-                
+
                 // show number of correct answers out of total
                 resultsContainer.style.opacity = "1";
                 resultsContainer.innerHTML = `
@@ -336,7 +336,7 @@ window.addEventListener('load', function () {
                 quizContainer.remove();
                 btns.remove();
 
-                var obj = { 
+                var obj = {
                   "score": points,
                   "time": totalSeconds,
                   "id_user": myQuizz.player,
@@ -358,7 +358,7 @@ window.addEventListener('load', function () {
 
               const nextButton = document.getElementById("next");
               const slides = document.querySelectorAll(".slide");
-              
+
               function showSlide(n) {
                 slides[currentSlide].classList.remove('active-slide');
                 slides[n].classList.add('active-slide');
@@ -378,56 +378,136 @@ window.addEventListener('load', function () {
               var is_True;
 
               function recupIds(){
-
                 id_question = myQuestions[currentSlide].id;
                 id_answer = null;
                 is_True = "false";
-                
+
+                let answerChecked = [];
                 for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
                   let input = document.querySelector(`.input${currentSlide}${i}`);
                   if(input.checked)
                   {
-                    is_True = input.value;
-                    id_answer = input.id;
-                    return
+                     answerChecked.push(parseInt(input.id));
                   }
                 }
+                return answerChecked;
               }
-              
+
               // Show the first slide
               showSlide(currentSlide);
-              
-              function showNextSlide() {
-                recupIds();
 
-                var obj = { 
-                  "questions": id_question, 
-                  "answer": id_answer,
+              function showNextSlide(finish) {
+                let answerChecked = recupIds();
+
+                var obj = {
+                  "questions": id_question,
+                  "answers": answerChecked,
                   "time": totalSeconds,
                   "id_quiz" : myQuizz.id,
-                  "is_True" : is_True,
                 };
-                
+
 
                 dbParam = JSON.stringify(obj);
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
-                    showSlide(currentSlide + 1);
-                    progressBar();
+                    if (!finish){
+                        showSlide(currentSlide + 1);
+                        progressBar();
+                    }else{
+                        getResults();
+                    }
                   }
                 };
                 xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
                 xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xmlhttp.send(dbParam);
-              
               }
 
+            function getResults(){
+                var obj = {
+                  "id_user": myQuizz.player,
+                  "id_quiz" : myQuizz.id,
+                };
+                dbParam = JSON.stringify(obj);
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        let result = JSON.parse(this.responseText);
+                        showFinish(result);
+                    }
+                };
+                xmlhttp.open("POST", url + "/quiz_result.php/", true);
+                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xmlhttp.send(dbParam);
+            }
+
+            function showFinish(result){
+                // show number of correct answers out of total
+                resultsContainer.style.opacity = "1";
+                resultsContainer.innerHTML = `
+                <p>${result.good} correct(s) sur ${result.questions.length}</p>
+                <p>Vous avez obtenu ${result.score}/100pts en ${result.time} secondes!</p>
+                <i class="btnBackMenu fas fa-times"></i>
+                <div class="recap">
+                </div>
+                `;
+
+                const recap = document.querySelector('.recap');
+
+                result.questions.forEach((question, i) => {
+                    numQuestion = i+1;
+
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question");
+                    recap.appendChild(questionDiv);
+
+                    const p = document.createElement("p");
+                    p.classList.add(`questionRecap`);
+                    questionDiv.appendChild(p);
+                    p.innerHTML =`<span>${numQuestion}.</span> ${question.content}`;
+
+                    const divAnswer = document.createElement("div");
+                    divAnswer.classList.add(`answerRecap${[i]}`, "answerRecap");
+                    questionDiv.appendChild(divAnswer);
+
+                    question.answers.forEach((answer, j) => {
+                        const letters = ['A', 'B' , 'C', 'D'];
+
+                        const pAnswerDiv = document.createElement("div");
+                        pAnswerDiv.classList.add(`answerTF${[j]}${[i]}`, 'answerTF');
+                        divAnswer.appendChild(pAnswerDiv);
+                        pAnswerDiv.innerHTML = `<span>${letters[j]}:</span> ${answer.content}`;
+                        if(answer.is_true == "1" || answer.is_true == "true"){
+                            pAnswerDiv.style.color = "#3AD29F";
+                        }else{
+                            pAnswerDiv.style.color = "red";
+                        }
+                    });
+                });
+
+                const btnBackMenu = document.querySelectorAll(".btnBackMenu");
+
+                btnBackMenu.forEach(btn => {
+                  btn.addEventListener("click", ()=>{
+                    location.reload();
+                  })
+                });
+
+                timer.remove();
+                quizContainer.remove();
+                btns.remove();
+            }
+
               // Event listeners
-              nextButton.addEventListener("click", showNextSlide);
+              nextButton.addEventListener("click", function(){
+                  showNextSlide(false);
+              });
 
               // on submit, show results
-              submitButton.addEventListener('click', showResults);
+              submitButton.addEventListener('click', function(){
+                  showNextSlide(true);
+              });
           }
         };
 

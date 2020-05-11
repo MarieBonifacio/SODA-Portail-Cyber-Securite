@@ -21,7 +21,7 @@ $wpdb->insert(
         'id_quiz' => $response['id_quiz'],
         'id_user' => $_SESSION['userConnected'],
         'id_question' => $response['questions'],
-        'id_answer' => $response['answer'],
+        'id_answer' => json_encode($response['answers']),
         'time' => $response['time'],
     )
 );

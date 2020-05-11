@@ -57,7 +57,7 @@ class Answer {
             $wpdb->insert(
                 'answer', array(
                     "id_question" => $this->id_question,
-                    "content" => $this->content,
+                    "content" => stripslashes($this->content),
                     "is_true" => $this->is_true,
                     )
                 );
@@ -67,7 +67,7 @@ class Answer {
             $wpdb->update(
                 'answer', array(
                     "id_question" => $this->id_question,
-                    "content" => $this->content,
+                    "content" => stripslashes($this->content),
                     "is_true" => $this->is_true,
                 ), array(
                     "id"  => $this->id,

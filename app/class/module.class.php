@@ -92,7 +92,7 @@ class Module {
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $r = $wpdb->insert(
                 'module', array(
-                    "title" => $this->title,
+                    "title" => stripslashes($this->title),
                     "content" => '123',
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
@@ -105,7 +105,7 @@ class Module {
             global $wpdb;
             $wpdb->update(
                 'module', array(   
-                    "title" => $this->title,
+                    "title" => stripslashes($this->title),
                     "content" => $this->content,
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->imgPath,

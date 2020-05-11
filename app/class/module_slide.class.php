@@ -79,10 +79,10 @@ class ModuleSlide {
             global $wpdb;
             $wpdb->insert('module_slide', array(
             "module_id" => $this->module_id,
-            "title" => $this->title,
+            "title" => stripslashes($this->title),
             "img_path" => $this->img_path,
             "url" => $this->url,
-            "content" => $this->content,
+            "content" => stripslashes($this->content),
             "order" => $this->order,
             )
         );
@@ -91,10 +91,10 @@ class ModuleSlide {
             global $wpdb;
             $wpdb->update('module_slide', array(
                 "module_id" => $this->module_id,
-                "title" => $this->title,
+                "title" => stripslashes($this->title),
                 "img_path" => $this->img_path,
                 "url" => $this->url,
-                "content" => $this->content,
+                "content" => stripslashes($this->content),
                 "order" => $this->order,
             ), array(
                 "id"  => $this->id,

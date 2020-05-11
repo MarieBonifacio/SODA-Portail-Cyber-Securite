@@ -23,7 +23,7 @@ if(!empty($_SESSION['quizData'])){
 }
 
 if($nbrQuestion >= 1){
-    for( $i = 1; $i <= $nbrQuestion; $i++) 
+    for( $i = 1; $i <= $nbrQuestion; $i++)
     {
         if(!empty($_POST['question_'.$i]))
         {
@@ -77,7 +77,7 @@ if($nbrQuestion >= 1){
             }
 
             $_SESSION['quizData']['questions'][$i] = $question;
-            
+
 // REPONSES ----------------------------------------------------------------------------------------------------------
             $answers= array();
 
@@ -97,13 +97,10 @@ if($nbrQuestion >= 1){
                     $_SESSION['quizData']['questions'][$i]['answers'][$r] = $answer;
                 }
             }
-           
+
             if($nbrTrue < 1)
             {
-                $_SESSION['errorQuiz'] = "Merci de renseigner une bonne réponse par question.";
-            }
-            if($nbrTrue > 1){
-                $_SESSION['errorQuiz'] = "Merci de renseigner une seule bonne réponse par question.";
+                $_SESSION['errorQuiz'] = "Merci de renseigner au moins une bonne réponse par question.";
             }
             if($nbrAnswer < 2){
                 $_SESSION['errorQuiz'] = "Merci de renseigner au moins deux réponses par question.";
@@ -124,4 +121,3 @@ if($_SESSION['errorQuiz'] == "")
 }
 
 ?>
-    
