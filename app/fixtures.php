@@ -99,7 +99,7 @@ function createQuizs($users, $tags){
         $q = new Quiz();
         $q->setName('quiz_'.$i);
         $q->setTag($t);
-        $q->setImgPath('image.jpg');
+        $q->setImgPath('quiz_'.$i.'/image.jpg');
         $q->setAuthor($users[$uid]);
         $quizId = $q->save();
 
@@ -124,7 +124,7 @@ function createQuestions($quizs){
             $q = new Question();
             $q->setIdQuiz($quizId);
             $q->setContent('quiz_'.$quizId.'_question_'.$k);
-            $q->setImgPath('question_'.$k.'.jpg');
+            $q->setImgPath('quiz_'.$i.'/questions/question_'.$k.'.jpg');
             $q->setPoints(20);
             $questions[] = $q->save();
         }
@@ -212,7 +212,7 @@ function createModules($users, $tags){
         $m->setTitle('module_'.$i);
         $m->setContent('');
         $m->setTag($t);
-        $m->setImgPath('image.jpg');
+        $m->setImgPath('module_'.$i.'/image.jpg');
         $m->setAuthor(1);
         $moduleId = $m->save();
 
@@ -239,7 +239,7 @@ function createSlides($modules){
             $slide = new ModuleSlide();
             $slide->setModuleId($moduleId);
             $slide->setTitle('module_'.$moduleId.'_slide_'.$i);
-            $slide->setImgPath('/page_'.$i.'.jpg');
+            $slide->setImgPath('module_'.$i.'/pages/page_'.$i.'.jpg');
             $slide->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
             $slide->setOrder($i);
             $slideId = $slide->save();
