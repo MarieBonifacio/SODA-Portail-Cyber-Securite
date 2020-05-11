@@ -32,7 +32,7 @@ get_header();
           {
             echo ' 
             <div class="medias">
-            <img src="'.$img.'/img/quizs/'.$_SESSION['quizData']['quiz']['title'].'/questions/'.$q['info']['img'].'" alt="votre image">
+            <img src="'.$img.'/img/quizs/'.$q['info']['img'].'" alt="votre image">
             </div>
             ';
           }

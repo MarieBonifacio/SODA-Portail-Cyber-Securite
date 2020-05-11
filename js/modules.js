@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
       {
         moduleContent +=` %</span>
         <div class="imgQ">
-          <img src="${ url + `/img/modules/${myArray[i].title}/${myArray[i].img}`}" alt="photo du module"/>
+          <img src="${ url + `/img/modules/${myArray[i].img}`}" alt="photo du module"/>
           <div class="filter"></div>
         </div>
       `;
@@ -147,7 +147,7 @@ window.addEventListener('load', function () {
                           </span>
                           <div class="content">
                             <div class="medias">
-                              <img src="${ url + `/img/modules/${myModule.title}/pages/${currentPage.img_path}`}" alt="photo de la page"/>
+                              <img src="${ url + `/img/modules/${currentPage.img_path}`}" alt="photo de la page"/>
                             </div>
                             <div class="para">
                               <h3>${currentPage.title}</h3>

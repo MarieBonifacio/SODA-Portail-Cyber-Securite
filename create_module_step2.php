@@ -6,7 +6,7 @@ get_header();
 
 <div class="step2">
 
-  <img src="<?php echo get_template_directory_uri(); ?>/img/modules/<?php echo $_SESSION['moduleData']['module']['title']; ?>/<?php echo $_SESSION['moduleData']['module']['img']; ?>" alt="votre image">
+  <img src="<?php echo get_template_directory_uri(); ?>/img/modules/<?php echo $_SESSION['moduleData']['module']['img']; ?>" alt="votre image">
 
   <h3>Étape 2: Les pages</h3>
 

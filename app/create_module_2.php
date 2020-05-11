@@ -42,8 +42,9 @@ if($nbrPage >= 1){
             //images
             if($_FILES['content_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['content_'.$i.'_img']))
             {
-                $dir = $_SESSION['moduleData']['module']['title'];
+                $dir = md5($_SESSION['moduleData']['module']['title']);
                 $path = "../img/modules/".$dir."/pages";
+                $pathClean = $dir."/pages";
                 if(!is_dir($path))
                 {
                     mkdir($path, 0775, true);
@@ -74,7 +75,7 @@ if($nbrPage >= 1){
                 }
 
                 $img = $name_file;
-                $page['info']['img'] = $img;
+                $page['info']['img'] = $pathClean.'/'.$img;
             }
 
             $_SESSION['moduleData']['pages'][$i] = $page;

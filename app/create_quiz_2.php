@@ -41,8 +41,9 @@ if($nbrQuestion >= 1){
 
             if($_FILES['q_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['q_'.$i.'_img']))
             {
-                $dir = $_SESSION['quizData']['quiz']['title'];
+                $dir = md5($_SESSION['quizData']['quiz']['title']);
                 $path = "../img/quizs/".$dir."/questions";
+                $pathClean = $dir."/questions";
                 if(!is_dir($path))
                 {
                     mkdir($path, 0775, true);
@@ -73,7 +74,7 @@ if($nbrQuestion >= 1){
                 }
 
                 $img = $name_file;
-                $question['info']['img'] = $img;
+                $question['info']['img'] = $pathClean.'/'.$img;
             }
 
             $_SESSION['quizData']['questions'][$i] = $question;

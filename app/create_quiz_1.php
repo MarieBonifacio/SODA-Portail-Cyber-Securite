@@ -29,7 +29,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         wp_redirect( home_url().'/creationquizetape1' );
 
     }else{
-        $dir = $_POST['title'];
+        $dir = md5($_POST['title']);
         mkdir("../img/quizs/".$dir, 0700, true);
         $content_dir =  get_template_directory()."/img/quizs/".$dir."/";
         $tmp_file = $_FILES['img_quiz']['tmp_name'];
@@ -47,7 +47,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
             wp_redirect( home_url().'/creationquizetape1' );
         }
             // on copie le fichier dans le dossier de destination
-        $name_file = $_POST['title'].'.'.preg_replace("#image\/#","",$type_file);
+        $name_file = md5($_POST['title']).'.'.preg_replace("#image\/#","",$type_file);
         $img = $name_file;
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
@@ -65,7 +65,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     $quiz = array (
                 'title'=> $title,
                 'theme'=> $theme,
-                'img'=> $img
+                'img'=> $dir."/".$img
     );
 
     $_SESSION['quizData']['quiz'] = $quiz;

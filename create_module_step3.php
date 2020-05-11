@@ -7,7 +7,7 @@ get_header();
 // echo '<pre>';print_r($_SESSION);echo '</pre>';?>
 <div class="step3">
 
-  <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/modules/<?php echo $_SESSION['moduleData']['module']['title'].'/'.$_SESSION['moduleData']['module']['img']?>" alt="votre image">
+  <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/modules/<?php echo $_SESSION['moduleData']['module']['img']?>" alt="votre image">
 
   <h3>Étape 3: Confirmation</h3>
 
@@ -33,7 +33,7 @@ get_header();
           {
             echo ' 
             <div class="medias">
-            <img src="'.$img.'/img/modules/'.$_SESSION['moduleData']['module']['title'].'/pages/'.$q['info']['img'].'" alt="votre image">
+            <img src="'.$img.'/img/modules/'.$q['info']['img'].'" alt="votre image">
             </div>
             <span class="numP">'.$num.'</span>
             <div class="content">

@@ -25,7 +25,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         wp_redirect( home_url().'/creationmoduleetape1' );
 
     }else{
-        $dir = $_POST['title'];
+        $dir = md5($_POST['title']);
         mkdir("../img/modules/".$dir, 0700, true);
         $content_dir =  get_template_directory()."/img/modules/".$dir."/";
         $tmp_file = $_FILES['img_module']['tmp_name'];
@@ -44,7 +44,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
             wp_redirect( home_url().'/creationmoduleetape1' );
         }
             // on copie le fichier dans le dossier de destination
-        $name_file = $_POST['title'].'.'.preg_replace("#image\/#","",$type_file);
+        $name_file = md5($_POST['title']).'.'.preg_replace("#image\/#","",$type_file);
         $img = $name_file;
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
@@ -61,7 +61,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
      $module = array (
                  'title'=> $title,
                  'theme'=> $theme,
-                 'img'=> $img
+                 'img'=> $dir."/".$img
      );
  
      $_SESSION['moduleData']['module'] = $module;
