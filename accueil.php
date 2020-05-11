@@ -11,7 +11,9 @@
     </div>
     <div class="window results">
       <h3>Vos résultats</h3>
-      <canvas id="myChart"></canvas>
+      <div class=chartDiv>
+        <canvas id="myChart"></canvas>
+      </div>
     </div>
     <div class="window news">
       <h3>Dernières news</h3>

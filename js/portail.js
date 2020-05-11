@@ -83,28 +83,50 @@ window.addEventListener('load', function () {
         const sideNav = document.querySelector(".side");
         const contenu = document.querySelector(".content");
         
-        arrow.addEventListener("click", ()=>{
-            if(arrow.classList.contains("fa-arrow-left"))
-            {     
-                arrow.classList.remove("fa-arrow-left");
-                arrow.classList.add("fa-arrow-right");
-                sideNav.classList.add("shrink");
-                p.forEach(p => {
-                    p.classList.add("para");
-                });
-                contenu.style.width = "95%";
-            }
-            else
-            {
-                arrow.classList.remove("fa-arrow-right");
-                arrow.classList.add("fa-arrow-left");
-                sideNav.classList.remove("shrink");
-                p.forEach(p => {
-                    p.classList.remove("para");
-                });
-                contenu.style.width = "85%";
-            }
-        });
+        if(window.innerWidth>1100)
+        {
+            arrow.addEventListener("click", ()=>{
+                if(arrow.classList.contains("fa-arrow-left"))
+                {     
+                    arrow.classList.remove("fa-arrow-left");
+                    arrow.classList.add("fa-arrow-right");
+                    sideNav.classList.add("shrink");
+                    p.forEach(p => {
+                        p.classList.add("para");
+                    });
+                    contenu.style.width = "95%";
+                }
+                else
+                {
+                    arrow.classList.remove("fa-arrow-right");
+                    arrow.classList.add("fa-arrow-left");
+                    sideNav.classList.remove("shrink");
+                    p.forEach(p => {
+                        p.classList.remove("para");
+                    });
+                    contenu.style.width = "85%";
+                }
+            });
+        }
+        else
+        {      
+            arrow.addEventListener("click", ()=>{
+                if(arrow.classList.contains("fa-arrow-left"))
+                {     
+                    arrow.classList.remove("fa-arrow-left");
+                    arrow.classList.add("fa-arrow-right");
+                    sideNav.style.left = "-40%";
+                    contenu.style.width = "100%";
+                }
+                else
+                {   
+                    arrow.classList.remove("fa-arrow-right");
+                    arrow.classList.add("fa-arrow-left");
+                    sideNav.style.left = "0%";
+                    contenu.style.width = "100%";
+                }
+            });
+        } 
         
         // // click event listenner on search Icon which will activate the search bar or desactivate it
         

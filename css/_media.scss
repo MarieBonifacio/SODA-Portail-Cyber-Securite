@@ -1,0 +1,107 @@
+@import 'mixin';
+@media (max-width: 600px) {
+  body
+  {
+    .above
+    {
+      .search
+      {
+        .profile_pic
+        {
+          .circle
+          {
+            width: 70px;
+            height: 70px;
+            margin-right: 10px; 
+          }
+        }
+      }
+    }
+    .side
+    {
+      left: 0%;
+      width: 40%;
+    }
+    .content
+    {
+      width: 100%;
+      .home{
+        .dashboard
+        {
+          height: 700%;
+          @include gridRepeat(1fr, 1, 1fr ,11, 25px);
+          .actu, .quiz, .news, .results, .leaderboard
+          {
+            grid-column: 1/2;
+          }
+          .actu
+          {
+            grid-row: 1/5;
+            #buddypress
+            {
+              height: auto
+            }
+          }
+          .quiz
+          {
+            grid-row: 5/6;
+            .contentQ
+            {
+              width: 70%;
+            }
+          }
+          .news
+          {
+            grid-row: 6/8;
+            .display-posts-listing.grid
+            {
+              height: 80%;
+              width: 60%;
+            }
+          }
+          .results
+          {
+            grid-row: 8/9;
+            .chartDiv
+            {
+              width: 85%;
+              height: 70%;
+              overflow: scroll;
+              #myChart
+            {
+              position: relative;
+              width: 150% !important;
+              height: 80% !important;
+            }
+            }
+            .chartDiv::-webkit-scrollbar {
+              width: 5px;
+              height: 5px;
+            }
+            .chartDiv::-webkit-scrollbar-thumb {
+              background: $color-btn;
+              border-radius: 100px;
+            }
+            .chartDiv::-webkit-scrollbar-thumb:hover {
+              background: $color-btn;
+            }
+            .chartDiv::-webkit-scrollbar-thumb:active {
+              background: $color-btn;
+            }
+            .chartDiv::-webkit-scrollbar-track {
+              background: $color2;
+              border-radius: 50px;
+            }
+            .chartDiv::-webkit-scrollbar-corner {
+              background: transparent;
+            }
+          }
+          .leaderboard
+          {
+            grid-row: 9/12;
+          }
+        }
+      }
+    }
+  }
+}

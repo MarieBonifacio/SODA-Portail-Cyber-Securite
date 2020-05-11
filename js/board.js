@@ -455,7 +455,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="green">${genTown[i].moyenne}</td>
             </tr>
           `
           }
@@ -467,7 +467,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="green">${genTown[i].moyenne}</td>
             </tr>
           `
           }
@@ -479,7 +479,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="green">${genTown[i].moyenne}</td>
             </tr>
           `
           }
@@ -491,7 +491,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="green">${genTown[i].moyenne}</td>
             </tr>
           `
           }
