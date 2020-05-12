@@ -20,13 +20,12 @@ if(!checkAuthorized(true)){
 }
 
 //1st Step creation de quiz / thème + image 
-
+$error_quiz = "";
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
     if(!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) 
     {
         $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
-        wp_redirect( home_url().'/creationquizetape1' );
 
     }else{
         $dir = md5($_POST['title']);
@@ -37,14 +36,12 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         if(!is_uploaded_file($tmp_file))
         {
             $error_quiz="Le fichier est introuvable";
-            wp_redirect( home_url().'/creationquizetape1' );
         }
         $type_file = $_FILES['img_quiz']['type'];
 
         if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
         {
             $error_quiz = "Le format du fichier n'est pas pris en charge";
-            wp_redirect( home_url().'/creationquizetape1' );
         }
             // on copie le fichier dans le dossier de destination
         $name_file = md5($_POST['title']).'.'.preg_replace("#image\/#","",$type_file);
@@ -52,8 +49,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
         { 
-            $error_module = "Impossible de copier le fichier $name_file dans $content_dir";
-            wp_redirect( home_url().'/creationquizetape1' );
+            $error_quiz = "Impossible de copier le fichier $name_file dans $content_dir";
         }
     }
     //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
@@ -66,7 +62,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         $moduleRelated = null;
     }
  ////
-   
+
 
     $quiz = array (
                 'title'=> $title,
@@ -85,9 +81,12 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 
 
 
-
-$_SESSION["errorQuiz"] = $error_quiz;
-$_SESSION["quizOk"] = $quiz_ok;
-wp_redirect( home_url().'/creationquizetape2' );
+if($error_quiz !== ""){
+    $_SESSION["errorQuiz"] = $error_quiz;
+    wp_redirect( home_url().'/creationquizetape1' );
+}else{
+    $_SESSION["quizOk"] = $quiz_ok;
+    wp_redirect( home_url().'/creationquizetape2' );
+}
 
 ?>
