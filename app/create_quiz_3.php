@@ -35,6 +35,15 @@ $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
 $newQuizId = $wpdb->insert_id;
 
+//quiz->module
+if(!empty($_SESSION['quizData']['quiz']['module_id'])){
+    global $wpdb;
+    $data = array('id_quiz' => $newQuizId, 'id_module' => $_SESSION['quizData']['quiz']['module_id']);
+    $wpdb->insert('module_quiz', $data);
+}
+
+
+
 
 //recupération questions/réponses
 foreach($_SESSION['quizData']['questions'] as $q)

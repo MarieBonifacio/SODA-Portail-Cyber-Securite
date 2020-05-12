@@ -27,13 +27,13 @@ get_header();
             }
         ?>
         <div>
-            <label for="">Titre du quiz :</label>
+            <label for="">Titre du quiz * :</label>
             <input type="text" name="title">
         </div>
         <div>
-            <label for="">Thème du quiz :</label>
+            <label for="">Thème du quiz * :</label>
             <select name="theme" id="sites">
-                <option value="">Thème de votre quiz</option>
+                <option value="">Sélectionnez un thème</option>
                 <?php 
                     //ajout boucle tags db
                     $tags = $wpdb->get_results( "SELECT name FROM tag");
@@ -46,7 +46,20 @@ get_header();
             <i class="fas fa-sort-down"></i>
         </div>
         <div>
-            <label for="">Image :</label>
+            <label for="">Module associé :</label>
+            <select name ="moduleId">
+                    <option value="">Aucun</option>
+                    <?php
+                        //récupération des modules
+                        $modules = $wpdb->get_results("SELECT id, title FROM module");
+                        foreach ($modules as $m) {
+                            echo '<option value="'.$m->id.'">'.$m->title.'</option>';
+                        }
+                    ?>
+            </select>
+        </div>
+        <div>
+            <label for="">Image * :</label>
             <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
             <span id="img_select">Aucune image sélectionnée.</span>
             <input id="realbtn" type="file" name="img_quiz" hidden>

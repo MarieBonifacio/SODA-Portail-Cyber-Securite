@@ -55,17 +55,24 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
             $error_module = "Impossible de copier le fichier $name_file dans $content_dir";
             wp_redirect( home_url().'/creationquizetape1' );
         }
-
-            
     }
     //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
     $title = htmlspecialchars($_POST['title']);
     $theme = $_POST['theme'];
+////
+    if(isset($_POST['moduleId'])){
+        $moduleRelated = $_POST['moduleId'];
+    }else{
+        $moduleRelated = null;
+    }
+ ////
+   
 
     $quiz = array (
                 'title'=> $title,
                 'theme'=> $theme,
-                'img'=> $dir."/".$img
+                'img'=> $dir."/".$img,
+                'module_id' => $moduleRelated,
     );
 
     $_SESSION['quizData']['quiz'] = $quiz;
