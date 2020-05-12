@@ -1,5 +1,5 @@
 @import 'mixin', 'fontSize';
-@media (max-width: 760px) {
+@media (max-width: 800px) {
   body
   {
     .above
@@ -358,7 +358,7 @@
   }
 }
 
-@media (min-width: 760px) and (max-width: 1024px)
+@media (min-width: 760px) and (max-width: 1300px)
 {
   body
   {
@@ -373,7 +373,6 @@
       .home{
         display: flex;
         justify-content: center;
-        // align-items:center;
         .dashboard
         {
           width: 85%;
