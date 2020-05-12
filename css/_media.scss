@@ -1,5 +1,5 @@
 @import 'mixin', 'fontSize';
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   body
   {
     .above
@@ -37,7 +37,7 @@
     .side
     {
       left: 0%;
-      width: 40%;
+      width: 60%;
     }
     .content
     {
@@ -238,7 +238,7 @@
               }
               :nth-child(3)
               {
-                width: 35%;
+                width: 45%;
                 // border-left: none;
               }
             }
@@ -280,6 +280,57 @@
       {
         display: none;
       }
+      .profile
+      {
+        margin-top: 40%;
+        width: 100%;
+        #profil
+        {
+          .picture
+          {
+            margin-bottom: 5%;
+            i
+            {
+              bottom: -20px;
+            }
+            span
+            {
+              width: 100%;
+              right: 0px;
+              bottom: -25px;
+            }
+            .img
+            {
+              margin-bottom: 25%;
+            }
+          }
+          div
+          {
+            width: 90%
+          }
+        }
+      }
+      .svg
+      {
+        display:none;
+      }
+      .post
+      {
+        .comments
+        {
+          padding: 0px 10px;
+          .comment-respond
+          {
+            textarea
+            {
+              max-width: 280px;
+              max-height: 500px;
+              min-height: 300px;
+              min-width: 280px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -296,6 +347,107 @@
           #intro
           {
             margin-top: 45%;
+          }
+        }
+      }
+      .profile
+      {
+        margin-top: 50%;
+      }
+    }
+  }
+}
+
+@media (min-width: 760px) and (max-width: 1024px)
+{
+  body
+  {
+    .side
+    {
+      left: 0;
+      width: 30%;
+    }
+    .content
+    {
+      width: 100%;  
+      .home{
+        display: flex;
+        justify-content: center;
+        // align-items:center;
+        .dashboard
+        {
+          width: 85%;
+          height: 500%;
+          @include gridRepeat(1fr, 1, 1fr ,9, 25px);
+          .actu, .quiz, .news, .results, .leaderboard
+          {
+            grid-column: 1/2;
+          }
+          .actu
+          {
+            grid-row: 1/4;
+            #buddypress
+            {
+              height: auto
+            }
+          }
+          .quiz
+          {
+            grid-row: 4/5;
+            .contentQ
+            {
+              width: 70%;
+            }
+          }
+          .news
+          {
+            grid-row: 5/6;
+            .display-posts-listing.grid
+            {
+              height: 80%;
+              width: 30%;
+            }
+          }
+          .results
+          {
+            grid-row: 6/7;
+            .chartDiv
+            {
+              width: 85%;
+              height: 70%;
+              overflow: scroll;
+              #myChart
+            {
+              position: relative;
+              width: 150% !important;
+              height: 80% !important;
+            }
+            }
+            .chartDiv::-webkit-scrollbar {
+              width: 5px;
+              height: 5px;
+            }
+            .chartDiv::-webkit-scrollbar-thumb {
+              background: $color-btn;
+              border-radius: 100px;
+            }
+            .chartDiv::-webkit-scrollbar-thumb:hover {
+              background: $color-btn;
+            }
+            .chartDiv::-webkit-scrollbar-thumb:active {
+              background: $color-btn;
+            }
+            .chartDiv::-webkit-scrollbar-track {
+              background: $color2;
+              border-radius: 50px;
+            }
+            .chartDiv::-webkit-scrollbar-corner {
+              background: transparent;
+            }
+          }
+          .leaderboard
+          {
+            grid-row: 7/9;
           }
         }
       }

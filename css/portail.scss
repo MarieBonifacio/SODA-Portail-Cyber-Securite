@@ -311,7 +311,7 @@ body
     z-index: 10;
     @include flex(flex-start, center, column);
     .rank,
-    .home, .admin
+    .home
     {
       @include flex(flex-start, center, row);
       a
@@ -373,6 +373,7 @@ body
         @include flex(space-around, center, row);
         p
         {
+          margin-right: 10%;
           width: 50%;
           color: $police;
           font-size: $fontSize2;
@@ -676,6 +677,7 @@ body
               {
                 color: rgb(235, 13, 13);
               }
+
               .acomment-meta
               {
                 color: $police;
@@ -850,7 +852,7 @@ body
               }
           }
           
-          @media (min-width: 1024px) {
+          @media (min-width: 1200px) {
               .display-posts-listing.grid {
                   grid-template-columns: repeat( 3, 1fr );
               }
@@ -2399,6 +2401,11 @@ body
             z-index: 2;
             @include positionTL(absolute, 5px, 5px);
           }
+          .mod
+          {
+            z-index: 2;
+            @include positionBL(absolute, 26%, 5px);
+          }
           .score
           {
             z-index: 2;
@@ -2947,8 +2954,10 @@ body
           position: relative;
           left: 50%;
           transform: translateX(-50%);
-          p
+          p, a
           {
+            font-family: "Muli";
+            margin: 15px;
             color: $color1;
             padding: 5px 10px;
             border-radius: 3px;
@@ -2956,10 +2965,16 @@ body
             transition: .2s;
             font-weight: 600;
           }
-          p:hover
+          p
+          {
+            background: rgb(235, 13, 13);
+            color: $police;
+          }
+          p:hover, a:hover
           {
             cursor: pointer;
             background: $police;
+            color: $color1
           }
           thead
           {
@@ -2993,15 +3008,11 @@ body
             {
               border-left: none;
             }
-            :nth-child(3)
-            {
-              padding: 0px 15px;
-            }
             td
             {
               word-break: break-word;
-              padding-top: 10px;
-              padding-bottom: 10px;
+              padding-top: 15px;
+              padding-bottom: 15px;
               border-left: 1px solid rgba(255, 255, 255, 0.5);
               border-top: 1px solid rgba(255, 255, 255, 0.5);
             }

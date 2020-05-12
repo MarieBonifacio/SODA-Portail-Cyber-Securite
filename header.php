@@ -93,7 +93,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 				<div id="link" class="articles">
 					<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
 					<i class="drop fas fa-sort-down" data-id="articles"></i>
-					<ul class="dropMenu" id="articles">
+					<ul class=" menuDown dropMenu" id="articles">
 						<li>
 							<a target="_blank" href="<?php echo home_url()."/ajouter-un-nouvel-article"?>">Ajoutez un article</a>
 						</li>
@@ -107,7 +107,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 				<div id="link" class="modules">
 					<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
 					<i class="drop fas fa-sort-down" data-id="modules"></i>
-					<ul class="dropMenu" id="modules">
+					<ul class=" menuDown dropMenu" id="modules">
 						<li>
 							<a href="<?php echo home_url()."/creationmoduleetape1"?>">Créez votre module</a>
 						</li>
@@ -123,7 +123,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 			<div id="link"  class="tools">
 				<a id="a" href="<?php echo home_url()."/generateur-de-mots-de-passe"?>"><i class="fas fa-tools"></i><p id="p">Outils</p></a>
 				<i class="drop fas fa-sort-down" data-id="tools"></i>
-				<ul class="dropMenu" id="tools">
+				<ul class=" menuDown dropMenu" id="tools">
 						<li>
 							<a href="<?php echo home_url()."/generateur-de-mots-de-passe"?>">Générateur de mot de passe solide</a>
 						</li>
@@ -133,7 +133,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 				<div id="link"  class="quiz">
 					<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
 					<i class="drop fas fa-sort-down" data-id="quizs"></i>
-						<ul class="dropMenu" id="quizs">
+						<ul class=" menuDown dropMenu" id="quizs">
 							<li>
 								<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>
 							</li>
@@ -147,16 +147,26 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 				<?php } ?>
 			</div>
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
-				<div id="link" class="rank">
-					<a id="a" href="<?php echo home_url()."/classements" ?>"><i class="fas fa-trophy"></i><p id="p">Classement</p></a>
-				</div>
-			<?php } ?>
-			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 				<div id="link" class="admin">
-				<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress"></i><p id="p">Admin</p></a>
+					<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress"></i><p id="p">Administration</p></a>
+					<i class="drop fas fa-sort-down" data-id="admin"></i>
+					<ul class=" menuDown dropMenu" id="admin">
+						<li>
+							<a href="<?php echo home_url()."/classements" ?>">Classement</a>
+						</li>
+						<li>
+							<a href="">Statistiques</a>
+						</li>
+						<li>
+							<a href="">Gestion des tags</a>
+						</li>
+						<li>
+							<a href="<?php echo home_url()."/wp-admin" ?>" target="_blank">Admin</a>
+						</li>
+					</ul>	
 				</div>
 			<?php } ?>
-			<i class="fas fa-question"></i>
+			<!-- <i class="fas fa-question"></i> -->
 		</nav>
 
 		<section class="content">

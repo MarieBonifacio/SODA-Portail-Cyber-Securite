@@ -4,7 +4,11 @@
   <div class="dashboard">
     <div class="window actu">
       <h3>Fil d'actualité</h3>
-      <?php echo do_shortcode( '[activity-stream allow_posting=true]' ); ?>
+      <?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+        <?php echo do_shortcode( '[activity-stream allow_posting=true]' ); ?>
+			<?php } else { ?>	
+        <?php echo do_shortcode( '[activity-stream allow_posting=false]' ); ?>
+			<?php }?>
     </div>
     <div class="window quiz lastQ">
       <h3>Dernier quiz</h3>
@@ -23,7 +27,7 @@
       <h3>Classement</h3>
       <div class="btns">
         <button class="gen">Général</button>
-        <button class="town">Votre ville</button>
+        <button class="town">Votre site</button>
       </div>
       <div class="leadboard">
         <table>
@@ -31,7 +35,7 @@
               <tr>
                   <th colspan="1">Pos</th>
                   <th colspan="1">Joueur</th>
-                  <th colspan="1">Ville</th>
+                  <th colspan="1">Site</th>
                   <th colspan="1">Score</th>
               </tr>
           </thead>

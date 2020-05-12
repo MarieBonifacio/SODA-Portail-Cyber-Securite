@@ -75,58 +75,6 @@ window.addEventListener('load', function () {
             nbrNotifs.innerHTML = number;
             notifs.innerHTML = "Vous n'avez pas de notifications";
         }
-
-        // click event on the arrow which will activate the growth side nav or shrink it
-
-        const arrow = document.querySelector(".arrow");
-        const p = document.querySelectorAll("#p");
-        const sideNav = document.querySelector(".side");
-        const contenu = document.querySelector(".content");
-        
-        if(window.innerWidth>1100)
-        {
-            arrow.addEventListener("click", ()=>{
-                if(arrow.classList.contains("fa-arrow-left"))
-                {     
-                    arrow.classList.remove("fa-arrow-left");
-                    arrow.classList.add("fa-arrow-right");
-                    sideNav.classList.add("shrink");
-                    p.forEach(p => {
-                        p.classList.add("para");
-                    });
-                    contenu.style.width = "95%";
-                }
-                else
-                {
-                    arrow.classList.remove("fa-arrow-right");
-                    arrow.classList.add("fa-arrow-left");
-                    sideNav.classList.remove("shrink");
-                    p.forEach(p => {
-                        p.classList.remove("para");
-                    });
-                    contenu.style.width = "85%";
-                }
-            });
-        }
-        else
-        {      
-            arrow.addEventListener("click", ()=>{
-                if(arrow.classList.contains("fa-arrow-left"))
-                {     
-                    arrow.classList.remove("fa-arrow-left");
-                    arrow.classList.add("fa-arrow-right");
-                    sideNav.style.left = "-40%";
-                    contenu.style.width = "100%";
-                }
-                else
-                {   
-                    arrow.classList.remove("fa-arrow-right");
-                    arrow.classList.add("fa-arrow-left");
-                    sideNav.style.left = "0%";
-                    contenu.style.width = "100%";
-                }
-            });
-        } 
         
         // // click event listenner on search Icon which will activate the search bar or desactivate it
         
@@ -192,6 +140,77 @@ window.addEventListener('load', function () {
                 dropMenuProfile.classList.add("dropMenuProfileAppear");
             }
         })
+
+        // click event on the arrow which will activate the growth side nav or shrink it
+
+        const arrow = document.querySelector(".arrow");
+        const p = document.querySelectorAll("#p");
+        const sideNav = document.querySelector(".side");
+        const contenu = document.querySelector(".content");
+        
+        if(window.innerWidth>1100)
+        {
+            arrow.addEventListener("click", ()=>{
+                if(arrow.classList.contains("fa-arrow-left"))
+                {     
+                    arrow.classList.remove("fa-arrow-left");
+                    arrow.classList.add("fa-arrow-right");
+                    sideNav.classList.add("shrink");
+                    p.forEach(p => {
+                        p.classList.add("para");
+                    });
+                    contenu.style.width = "95%";
+                }
+                else
+                {
+                    arrow.classList.remove("fa-arrow-right");
+                    arrow.classList.add("fa-arrow-left");
+                    sideNav.classList.remove("shrink");
+                    p.forEach(p => {
+                        p.classList.remove("para");
+                    });
+                    contenu.style.width = "85%";
+                }
+                dropMenus.forEach(menu => {
+                    if(menu.classList.contains("dropMenuAppear"))
+                    {
+                        menu.classList.remove("dropMenuAppear")
+                    }
+                });
+            });
+        }
+        else
+        {   
+            arrow.addEventListener("click", ()=>{
+                if(arrow.classList.contains("fa-arrow-left"))
+                {     
+                    arrow.classList.remove("fa-arrow-left");
+                    arrow.classList.add("fa-arrow-right");
+                    if(window.innerWidth>760)
+                    {
+                        sideNav.style.left = "-30%";
+                    }
+                    else
+                    {
+                        sideNav.style.left = "-60%";
+                    }
+                    contenu.style.width = "100%";
+                }
+                else
+                {   
+                    arrow.classList.remove("fa-arrow-right");
+                    arrow.classList.add("fa-arrow-left");
+                    sideNav.style.left = "0%";
+                    contenu.style.width = "100%";
+                }
+                dropMenus.forEach(menu => {
+                    if(menu.classList.contains("dropMenuAppear"))
+                    {
+                        menu.classList.remove("dropMenuAppear")
+                    }
+                });
+            });
+        } 
     }
     else
     {

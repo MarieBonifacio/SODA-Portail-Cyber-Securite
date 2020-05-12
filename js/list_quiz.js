@@ -20,6 +20,7 @@ window.addEventListener('load', function () {
         </td>
         <td>
           <p data-id="${quizs[i].id}" class="delete">Supprimer</p>
+          <a href="" target="_blank" class="modify">Modifier</a>
         </td>
       </tr>
       `

@@ -8,7 +8,6 @@ body
     padding: 0;
     margin: 0;
     font-family: "Muli", sans-serif;
-    // overflow: hidden;
     a *
     {
         font-family: 'Montserrat', sans-serif;
@@ -31,6 +30,19 @@ body
             width: 100%;
             border-bottom: 1px solid rgba($color: #FFFFFF, $alpha: 0.5);
             background: $color2;
+            .inscription
+            {
+                display: none;
+                position: absolute;
+                color: #7AB9C9;
+                font-size: $fontSize2;
+                font-family: "Muli";
+                z-index: 5;
+            }
+            .inscription:hover
+            {
+                font-weight: 600;
+            }
             .logo
             {
                 display: flex;
@@ -135,7 +147,6 @@ body
             }
         }
     }
-    
     .insc
     {
         position: relative;
@@ -369,6 +380,20 @@ body
                     }
                 }
             }
+        }
+        .fa-times
+        {
+            display: none;
+            position: absolute;
+            top:15px;
+            right: 15px;
+            color: $police;
+            font-size: $fontSize2;
+            z-index: 10;
+        }
+        .fa-times:hover
+        {
+            color: $color-imp;
         }
         .form
         {
@@ -627,3 +652,5 @@ border-radius: 50px;
 body::-webkit-scrollbar-corner {
 background: transparent;
 }
+
+@import 'mediaInsc';

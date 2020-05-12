@@ -18,6 +18,7 @@ if(isset($_SESSION['userConnected'])){
 <body>
     <nav>
         <div class="above">
+            <p class="inscription">S'inscrire</p>
             <div class="logo">
                 <img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
             </div>
@@ -149,7 +150,7 @@ if(isset($_SESSION['userConnected'])){
     </defs>
     </svg>
 
-
+    <i class="fas fa-times"></i>
     <div class="form">
         <?php echo do_shortcode('[ps_registration_form]'); ?>
     </div>

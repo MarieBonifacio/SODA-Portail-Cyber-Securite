@@ -28,7 +28,7 @@ get_header(); ?>
   </div>
   <div class="btns">
     <button class="gen">Général</button>
-    <button class="town">Ville</button>
+    <button class="town">Site</button>
   </div>
   <div class="leadboard">
     <table>

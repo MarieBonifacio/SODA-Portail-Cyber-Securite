@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
       thead.innerHTML=`
         <th>Pos</th>
         <th>Joueur</th>
-        <th>Ville</th>
+        <th>Site</th>
         <th>Nbr de quiz</th>
         <th>Temps global (en sec.)</th>
         <th>Score</th>
@@ -202,7 +202,7 @@ window.addEventListener('load', function () {
         thead.innerHTML=`
           <th>Pos</th>
           <th>Joueur</th>
-          <th>Ville</th>
+          <th>Site</th>
           <th>Nbr de quiz</th>
           <th>Temps global (en sec.)</th>
           <th>Score</th>
@@ -375,7 +375,7 @@ window.addEventListener('load', function () {
         pos = i + 1;
         thead.innerHTML=`
           <th>Pos</th>
-          <th>Ville</th>
+          <th>Site</th>
           <th>Nbr de quiz</th>
           <th>Temps global (en sec.)</th>
           <th>Score</th>
