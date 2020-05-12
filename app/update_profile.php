@@ -90,6 +90,7 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
     {
         update_user_meta($id, 'id_alc', $idUser);
         update_user_meta($id, 'location', $location);
+        update_user_meta($id, 'avatar', $imgPath);
         $userdata = array(
             'ID' => $_SESSION['userConnected'],
             'first_name' =>   $name,
