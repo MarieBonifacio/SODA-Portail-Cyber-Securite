@@ -41,7 +41,7 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
 $quizQuery = $wpdb->get_results("SELECT id_quiz FROM module_quiz WHERE id_module='$moduleId'");
 foreach($quizQuery as $q){
     $quizRelated = new Quiz();
-    $quizRelated->selectById($quizQuery);
+    $quizRelated->selectById($q->id_quiz);
     $quizInfo[] = array(
         "id" => $quizRelated->getId(),
         "title" => $quizRelated->getName(),
