@@ -57,7 +57,7 @@ window.addEventListener('load', function () {
         {
           for (let f = 0; f < moduleRelated.length; f++) {   
             span.innerHTML += `
-              <a href="${home_url}/quiz-menu">${moduleRelated[f].title}</a>
+              <a href="${home_url}/menu-module" target="_blank">${moduleRelated[f].title}</a>
             `;
           }
         }
@@ -68,7 +68,7 @@ window.addEventListener('load', function () {
           span.appendChild(list);
           for (let f = 0; f < 8; f++) {
             list.innerHTML += `
-            <li>${moduleRelated[0].title}</li>
+            <li><a href="${home_url}/menu-module" target="_blank">${moduleRelated[0].title}</a></li>
             `;
           }
           span.innerHTML +=`<p class="btnlist" data-id="list${myArray.quiz[i].id}">Voir plus</p>`;

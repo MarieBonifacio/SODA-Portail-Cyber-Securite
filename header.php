@@ -155,7 +155,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 							<a href="<?php echo home_url()."/classements" ?>">Classement</a>
 						</li>
 						<li>
-							<a href="">Statistiques</a>
+							<a href="<?php echo home_url()."/statistiques" ?>">Statistiques</a>
 						</li>
 						<li>
 							<a href="">Gestion des tags</a>
