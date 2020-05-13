@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
   var url = myScript.theme_directory;
+  var home_url = myScript.home_url;
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
@@ -15,7 +16,7 @@ window.addEventListener('load', function () {
       //---------------------------------------------------------
       let quizContent = `
       <span class="tag">${myArray.quiz[i].tag_name}</span>
-      <span class="mod">Module: <span id="mod${myArray.quiz[i].id}"></span></span>
+      <span class="mod">Module(s): <span class="spanQuiz" id="mod${myArray.quiz[i].id}"></span></span>
       <h3>${myArray.quiz[i].name}</h3>
       <span class="score">`;
       if( myArray.quiz[i].user_score != null){
@@ -52,10 +53,38 @@ window.addEventListener('load', function () {
         const moduleRelated = myArray.quiz[i].moduleRelated;
         const span = document.querySelector(`#mod${myArray.quiz[i].id}`);
         console.log(span);
-        for (let f = 0; f < moduleRelated.length; f++) {
-          span.innerHTML += `
-            ${moduleRelated[f].title}
-          `;
+        if(moduleRelated.length == 1)
+        {
+          for (let f = 0; f < moduleRelated.length; f++) {   
+            span.innerHTML += `
+              <a href="${home_url}/quiz-menu">${moduleRelated[f].title}</a>
+            `;
+          }
+        }
+        else
+        {
+          const list = document.createElement("ul");
+          list.classList.add("list");
+          span.appendChild(list);
+          for (let f = 0; f < 8; f++) {
+            list.innerHTML += `
+            <li>${moduleRelated[0].title}</li>
+            `;
+          }
+          span.innerHTML +=`<p class="btnlist" data-id="list${myArray.quiz[i].id}">Voir plus</p>`;
+          const listQuiz = document.querySelector(".list"),
+          btnlist = document.querySelector(".btnlist");
+  
+          btnlist.addEventListener("click", ()=>{
+            if(listQuiz.classList.contains("listAppear"))
+            {
+              listQuiz.classList.remove("listAppear");
+            }
+            else
+            {
+              listQuiz.classList.add("listAppear");
+            }
+          })
         }
       }
       else
