@@ -1,3 +1,4 @@
+console.log(1);
 window.addEventListener('load', function () {
     var urlNotif = myScriptDir.theme_directory;
     var xmlhttpNotif = new XMLHttpRequest();
