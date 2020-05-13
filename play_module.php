@@ -2,6 +2,7 @@
 require('app/class/module.class.php');
 require('app/class/module_slide.class.php');
 require('app/class/tag.class.php');
+require('app/class/quiz.class.php');
 
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
