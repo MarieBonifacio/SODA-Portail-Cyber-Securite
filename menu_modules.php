@@ -29,6 +29,7 @@ $moduleArray = [];
             }else{
                 $userProgress = $wpdb->get_var("SELECT count(*) FROM module_progress WHERE user_id = ".$userId." AND module_id = ".$moduleId." ");
                 $moduleNbSlides = $wpdb->get_var("SELECT count(*) FROM module_slide WHERE module_id = ".$moduleId." ");
+                $moduleNbSlides = $moduleNbSlides == 0 ? 1 : $moduleNbSlides;
                 $moduleProg = ceil(($userProgress * 100)/$moduleNbSlides);
             }
             $module = array(
