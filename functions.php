@@ -117,7 +117,8 @@ function html5blank_conditional_scripts()
     if (is_page("menu-quiz")) {
         wp_enqueue_script('my-script', get_template_directory_uri() . '/js/quiz.js', null, true);
         wp_localize_script('my-script', 'myScript', array(
-            'theme_directory' => get_template_directory_uri() 
+            'theme_directory' => get_template_directory_uri(),
+            'home_url' => home_url()
         ));
     }
     if (is_page("menu-module")) {

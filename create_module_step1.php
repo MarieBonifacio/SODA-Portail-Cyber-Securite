@@ -25,11 +25,11 @@ get_header();
             }
         ?>
         <div>
-            <label for="">Titre du module :</label>
+            <label for="">Titre du module * :</label>
             <input type="text" name="title">
         </div>
         <div>
-            <label for="" class="moduleThemeLabel">Thème du module :</label>
+            <label for="" class="moduleThemeLabel">Thème du module * :</label>
             <select name="theme" id="sites">
                 <option value="">Thème de votre module</option>
                 <?php 

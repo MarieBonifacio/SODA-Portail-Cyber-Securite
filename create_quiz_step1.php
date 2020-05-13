@@ -57,6 +57,7 @@ get_header();
                         }
                     ?>
             </select>
+            <i class="fas fa-sort-down"></i>
         </div>
         <div>
             <label for="">Image * :</label>
