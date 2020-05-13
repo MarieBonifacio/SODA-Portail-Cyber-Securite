@@ -189,7 +189,7 @@ function createQuizsProgress($quizs, $users){
                         "id_quiz" => $quizId,
                         "id_user" => $userId,
                         "id_question" => $questionId,
-                        "id_answer" => $answerId,
+                        "id_answer" => json_encode([$answerId]),
                         "time" => $time,
                     )
                 );
