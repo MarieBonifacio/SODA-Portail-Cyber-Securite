@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
   var urlListe = myScriptDir.theme_directory;
+  var home_url = myScriptDir.home_url;
   var xmlhttpListe = new XMLHttpRequest();
   xmlhttpListe.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
@@ -20,7 +21,7 @@ window.addEventListener('load', function () {
         </td>
         <td>
           <p data-id="${modules[i].id}" class="delete">Supprimer</p>
-          <a href="" target="_blank" class="modify">Modifier</a>
+          <a href="${home_url}/" target="_blank" class="modify">Modifier</a>
         </td>
       </tr>
       `

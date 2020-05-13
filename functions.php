@@ -123,7 +123,8 @@ function html5blank_conditional_scripts()
     if (is_page("menu-module")) {
         wp_enqueue_script('my-script', get_template_directory_uri() . '/js/modules.js', null, true);
         wp_localize_script('my-script', 'myScript', array(
-            'theme_directory' => get_template_directory_uri() 
+            'theme_directory' => get_template_directory_uri(),
+            'home_url' => home_url()
         ));
     }
     if (is_page("accueil")) {
@@ -142,14 +143,16 @@ function html5blank_conditional_scripts()
     {
         wp_enqueue_script('my-script', get_template_directory_uri() . '/js/list_quiz.js', null, true);
         wp_localize_script('my-script', 'myScript', array(
-            'theme_directory' => get_template_directory_uri() 
+            'theme_directory' => get_template_directory_uri(),
+            'home_url' => home_url()
         ));
     }
     if(is_page("liste-modules"))
     {
         wp_enqueue_script('my-script', get_template_directory_uri() . '/js/list_module.js', null, true);
         wp_localize_script('my-script', 'myScript', array(
-            'theme_directory' => get_template_directory_uri() 
+            'theme_directory' => get_template_directory_uri(),
+            'home_url' => home_url()
         ));
     }
 }

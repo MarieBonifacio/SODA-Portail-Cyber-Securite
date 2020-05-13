@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
   var urlListe = myScriptDir.theme_directory;
+  var home_url = myScriptDir.home_url;
   var xmlhttpListe = new XMLHttpRequest();
   xmlhttpListe.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
@@ -8,19 +9,19 @@ window.addEventListener('load', function () {
     console.log(quizs);
     const list = document.querySelector(".list"),
     content = document.querySelector(".quizs");
-    for(i=0; i<quizs.length; i++)
+    for(i=0; i<quizs.quiz.length; i++)
     {
       list.innerHTML += `
       <tr>
         <td>
-          <span>${quizs[i].name}</span>
+          <span>${quizs.quiz[i].name}</span>
         </td>
         <td>
-        <span>${quizs[i].tag_name}</span>
+        <span>${quizs.quiz[i].tag_name}</span>
         </td>
         <td>
-          <p data-id="${quizs[i].id}" class="delete">Supprimer</p>
-          <a href="" target="_blank" class="modify">Modifier</a>
+          <p data-id="${quizs.quiz[i].id}" class="delete">Supprimer</p>
+          <a href="${home_url}/" target="_blank" class="modify">Modifier</a>
         </td>
       </tr>
       `

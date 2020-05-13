@@ -7,23 +7,23 @@ window.addEventListener('load', function () {
     var myArray = JSON.parse(this.responseText);
     console.log(myArray);
     const grid = document.querySelector(".grid");
-    for(i = 0; i<myArray.length; i ++)
+    for(i = 0; i<myArray.quiz.length; i ++)
     {
       const gridElement = document.createElement("div");
-      gridElement.classList.add(`element-item` , `${myArray[i].tag_name}`);
-      gridElement.setAttribute('category', `${myArray[i].tag_name}`);
+      gridElement.classList.add(`element-item` , `${myArray.quiz[i].tag_name}`);
+      gridElement.setAttribute('category', `${myArray.quiz[i].tag_name}`);
       //---------------------------------------------------------
       let quizContent = `
-      <span class="tag">${myArray[i].tag_name}</span>
-      <span class="mod">Module: ${myArray[i].tag_name}</span>
-      <h3>${myArray[i].name}</h3>
+      <span class="tag">${myArray.quiz[i].tag_name}</span>
+      <span class="mod">Module: <span id="mod${myArray.quiz[i].id}"></span></span>
+      <h3>${myArray.quiz[i].name}</h3>
       <span class="score">`;
-      if( myArray[i].user_score != null){
-        quizContent += ``+myArray[i].user_score+``;
+      if( myArray.quiz[i].user_score != null){
+        quizContent += ``+myArray.quiz[i].user_score+``;
       }else{
         quizContent += `0`;
       }
-      if(myArray[i].img === null)
+      if(myArray.quiz[i].img === null)
       {
         quizContent +=` pts</span>
         <div class="imgQ">
@@ -36,17 +36,33 @@ window.addEventListener('load', function () {
       {
         quizContent +=` pts</span>
         <div class="imgQ">
-          <img src="${ url + `/img/quizs/${myArray[i].img}`}" alt="photo du quiz"/>
+          <img src="${ url + `/img/quizs/${myArray.quiz[i].img}`}" alt="photo du quiz"/>
           <div class="filter"></div>
           </div>
       `;
       }
-    if( myArray[i].user_score == null){
-      quizContent += `<p class="btnQuiz" data-id="${myArray[i].id}">Jouer</p>`;
-    }
+      if( myArray.quiz[i].user_score == null){
+        quizContent += `<p class="btnQuiz" data-id="${myArray.quiz[i].id}">Jouer</p>`;
+      }
     //-----------------------------------------------------------------------------
-    gridElement.innerHTML = quizContent;
+      gridElement.innerHTML = quizContent;
       grid.appendChild(gridElement);
+      if(myArray.quiz[i].moduleRelated.length > 0)
+      {
+        const moduleRelated = myArray.quiz[i].moduleRelated;
+        const span = document.querySelector(`#mod${myArray.quiz[i].id}`);
+        console.log(span);
+        for (let f = 0; f < moduleRelated.length; f++) {
+          span.innerHTML += `
+            ${moduleRelated[f].title}
+          `;
+        }
+      }
+      else
+      {
+        const span = document.querySelector(`#mod${myArray.quiz[i].id}`);
+        span.innerHTML += "aucun";
+      }
     }
     let btnQuizs = document.querySelectorAll(".btnQuiz");
     btnQuizs.forEach(btn => {

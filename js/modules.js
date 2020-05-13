@@ -1,5 +1,6 @@
 window.addEventListener('load', function () {
   var url = myScript.theme_directory;
+  var home_url = myScript.home_url;
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
@@ -212,8 +213,45 @@ window.addEventListener('load', function () {
               xmlhttp = new XMLHttpRequest();
               xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                  // console.log("ok");
-                  document.location.reload(true);
+                  const div = document.createElement("div"),
+                  divPlay = document.querySelector(".modulePlay");
+                  div.classList.add("recapModule");
+                  divPlay.appendChild(div);
+                  if(myModule.quizs.length > 0)
+                  {
+                    div.innerHTML =`
+                      <i class="fas fa-times"></i>
+                      <div class="contentRecap">
+                        <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Vous pouvez désormais suivre un autre module ou faire le(s) quiz(s) associé(s) à ce dernier :</p>
+                        <ul class="listQuizMod">
+                        </ul>
+                      </div>
+                    `
+                    const liste = document.querySelector(".listQuizMod");
+                    for (let i = 0; i < myModule.quizs.length; i++) {
+                      liste.innerHTML += `
+                        <li>
+                          <a href="${home_url + `/menu-quiz/`}">
+                            <div class="contentQuiz">
+                              <span>${myModule.quizs[i].title}</span>
+                              <div class="img">
+                                <img src="${ url + `/img/quizs/${myModule.quizs[i].img}`}" alt="photo du quiz"/>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      `
+                    }
+                  }
+                  else
+                  {
+                    div.innerHTML =`
+                      <i class="fas fa-times"></i>
+                      <div class="contentRecap">
+                        <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Il n'y a pas de quizs associés à ce module, vous pouvez donc retournez au menu pour commencez un autre module ou refaire ce dernier</p>
+                      </div>
+                    `
+                  }
                 }
               };
               xmlhttp.open("POST", url + "/module_finish.php", true);
