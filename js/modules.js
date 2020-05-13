@@ -217,7 +217,7 @@ window.addEventListener('load', function () {
                   divPlay = document.querySelector(".modulePlay");
                   div.classList.add("recapModule");
                   divPlay.appendChild(div);
-                  if(myModule.quizs.length > 0)
+                  if(myModule.quizs != null)
                   {
                     div.innerHTML =`
                       <i class="fas fa-times"></i>
@@ -248,10 +248,15 @@ window.addEventListener('load', function () {
                     div.innerHTML =`
                       <i class="fas fa-times"></i>
                       <div class="contentRecap">
-                        <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Il n'y a pas de quizs associés à ce module, vous pouvez donc retournez au menu pour commencez un autre module ou refaire ce dernier</p>
+                        <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Il n'y a pas de quizs associés à ce module, vous pouvez donc retournez au menu pour commencez un autre module ou refaire ce dernier.</p>
                       </div>
                     `
                   }
+                  const cross = document.querySelector(".fa-times");
+
+                  cross.addEventListener("click", ()=>{
+                    window.location.reload();
+                  })
                 }
               };
               xmlhttp.open("POST", url + "/module_finish.php", true);
