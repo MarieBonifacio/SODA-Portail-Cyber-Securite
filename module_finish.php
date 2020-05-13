@@ -24,7 +24,14 @@ $wpdb->delete( 'module_progress' ,
     )
 );
 
-$test = $wpdb->insert("module_finish", array(
+$wpdb->delete( 'module_finish' ,
+    array(
+        'user_id' => $userId,
+        'module_id' => $module->getId(),
+    )
+);
+
+$wpdb->insert("module_finish", array(
     "user_id" => $userId,
     "module_id" => $module->getId(),
 ));
