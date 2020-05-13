@@ -261,6 +261,8 @@ body
           {
             position: relative;
             border-radius: 50%;
+            min-width: 100%;
+            min-height: 100%;
           }
         }
         .circle:hover{
