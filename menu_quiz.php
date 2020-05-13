@@ -7,6 +7,7 @@ require('app/class/question.class.php');
 require('app/class/quiz.class.php');
 require('app/class/quiz_score.class.php');
 require('app/class/tag.class.php');
+require('app/class/module.class.php');
 
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
@@ -41,8 +42,25 @@ foreach ($quizs as $q){
         "user_score" => $score->score,
         "user_time" => $score->time,
     );
-$quizArray[] = $quiz;
+
+    $moduleInfo = array();
+    $moduleQuery = $wpdb->get_results("SELECT id_module FROM module_quiz WHERE id_quiz=".$q->id." ");
+    foreach($moduleQuery as $m){
+        $moduleRelated = new Module();
+        $moduleRelated->selectById($m->id_module);
+        $moduleInfo[] = array(
+            "id" => $moduleRelated->getId(),
+            "title" => $moduleRelated->getTitle(),
+            "tag" => $moduleRelated->getTag()->getName(),
+            "img"=> $moduleRelated->getImgPath(),
+        );
+    }
+    $quiz['moduleRelated'] = $moduleInfo;
+    $quizArray['quiz'][] = $quiz;
+
 }
+
+
 // }
 echo json_encode($quizArray);
 
