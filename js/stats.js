@@ -49,14 +49,63 @@ window.addEventListener('load', function () {
       quizRadar = document.querySelector(".quizStatsRadar"),
       quizBtn = document.querySelector(".quizBtn"),
       moduleBtn = document.querySelector(".moduleBtn"),
-      instrT = document.querySelector(".instrT"),
-      instrQ = document.querySelector(".instrQ"),
       radarBtn = document.querySelector(".radar"),
       barBtn = document.querySelector(".bar");
-      let type,
+      let type = "bar",
       data,
       fontColor,
       options;
+
+      data = {
+        labels : labelsModule,
+        datasets: [{
+          label: '% terminé',
+          data: pourcentagesModule,
+          backgroundColor: backgroundColorModule,
+          borderColor: borderColorModule,
+          borderWidth: 2
+        }]
+      };
+      options = {
+        legend: {
+          display: false,
+        },
+        animation: {
+          easing: 'easeInOutQuad',
+          duration: 520
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              color: 'rgba(0,0,0,0)',
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              color: 'rgba(0,0,0,0)',
+            },
+          }]
+        },
+        elements: {
+          line: {
+            tension: 0.3
+          }
+        },
+        tooltips: {
+          titleFontFamily: 'Muli',
+          backgroundColor: 'rgba(0,0,0,0.3)',
+          caretSize: 5,
+          cornerRadius: 2,
+          xPadding: 10,
+          yPadding: 10
+        },
+      };
+      var myBarChartModule = new Chart(moduleBar, {
+        type: type,
+        data: data,
+        options: options
+      });
+      Chart.defaults.global.defaultFontColor='white';
 
       radarBtn.addEventListener("click", ()=>{
         if(!radarBtn.classList.contains("activated"))
@@ -65,7 +114,6 @@ window.addEventListener('load', function () {
           barBtn.classList.remove("activated");
         }
         type= "radar";
-        instrT.remove();
       })
       barBtn.addEventListener("click", ()=>{
         if(!barBtn.classList.contains("activated"))
@@ -73,7 +121,6 @@ window.addEventListener('load', function () {
           barBtn.classList.add("activated");
           radarBtn.classList.remove("activated");
         }
-        instrT.remove();
         type= "bar";
         options = {
           legend: {
@@ -113,7 +160,6 @@ window.addEventListener('load', function () {
       })
 
       moduleBtn.addEventListener("click", ()=>{
-        instrQ.remove();
         if(type == "bar")
         {
           if(!quizBar.classList.contains("hidden"))
@@ -209,7 +255,6 @@ window.addEventListener('load', function () {
         }
       })
       quizBtn.addEventListener("click", ()=>{
-        instrQ.remove();
         if(type == "bar")
         {
           if(!moduleRadar.classList.contains("hidden"))
