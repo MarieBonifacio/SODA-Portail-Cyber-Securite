@@ -16,8 +16,14 @@ if(!empty($_SESSION['userConnected']))
 {
     $id = $_SESSION['userConnected'];
 }
+
+if($_SESSION['moduleEdit'] === true){
+    $newModule = new Module();
+    $newModule->selectById($_SESSION['moduleData']['module']['id']);
+}else{
+    $newModule = new Module();
+}
 //recuperation module
-$newModule = new Module();
 $newModule->setTitle($_SESSION['moduleData']['module']['title']);
 
 $tag = new Tag();
@@ -26,9 +32,14 @@ $newModule->setTag($tag);
 $newModule->setAuthor($_SESSION['userConnected']);
 $newModule->setImgPath($_SESSION['moduleData']['module']['img']);
 $t = $newModule->save();
-$newModuleId = $wpdb->insert_id;
+if($_SESSION['moduleEdit']){
+    $newModuleId = $_SESSION['moduleData']['module']['id'];
+}else{
+    $newModuleId = $wpdb->insert_id;
+}
 
-
+$wpdb->delete('module_slide', array('module_id' => $newModuleId));
+   
 
 //recupération slides
 foreach($_SESSION['moduleData']['pages'] as $m)
@@ -44,7 +55,8 @@ foreach($_SESSION['moduleData']['pages'] as $m)
     $newSlideId = $wpdb->insert_id;
 
 }
-
+unset($_SESSION['moduleData']);
+$_SESSION['moduleEdit'] = false;
 wp_redirect( home_url().'/menu-module' );
 
 ?>

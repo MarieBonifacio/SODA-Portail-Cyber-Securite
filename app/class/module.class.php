@@ -108,7 +108,7 @@ class Module {
                     "title" => stripslashes($this->title),
                     "content" => $this->content,
                     "tag_id" => $this->tag->getId(),
-                    "img_path" => $this->imgPath,
+                    "img_path" => $this->img_path,
                     "author_id" => $this->author,
                     "created_at" => $this->created_at,
                 ), array(

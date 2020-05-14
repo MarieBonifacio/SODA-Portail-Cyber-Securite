@@ -13,18 +13,19 @@ if(!checkAuthorized(true)){
 
 
 //J'initialise la variable session
-if(!empty($_SESSION['moduleData'])){
+if(!empty($_SESSION['moduleData'] && ((!isset($_SESSION['moduleEdit']) || $_SESSION['moduleEdit'] !== true)) )){
     unset($_SESSION['moduleData']);
 }
-
+$error_module = '';
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
-    if(!isset($_FILES['img_module']) || $_FILES['img_module']['error'] == UPLOAD_ERR_NO_FILE) 
+    $dir = md5($_POST['title']);
+    $img =  $_SESSION['moduleData']['module']['img'] === '' ? '' :  $_SESSION['moduleData']['module']['img'];
+    if((!isset($_FILES['img_module']) || $_FILES['img_module']['error'] == UPLOAD_ERR_NO_FILE) && $_SESSION['moduleData']['module']['img'] === '') 
     {
         $error_module = "Veuillez selectionner une image en format jpg ou png.";
-        wp_redirect( home_url().'/creationmoduleetape1' );
 
-    }else{
+    }else if($_FILES['img_module']['type'] !== ''){
         $dir = md5($_POST['title']);
         mkdir("../img/modules/".$dir, 0700, true);
         $content_dir =  get_template_directory()."/img/modules/".$dir."/";
@@ -33,7 +34,6 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         if(!is_uploaded_file($tmp_file))
         {
             $error_module="Le fichier est introuvable";
-            wp_redirect( home_url().'/creationmoduleetape1' );
         }
 
         $type_file = $_FILES['img_module']['type'];
@@ -41,7 +41,6 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
         {
             $error_module = "Le format du fichier n'est pas pris en charge";
-            wp_redirect( home_url().'/creationmoduleetape1' );
         }
             // on copie le fichier dans le dossier de destination
         $name_file = md5($_POST['title']).'.'.preg_replace("#image\/#","",$type_file);
@@ -50,18 +49,19 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
         { 
             $error_module = "Impossible de copier le fichier $name_file dans $content_dir";
-            wp_redirect( home_url().'/creationmoduleetape1' );
         }
-
+        $img = $dir.'/'.$img;
     }
      //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
      $title = htmlspecialchars($_POST['title']);
      $theme = $_POST['theme'];
  
+    $idm = isset($_SESSION['moduleData']['module']['id']) ? $_SESSION['moduleData']['module']['id'] : '';
      $module = array (
-                 'title'=> $title,
-                 'theme'=> $theme,
-                 'img'=> $dir."/".$img
+                'id' => $idm,
+                'title'=> $title,
+                'theme'=> $theme,
+                'img'=> $img
      );
  
      $_SESSION['moduleData']['module'] = $module;
@@ -70,8 +70,12 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     $error_module = "Veuillez remplir tous les champs.";
 }
 
-$_SESSION["errorModule"] = $error_module;
-$_SESSION["moduleOk"] = $module_ok;
-wp_redirect( home_url().'/creationmoduleetape2' );
+if($error_module !== ""){
+    $_SESSION["errorModule"] = $error_quiz;
+    wp_redirect( home_url().'/creationmoduleetape1' );
+}else{
+    $_SESSION["moduleOk"] = $module_ok;
+    wp_redirect( home_url().'/creationmoduleetape2' );
+}
 
 ?>

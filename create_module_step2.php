@@ -30,7 +30,6 @@ get_header();
     if(!empty($_SESSION['formModuleStep2'])){
       $nbrPage = $_SESSION['formModuleStep2']['nbrPage'];
       $p = $_SESSION['formModuleStep2'];
-      unset($_SESSION["formModuleStep2"]); 
     }
     ?>
 
@@ -42,11 +41,11 @@ get_header();
         <div class="questionPage">
           <div>
             <label>Titre de la page :</label>
-            <input type="text" name="content_'.$i.'_title" value="">
+            <input type="text" name="content_'.$i.'_title" value="'.$p['content_'.$i.'_title'].'">
           </div>
           <div>
             <label>Contenu de la page :</label>
-            <textarea name="content_'.$i.'" value=""></textarea>
+            <textarea name="content_'.$i.'">'.$p['content_'.$i.''].'</textarea>
           </div>
           <div class="media">
             <div>
@@ -58,7 +57,7 @@ get_header();
             <p><strong>OU</strong></p>
             <div>
               <label>Video :</label>
-              <input type="text" name="content_'.$i.'_video" value="">
+              <input type="text" name="content_'.$i.'_video" value="'.$p['content_'.$i.'_video'].'">
             </div>
           </div>
           <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>

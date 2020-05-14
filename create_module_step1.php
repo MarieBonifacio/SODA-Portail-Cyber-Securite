@@ -1,6 +1,15 @@
 <?php /* Template Name: Create Module Etape 1 */ 
 $_SESSION['needAdmin'] = true;
 get_header();
+
+$module = array (
+    'title'=> '',
+    'theme'=> '',
+    'img'=> ''
+);
+if(isset($_SESSION['moduleData']) && $_SESSION['moduleEdit'] === true){
+    $data = $_SESSION['moduleData'];
+}
 ?>
 <h2 class="h2">Créez votre module</h2>
 
@@ -26,7 +35,7 @@ get_header();
         ?>
         <div>
             <label for="">Titre du module * :</label>
-            <input type="text" name="title">
+            <input type="text" name="title" value="<?php echo $data['module']['title']; ?>">
         </div>
         <div>
             <label for="" class="moduleThemeLabel">Thème du module * :</label>
@@ -34,10 +43,14 @@ get_header();
                 <option value="">Thème de votre module</option>
                 <?php 
                     //ajout boucle tags db
-                    $tags = $wpdb->get_results( "SELECT name FROM tag");
+                    $tags = $wpdb->get_results( "SELECT id, name FROM tag");
 
                     foreach($tags as $t){
-                        echo '<option value="'.$t->name.'">'.$t->name.'</option>';
+                        echo '<option value="'.$t->name.'"';
+                        if($data['module']['theme'] == $t->id){
+                            echo 'selected';
+                        }
+                        echo '>'.$t->name.'</option>';
                     }
                 ?>
             </select>

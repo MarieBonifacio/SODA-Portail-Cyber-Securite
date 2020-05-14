@@ -3,7 +3,7 @@ $_SESSION['needAdmin'] = true;
 get_header(); 
 ?>
 
-<h2 class="h2"> Liste Quizs </h2>
+<h2 class="h2"> Liste des Quizs </h2>
 
 <div class="quizsL">
   <div class="listQuiz">
