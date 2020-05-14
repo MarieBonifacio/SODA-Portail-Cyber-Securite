@@ -508,7 +508,6 @@ window.addEventListener('load', function () {
     })
     Chart.defaults.global.defaultFontColor='white';
     Chart.defaults.global.defaultFontFamily='Muli';
-
   }
   else
   {

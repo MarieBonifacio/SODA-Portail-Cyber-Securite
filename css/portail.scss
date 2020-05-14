@@ -124,6 +124,7 @@ body
         height: 100%;
         font-size: $fontSize3;
         color: $icons;
+        margin-right: 10px;
         transition: .3s;
         @include flex(space-around, center, row);
         i
@@ -249,13 +250,13 @@ body
       }
       .profile_pic
       {
-        width: 10%;
         height: 100%;
         @include flex(center, center, row);
         .circle{
           position: relative;
           width: 50px;
           height: 50px;
+          margin-right: 10px; 
           @include flex(center, center, row);
           img
           {
@@ -443,6 +444,104 @@ body
     h3
     {
       color: $police;
+    }
+    .stats
+    {
+      z-index: 9;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      font-family: "Muli";
+      @include flex("", center, column);
+      button
+      {
+        width: 70px;
+        background: $color-btn;
+        border: none;
+        color: $color1;
+        font-weight: 600;
+        transition: .2s;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 3px;
+        outline: none;
+      }
+      button:hover
+      {
+        background: $police;
+      }
+      .hidden
+      {
+        display: none !important;
+      }
+      .activated
+      {
+        background: $police;
+      }
+      .type
+      {
+        width: 100px;
+        border-radius: 5px;
+        background: $color1;
+        color: $police;
+        padding: 5px;
+        z-index: 12;
+        @include positionTL(absolute, 10px, 10px);
+        @include flex(flex-end, center, column);
+        label
+        {
+          font-size: $fontSize2;
+          margin-bottom: 5px;
+        }
+        div
+        {
+          @include flex(flex-end, center, column);
+        }
+      }
+      .btns
+      {
+        z-index: 10;
+        transform: translate(-50%, -50%);
+        @include positionTL(absolute, 15%, 50%);
+      }
+      canvas
+      {
+        margin-top: 12%;
+        margin-bottom: 10px;
+        z-index: 3;
+        position : relative;
+        width: 82vw !important;
+        height: 41vw !important;
+      }
+      .quizStatsRadar, .moduleStatsRadar
+      {
+        width: 85vw !important;
+        height: 42.5vw !important;
+      }
+      .instructions
+      {
+        z-index: 15;
+        width: 350px;
+        padding: 10px;
+        border-radius: 5px;
+        background: $color1;
+        color: $police;
+        font-size: $fontSize2;
+        transform: translate(-50%, -50%);
+        @include positionTL(absolute, 50%, 50%);
+        span
+        {
+          font-weight: 600;
+        }
+        .types
+        {
+          color: $color-imp;
+        }
+      }
+      .instrQ
+      {
+        z-index: 14;
+      }
     }
     .home
     {
