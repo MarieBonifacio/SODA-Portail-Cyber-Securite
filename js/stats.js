@@ -160,6 +160,11 @@ window.addEventListener('load', function () {
       })
 
       moduleBtn.addEventListener("click", ()=>{
+        if(!moduleBtn.classList.contains("activated"))
+        {
+          moduleBtn.classList.add("activated");
+          quizBtn.classList.remove("activated");
+        }
         if(type == "bar")
         {
           if(!quizBar.classList.contains("hidden"))
@@ -255,6 +260,11 @@ window.addEventListener('load', function () {
         }
       })
       quizBtn.addEventListener("click", ()=>{
+        if(!quizBtn.classList.contains("activated"))
+        {
+          quizBtn.classList.add("activated");
+          moduleBtn.classList.remove("activated");
+        }
         if(type == "bar")
         {
           if(!moduleRadar.classList.contains("hidden"))

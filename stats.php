@@ -10,7 +10,7 @@
     </div>
     <div class="btns">
       <button class="quizBtn" data-id="quiz">Quiz</button>
-      <button class="moduleBtn" data-id="module">Module</button>
+      <button class="moduleBtn activated" data-id="module">Module</button>
     </div>
     <!-- <div class="instructions instrT"><span>Avant de visualiser les statistiques</span> de la progression globale des modules et des quizs vous devez <span>choisir entre deux types</span> de graphiques ( en haut à droite de votre écran ): </br> -<span class="types">Radar</span> </br> -<span class="types">Barre</span>
     </div>
