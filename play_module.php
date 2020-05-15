@@ -45,7 +45,7 @@ foreach($quizQuery as $q){
     $quizInfo[] = array(
         "id" => $quizRelated->getId(),
         "title" => $quizRelated->getName(),
-        "tag" => $quizRelated->getTag(),
+        "tag" => $quizRelated->getTag()->getName(),
         "img"=> $quizRelated->getImgPath(),
     );
 }
