@@ -27,6 +27,6 @@ $_SESSION['returnTag'] = [
     ];
  }
 
- wp_redirect(home_url()."/add_tag");
+ wp_redirect(home_url()."/ajouter-tag");
 
 ?>
