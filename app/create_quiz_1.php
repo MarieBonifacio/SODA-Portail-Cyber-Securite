@@ -8,7 +8,7 @@ require('class/quiz_score.class.php');
 
 
 //J'initialise la variable session
-if(!empty($_SESSION['quizData'])){
+if(!empty($_SESSION['quizData']) && $_SESSION['quizEdit'] !== true){
     unset($_SESSION['quizData']);
 }
 
@@ -23,11 +23,11 @@ if(!checkAuthorized(true)){
 $error_quiz = "";
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
-    if(!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) 
+    $img_path = $_SESSION['quizData']['quiz']['img'];
+    if((!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) && $_SESSION['quizData']['quiz']['img'] === "") 
     {
         $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
-
-    }else{
+    }else if($_FILES['img_quiz']['type'] !== ""){
         $dir = md5($_POST['title']);
         mkdir("../img/quizs/".$dir, 0700, true);
         $content_dir =  get_template_directory()."/img/quizs/".$dir."/";
@@ -51,11 +51,15 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         { 
             $error_quiz = "Impossible de copier le fichier $name_file dans $content_dir";
         }
+        $img_path = $dir."/".$img;
     }
     //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
     $title = htmlspecialchars($_POST['title']);
     $theme = $_POST['theme'];
 ////
+    if(!empty($_SESSION['quizData']['quiz']['id'])){
+        $wpdb->delete('module_quiz', array("id_quiz"=> $_SESSION['quizData']['quiz']['id']));
+    }
     if(isset($_POST['moduleId'])){
         $moduleRelated = $_POST['moduleId'];
     }else{
@@ -65,10 +69,10 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 
 
     $quiz = array (
-                'title'=> $title,
-                'theme'=> $theme,
-                'img'=> $dir."/".$img,
-                'module_id' => $moduleRelated,
+        'title'=> $title,
+        'theme'=> $theme,
+        'img'=> $img_path,
+        'module_id' => $moduleRelated,
     );
 
     $_SESSION['quizData']['quiz'] = $quiz;

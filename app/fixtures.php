@@ -140,7 +140,7 @@ function createAnswers($questions){
             $a = new Answer();
             $a->setIdQuestion($question);
             $a->setContent('question_'.$question.'_answer_'.$j);
-            $a->setIsTrue(($j == $good)?true:false);
+            $a->setIsTrue(($j == $good)?"true":"false");
             $answers[] = $a->save();
         }
     }

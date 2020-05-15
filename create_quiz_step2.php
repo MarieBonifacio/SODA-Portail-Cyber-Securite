@@ -33,7 +33,6 @@ get_header();
     if(!empty($_SESSION['formQuizStep2'])){
       $nbrQuestion = $_SESSION['formQuizStep2']['nbrQuestion'];
       $p = $_SESSION['formQuizStep2'];
-      unset($_SESSION["formQuizStep2"]); 
     }
     ?>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_quiz_2.php" method="post" enctype="multipart/form-data">
@@ -53,13 +52,13 @@ get_header();
                 <label>A.</label>
                 <input type="text" name="q_'.$i.'_reponse_1" value="'.$p['q_'.$i.'_reponse_1'].'">
                 <label class="true" id="truea">
-                  <input '.( ($p["q_".$i."_isTrue_1"] == "true")? "checked":"" ).' checked type="radio" value="true" name="q_'.$i.'_isTrue_1">
+                  <input '.( ($p["q_".$i."_isTrue_1"] == "true")? "checked":"" ).' type="radio" value="true" name="q_'.$i.'_isTrue_1">
                   <span>
                     <i class="fas fa-check"></i>
                   </span>
                 </label>
                 <label class="false" id="falsea">
-                  <input '.( ($p["q_".$i."_isTrue_1"] == "false")?"checked":"" ).' type="radio" value="false" name="q_'.$i.'_isTrue_1">
+                  <input '.( ($p["q_".$i."_isTrue_1"] == "true")?"":"checked" ).' type="radio" value="false" name="q_'.$i.'_isTrue_1">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -75,7 +74,7 @@ get_header();
                   </span>
                 </label>
                 <label class="false" id="falseb">
-                  <input '.( ($p["q_".$i."_isTrue_2"] == "false")?"checked":"" ).' checked type="radio" value="false" name="q_'.$i.'_isTrue_2">
+                  <input '.( ($p["q_".$i."_isTrue_2"] == "true")?"":"checked" ).' type="radio" value="false" name="q_'.$i.'_isTrue_2">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -91,7 +90,7 @@ get_header();
                   </span>
                 </label>
                 <label class="false" id="falsec">
-                  <input '.( ($p["q_".$i."_isTrue_3"] == "false")?"checked":"" ).' checked type="radio" value="false" name="q_'.$i.'_isTrue_3">
+                  <input '.( ($p["q_".$i."_isTrue_3"] === "true")?"":"checked" ).' type="radio" value="false" name="q_'.$i.'_isTrue_3">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -107,7 +106,7 @@ get_header();
                   </span>
                 </label>
                 <label class="false" id="falsed">
-                  <input '.( ($p["q_".$i."_isTrue_4"] == "false")?"checked":"" ).' checked type="radio" value="false" name="q_'.$i.'_isTrue_4">
+                  <input '.( ($p["q_".$i."_isTrue_4"] == "true")?"":"checked" ).' type="radio" value="false" name="q_'.$i.'_isTrue_4">
                   <span>
                     <i class="fas fa-times"></i>
                   </span>
@@ -120,7 +119,12 @@ get_header();
           </div>
           <div class="media">
             <div>
-              <label>Image :</label>
+              <label>Image :';
+              if( !empty($_SESSION['quizData']['questions'][$i-1]['info']['img'])){
+                echo '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/quizs/'.$_SESSION['quizData']['questions'][$i-1]['info']['img'].'">';
+                }
+              echo '
+              </label>
               <button type="button" disabled><p id="fakebtn" data-id="'.$i.'">Séléctionnez une image</p></button>
               <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
               <input id="realbtn'.$i.'" type="file" name="q_'.$i.'_img" hidden>

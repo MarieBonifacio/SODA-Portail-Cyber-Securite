@@ -25,6 +25,9 @@ if(!empty($_SESSION['userConnected']))
 
 //recuperation quiz
 $newQuiz = new Quiz();
+if(!empty($_SESSION['quizData']['quiz']['id'])){
+    $newQuiz->selectById($_SESSION['quizData']['quiz']['id']);
+}
 $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 
 
@@ -34,7 +37,11 @@ $newQuiz->setTag($tag);
 $newQuiz->setAuthorById($id);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->save();
-$newQuizId = $wpdb->insert_id;
+if(!empty($_SESSION['quizData']['quiz']['id'])){
+    $newQuizId = $newQuiz->getId();
+}else{
+    $newQuizId = $wpdb->insert_id;
+}
 
 //quiz->module
 if(!empty($_SESSION['quizData']['quiz']['module_id'])){

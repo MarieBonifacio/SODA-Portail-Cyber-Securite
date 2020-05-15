@@ -2,7 +2,7 @@
 $_SESSION['needAdmin'] = true;
 get_header();
 
-$module = array (
+$data = array (
     'title'=> '',
     'theme'=> '',
     'img'=> ''

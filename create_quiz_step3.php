@@ -2,12 +2,11 @@
 $_SESSION['needAdmin'] = true;
 get_header();
 ?>
-
 <h2 class="h2"><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
 <!-- <?php echo '<pre>';print_r($_SESSION);echo '</pre>';?> -->
 <div class="step3">
 
-  <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['title'].'/'.$_SESSION['quizData']['quiz']['img']?>" alt="votre image">
+  <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['img']?>" alt="votre image">
   <h3>Étape 3: Confirmation</h3>
 
   <div class="steps">
@@ -62,14 +61,12 @@ get_header();
             <div class="answers">
           ';
             $lettre = array("A", "B", "C", "D");
-            $lettreNum = -1;
-            foreach($q['answers'] as $a)
+            foreach($q['answers'] as $k =>  $a)
             {
-              $lettreNum ++;
               echo'
                 <div>
                   <div class="spanP">
-                    <span>'.$lettre[$lettreNum].'.</span>
+                    <span>'.$lettre[$k].'.</span>
                     <p>'.stripslashes($a['text']).'</p>
                   </div>
               ';
