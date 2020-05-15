@@ -45,17 +45,26 @@ window.addEventListener("load", ()=>{
         break;
       case 1:
         star1.style.fill = "red";
+        star2.style.fill = "white";
+        star3.style.fill = "white";
+        star4.style.fill = "white";
+        star5.style.fill = "white";
         break;
   
       case 2:
         star1.style.fill = "red";
         star2.style.fill = "red";
+        star3.style.fill = "white";
+        star4.style.fill = "white";
+        star5.style.fill = "white";
         break;
   
       case 3:
         star1.style.fill = "#EBB94A";
         star2.style.fill = "#EBB94A";
         star3.style.fill = "#EBB94A";
+        star4.style.fill = "white";
+        star5.style.fill = "white";
         break;
   
       case 4:
@@ -63,6 +72,7 @@ window.addEventListener("load", ()=>{
         star2.style.fill = "#2CB751";
         star3.style.fill = "#2CB751";
         star4.style.fill = "#2CB751";
+        star5.style.fill = "white";
         break;
   
       case 5:
