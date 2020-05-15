@@ -2941,75 +2941,75 @@ body
           transform: rotate(0deg);
         }
       }
-      #star_1
-      {
-        animation: star1 5s infinite alternate;
-      }
-      #star_2
-      {
-        animation: star2 5s infinite alternate;
-      } #star_3
-      {
-        animation: star3 5s infinite alternate;
-      } #star_4
-      {
-        animation: star4 5s infinite alternate;
-      } #star_5
-      {
-        animation: star5 5s infinite alternate;
-      }
-      @keyframes star1 {
-        0%{
-          fill: #3AD29F;
-        }
-        100%{
-          fill: #3AD29F;
-        }
-      }
-      @keyframes star2 {
-        20%{
-          fill: $police;
-        }
-        21%{
-          fill: #3AD29F;
-        }
-        100%{
-          fill: #3AD29F;
-        }
-      }
-      @keyframes star3 {
-        40%{
-          fill: $police;
-        }
-        41%{
-          fill: #3AD29F;
-        }
-        100%{
-          fill: #3AD29F;
-        }
-      }
-      @keyframes star4 {
-        60%{
-          fill: $police;
-        }
-        61%{
-          fill: #3AD29F;
-        }
-        100%{
-          fill: #3AD29F;
-        }
-      }
-      @keyframes star5 {
-        80%{
-          fill: $police;
-        }
-        81%{
-          fill: #3AD29F;
-        }
-        100%{
-          fill: #3AD29F;
-        }
-      }
+      // #star_1
+      // {
+      //   animation: star1 5s infinite alternate;
+      // }
+      // #star_2
+      // {
+      //   animation: star2 5s infinite alternate;
+      // } #star_3
+      // {
+      //   animation: star3 5s infinite alternate;
+      // } #star_4
+      // {
+      //   animation: star4 5s infinite alternate;
+      // } #star_5
+      // {
+      //   animation: star5 5s infinite alternate;
+      // }
+      // @keyframes star1 {
+      //   0%{
+      //     fill: #3AD29F;
+      //   }
+      //   100%{
+      //     fill: #3AD29F;
+      //   }
+      // }
+      // @keyframes star2 {
+      //   20%{
+      //     fill: $police;
+      //   }
+      //   21%{
+      //     fill: #3AD29F;
+      //   }
+      //   100%{
+      //     fill: #3AD29F;
+      //   }
+      // }
+      // @keyframes star3 {
+      //   40%{
+      //     fill: $police;
+      //   }
+      //   41%{
+      //     fill: #3AD29F;
+      //   }
+      //   100%{
+      //     fill: #3AD29F;
+      //   }
+      // }
+      // @keyframes star4 {
+      //   60%{
+      //     fill: $police;
+      //   }
+      //   61%{
+      //     fill: #3AD29F;
+      //   }
+      //   100%{
+      //     fill: #3AD29F;
+      //   }
+      // }
+      // @keyframes star5 {
+      //   80%{
+      //     fill: $police;
+      //   }
+      //   81%{
+      //     fill: #3AD29F;
+      //   }
+      //   100%{
+      //     fill: #3AD29F;
+      //   }
+      // }
     }
     .board
     {

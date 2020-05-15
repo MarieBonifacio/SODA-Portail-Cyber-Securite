@@ -162,6 +162,14 @@ function html5blank_conditional_scripts()
             'theme_directory' => get_template_directory_uri(),
             'home_url' => home_url()
         ));
+    } 
+    if(is_page("generateur-de-mots-de-passe"))
+    {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/password.js', null, true);
+        // wp_localize_script('my-script', 'myScript', array(
+        //     'theme_directory' => get_template_directory_uri(),
+        //     'home_url' => home_url()
+        // ));
     }
 }
 
