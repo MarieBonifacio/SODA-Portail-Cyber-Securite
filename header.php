@@ -158,7 +158,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 							<a href="<?php echo home_url()."/statistiques" ?>">Statistiques</a>
 						</li>
 						<li>
-							<a href="">Gestion des tags</a>
+							<a href="<?php echo home_url()."/ajouter-tag" ?>">Gestion des tags</a>
 						</li>
 						<li>
 							<a href="<?php echo home_url()."/wp-admin" ?>" target="_blank">Admin</a>

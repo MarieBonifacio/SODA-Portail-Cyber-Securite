@@ -1,40 +1,8 @@
-
-<?php /* Template Name: Add Tag*/ 
-$_SESSION['needAdmin'] = true;
-get_header();
-?>
-<h2 id="debut" class="h2">Gestion des tags</h2>
-
-<div class="add_tag">
-    <div class="contentTag">
-        <div class="listTag">
-            <h3>Tags existants</h3>
-            <ul>
-                <?php 
-                    //ajout boucle tags db
-                    $tags = $wpdb->get_results( "SELECT name FROM tag");
-                    foreach($tags as $t){
-                        echo '<li>'.$t->name.'</li>';
-                    }
-                ?>
-            </ul>
-        </div>
-        <form action="<?php echo get_template_directory_uri(); ?>/app/add_tag.php" method="post" enctype="multipart/form-data">
-            <h3>Ajoutez un tag</h3>
-            <div>
-                <label for="">Nom du tag :</label>
-                <input type = "text" name="tag"></input>
-            </div>
-            <input type="submit" value="Ajouter">
-        </form>
-    </div>
-</div>
-<div class="svg_tag">
-<svg viewBox="0 0 1083 759" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1083" height="759" viewBox="0 0 1083 759" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="undraw_mention_6k5d 1">
 <g clip-path="url(#clip0)">
-<path id="Vector" d="M398.304 745.608C591.771 745.608 748.607 588.771 748.607 395.304C748.607 201.836 591.771 45 398.304 45C204.836 45 48 201.836 48 395.304C48 588.771 204.836 745.608 398.304 745.608Z" fill="rgba(242, 242, 242, 0.8)"/>
-<path id="Vector_2" d="M541.5 758.562C840.562 758.562 1083 743.577 1083 725.092C1083 706.608 840.562 691.623 541.5 691.623C242.438 691.623 0 706.608 0 725.092C0 743.577 242.438 758.562 541.5 758.562Z" fill="#3d3c4c"/>
+<path id="Vector" d="M398.304 745.608C591.771 745.608 748.607 588.771 748.607 395.304C748.607 201.836 591.771 45 398.304 45C204.836 45 48 201.836 48 395.304C48 588.771 204.836 745.608 398.304 745.608Z" fill="#F2F2F2"/>
+<path id="Vector_2" d="M541.5 758.562C840.562 758.562 1083 743.577 1083 725.092C1083 706.608 840.562 691.623 541.5 691.623C242.438 691.623 0 706.608 0 725.092C0 743.577 242.438 758.562 541.5 758.562Z" fill="#71707D"/>
 <g id="plant5">
 <path id="Vector_3" d="M89.8836 712.792V577.612" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
 <path id="Vector_4" d="M89.8836 596.729C100.441 596.729 109 588.17 109 577.612C109 567.055 100.441 558.496 89.8836 558.496C79.3259 558.496 70.7672 567.055 70.7672 577.612C70.7672 588.17 79.3259 596.729 89.8836 596.729Z" fill="#3F3D56"/>
@@ -79,9 +47,3 @@ get_header();
 </clipPath>
 </defs>
 </svg>
-
-
-
-</div>
-
-<?php  get_footer(); ?>

@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
       //---------------------------------------------------------
       let quizContent = `
       <span class="tag">${myArray.quiz[i].tag_name}</span>
-      <span class="mod">Module(s): <span class="spanQuiz" id="mod${myArray.quiz[i].id}"></span></span>
+      <span class="mod">Module: <span class="spanQuiz" id="mod${myArray.quiz[i].id}"></span></span>
       <h3>${myArray.quiz[i].name}</h3>
       <span class="score">`;
       if( myArray.quiz[i].user_score != null){

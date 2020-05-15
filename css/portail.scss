@@ -508,7 +508,7 @@ body
       canvas
       {
         margin-top: 12%;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         z-index: 3;
         position : relative;
         width: 82vw !important;
@@ -519,29 +519,188 @@ body
         width: 85vw !important;
         height: 42.5vw !important;
       }
-      .instructions
+      
+    }
+    .add_tag
+    {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      font-size: $fontSize2;
+      @include flex(space-evenly, center, "");
+      h3
       {
-        z-index: 15;
-        width: 350px;
-        padding: 10px;
+        font-family: "Montserrat";
+        text-align: center;
+      }
+      .contentTag
+      {
+        background: rgba(36, 51, 76, 0.5);
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        padding: 15px;
         border-radius: 5px;
-        background: $color1;
         color: $police;
-        font-size: $fontSize2;
-        transform: translate(-50%, -50%);
-        @include positionTL(absolute, 50%, 50%);
-        span
+        @include flex(space-evenly, center, "");
+      }
+      .listTag
+      {
+        height: 300px;
+        background: rgba(19, 26, 40, 0.9);
+        padding: 15px;
+        border-radius: 5px;
+        margin-right: 15px;
+        ul
         {
-          font-weight: 600;
+          height: 200px;
+          color: $police;
+          list-style: none;
+          margin: 0;
+          padding:0px 5px;
+          overflow-y: scroll;
+          @include flex("", center, column);
+          li
+          {
+            margin: 5px;
+            width: 150px;
+            padding: 10px 5px;
+            text-align: center;
+            background: $color-imp;
+            color: $color1;
+            font-weight: 600;
+            border-radius: 3px;
+            word-break: break-word;
+          }
         }
-        .types
-        {
-          color: $color-imp;
+        ul::-webkit-scrollbar {
+          width: 5px;
+          height: 5px;
+        }
+        ul::-webkit-scrollbar-thumb {
+          background: $color-btn;
+          border-radius: 100px;
+        }
+        ul::-webkit-scrollbar-thumb:hover {
+          background: $color-btn;
+        }
+        ul::-webkit-scrollbar-thumb:active {
+          background: $color-btn;
+        }
+        ul::-webkit-scrollbar-track {
+          background: $color2;
+          border-radius: 50px;
+        }
+        ul::-webkit-scrollbar-corner {
+          background: transparent;
         }
       }
-      .instrQ
+      form
       {
-        z-index: 14;
+        height: 300px;
+        color: $police;
+        background: rgba(19, 26, 40, 0.9);
+        padding: 15px;
+        border-radius: 5px;
+        @include flex(space-evenly, center, column);
+        div
+        {
+          position: relative;
+          input
+          {
+            width: 150px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid $police;
+            outline: none;
+            color: $police;
+            text-align: center;
+            margin-bottom: 35px;
+          }
+          input:focus
+          {
+            text-align: center;
+            color: $police;
+          }
+          input:not(:focus)
+          {
+            text-align: center;
+            color: $police;
+          }
+        }
+        input[type="submit"]
+        {
+          font-size: $fontSize2;
+        }
+      }
+    }
+    .svg_tag
+    {
+      z-index: 1;
+      width: 50%;
+      height: 100%;
+      @include positionTR(absolute, 0px, 0px);
+      svg
+      {
+        width: 100%;
+        height: auto;
+        @include positionBR(absolute, 10px, 10px);
+        #tag
+        {
+          animation: filltag 1.5s infinite linear alternate-reverse;
+        }
+        @keyframes filltag
+        {
+          0%{
+            fill: white;
+          }
+          100%{
+            fill: #EBB94A;
+          }
+        }
+        #plant1, #plant2, #plant3, #plant4, #plant5{
+          animation: tagPlant infinite linear alternate-reverse;
+        }
+        #plant1, #plant2, #plant3
+        {
+          transform-origin: 37% 93%;
+        }
+        #plant1{
+          animation-duration: 1s;
+        } 
+        #plant2{
+          animation-duration: 1.7s;
+        } 
+        #plant3{
+          animation-duration: 1.2s;
+        }
+        #plant5
+        {
+          transform-origin: 10% 90%;
+          animation-duration: 1.3s;
+        } 
+        #plant4
+        {
+          transform-origin: 50% 90%;
+          animation-duration: 1.6s;
+        }
+        @keyframes tagPlant
+        {
+          0%{
+            transform: rotate(-1deg);
+          }
+          25%{
+            transform: rotate(-0.5deg);
+          }
+          50%{
+            transform: rotate(0deg);
+          } 
+          75%{
+            transform: rotate(0.5deg);
+          }
+          100%{
+            transform: rotate(1deg);
+          }
+        }
       }
     }
     .home
@@ -567,8 +726,6 @@ body
           #buddypress
           {
             overflow-y: scroll;
-            // width: 95%;
-            // height: 85%;
             padding: 10px;
             .activity-shortcode-title
             {
@@ -893,7 +1050,6 @@ body
                 background: $color1;
                 border-radius: 5px;
                 overflow: hidden;
-                // height: 70%;
                 img
                 {
                   position: absolute;
@@ -1046,7 +1202,6 @@ body
                 }
                 td
                 {
-                  // padding: 10px;
                   word-break: break-word;
                   border-left: 1px solid rgba(255, 255, 255, 0.5);
                   border-top: 1px solid rgba(255, 255, 255, 0.5);
@@ -1471,7 +1626,6 @@ body
             color: $police;
             outline: none;
             text-align: center;
-            // text-transform: uppercase;
           }
           select
           {
@@ -1601,7 +1755,6 @@ body
             width: 100%;
             margin-bottom: 10px;
             margin-top: 5px;
-            // @include flex(flex-start, center, row);
             input
             {
               width: 70%;
@@ -1634,7 +1787,6 @@ body
             input:not(:focus)
             {
               color: $color-imp;
-              // text-transform: uppercase;
             }
           }
           .answers
@@ -1694,7 +1846,6 @@ body
         }
         .media
         {
-          // background: red;
           @include flex(space-around, center, row);
           div
           {
@@ -1836,10 +1987,6 @@ body
             width: 100%;
             font-weight: 600;
             @include flex(center, center, row);
-            // span
-            // {
-            //   margin-right: 5px;
-            // }
             p
             {
               margin-top: 30px;
@@ -1882,7 +2029,6 @@ body
               {
                 position: relative;
                 width: 8%;
-                // margin-right: 2px;
                 @include flex(space-evenly, center, row);
               }
             }
@@ -2411,7 +2557,7 @@ body
       /* ---- button ---- */
       .button-group
       {
-        width: 70%;
+        width: 90%;
         border-radius: 100px;
         transform: translate(-50%, -50%);
         z-index: 2;
@@ -2543,7 +2689,6 @@ body
               overflow-y:scroll;
               border-radius: 3px;
               transition: .2s;
-              // transform-origin: bottom left;
               @include flex("", "", column);
               @include positionBR(absolute, 0%, -102px);
               li
@@ -2596,7 +2741,6 @@ body
           }
           .imgQ
           {
-            // position: relative;
             width: 100%;
             height: 75%;
             @include flex(center, center, column);
@@ -2876,7 +3020,6 @@ body
       .legend
       {
         width: 100px;
-        // height: 150px;
         border-radius: 5px;
         padding: 10px;
         background: $color1;
@@ -3165,18 +3308,15 @@ body
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             :nth-child(1)
             {
-              // width: 20%;
               border-left: none;
             }
             :nth-child(2)
             {
               width: 30%;
-              // border-left: none;
             }
             :nth-child(3)
             {
               width: 25%;
-              // border-left: none;
             }
             th
             {
@@ -3465,7 +3605,6 @@ body
       .recap
       {
         @include flex(flex-start, center, column);
-        // flex-wrap: wrap;
         width: 40%;
         overflow-y: scroll;
         .question
@@ -3562,7 +3701,6 @@ body
         .listQuizMod
         {
           width: 90%;
-          // height: 70%;
           padding: 0;
           overflow-y: scroll;
           @include flex(center, "", "");
@@ -3573,6 +3711,7 @@ body
             height: 150px;
             margin: 10px;
             list-style: none;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
             @include flex(center, "", "");
             a
             {
@@ -3593,6 +3732,12 @@ body
                   font-weight: 600;
                   transition: .2s;
                 }
+                .tag
+                {
+                  z-index: 3;
+                  padding: 0;
+                  @include positionTL(absolute, 5px, 5px);
+                }
                 .img
                 {
                   position: relative;
@@ -3609,7 +3754,7 @@ body
                 .img::before
                 {
                   content: '';
-                  background: rgba(0,0,0, 0.5);
+                  background: rgba(0,0,0, 0.7);
                   width: 100%;
                   height: 100%;
                   z-index: 2;
@@ -3622,7 +3767,7 @@ body
             {
               .img::before
               {
-                background: rgba(0,0,0,0.2);
+                background: rgba(0,0,0,0.5);
               }
               span
               {

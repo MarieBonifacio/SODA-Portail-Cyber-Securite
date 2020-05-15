@@ -234,6 +234,7 @@ window.addEventListener('load', function () {
                           <a href="${home_url + `/menu-quiz/`}">
                             <div class="contentQuiz">
                               <span>${myModule.quizs[i].title}</span>
+                              <span class="tag">${myModule.quizs[i].tag}</span>
                               <div class="img">
                                 <img src="${ url + `/img/quizs/${myModule.quizs[i].img}`}" alt="photo du quiz"/>
                               </div>
