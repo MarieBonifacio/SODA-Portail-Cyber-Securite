@@ -149,7 +149,7 @@ window.addEventListener('load', function () {
         const sideNav = document.querySelector(".side");
         const contenu = document.querySelector(".content");
         
-        if(window.innerWidth>1100)
+        if(window.innerWidth>1300)
         {
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))

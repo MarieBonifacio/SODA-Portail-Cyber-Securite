@@ -390,6 +390,27 @@
           width: 240vw !important;
           height: 120vw !important;
         }
+        .canvas::-webkit-scrollbar {
+          width: 5px;
+          height: 5px;
+        }
+        .canvas::-webkit-scrollbar-thumb {
+          background: $color-btn;
+          border-radius: 100px;
+        }
+        .canvas::-webkit-scrollbar-thumb:hover {
+          background: $color-btn;
+        }
+        .canvas::-webkit-scrollbar-thumb:active {
+          background: $color-btn;
+        }
+        .canvas::-webkit-scrollbar-track {
+          background: $color2;
+          border-radius: 50px;
+        }
+        .canvas::-webkit-scrollbar-corner {
+          background: transparent;
+        }
       }
       .add_tag
       {
@@ -426,12 +447,34 @@
         display:none;
       }
     }
+    .quizPlay
+    {
+      .quiz
+      {
+        .btns
+        {
+          margin-bottom: 50px;
+        }
+      }
+      .results
+      {
+        .recap
+        {
+          width: 95%;
+        }
+      }
+    }
     .modulePlay
     {
       .module
       {
         .slide
         {
+          span
+          {
+            top: 0px;
+            right: 0px;
+          }
           .content
           {
             height: 100%;
@@ -450,7 +493,7 @@
             .para
             {
               width: 100%;
-              height: 80%;
+              height: 70%;
               p
               {
                 padding: 5px;
@@ -542,6 +585,13 @@
       .svg_tag
       {
         display: block;
+      }
+      .stats
+      {
+        canvas
+        {
+          margin-top: 20%;
+        }
       }
       .home{
         display: flex;
