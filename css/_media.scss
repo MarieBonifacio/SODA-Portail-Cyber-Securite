@@ -449,14 +449,23 @@
     }
     .quizPlay
     {
-      .quiz
+      .slide
       {
-        .btns
+        .answers
         {
-          margin-bottom: 50px;
+          width: 90%;
+          margin-bottom: 30px;
         }
       }
-      .results
+      .btns
+      {
+        margin-bottom: 50px;
+      }
+      .timer
+      {
+        bottom: 45px;
+      }
+      #results
       {
         .recap
         {
