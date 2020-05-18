@@ -2,6 +2,7 @@
 <?php /* Template Name: Add Tag*/ 
 $_SESSION['needAdmin'] = true;
 get_header();
+cleanSession();
 ?>
 <h2 id="debut" class="h2">Gestion des tags</h2>
 

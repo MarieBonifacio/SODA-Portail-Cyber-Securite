@@ -1,4 +1,6 @@
-<?php /* Template Name: Accueil */ get_header(); ?>
+<?php /* Template Name: Accueil */ get_header();
+cleanSession();
+ ?>
 
 <div class="home">
   <div class="dashboard">

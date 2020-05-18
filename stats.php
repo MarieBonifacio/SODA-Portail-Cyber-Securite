@@ -1,4 +1,5 @@
-<?php /* Template Name: Stats */ get_header(); ?>
+<?php /* Template Name: Stats */ get_header();
+cleanSession(); ?>
   <h2 id="debut" class="h2">Statistiques</h2>
   <div class="stats">
     <div class="type">

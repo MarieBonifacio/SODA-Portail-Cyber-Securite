@@ -592,4 +592,14 @@ function checkAuthorized($needAdmin = false, $needLog = true){
     }
     return true;
 }
+
+function cleanSession(){
+    unset($_SESSION['moduleData']);
+    unset($_SESSION['formModuleStep2']);
+    $_SESSION['moduleEdit'] = false;
+
+    unset($_SESSION['quizData']);
+    unset($_SESSION['formQuizStep2']);
+    $_SESSION['quizEdit'] = false;
+}
 ?>

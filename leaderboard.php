@@ -1,6 +1,7 @@
 <?php /* Template Name: Classement */ 
 $_SESSION['needAdmin'] = true;
-get_header(); ?>
+get_header();
+cleanSession(); ?>
 
 <h2 class="h2">Classements</h2>
 <div class="board">

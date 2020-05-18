@@ -1,6 +1,7 @@
 <?php /* Template Name: Liste Quiz */ 
 $_SESSION['needAdmin'] = true;
 get_header(); 
+cleanSession();
 ?>
 
 <h2 class="h2"> Liste des Quizs </h2>
