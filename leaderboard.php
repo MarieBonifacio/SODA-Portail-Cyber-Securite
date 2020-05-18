@@ -3,7 +3,7 @@ $_SESSION['needAdmin'] = true;
 get_header();
 cleanSession(); ?>
 
-<h2 class="h2">Classements</h2>
+<h2 class="h2 h2board">Classements</h2>
 <div class="board">
   <div class="legend">
     <p>Légende <i class="dropIcon fas fa-sort-down"></i></p>

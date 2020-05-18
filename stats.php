@@ -13,9 +13,17 @@ cleanSession(); ?>
       <button class="quizBtn" data-id="quiz">Quiz</button>
       <button class="moduleBtn activated" data-id="module">Module</button>
     </div>
-    <canvas class="moduleStatsBar"></canvas>
-    <canvas class="quizStatsBar hidden"></canvas>
-    <canvas class="quizStatsRadar hidden"></canvas>
-    <canvas class="moduleStatsRadar hidden"></canvas>
+    <div class="infoStats">
+      <i class="fas fa-info-circle"></i>
+      <div class="statsExplained">
+        <p>Les statistiques se basent sur le poucentage des utilisateurs ayant terminé le quiz/module.</p>
+      </div>
+    </div>
+    <div class="canvas">
+      <canvas class="quizStatsBar hidden"></canvas>
+      <canvas class="moduleStatsBar"></canvas>
+      <canvas class="quizStatsRadar hidden"></canvas>
+      <canvas class="moduleStatsRadar hidden"></canvas>
+    </div>
   </div>
 <?php get_footer()?>

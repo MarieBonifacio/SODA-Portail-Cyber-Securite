@@ -359,6 +359,20 @@ window.addEventListener('load', function () {
         }
       })
       Chart.defaults.global.defaultFontFamily='Muli';
+      const infos = document.querySelector(".statsExplained");
+      const info = document.querySelector(".fa-info-circle");
+      info.addEventListener("click", ()=>{
+        if(!infos.classList.contains("infoActivated"))
+        {
+          console.log("ok");
+          infos.classList.add("infoActivated");
+        }
+        else
+        {
+          console.log("pas ok");
+          infos.classList.remove("infoActivated");
+        }
+      })
     }
   }
   xmlhttp.open("GET", url  + '/statistics.php', true);

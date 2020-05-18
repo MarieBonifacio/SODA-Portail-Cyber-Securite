@@ -121,26 +121,26 @@ function getQuestionHtml(id)
 
 function addDeleteEvent()
 {
-        let trashes = document.querySelectorAll('.trash');
-        trashes.forEach(function(trash){
-            trash.removeEventListener("click", deleteBlock);
-            trash.addEventListener("click", deleteBlock);
-        });
+  let trashes = document.querySelectorAll('.trash');
+  trashes.forEach(function(trash){
+      trash.removeEventListener("click", deleteBlock);
+      trash.addEventListener("click", deleteBlock);
+  });
 }
 
 function deleteBlock(event)
 {
-    let question = event.target.parentNode;
-    let id = event.target.dataset.id;
-    let nbrQuestion = document.querySelector("input[name=nbrQuestion]").value;
-    let totalText = document.querySelector('.total').innerHTML;
+  let question = event.target.parentNode;
+  let id = event.target.dataset.id;
+  let nbrQuestion = document.querySelector("input[name=nbrQuestion]").value;
+  let totalText = document.querySelector('.total').innerHTML;
 
-    if(nbrQuestion > 1){
-        nbrQuestion--;
-        document.querySelector("input[name=nbrQuestion]").value = nbrQuestion;
-        document.querySelector('.total').innerHTML = totalText.replace(/\d+/gi, nbrQuestion);
-        question.remove();
-    }
+  if(nbrQuestion > 1){
+      nbrQuestion--;
+      document.querySelector("input[name=nbrQuestion]").value = nbrQuestion;
+      document.querySelector('.total').innerHTML = totalText.replace(/\d+/gi, nbrQuestion);
+      question.remove();
+  }
 }
 
 inputFile();
