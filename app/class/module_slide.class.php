@@ -15,10 +15,11 @@ class ModuleSlide {
 
 
     public function selectById($id){
-        $r = $wpdb->get_row("SELECT * FROM 'module_slide' where id=".$id."");
+        global $wpdb;
+        $r = $wpdb->get_row("SELECT * FROM module_slide where id=".$id."");
         $this->id = $r->id;
         $moduleId = new Module();
-        $moduleId = selectById($r->module_id);
+        $moduleId->selectById($r->module_id);
         $this->module_id = $moduleId;
         $this->title = $r->title;
         $this->content = $r->content;
@@ -76,32 +77,38 @@ class ModuleSlide {
 
     public function save(){
         if ($this->id == null){
+            echo "save<br/>";
             global $wpdb;
             $wpdb->insert('module_slide', array(
-            "module_id" => $this->module_id,
-            "title" => stripslashes($this->title),
-            "img_path" => $this->img_path,
-            "url" => $this->url,
-            "content" => stripslashes($this->content),
-            "order" => $this->order,
-            )
-        );
-        return $wpdb->insert_id;
-        }else{
-            global $wpdb;
-            $wpdb->update('module_slide', array(
                 "module_id" => $this->module_id,
                 "title" => stripslashes($this->title),
                 "img_path" => $this->img_path,
                 "url" => $this->url,
                 "content" => stripslashes($this->content),
                 "order" => $this->order,
-            ), array(
-                "id"  => $this->id,
-            )
-        );    
+                )
+            );
+            return $wpdb->insert_id;
+        }else{
+            echo "edit<br/>";
+            global $wpdb;
+            $u = $wpdb->update(
+                'module_slide',
+                array(
+                    "module_id" => $this->module_id,
+                    "title" => stripslashes($this->title),
+                    "img_path" => $this->img_path,
+                    "url" => $this->url,
+                    "content" => stripslashes($this->content),
+                    "order" => $this->order,
+                ),
+                array(
+                    "id"  => $this->id,
+                )
+            );
+            echo 'u:'.$u.'--<br/>';
+        }
     }
-}
 
     public static function delete(){
         global $wpdb;

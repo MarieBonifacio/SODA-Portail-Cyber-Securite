@@ -13,15 +13,16 @@ if(!checkAuthorized(true)){
 
 
 //J'initialise la variable session
-if(!empty($_SESSION['moduleData'] && ((!isset($_SESSION['moduleEdit']) || $_SESSION['moduleEdit'] !== true)) )){
+if(!empty($_SESSION['moduleData'] && $_SESSION['moduleEdit'] !== true)){
     unset($_SESSION['moduleData']);
 }
+
 $error_module = '';
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
     $dir = md5($_POST['title']);
     $img =  $_SESSION['moduleData']['module']['img'] === '' ? '' :  $_SESSION['moduleData']['module']['img'];
-    if((!isset($_FILES['img_module']) || $_FILES['img_module']['error'] == UPLOAD_ERR_NO_FILE) && $_SESSION['moduleData']['module']['img'] === '') 
+    if((!isset($_FILES['img_module']) || $_FILES['img_module']['error'] == UPLOAD_ERR_NO_FILE) && $_SESSION['moduleData']['module']['img'] === '')
     {
         $error_module = "Veuillez selectionner une image en format jpg ou png.";
 
@@ -38,7 +39,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 
         $type_file = $_FILES['img_module']['type'];
 
-        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
+        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
         {
             $error_module = "Le format du fichier n'est pas pris en charge";
         }
@@ -47,7 +48,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         $img = $name_file;
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-        { 
+        {
             $error_module = "Impossible de copier le fichier $name_file dans $content_dir";
         }
         $img = $dir.'/'.$img;
@@ -55,17 +56,10 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
      //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
      $title = htmlspecialchars($_POST['title']);
      $theme = $_POST['theme'];
- 
-    $idm = isset($_SESSION['moduleData']['module']['id']) ? $_SESSION['moduleData']['module']['id'] : '';
-     $module = array (
-                'id' => $idm,
-                'title'=> $title,
-                'theme'=> $theme,
-                'img'=> $img
-     );
- 
-     $_SESSION['moduleData']['module'] = $module;
-     
+
+    $_SESSION['moduleData']['module']['title'] = $title;
+    $_SESSION['moduleData']['module']['theme'] = $theme;
+    $_SESSION['moduleData']['module']['img'] = $img;
 }else{
     $error_module = "Veuillez remplir tous les champs.";
 }

@@ -75,7 +75,7 @@ class Quiz {
     public function save(){
         if ($this->id == null){
             $timeZone = get_option("timezone_string");
-            date_default_timezone_set($timeZone);   
+            date_default_timezone_set($timeZone);
             global $wpdb;
             $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
             $wpdb->insert(
@@ -90,20 +90,20 @@ class Quiz {
             return $wpdb->insert_id;
         }else{
             global $wpdb;
-            $wpdb->update(
+            $u = $wpdb->update(
                 'quiz', array(
                     "name" => stripslashes($this->name),
-                    "tag_id" => $this->tag_id,
+                    "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
                     "author_id" => $this->author,
                     "created_at" => $this->created_at
                 ), array(
-                    "id" => $this->$id,
+                    "id" => $this->id,
                 )
             );
         }
     }
-    
+
     public function delete(){
         global $wpdb;
         $wpdb->delete( 'quiz', array( 'id' => $id ) );

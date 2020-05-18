@@ -13,115 +13,175 @@ if(!checkAuthorized(true)){
     wp_redirect( home_url() );  exit;
 }
 
-
 $nbrQuestion = $_POST['nbrQuestion'];
 $_SESSION['errorQuiz'] = "";
 $_SESSION['formQuizStep2'] = $_POST;
-$tmpQuestionData = array();
 
 if(!empty($_SESSION['quizData']) && $_SESSION['quiEdit'] === false){
-    $_SESSION['quizData']['quiz']['questions'] = null;
+    $_SESSION['quizData']['questions'] = null;
 }
 
-if($nbrQuestion >= 1){
-    for( $i = 1; $i <= $nbrQuestion; $i++)
-    {
-        $question = array();
-        if(!empty($_POST['question_'.$i]))
-        {
-            $question['info'] = array(
-                'text' => $_POST['question_'.$i],
-                'img' => "",
-                'video' => "",
-            );
-
-            if(!empty($_POST['q_'.$i.'_video']))
-            {
-                $url = $_POST['q_'.$i.'_video'];
-                $question['info']['video'] = $url;
-            }else{
-                if($_FILES['q_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['q_'.$i.'_img']))
-                {
-                    $dir = md5($_SESSION['quizData']['quiz']['title']);
-                    $path = "../img/quizs/".$dir."/questions";
-                    $pathClean = $dir."/questions";
-                    if(!is_dir($path))
-                    {
-                        mkdir($path, 0775, true);
-                    }
-                    $content_dir =  get_template_directory()."/img/quizs/".$dir."/questions/";
-                    $tmp_file = $_FILES['q_'.$i.'_img']['tmp_name'];
-
-                    if(!is_uploaded_file($tmp_file))
-                    {
-                        $error_quiz="Un des fichiers est introuvable";
-                        wp_redirect( home_url().'/creationquizetape2' );
-                    }
-
-                    $type_file = $_FILES['q_'.$i.'_img']['type'];
-
-                    if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
-                    {
-                        $error_quiz = "Le format d'un des fichiers n'est pas pris en charge.";
-                        wp_redirect( home_url().'/creationquizetape2' );
-                    }
-
-                    $name_file = md5($tmp_file).'.'.preg_replace("#image\/#","",$type_file);
-
-                    if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-                    {
-                        $error_quiz = "Impossible de copier le fichier $name_file dans $content_dir";
-                        wp_redirect( home_url().'/creationquizetape2' );
-                    }
-
-                    $img = $name_file;
-                    $question['info']['img'] = $pathClean.'/'.$img;
-                }else{
-                    if (!empty($_SESSION['quizData']['questions'][$i]['info']['img'])){
-                        $question['info']['img'] = $_SESSION['quizData']['questions'][$i]['info']['img'];
-                    }
-                }
+if($nbrQuestion >= 3){
+    $questions = [];
+    foreach ($_POST as $key => $value) {
+        preg_match('/^question_(n)?(\d+)$/', $key, $matches);
+        if(count($matches) > 2){
+            $id = count($matches) === 2 ? $matches[1] : $matches[1].$matches[2];
+            $result = processQuestion($id, $matches[1] === 'n');
+            if($result['type'] === 'error'){
+                $_SESSION['errorQuiz'] = $result['content'];
             }
-            $tmpQuestionData[$i] = $question;
-
-// REPONSES ----------------------------------------------------------------------------------------------------------
-            $answers= array();
-
-            $nbrAnswer = 0;
-            $nbrTrue = 0;
-            for( $r=1; $r <= 4; $r++){
-                if(!empty($_POST['q_'.$i.'_reponse_'.$r])){
-                    $nbrAnswer += 1;
-                    if($_POST['q_'.$i.'_isTrue_'.$r] == "true"){
-                        $nbrTrue += 1;
-                    }
-
-                    $answer = array(
-                        'text' => $_POST['q_'.$i.'_reponse_'.$r],
-                        'isTrue' => $_POST['q_'.$i.'_isTrue_'.$r],
-                    );
-                    $tmpQuestionData[$i]['answers'][$r] = $answer;
-                }
-            }
-
-            if($nbrTrue < 1)
-            {
-                $_SESSION['errorQuiz'] = "Merci de renseigner au moins une bonne réponse par question.";
-            }
-            if($nbrAnswer < 2){
-                $_SESSION['errorQuiz'] = "Merci de renseigner au moins deux réponses par question.";
-            }
-        }else{
-            $_SESSION['errorQuiz'] = "Veuillez remplir l'énoncé des questions.";
+            $questions[] = $result['content'];
         }
     }
-}elseif($nbrQuestion < 3 || sizeof($_SESSION['quizData']['quiz']['questions']) <3 ){
+    $_SESSION['quizData']['questions'] = $questions;
+}else{
     $_SESSION['errorQuiz'] = "Veuillez créer au moins 3 questions.";
 }
 
-if($_SESSION['errorQuiz'] == "")
-{
-    $_SESSION['quizData']['questions'] = $tmpQuestionData;
+function processQuestion($id, $isNew){
+    $question['info']['id'] = !$isNew ? $id : 0;
+    $result = processText($id, $isNew);
+    if($result['type'] === 'error'){
+        return $result;
+    }
+    $question['info']['text'] = $result['content'];
+
+    if(!empty($_POST['q_'.$id.'_video'])){
+        $question['info']['video'] = $_POST['q_'.$id.'_video'];
+    }else{
+        $result = processImg($id, $isNew);
+        if($result['type'] === 'error'){
+            return $result;
+        }
+        $question['info']['img'] = $result['content'];
+    }
+
+    $result = processAnswers($id, $isNew);
+    if($result['type'] === 'error'){
+        return $result;
+    }
+    $question['answers'] = $result['content'];
+
+
+    return [
+        'type' => 'success',
+        'content' => $question,
+    ];
+}
+
+function processText($id, $isNew){
+    if(!empty($_POST['question_'.$id])){
+        return [
+            'type' => 'success',
+            'content' => $_POST['question_'.$id],
+        ];
+    }else{
+        return [
+            'type' => 'error',
+            'content' => 'Veuillez remplir l\'énoncé des questions.',
+        ];
+    }
+}
+
+function processImg($id, $isNew){
+    if($_FILES['q_'.$id.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['q_'.$id.'_img'])){
+        $dir = md5($_SESSION['quizData']['quiz']['title']);
+        $path = "../img/quizs/".$dir."/questions";
+        $pathClean = $dir."/questions";
+
+        if(!is_dir($path))
+        {
+            mkdir($path, 0775, true);
+        }
+
+        $content_dir =  get_template_directory()."/img/quizs/".$dir."/questions/";
+        $tmp_file = $_FILES['q_'.$id.'_img']['tmp_name'];
+
+        if(!is_uploaded_file($tmp_file))
+        {
+            return [
+                'type' => 'error',
+                'content' => 'Un des fichiers est introuvable',
+            ];
+        }
+
+        $type_file = $_FILES['q_'.$id.'_img']['type'];
+
+        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
+        {
+            return [
+                'type' => 'error',
+                'content' => 'Le format d\'un des fichiers n\'est pas pris en charge.',
+            ];
+        }
+
+        $name_file = md5($tmp_file).'.'.preg_replace("#image\/#","",$type_file);
+
+        if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+        {
+            return [
+                'type' => 'error',
+                'content' => 'Impossible de copier le fichier.',
+            ];
+        }
+
+        $img = $name_file;
+
+        return [
+            'type' => 'success',
+            'content' => $pathClean.'/'.$img,
+        ];
+    }else{
+        if(!$isNew){
+            global $wpdb;
+
+            return [
+                'type' => 'success',
+                'content' => $wpdb->get_var("SELECT img_path FROM question WHERE id='".$id."'"),
+            ];
+        }
+    }
+}
+
+function processAnswers($id, $isNew){
+    $nbrAnswer = 0;
+    $nbrTrue = 0;
+    $answers= array();
+    for( $r=1; $r <= 4; $r++){
+        if(!empty($_POST['q_'.$id.'_reponse_'.$r])){
+            $nbrAnswer += 1;
+            if($_POST['q_'.$id.'_isTrue_'.$r] == "true"){
+                $nbrTrue += 1;
+            }
+
+            $answers[] = array(
+                'text' => $_POST['q_'.$id.'_reponse_'.$r],
+                'isTrue' => $_POST['q_'.$id.'_isTrue_'.$r],
+            );
+        }
+    }
+
+    if($nbrTrue < 1){
+        return [
+            'type' => 'error',
+            'content' => "Merci de renseigner au moins une bonne réponse par question.",
+        ];
+    }
+    if($nbrAnswer < 2){
+        return [
+            'type' => 'error',
+            'content' => "Merci de renseigner au moins deux réponses par question.",
+        ];
+    }
+
+    return [
+        'type' => 'success',
+        'content' => $answers,
+    ];
+}
+
+if($_SESSION['errorQuiz'] == ""){
     wp_redirect( home_url().'/creationquizetape3' );
 }else{
     wp_redirect( home_url().'/creationquizetape2' );

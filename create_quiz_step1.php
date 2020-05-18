@@ -1,10 +1,12 @@
-<?php /* Template Name: Create Quiz Etape 1 */ 
+<?php /* Template Name: Create Quiz Etape 1 */
 $_SESSION['needAdmin'] = true;
 get_header();
 ?>
-<?php 
+<?php
+
 if( $_SESSION['quizEdit'] !== true){
     unset($_SESSION['quizData']);
+    unset($_SESSION['formQuizStep2']);
 }
 
 ?>
@@ -39,7 +41,7 @@ if( $_SESSION['quizEdit'] !== true){
             <label for="">Thème du quiz * :</label>
             <select name="theme" id="sites">
                 <option value="">Sélectionnez un thème</option>
-                <?php 
+                <?php
                     //ajout boucle tags db
                     $tags = $wpdb->get_results( "SELECT id, name FROM tag");
 

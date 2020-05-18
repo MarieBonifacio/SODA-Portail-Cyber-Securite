@@ -12,39 +12,43 @@ if(!checkAuthorized(true)){
 }
 
 /* SAVE TO BDD  */
-if(!empty($_SESSION['userConnected']))
-{
-    $id = $_SESSION['userConnected'];
-}
+$tag = new Tag();
+$tag->selectByName($_SESSION['moduleData']['module']['theme']);
 
-if($_SESSION['moduleEdit'] === true){
-    $newModule = new Module();
+$newModule = new Module();
+if(!empty($_SESSION['moduleData']['module']['id'])){
     $newModule->selectById($_SESSION['moduleData']['module']['id']);
-}else{
-    $newModule = new Module();
 }
 //recuperation module
 $newModule->setTitle($_SESSION['moduleData']['module']['title']);
-
-$tag = new Tag();
-$tag->selectByName($_SESSION['moduleData']['module']['theme']);
 $newModule->setTag($tag);
 $newModule->setAuthor($_SESSION['userConnected']);
 $newModule->setImgPath($_SESSION['moduleData']['module']['img']);
-$t = $newModule->save();
-if($_SESSION['moduleEdit']){
-    $newModuleId = $_SESSION['moduleData']['module']['id'];
+$newModule->save();
+
+if(!empty($_SESSION['moduleData']['module']['id'])){
+    $newModuleId = $newModule->getId();
 }else{
     $newModuleId = $wpdb->insert_id;
+        echo 'a-'.$newModuleId.'*<br/>';
 }
 
-$wpdb->delete('module_slide', array('module_id' => $newModuleId));
-   
+$prevSlidesList = [];
+if($_SESSION['moduleEdit'] === true){
+    global $wpdb;
+    $queryPrev = $wpdb->get_results("SELECT id FROM module_slide WHERE module_id = $newModuleId");
+    foreach ($queryPrev as $prev) {
+        $prevSlidesList[] = $prev->id;
+    }
+}
 
 //recupération slides
 foreach($_SESSION['moduleData']['pages'] as $m)
 {
     $newSlide = new ModuleSlide();
+    if($m['info']['id'] !== 0){
+        $newSlide->selectById($m['info']['id']);
+    }
     $newSlide->setModuleId($newModuleId);
     $newSlide->setContent($m['info']['content']);
     $newSlide->setTitle($m['info']['title']);
@@ -52,10 +56,26 @@ foreach($_SESSION['moduleData']['pages'] as $m)
     $newSlide->setImgPath($m['info']['img']);
     $newSlide->setUrl($m['info']['video']);
     $newSlide->save();
-    $newSlideId = $wpdb->insert_id;
-
+    if($m['info']['id'] !== 0){
+        $newSlideId = $newSlide->getId();
+        if(in_array($newSlideId, $prevSlidesList)){
+            array_splice($prevSlidesList, array_search($newSlideId, $prevSlidesList), 1);
+        }
+    }else{
+        $newSlideId = $wpdb->insert_id;
+    }
 }
+
+foreach ($prevSlidesList as $p) {
+    global $wpdb;
+    $wpdb->delete('module_slide', array('id'=>$p));
+}
+echo '<pre>';
+print_r($_SESSION['moduleData']);
+echo '</pre>';
+
 unset($_SESSION['moduleData']);
+unset($_SESSION['formModuleStep2']);
 $_SESSION['moduleEdit'] = false;
 wp_redirect( home_url().'/menu-module' );
 

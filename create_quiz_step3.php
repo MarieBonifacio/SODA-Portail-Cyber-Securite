@@ -1,4 +1,4 @@
-<?php /* Template Name: Create Quiz Etape 3 */ 
+<?php /* Template Name: Create Quiz Etape 3 */
 $_SESSION['needAdmin'] = true;
 get_header();
 ?>
@@ -18,7 +18,7 @@ get_header();
 
 
   <div class="recap">
-      <?php 
+      <?php
       $img = get_template_directory_uri();
       $num = 0;
       foreach($_SESSION['quizData']['questions'] as $q)
@@ -29,7 +29,7 @@ get_header();
           ';
           if($q['info']['img'] !== "")
           {
-            echo ' 
+            echo '
             <div class="medias">
             <img src="'.$img.'/img/quizs/'.$q['info']['img'].'" alt="votre image">
             </div>
@@ -39,8 +39,8 @@ get_header();
             $regex = "ton regex";
             preg_match("/^.*v=(.*)$/", $q['info']['video'], $keywords);
             if(isset($keywords)){
-              echo ' 
-              <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>           
+              echo '
+              <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 ';
               }else{
                 echo '

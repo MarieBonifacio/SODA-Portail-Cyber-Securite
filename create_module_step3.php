@@ -1,10 +1,9 @@
-<?php /* Template Name: Create Module Etape 3 */ 
+<?php /* Template Name: Create Module Etape 3 */
 $_SESSION['needAdmin'] = true;
 get_header();
 ?>
 <h2 class="h2"><?php echo $_SESSION['moduleData']['module']['title']; ?></h2>
-<?php 
-// echo '<pre>';print_r($_SESSION);echo '</pre>';?>
+
 <div class="step3">
 
   <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/modules/<?php echo $_SESSION['moduleData']['module']['img']?>" alt="votre image">
@@ -20,7 +19,7 @@ get_header();
 
 
   <div class="recap">
-      <?php 
+      <?php
       $img = get_template_directory_uri();
       $num = 0;
       foreach($_SESSION['moduleData']['pages'] as $q)
@@ -31,7 +30,7 @@ get_header();
           ';
           if($q['info']['img'])
           {
-            echo ' 
+            echo '
             <div class="medias">
             <img src="'.$img.'/img/modules/'.$q['info']['img'].'" alt="votre image">
             </div>
@@ -42,10 +41,10 @@ get_header();
             </div>
             ';
           }
-          elseif ($q['info']['video'] !== ""){
+          elseif (!empty($q['info']['url'])){
             preg_match("/^.*v=(.*)$/", $q['info']['video'], $keywords);
             if(isset($keywords)){
-              echo ' 
+              echo '
               <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <span class="numP">'.$num.'</span>
                 <div class="content">

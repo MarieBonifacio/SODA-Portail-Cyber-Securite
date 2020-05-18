@@ -10,9 +10,8 @@ require('./class/tag.class.php');
 if(isset($_GET['id'])){
     global $wpdb;
     $moduleId = $_GET['id'];
-    if(isset($_SESSION['moduleData'])){
-        unset($_SESSION['moduleData']);
-    }
+    unset($_SESSION['moduleData']);
+    unset($_SESSION['formModuleStep2']);
     $_SESSION['moduleEdit'] = true;
 
     $module = new Module();
@@ -34,16 +33,21 @@ if(isset($_GET['id'])){
         $page['info']['url'] = $slide->url;
         $page['info']['img'] = $slide->img_path;
         $page['info']['order'] = $slide->order;
-        
+
         $i = $key + 1;
-        $_SESSION['formModuleStep2']['content_'.$i.'_title'] = $slide->title;
-        $_SESSION['formModuleStep2']['content_'.$i] = $slide->content;
-        $_SESSION['formModuleStep2']['content_'.$i.'_video'] = $slide->url;
+        $_SESSION['formModuleStep2']['content_'.$slide->id.'_title'] = $slide->title;
+        $_SESSION['formModuleStep2']['content_'.$slide->id] = $slide->content;
+        $_SESSION['formModuleStep2']['content_'.$slide->id.'_video'] = $slide->url;
 
         $_SESSION['moduleData']['pages'][] = $page;
     }
 
-    wp_redirect(home_url().'/creationmoduleetape1/');
+    echo '<pre>';
+    print_r($_SESSION['moduleData']);
+    print_r($_SESSION['formModuleStep2']);
+    echo '</pre>';
+
+    // wp_redirect(home_url().'/creationmoduleetape1/');
 }else{
     wp_redirect(home_url());
 }

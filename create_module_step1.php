@@ -1,4 +1,4 @@
-<?php /* Template Name: Create Module Etape 1 */ 
+<?php /* Template Name: Create Module Etape 1 */
 $_SESSION['needAdmin'] = true;
 get_header();
 
@@ -7,8 +7,10 @@ $data = array (
     'theme'=> '',
     'img'=> ''
 );
-if(isset($_SESSION['moduleData']) && $_SESSION['moduleEdit'] === true){
-    $data = $_SESSION['moduleData'];
+
+if( $_SESSION['moduleEdit'] !== true){
+    unset($_SESSION['moduleData']);
+    unset($_SESSION['formModuleStep2']);
 }
 ?>
 <h2 class="h2">Créez votre module</h2>
@@ -35,19 +37,19 @@ if(isset($_SESSION['moduleData']) && $_SESSION['moduleEdit'] === true){
         ?>
         <div>
             <label for="">Titre du module * :</label>
-            <input type="text" name="title" value="<?php echo $data['module']['title']; ?>">
+            <input type="text" name="title" value="<?php echo $_SESSION['moduleData']['module']['title']; ?>">
         </div>
         <div>
             <label for="" class="moduleThemeLabel">Thème du module * :</label>
             <select name="theme" id="sites">
                 <option value="">Thème de votre module</option>
-                <?php 
+                <?php
                     //ajout boucle tags db
                     $tags = $wpdb->get_results( "SELECT id, name FROM tag");
 
                     foreach($tags as $t){
                         echo '<option value="'.$t->name.'"';
-                        if($data['module']['theme'] == $t->id){
+                        if($_SESSION['moduleData']['module']['theme'] === $t->id){
                             echo 'selected';
                         }
                         echo '>'.$t->name.'</option>';
@@ -57,7 +59,13 @@ if(isset($_SESSION['moduleData']) && $_SESSION['moduleEdit'] === true){
             <i class="fas fa-sort-down"></i>
         </div>
         <div>
-            <label for="">Image :</label>
+            <label for="">Image :
+                <?php
+                if( !empty($_SESSION['moduleData']['module']['img'])){
+                echo '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/modules/'.$_SESSION['moduleData']['module']['img'].'">';
+                }
+            ?>
+            </label>
             <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
             <span id="img_select">Aucune image sélectionnée.</span>
             <input id="realbtn" type="file" name="img_module" hidden>

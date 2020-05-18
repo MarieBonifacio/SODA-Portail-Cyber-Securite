@@ -1,4 +1,4 @@
-<?php /* Template Name: Create Module Etape 2 */ 
+<?php /* Template Name: Create Module Etape 2 */
 $_SESSION['needAdmin'] = true;
 get_header();
 ?>
@@ -21,10 +21,10 @@ get_header();
     $nbrPage = 1;
     if(!empty($_SESSION["errorModule"])){
       echo "<p class='mess error'>".$_SESSION["errorModule"]."</p>";
-      unset($_SESSION["errorModule"]); 
+      unset($_SESSION["errorModule"]);
       /* SI ON REVIENT DU SCRIPT VALIDATION POUR CAUSE MESSAGE D'ERREUR */
       $p = $_SESSION['formModuleStep2'];
-      unset($_SESSION["formModuleStep2"]); 
+      // unset($_SESSION["formModuleStep2"]);
       $nbrPage = $p['nbrPage'];
     }
     if(!empty($_SESSION['formModuleStep2'])){
@@ -36,35 +36,57 @@ get_header();
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_module_2.php" method="post" enctype="multipart/form-data">
   <input type="text" name="nbrPage" value="<?php echo $nbrPage; ?>" hidden>
     <?php
-      for($i=1; $i<=$nbrPage; $i++){
-        echo '
-        <div class="questionPage">
-          <div>
-            <label>Titre de la page :</label>
-            <input type="text" name="content_'.$i.'_title" value="'.$p['content_'.$i.'_title'].'">
-          </div>
-          <div>
-            <label>Contenu de la page :</label>
-            <textarea name="content_'.$i.'">'.$p['content_'.$i.''].'</textarea>
-          </div>
-          <div class="media">
+    function getPage($i, $isNew, $p){
+        $html = '
+        <div class="questionPage '.($isNew ? 'new':'').'">
             <div>
-              <label>Image :</label>
-              <button type="button" disabled><p id="fakebtn" data-id="'.$i.'">Séléctionnez une image</p></button>
-              <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
-              <input id="realbtn'.$i.'" type="file" name="content_'.$i.'_img" hidden>
+                <label>Titre de la page :</label>
+                <input type="text" name="content_'.$i.'_title" value="'.$p['content_'.$i.'_title'].'">
             </div>
-            <p><strong>OU</strong></p>
             <div>
-              <label>Video :</label>
-              <input type="text" name="content_'.$i.'_video" value="'.$p['content_'.$i.'_video'].'">
+                <label>Contenu de la page :</label>
+                <textarea name="content_'.$i.'">'.$p['content_'.$i.''].'</textarea>
             </div>
-          </div>
-          <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>
+            <div class="media">
+                <div>
+                    <label>Image :';
+                        if(!$isNew){
+                            global $wpdb;
+                            $img = $wpdb->get_var("SELECT img_path FROM module_slide WHERE id='".$i."'");
+                            if(!empty($img)){
+                                $html .= '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/modules/'.$img.'">';
+                            }
+                        }
+                        $html .= '
+                    </label>
+                    <button type="button" disabled><p id="fakebtn" data-id="'.$i.'">Séléctionnez une image</p></button>
+                    <span id="img_select'.$i.'">Aucune image sélectionnée.</span>
+                    <input id="realbtn'.$i.'" type="file" name="content_'.$i.'_img" hidden>
+                </div>
+                <p><strong>OU</strong></p>
+                <div>
+                    <label>Video :</label>
+                    <input type="text" name="content_'.$i.'_video" value="'.$p['content_'.$i.'_video'].'">
+                </div>
+            </div>
+            <i class="trash'.$id.' trash fas fa-trash" data-id="'.$id.'"></i>
         </div>
         ';
-      }
-      ?> 
+
+        return $html;
+    }
+        if(!empty($p)){
+            foreach ($p as $key => $value) {
+                preg_match('/^content_(n)?(\d+)$/', $key, $matches);
+                if(count($matches) > 2){
+                    $id = count($matches) === 2 ? $matches[1] : $matches[1].$matches[2];
+                    echo getPage($id , $matches[1] === 'n', $p);
+                }
+            }
+        }else{
+            echo getPage('n1', true, null);
+        }
+      ?>
       <input type="submit" value="Valider" hidden/>
   </form>
   <i class="plus fas fa-plus"></i>

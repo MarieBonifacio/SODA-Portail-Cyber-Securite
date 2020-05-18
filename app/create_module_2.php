@@ -8,6 +8,125 @@ require('class/tag.class.php');
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
+
+function processPage($id, $isNew){
+    $page['info']['id'] = !$isNew ? $id : 0;
+    $result = processTitle($id, $isNew);
+    if($result['type'] === 'error'){
+        return $result;
+    }
+    $page['info']['title'] = $result['content'];
+
+    $result = processText($id, $isNew);
+    if($result['type'] === 'error'){
+        return $result;
+    }
+    $page['info']['content'] = $result['content'];
+
+    if(!empty($_POST['content_'.$id.'_video'])){
+        $page['info']['url'] = $_POST['content_'.$id.'_video'];
+    }else{
+        $result = processImg($id, $isNew);
+        if($result['type'] === 'error'){
+            return $result;
+        }
+        $page['info']['img'] = $result['content'];
+    }
+
+    return [
+        'type' => 'success',
+        'content' => $page,
+    ];
+}
+
+function processTitle($id, $isNew){
+    if(!empty($_POST['content_'.$id.'_title'])){
+        return [
+            'type' => 'success',
+            'content' => $_POST['content_'.$id.'_title'],
+        ];
+    }else{
+        return [
+            'type' => 'error',
+            'content' => 'Veuillez remplir le titre des pages.',
+        ];
+    }
+}
+
+function processText($id, $isNew){
+    if(!empty($_POST['content_'.$id])){
+        return [
+            'type' => 'success',
+            'content' => $_POST['content_'.$id],
+        ];
+    }else{
+        return [
+            'type' => 'error',
+            'content' => 'Veuillez remplir le contenu des pages.',
+        ];
+    }
+}
+
+function processImg($id, $isNew){
+    if( $_FILES['content_'.$id.'_img']['error'] != UPLOAD_ERR_NO_FILE && !empty($_FILES['content_'.$id.'_img']) ){
+        $dir = md5($_SESSION['moduleData']['module']['title']);
+        $path = "../img/modules/".$dir."/pages";
+        $pathClean = $dir."/pages";;
+
+        if(!is_dir($path))
+        {
+            mkdir($path, 0775, true);
+        }
+
+        $content_dir =  get_template_directory()."/img/modules/".$dir."/pages/";
+        $tmp_file = $_FILES['content_'.$id.'_img']['tmp_name'];
+
+        if(!is_uploaded_file($tmp_file))
+        {
+            return [
+                'type' => 'error',
+                'content' => 'Un des fichiers est introuvable',
+            ];
+        }
+
+        $type_file = $_FILES['content_'.$id.'_img']['type'];
+
+        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
+        {
+            return [
+                'type' => 'error',
+                'content' => 'Le format d\'un des fichiers n\'est pas pris en charge.',
+            ];
+        }
+
+        $name_file = md5($tmp_file).'.'.preg_replace("#image\/#","",$type_file);
+
+        if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
+        {
+            return [
+                'type' => 'error',
+                'content' => 'Impossible de copier le fichier.',
+            ];
+        }
+
+        $img = $name_file;
+
+        return [
+            'type' => 'success',
+            'content' => $pathClean.'/'.$img,
+        ];
+    }else{
+        if(!$isNew){
+            global $wpdb;
+
+            return [
+                'type' => 'success',
+                'content' => $wpdb->get_var("SELECT img_path FROM module_slide WHERE id='".$id."'"),
+            ];
+        }
+    }
+}
+
 if(!checkAuthorized(true)){
     wp_redirect( home_url() );  exit;
 }
@@ -15,82 +134,33 @@ if(!checkAuthorized(true)){
 $nbrPage = $_POST['nbrPage'];
 $_SESSION['errorModule'] = "";
 $_SESSION['formModuleStep2'] = $_POST;
-$tmpModuleData= array();
 
 if(!empty($_SESSION['moduleData']) && $_SESSION['moduleEdit'] !== true){
     $_SESSION['moduleData']['module']['pages'] = null;
 }
 
 if($nbrPage >= 1){
-    for( $i = 1; $i <= $nbrPage; $i++) 
-    {
-        $page = array();
-        if(!empty($_POST['content_'.$i]) && !empty($_POST['content_'.$i.'_title']))
-        {
-            $page['info']['content'] =  $_POST['content_'.$i];
-            $page['info']['title'] = $_POST['content_'.$i.'_title'];
-            $page['info']['order'] =  $i;
-
-            //videos
-            $page['info']['video'] = '';
-            $page['info']['img'] = '';
-
-            if(!empty($_POST['content_'.$i.'_video']))
-            {
-                $page['info']['video'] = $_POST['content_'.$i.'_video'];
-            }else{
-                //images
-                if($_FILES['content_'.$i.'_img']['error'] != UPLOAD_ERR_NO_FILE && $_FILES['content_'.$i.'_img']['type'] !== '')
-                {
-                    $dir = md5($_SESSION['moduleData']['module']['title']);
-                    $path = "../img/modules/".$dir."/pages";
-                    $pathClean = $dir."/pages";
-                    if(!is_dir($path))
-                    {
-                        mkdir($path, 0775, true);
-                    }
-                    $content_dir =  get_template_directory()."/img/modules/".$dir."/pages/";
-                    $tmp_file = $_FILES['content_'.$i.'_img']['tmp_name'];
-
-                    if(!is_uploaded_file($tmp_file))
-                    {
-                        $error_module="Un des fichiers est introuvable";
-                    }
-
-                    $type_file = $_FILES['content_'.$i.'_img']['type'];
-
-                    if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
-                    {
-                        $error_module = "Le format d'un des fichiers n'est pas pris en charge.";
-                    }
-
-                    $name_file = md5($tmp_file).'.'.preg_replace("#image\/#","",$type_file);
-
-                    if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-                    {
-                        $error_module = "Impossible de copier le fichier $name_file dans $content_dir";
-                    }
-
-                    $img = $name_file;
-                    $page['info']['img'] = $pathClean.'/'.$img;
-                }
+    $pages = [];
+    foreach ($_POST as $key => $value) {
+        preg_match('/^content_(n)?(\d+)_title$/', $key, $matches);
+        if(count($matches) > 2){
+            $id = count($matches) === 2 ? $matches[1] : $matches[1].$matches[2];
+            $result = processPage($id, $matches[1] === 'n');
+            if($result['type'] === 'error'){
+                $_SESSION['errorModule'] = $result['content'];
             }
-
-            if( $page['info']['img'] === ''){
-                $page['info']['img'] = $_SESSION['moduleData']['pages'][$i-1]['info']['img'];
-            }
-
-            $tmpSlidesData[$i] = $page;
-            
-        }else{
-            $_SESSION['errorModule'] = "Veuillez remplir tous les champs.";
+            $page = $result['content'];
+            $page['info']['order'] = count($pages);
+            $pages[] = $page;
         }
     }
+    $_SESSION['moduleData']['pages'] = $pages;
+}else{
+    $_SESSION['errorQuiz'] = "Veuillez créer au moins 1 page.";
 }
 
 if($_SESSION['errorModule'] == "")
 {
-    $_SESSION['moduleData']['pages'] = $tmpSlidesData;
     wp_redirect( home_url().'/creationmoduleetape3' );
 }else{
     wp_redirect( home_url().'/creationmoduleetape2' );

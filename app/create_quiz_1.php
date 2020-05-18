@@ -5,8 +5,6 @@ require('class/question.class.php');
 require('class/quiz.class.php');
 require('class/quiz_score.class.php');
 
-
-
 //J'initialise la variable session
 if(!empty($_SESSION['quizData']) && $_SESSION['quizEdit'] !== true){
     unset($_SESSION['quizData']);
@@ -19,12 +17,12 @@ if(!checkAuthorized(true)){
     wp_redirect( home_url() );  exit;
 }
 
-//1st Step creation de quiz / thème + image 
+//1st Step creation de quiz / thème + image
 $error_quiz = "";
 if(!empty($_POST['title']) && !empty($_POST['theme']))
 {
     $img_path = $_SESSION['quizData']['quiz']['img'];
-    if((!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) && $_SESSION['quizData']['quiz']['img'] === "") 
+    if((!isset($_FILES['img_quiz']) || $_FILES['img_quiz']['error'] == UPLOAD_ERR_NO_FILE) && $_SESSION['quizData']['quiz']['img'] === "")
     {
         $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
     }else if($_FILES['img_quiz']['type'] !== ""){
@@ -39,7 +37,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         }
         $type_file = $_FILES['img_quiz']['type'];
 
-        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png')) 
+        if( !strpos($type_file, 'jpg') && !strpos($type_file, 'jpeg') && !strpos($type_file, 'png'))
         {
             $error_quiz = "Le format du fichier n'est pas pris en charge";
         }
@@ -48,7 +46,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         $img = $name_file;
 
         if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-        { 
+        {
             $error_quiz = "Impossible de copier le fichier $name_file dans $content_dir";
         }
         $img_path = $dir."/".$img;
@@ -57,9 +55,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     $title = htmlspecialchars($_POST['title']);
     $theme = $_POST['theme'];
 ////
-    if(!empty($_SESSION['quizData']['quiz']['id'])){
-        $wpdb->delete('module_quiz', array("id_quiz"=> $_SESSION['quizData']['quiz']['id']));
-    }
+
     if(isset($_POST['moduleId'])){
         $moduleRelated = $_POST['moduleId'];
     }else{
@@ -67,17 +63,10 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     }
  ////
 
-
-    $quiz = array (
-        'title'=> $title,
-        'theme'=> $theme,
-        'img'=> $img_path,
-        'module_id' => $moduleRelated,
-    );
-
-    $_SESSION['quizData']['quiz'] = $quiz;
-    
-    
+    $_SESSION['quizData']['quiz']['title'] = $title;
+    $_SESSION['quizData']['quiz']['theme'] = $theme;
+    $_SESSION['quizData']['quiz']['img'] = $img_path;
+    $_SESSION['quizData']['quiz']['module_id']  = $moduleRelated;
 
 }else{
     $error_quiz = "Veuillez remplir tous les champs.";

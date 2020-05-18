@@ -12,9 +12,8 @@ require('./class/tag.class.php');
 if(isset($_GET['id'])){
     global $wpdb;
     $quizId = $_GET['id'];
-    if(isset($_SESSION['quizData'])){
-        unset($_SESSION['quizData']);
-    }
+    unset($_SESSION['quizData']);
+    unset($_SESSION['formQuizStep2']);
     $_SESSION['quizEdit'] = true;
 
     $quiz = new Quiz();
@@ -30,7 +29,7 @@ if(isset($_GET['id'])){
         'moduleRelated' => $moduleRelated,
     );
 
-    $questions = $wpdb->get_results("SELECT * FROM question WHERE id_quiz='.$quizId.' ");
+    $questions = $wpdb->get_results("SELECT * FROM question WHERE id_quiz='$quizId' ");
     $_SESSION['formQuizStep2']['nbrQuestion'] = count($questions);
 
     foreach($questions as $key => $question){
@@ -39,12 +38,12 @@ if(isset($_GET['id'])){
         $qst['url'] = $question->url;
         $qst['img'] = $question->img_path;
         $qst['points'] = $question->points;
-        
+
         $_SESSION['quizData']['questions'][$key]['info'] = $qst;
 
 
         $i = $key + 1;
-        $_SESSION['formQuizStep2']['question_'.$i] = $question->content;
+        $_SESSION['formQuizStep2']['question_'.$question->id] = $question->content;
 
         $answers = $wpdb->get_results("SELECT * FROM answer WHERE id_question='.$question->id.' ");
         foreach($answers as $k => $answer){
@@ -54,16 +53,14 @@ if(isset($_GET['id'])){
             );
 
             $j = $k + 1;
-            $_SESSION['formQuizStep2']['q_'.$i.'_reponse_'.$j] = $answer->content;
-            $_SESSION['formQuizStep2']["q_".$i."_isTrue_".$j] = $answer->is_true;
+            $_SESSION['formQuizStep2']['q_'.$question->id.'_reponse_'.$j] = $answer->content;
+            $_SESSION['formQuizStep2']["q_".$question->id."_isTrue_".$j] = $answer->is_true;
         }
 
-        $_SESSION['formQuizStep2']['q_'.$i.'_video'] = $question->url;
-        
-    }
+        $_SESSION['formQuizStep2']['q_'.$question->id.'_video'] = $question->url;
 
-    print_r($_SESSION['quizData']);
-    // wp_redirect(home_url().'/creationquizetape1/');
+    }
+    wp_redirect(home_url().'/creationquizetape1/');
 }else{
     wp_redirect(home_url());
 }

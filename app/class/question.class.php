@@ -14,7 +14,7 @@ class Question {
 
     public function selectById($id){
         global $wpdb;
-        $r = $wpdb->get_row("SELECT * FROM 'question' where id=".$id."");
+        $r = $wpdb->get_row("SELECT * FROM question where id=".$id."");
         $this->id = $r->id;
         $this->id_quiz = (new Quiz())->selectById($r->id);
         $this->content = $r->content;
@@ -70,7 +70,7 @@ class Question {
 
 
     public function save(){
-        if ($this->id == null){
+        if ($this->id === null){
             global $wpdb;
             $wpdb->insert(
                 'question', array(
@@ -85,7 +85,7 @@ class Question {
                 return $wpdb->insert_id;
         }else{
             global $wpdb;
-            $wpdb->update(
+            $u = $wpdb->update(
                 'question', array(
                     "id_quiz" => $this->id_quiz,
                     "content" => stripslashes($this->content),

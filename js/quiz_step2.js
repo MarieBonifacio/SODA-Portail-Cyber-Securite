@@ -1,7 +1,6 @@
 function inputFile()
 {
   const fakeBtn = document.querySelectorAll("#fakebtn");
-    
   fakeBtn.forEach(fake => {
     fake.addEventListener("click", (e)=>{
       let id = e.target.dataset.id,
@@ -25,38 +24,9 @@ function inputFile()
   });
 }
 
-
-inputFile();
-
-var id = parseInt(document.querySelector("input[name=nbrQuestion]").value);
-var nbrQuestions = 1;
-
-let questions = document.querySelectorAll(".questionPage");
-nbrQuestions = questions.length;
-
-const plus = document.querySelector(".plus"),
-      form = document.querySelector("form"),
-      nbrQuestionsTotal = document.querySelector("input[name=nbrQuestion]"),
-      total = document.createElement("p");
-      total.classList.add("total");
-      form.appendChild(total);
-      total.innerHTML=`Total de questions: ${nbrQuestions}`;
-      nbrQuestionsTotal.value = `${nbrQuestions}`;
-
-plus.addEventListener("click", ()=>{
-  if( nbrQuestions == 25)
-  {
-    plus.disabled = true;
-  }
-  else
-  {
-    id += 1;
-    nbrQuestions += 1;
-    nbrQuestionsTotal.value = `${nbrQuestions}`;
-    total.innerHTML=`Total de questions: ${nbrQuestions}`;
-    var div = document.createElement("div");
-    div.classList.add("questionPage");
-    div.innerHTML=`
+function getQuestionHtml(id)
+{
+    return `
     <div>
     <label>Votre question:</label>
       <input type="text" name="question_${id}" value="">
@@ -147,21 +117,68 @@ plus.addEventListener("click", ()=>{
       </div>
     </div>
     <i class='trash${id} trash fas fa-trash' data-id="${id}"></i>`;
+}
+
+function addDeleteEvent()
+{
+        let trashes = document.querySelectorAll('.trash');
+        trashes.forEach(function(trash){
+            trash.removeEventListener("click", deleteBlock);
+            trash.addEventListener("click", deleteBlock);
+        });
+}
+
+function deleteBlock(event)
+{
+    let question = event.target.parentNode;
+    let id = event.target.dataset.id;
+    let nbrQuestion = document.querySelector("input[name=nbrQuestion]").value;
+    let totalText = document.querySelector('.total').innerHTML;
+
+    if(nbrQuestion > 1){
+        nbrQuestion--;
+        document.querySelector("input[name=nbrQuestion]").value = nbrQuestion;
+        document.querySelector('.total').innerHTML = totalText.replace(/\d+/gi, nbrQuestion);
+        question.remove();
+    }
+}
+
+inputFile();
+addDeleteEvent();
+
+const plus = document.querySelector(".plus"),
+      form = document.querySelector("form"),
+      total = document.createElement("p");
+
+var nextId = document.querySelectorAll(".questionPage").length + 1;
+
+total.classList.add("total");
+form.appendChild(total);
+total.innerHTML='Total de questions: ' + document.querySelector("input[name=nbrQuestion]").value;
+
+plus.addEventListener("click", ()=>{
+  if( document.querySelector("input[name=nbrQuestion]").value == 25)
+  {
+    plus.disabled = true;
+  }
+  else
+  {
+    let nbrQuestion = parseInt(document.querySelector("input[name=nbrQuestion]").value) + 1;
+    document.querySelector("input[name=nbrQuestion]").value = nbrQuestion;
+
+    let totalText = document.querySelector('.total').innerHTML;
+    total.innerHTML = totalText.replace(/\d+/gi, nbrQuestion);
+
+    var div = document.createElement("div");
+    div.classList.add("questionPage");
+    div.classList.add("new");
+    div.innerHTML= getQuestionHtml('n'+nextId);
     form.appendChild(div);
-  
-    var trash = document.querySelector(`.trash${id}`);
-    
-    trash.addEventListener("click", (e)=>{
-      if(e.target.dataset.id == nbrQuestions)
-      {
-        e.target.parentNode.remove();
-        nbrQuestions -= 1;
-        id -= 1;
-        total.innerHTML=`Total de questions: ${nbrQuestions}`;
-        nbrQuestionsTotal.value = `${nbrQuestions}`;
-      }
-    })
+
+    addDeleteEvent();
+
     inputFile();
+    nextId++;
   }
 })
 
