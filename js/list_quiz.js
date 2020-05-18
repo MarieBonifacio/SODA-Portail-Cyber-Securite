@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
     var quizs = JSON.parse(this.responseText);
     console.log(quizs);
     const list = document.querySelector(".list"),
-    content = document.querySelector(".quizs");
+    content = document.querySelector(".quizsL");
     for(i=0; i<quizs.quiz.length; i++)
     {
       list.innerHTML += `
