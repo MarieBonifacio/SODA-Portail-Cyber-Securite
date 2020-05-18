@@ -249,7 +249,7 @@ window.addEventListener('load', function () {
                     div.innerHTML =`
                       <i class="fas fa-times"></i>
                       <div class="contentRecap">
-                        <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Il n'y a pas de quizs associés à ce module, vous pouvez donc retournez au menu pour commencez un autre module ou refaire ce dernier.</p>
+                        <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Il n'y a aucun quiz associé à ce module, vous pouvez donc retourner au menu pour commencer un autre module ou refaire ce dernier.</p>
                       </div>
                     `
                   }
