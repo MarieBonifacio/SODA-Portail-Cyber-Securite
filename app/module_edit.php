@@ -42,12 +42,8 @@ if(isset($_GET['id'])){
         $_SESSION['moduleData']['pages'][] = $page;
     }
 
-    echo '<pre>';
-    print_r($_SESSION['moduleData']);
-    print_r($_SESSION['formModuleStep2']);
-    echo '</pre>';
 
-    // wp_redirect(home_url().'/creationmoduleetape1/');
+    wp_redirect(home_url().'/creationmoduleetape1/');
 }else{
     wp_redirect(home_url());
 }

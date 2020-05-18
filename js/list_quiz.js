@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
   var urlListe = myScriptDir.theme_directory;
-  var home_url = myScriptDir.home_url;
+  var home_url = myScript.theme_directory;
   var xmlhttpListe = new XMLHttpRequest();
   xmlhttpListe.onreadystatechange = function () {
   if(this.readyState == 4 && this.status == 200)
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
         </td>
         <td>
           <p data-id="${quizs.quiz[i].id}" class="delete">Supprimer</p>
-          <a href="${home_url}/" target="_blank" class="modify">Modifier</a>
+          <a href="${home_url}/app/quiz_edit.php?id=${quizs.quiz[i].id}" target="_blank" class="modify">Modifier</a>
         </td>
       </tr>
       `
