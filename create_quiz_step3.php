@@ -3,7 +3,6 @@ $_SESSION['needAdmin'] = true;
 get_header();
 ?>
 <h2 class="h2"><?php echo $_SESSION['quizData']['quiz']['title']; ?></h2>
-<!-- <?php echo '<pre>';print_r($_SESSION);echo '</pre>';?> -->
 <div class="step3">
 
   <img class="img" src="<?php echo get_template_directory_uri(); ?>/img/quizs/<?php echo $_SESSION['quizData']['quiz']['img']?>" alt="votre image">
@@ -27,7 +26,7 @@ get_header();
         echo '
           <div class="questions">
           ';
-          if($q['info']['img'] !== "")
+          if(!empty($q['info']['img']))
           {
             echo '
             <div class="medias">
@@ -35,7 +34,7 @@ get_header();
             </div>
             ';
           }
-          elseif ($q['info']['video']  !== "") {
+          elseif (!empty($q['info']['video'])) {
             $regex = "ton regex";
             preg_match("/^.*v=(.*)$/", $q['info']['video'], $keywords);
             if(isset($keywords)){

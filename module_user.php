@@ -9,7 +9,6 @@ if(!checkAuthorized(false, true)){
 
 $str_json = file_get_contents('php://input'); //($_POST doesn't work here)
 $response = json_decode($str_json, true); // decoding received JSON to array
-print_r($response);
 $wpdb->insert(
     'module_progress',
     array(

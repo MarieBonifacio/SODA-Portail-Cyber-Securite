@@ -22,9 +22,7 @@ if(!empty($_POST['mail']) && !empty($_POST['mdp'])){
         );
      
         $user = wp_signon( $creds, false );
-        echo "<h1>";
-        print_r($user);
-        echo "</h1>";
+        
         setcookie('user', json_encode([
             "userConnected" => $r->ID,
         ]), time() + 3600 * 24 * 30);

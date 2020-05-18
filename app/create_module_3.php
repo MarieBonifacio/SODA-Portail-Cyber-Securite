@@ -54,7 +54,7 @@ foreach($_SESSION['moduleData']['pages'] as $m)
     $newSlide->setTitle($m['info']['title']);
     $newSlide->setOrder($m['info']['order']);
     $newSlide->setImgPath($m['info']['img']);
-    $newSlide->setUrl($m['info']['video']);
+    $newSlide->setUrl($m['info']['url']);
     $newSlide->save();
     if($m['info']['id'] !== 0){
         $newSlideId = $newSlide->getId();
@@ -70,9 +70,6 @@ foreach ($prevSlidesList as $p) {
     global $wpdb;
     $wpdb->delete('module_slide', array('id'=>$p));
 }
-echo '<pre>';
-print_r($_SESSION['moduleData']);
-echo '</pre>';
 
 unset($_SESSION['moduleData']);
 unset($_SESSION['formModuleStep2']);

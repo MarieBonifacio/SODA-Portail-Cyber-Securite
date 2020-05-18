@@ -225,17 +225,19 @@ window.addEventListener('load', function () {
                       );
                     }
                     // add this question and its answers to the output
-                    if(currentQuestion.img_path === "")
+                    console.log('P :'+currentQuestion.img_path);
+                    
+                    if(currentQuestion.img_path === null)
                     {
                       console.log(currentQuestion.url)
-                      if(currentQuestion.url === "")
+                      if(currentQuestion.url === null)
                       {
-                      output.push(
-                        `<div class="slide">
-                          <div class="question">${numQuestion}. ${currentQuestion.content} </div>
-                          <div class="answers">${answers.join('')}</div>
-                        </div>`
-                      );
+                        output.push(
+                          `<div class="slide">
+                            <div class="question">${numQuestion}. ${currentQuestion.content} </div>
+                            <div class="answers">${answers.join('')}</div>
+                          </div>`
+                        );
                       }else{
                         if( currentQuestion.url.match(/^.*(youtube).*/) == null ){
                           output.push(
