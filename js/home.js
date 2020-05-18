@@ -430,7 +430,7 @@ window.addEventListener('load', function () {
     elementQuiz.innerHTML = `
       <a href="http://localhost/wordpress/menu-quiz/">
       <div class="filter"></div>
-      <img src="${ url + `/img/quizs/${lastQuiz.name}/${lastQuiz.img}`}" alt="photo du quiz"/>
+      <img src="${ url + `/img/quizs/${lastQuiz.img}`}" alt="photo du quiz"/>
       <h2>${lastQuiz.name}</h2>
       <p>${lastQuiz.tag_name}</p>
       </a>
