@@ -4023,6 +4023,27 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    .wp-heading-inline
+    {
+      color: $police;
+    }
+    .subsubsub
+    {
+      li
+      {
+        a
+        {
+          span
+          {
+            color: $police;
+          }
+        }
+      }
+    }
+    .tablenav-pages
+    {
+      color: $police;
+    }
     section
     {
       width: 90%;
