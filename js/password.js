@@ -1,10 +1,13 @@
 window.addEventListener("load", ()=>{
   const input = document.querySelector("#window"),
+  btn = document.querySelector(".myButton"),
   star1 = document.querySelector("#star_1"),
   star2 = document.querySelector("#star_2"),
   star3 = document.querySelector("#star_3"),
   star4 = document.querySelector("#star_4"),
   star5 = document.querySelector("#star_5");
+
+  btn.disabled = true;
 
   console.log(input);
   input.addEventListener("input", ()=>{
@@ -42,6 +45,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "white";
         star4.style.fill = "white";
         star5.style.fill = "white";
+        btn.disabled = true;
         break;
       case 1:
         star1.style.fill = "red";
@@ -49,6 +53,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "white";
         star4.style.fill = "white";
         star5.style.fill = "white";
+        btn.disabled = true;
         break;
   
       case 2:
@@ -57,6 +62,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "white";
         star4.style.fill = "white";
         star5.style.fill = "white";
+        btn.disabled = true;
         break;
   
       case 3:
@@ -65,6 +71,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "#EBB94A";
         star4.style.fill = "white";
         star5.style.fill = "white";
+        btn.disabled = true;
         break;
   
       case 4:
@@ -73,6 +80,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "#2CB751";
         star4.style.fill = "#2CB751";
         star5.style.fill = "white";
+        btn.disabled = true;
         break;
   
       case 5:
@@ -81,6 +89,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "#3AD29F";
         star4.style.fill = "#3AD29F";
         star5.style.fill = "#3AD29F";
+        btn.disabled = false;
         break;
     }
   })
