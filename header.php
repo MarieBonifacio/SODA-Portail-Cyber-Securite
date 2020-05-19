@@ -172,5 +172,12 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 			<!-- <i class="fas fa-question"></i> -->
 		</nav>
 
+		<div class="loader">
+			<div class="bubble">
+				<p>Soda<span>CyberDéfense</span></p>
+        <div class="wave1"></div>
+        <div class="wave2"></div>
+      </div>
+		</div>
 		<section class="content">
 		

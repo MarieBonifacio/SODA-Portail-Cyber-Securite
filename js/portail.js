@@ -1,7 +1,26 @@
 window.addEventListener("resize", ()=>{
     window.location.reload();
 })
-window.addEventListener('load', function () {
+window.addEventListener('load', function (e) {
+
+    const delai = (e.timeStamp/1000);
+    console.log(delai);
+    const wave1 = document.querySelector(".wave1");
+    const wave2 = document.querySelector(".wave2");
+    let percentage = 30;
+    wave1.style.transition = delai + "s";
+    wave2.style.transition = delai + "s";
+    wave1.style.bottom = percentage + "%";
+    wave2.style.bottom = percentage + "%";
+    const loader = document.querySelector(".loader");
+
+    loader.addEventListener("transitionend", ()=>{
+        loader.classList.add("loaderFinished");
+        setTimeout(() => {
+        loader.remove();
+        }, 300);
+    })
+
     var urlNotif = myScriptDir.theme_directory;
     var xmlhttpNotif = new XMLHttpRequest();
     xmlhttpNotif.onreadystatechange = function () {
