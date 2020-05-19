@@ -1,4 +1,6 @@
-console.log(1);
+window.addEventListener("resize", ()=>{
+    window.location.reload();
+})
 window.addEventListener('load', function () {
     var urlNotif = myScriptDir.theme_directory;
     var xmlhttpNotif = new XMLHttpRequest();
@@ -149,7 +151,7 @@ window.addEventListener('load', function () {
         const sideNav = document.querySelector(".side");
         const contenu = document.querySelector(".content");
         
-        if(window.innerWidth>1300)
+        if(window.innerWidth>1100)
         {
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))
@@ -182,6 +184,8 @@ window.addEventListener('load', function () {
         }
         else
         {   
+            arrow.classList.remove("fa-arrow-left");
+            arrow.classList.add("fa-arrow-right");
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))
                 {     

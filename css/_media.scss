@@ -34,7 +34,7 @@
     }
     .side
     {
-      left: 0%;
+      left: -60%;
       width: 60%;
     }
     .content
@@ -544,13 +544,13 @@
   }
 }
 
-@media (min-width: 760px) and (max-width: 1300px)
+@media (min-width: 760px) and (max-width: 1100px)
 {
   body
   {
     .side
     {
-      left: 0;
+      left: -30%;
       width: 30%;
     }
     .modulePlay
