@@ -216,7 +216,7 @@ window.addEventListener('load', function () {
                   if(myModule.quizs != null)
                   {
                     div.innerHTML =`
-                      <i class="fas fa-times"></i>
+                      <i class="fas fa-times endRecap"></i>
                       <div class="contentRecap">
                         <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Vous pouvez désormais suivre un autre module ou faire le(s) quiz(s) associé(s) à ce dernier :</p>
                         <ul class="listQuizMod">
@@ -243,13 +243,13 @@ window.addEventListener('load', function () {
                   else
                   {
                     div.innerHTML =`
-                      <i class="fas fa-times"></i>
+                      <i class="fas fa-times endRecap"></i>
                       <div class="contentRecap">
                         <p>Bravo, vous venez de terminer le module "${myModule.title}" </br> Il n'y a aucun quiz associé à ce module, vous pouvez donc retourner au menu pour commencer un autre module ou refaire ce dernier.</p>
                       </div>
                     `
                   }
-                  const cross = document.querySelector(".fa-times");
+                  const cross = document.querySelector(".endRecap");
 
                   cross.addEventListener("click", ()=>{
                     window.location.reload();
@@ -324,6 +324,14 @@ window.addEventListener('load', function () {
             previousButton.addEventListener("click", showPreviousSlide);
 
             submitButton.addEventListener('click', endModule);
+
+            moduleContainer.innerHTML += '<i class="fas fa-times endModule"></i>';
+
+            const crossEnd = document.querySelector(".endModule");
+
+            crossEnd.addEventListener("click", ()=>{
+              window.location.reload();
+            })
           }
         };
 
