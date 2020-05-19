@@ -106,7 +106,8 @@ function html5blank_header_scripts()
 
         wp_enqueue_script('portail', get_template_directory_uri() . '/js/portail.js', null, true);
         wp_localize_script('portail', 'myScriptDir', array(
-            'theme_directory' => get_template_directory_uri() 
+            'theme_directory' => get_template_directory_uri() ,
+            'home_url' => home_url()
         ));
     }
 }

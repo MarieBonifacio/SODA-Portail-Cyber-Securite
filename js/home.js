@@ -441,7 +441,7 @@ window.addEventListener('load', function () {
     const elementQuiz = document.createElement("div");
     elementQuiz.classList.add("contentQ");
     elementQuiz.innerHTML = `
-      <a href="http://localhost/wordpress/menu-quiz/">
+      <a href="${myScriptDir.home_url}/menu-quiz/">
       <div class="filter"></div>
       <img src="${ url + `/img/quizs/${lastQuiz.img}`}" alt="photo du quiz"/>
       <h2>${lastQuiz.name}</h2>
