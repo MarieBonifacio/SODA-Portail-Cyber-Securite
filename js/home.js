@@ -1,4 +1,17 @@
 window.addEventListener('load', function () {
+  var admin = myScript.admin;
+  var editor = myScript.editor;
+  const bp = document.querySelector(".bpas-post-form-wrapper");
+
+  if(admin || editor)
+  {
+    bp.style.display = "block";
+  }
+  else
+  {
+    bp.style.display = "none";
+  }
+  
   var url = myScript.theme_directory;
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {

@@ -96,6 +96,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 					<ul class=" menuDown dropMenu" id="articles">
 						<li>
 							<a target="_blank" href="<?php echo home_url()."/ajouter-un-nouvel-article"?>">Ajoutez un article</a>
+							<a target="_blank" href="<?php echo home_url()."/liste-articles"?>">Liste des articles</a>
 						</li>
 					</ul>	
 				<?php } else { ?>
