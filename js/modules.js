@@ -6,7 +6,6 @@ window.addEventListener('load', function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
-    console.log(myArray);
     const grid = document.querySelector(".grid");
     for (let i = 0; i < myArray.length; i++) {
       
@@ -68,7 +67,6 @@ window.addEventListener('load', function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myModule = JSON.parse(this.responseText);
-            console.log(myModule);
             var previous = myModule.previous;
             const divModule = document.createElement("div");
             divModule.classList.add("modulePlay");
@@ -89,7 +87,6 @@ window.addEventListener('load', function () {
             let currentSlide = 0,
             myPages = myModule.slides,
             actualpercent = 0;
-            console.log(myPages)
             const moduleContainer = document.getElementById('module'),
             submitButton = document.getElementById('submit'),
             progress = document.querySelector('.progressDone'),
@@ -207,7 +204,6 @@ window.addEventListener('load', function () {
               var obj = { 
                 "module_id" : myModule.id,
               };
-              console.log(obj);
 
               dbParam = JSON.stringify(obj);
               xmlhttp = new XMLHttpRequest();
@@ -296,9 +292,6 @@ window.addEventListener('load', function () {
               var id_page,
               
               id_page = myPages[currentSlide].id;
-
-              console.log(id_page);
-              console.log(myModule.id);
 
               var obj = { 
                 "slide_id": id_page,

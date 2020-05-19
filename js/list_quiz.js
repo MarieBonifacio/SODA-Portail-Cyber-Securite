@@ -6,7 +6,6 @@ window.addEventListener('load', function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var quizs = JSON.parse(this.responseText);
-    console.log(quizs);
     const list = document.querySelector(".list"),
     content = document.querySelector(".quizsL");
     for(i=0; i<quizs.quiz.length; i++)
@@ -27,7 +26,6 @@ window.addEventListener('load', function () {
       `
     }
     const btns = document.querySelectorAll(".delete");
-    console.log(btns);
     btns.forEach(btn => {
       btn.addEventListener("click", (e)=>{
         let id =e.target.dataset.id;
@@ -46,18 +44,15 @@ window.addEventListener('load', function () {
         const yes = document.querySelector("#yes"),
         no = document.querySelector("#no");
         yes.addEventListener("click" , ()=>{
-          console.log(id);
           var urlQuiz = urlListe + '/deleteQuiz.php/?idQuiz=' + id;
           var xmlhttp = new XMLHttpRequest();
           xmlhttp.onreadystatechange = function () {
             if(this.readyState == 4 && this.status == 200)
             {
-              console.log("ok");
               window.location.reload();
             }
             else
             {
-              console.log("pas ok")
             }
           }
           xmlhttp.open("GET", urlQuiz , true);
@@ -71,7 +66,6 @@ window.addEventListener('load', function () {
   }
   else
   {
-    console.log('pas ok')
   }
   };
 

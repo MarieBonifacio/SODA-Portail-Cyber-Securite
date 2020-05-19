@@ -36,7 +36,6 @@ window.addEventListener('load', function () {
     leaderboard = document.querySelector(".leaderboard");
     let tableContent,
     isPresent = false;
-    console.log(myArray);
     // condition for user whithout any user stats
     if(userResults.length != 0)
     {
@@ -456,7 +455,6 @@ window.addEventListener('load', function () {
     if(userResults.length > 10)
     {
       lastResults = userResults.slice(Math.max(userResults.length - 10, 1));
-      console.log(lastResults);
     }
     else
     {
@@ -467,7 +465,6 @@ window.addEventListener('load', function () {
       labels.push(lastResults[i].name);
       points.push(parseInt(lastResults[i].score));
     }
-    console.log(points);
 
 
     var ctx = document.getElementById('myChart');
@@ -524,7 +521,6 @@ window.addEventListener('load', function () {
   }
   else
   {
-    console.log('pas ok')
   }
   };
 

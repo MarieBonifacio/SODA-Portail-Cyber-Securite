@@ -9,7 +9,6 @@ window.addEventListener('load', function () {
     genUser = myArray.classementUser,
     genUserBoard = genUser.classement,
     userId = myArray.top30User.userStat.user_id;
-    console.log(myArray);
     const leadBoard = document.querySelector(".leadboard"),
     genUserBtn = document.querySelector(".gen"),
     genTownBtn = document.querySelector(".town");
@@ -529,7 +528,6 @@ window.addEventListener('load', function () {
   }
   else
   {
-    console.log('pas ok')
   }
   };
 

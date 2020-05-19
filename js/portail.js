@@ -4,7 +4,6 @@ window.addEventListener("resize", ()=>{
 window.addEventListener('load', function (e) {
 
     const delai = (e.timeStamp/1000);
-    console.log(delai);
     const wave1 = document.querySelector(".wave1");
     const wave2 = document.querySelector(".wave2");
     let percentage = 30;
@@ -51,7 +50,6 @@ window.addEventListener('load', function (e) {
                     }
                     else
                     {
-                        // console.log("pas ok")
                     }
                 };
 
@@ -238,7 +236,6 @@ window.addEventListener('load', function (e) {
     }
     else
     {
-        // console.log('pas ok')
     }
     };
 

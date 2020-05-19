@@ -6,7 +6,6 @@ window.addEventListener('load', function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
-    console.log(myArray);
     const grid = document.querySelector(".grid");
     for(i = 0; i<myArray.quiz.length; i ++)
     {
@@ -52,7 +51,6 @@ window.addEventListener('load', function () {
       {
         const moduleRelated = myArray.quiz[i].moduleRelated;
         const span = document.querySelector(`#mod${myArray.quiz[i].id}`);
-        console.log(span);
         if(moduleRelated.length == 1)
         {
           for (let f = 0; f < moduleRelated.length; f++) {   
@@ -225,11 +223,9 @@ window.addEventListener('load', function () {
                       );
                     }
                     // add this question and its answers to the output
-                    console.log('P :'+currentQuestion.img_path);
                     
                     if(currentQuestion.img_path === null)
                     {
-                      console.log(currentQuestion.url)
                       if(currentQuestion.url === null)
                       {
                         output.push(
@@ -590,7 +586,6 @@ window.addEventListener('load', function () {
   }
   else
   {
-    console.log('pas ok')
   }
   };
 

@@ -16,8 +16,6 @@ window.addEventListener('load', function () {
       borderColorModule= [],
       backgroundColorQuiz= [],
       backgroundColorModule= [];
-      console.log(quizs);
-      console.log(modules);
 
       for (let i = 0; i < quizs.length; i++) {
         labelsQuiz.push(quizs[i].titre);
@@ -30,7 +28,6 @@ window.addEventListener('load', function () {
         backgroundColorQuiz.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.5)`);
         borderColorQuiz.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
       }
-      console.log(labelsQuiz, pourcentagesQuiz, backgroundColorQuiz);
       for (let f = 0; f < modules.length; f++) {
         labelsModule.push(modules[f].titre);
         pourcentagesModule.push(modules[f].pourcentage);
@@ -42,7 +39,6 @@ window.addEventListener('load', function () {
         backgroundColorModule.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.7)`);
         borderColorModule.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
       }
-      console.log(labelsModule, pourcentagesModule);
       const quizBar = document.querySelector(".quizStatsBar"),
       moduleBar = document.querySelector(".moduleStatsBar"),
       moduleRadar = document.querySelector(".moduleStatsRadar"),
@@ -156,7 +152,6 @@ window.addEventListener('load', function () {
             yPadding: 10
           },
         }
-        console.log(type);
       })
 
       moduleBtn.addEventListener("click", ()=>{
@@ -256,7 +251,6 @@ window.addEventListener('load', function () {
             data: data,
             options: options
           });
-          console.log();
         }
       })
       quizBtn.addEventListener("click", ()=>{
@@ -364,12 +358,10 @@ window.addEventListener('load', function () {
       info.addEventListener("click", ()=>{
         if(!infos.classList.contains("infoActivated"))
         {
-          console.log("ok");
           infos.classList.add("infoActivated");
         }
         else
         {
-          console.log("pas ok");
           infos.classList.remove("infoActivated");
         }
       })

@@ -9,14 +9,11 @@ window.addEventListener("load", ()=>{
 
   btn.disabled = true;
 
-  console.log(input);
   input.addEventListener("input", ()=>{
     let valueInput = input.value,
     initials = valueInput.replace(/(\B[a-zA-Z]\s*)|\s*/gi, ""),
     password = initials;
 
-    console.log(password);
-    
     var strength = 0;
     if (password.length>12){
       strength += 1;
@@ -37,7 +34,7 @@ window.addEventListener("load", ()=>{
     {
       strength = 0;
     }
-    console.log(strength);
+
     switch (strength) {
       case 0:
         star1.style.fill = "white";
