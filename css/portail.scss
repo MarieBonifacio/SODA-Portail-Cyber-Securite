@@ -2891,6 +2891,14 @@ body
         {
           background: $police;
         }
+        button:disabled
+        {
+          background: rgba(226, 179, 74, 0.3);
+        }
+        button:disabled:hover
+        {
+          background: rgba(226, 179, 74, 0.3);
+        }
       }
       .error
       {
