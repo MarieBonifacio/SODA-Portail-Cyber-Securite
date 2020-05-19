@@ -362,6 +362,8 @@ window.addEventListener('load', function () {
           }
         }
       }
+      spanAbove.innerHTML = `score > 50 : ${isAbove}`;
+      spanUnder.innerHTML = `score < 50 : ${isUnder}`;
     })
 
     genTownBtn.addEventListener("click", ()=>{
@@ -508,6 +510,8 @@ window.addEventListener('load', function () {
           }
         }
       }
+      spanAbove.innerHTML = `score > 50 : ${isAbove}`;
+      spanUnder.innerHTML = `score < 50 : ${isUnder}`;
     })
 
     spanAbove.innerHTML = `score > 50 : ${isAbove}`;
