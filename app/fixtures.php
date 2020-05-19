@@ -39,17 +39,39 @@ function clean(){
     $wpdb->query($wpdb->prepare( "DELETE FROM wp_users"));
     $wpdb->query($wpdb->prepare( "DELETE FROM wp_usermeta"));
 
+    $wpdb->query($wpdb->prepare( "DELETE FROM wp_posts"));
+    $wpdb->query($wpdb->prepare( "DELETE FROM wp_postmeta"));
+
+    $wpdb->query($wpdb->prepare( "DELETE FROM wp_bp_activity"));
+    $wpdb->query($wpdb->prepare( "DELETE FROM wp_bp_activity_meta"));
+
     delTree('../img/quizs');
     delTree('../img/modules');
+    delTree('../../../uploads/avatars');
 }
 
-function createUsers(){
+function createAdmin($num){
+    for ($i=0; $i < $num; $i++) { 
+        $userdata = array(
+            'first_name' =>   'admin'.$i.'',
+            'last_name' =>   'soda',
+            'user_login' =>   'admin'.$i.'@soda.com',
+            'user_email' =>   'admin'.$i.'@soda.com',
+            'user_pass' =>   'test.TEST.123',
+        );
+        add_user_meta($userId, 'location','Calais');
+        add_user_meta($userId, 'id_alc', '00000'.$i);
+        add_user_meta($userId, 'avatar', "default.jpg");
+        add_user_meta($userId, 'notification', date("Y-m-d H:i:s"));
+        update_user_meta( $userId, 'wp_capabilities', ["administrator" =>true] );
+        update_user_meta( $userId, 'wp_user_level', '10' );
+    }
+
+}
+
+function createUsers($num = 1){
     $users = array();
-    // add_user_meta(1, 'location', 'Calais');
-    // add_user_meta(1, 'id_alc', '111111');
-    // add_user_meta(1, 'avatar', "default.jpg");
-    // add_user_meta(1, 'notification', date("Y-m-d H:i:s"));
-    for($i = 0; $i < 20; $i++){
+    for($i = 0; $i < $num; $i++){
         $userdata = array(
             'first_name' =>   'firstname_'.$i,
             'last_name' =>   'lastname_'.$i,
@@ -67,11 +89,6 @@ function createUsers(){
         add_user_meta($userId, 'id_alc', '12345'.$i);
         add_user_meta($userId, 'avatar', "default.jpg");
         add_user_meta($userId, 'notification', date("Y-m-d H:i:s"));
-        if($i == 0){
-            $v = ["administrator" =>true];
-            update_user_meta( $userId, 'wp_capabilities', $v );
-            update_user_meta( $userId, 'wp_user_level', '10' );
-        }
     }
     return $users;
 }
@@ -287,17 +304,19 @@ function createModuleProgress($users, $modules, $slides){
 
 clean();
 
-$users = createUsers();
-$tags = createTags();
+createAdmin(3);
 
-$quizs = createQuizs($users, $tags);
-$questions = createQuestions($quizs);
-$answers = createAnswers($questions);
-createScore($users, $quizs);
-createQuizsProgress($quizs, $users);
+//$users = createUsers();
+//$tags = createTags();
 
-$modules = createModules($users, $tags);
-$slides = createSlides($modules);
-createModuleFinish($users, $modules);
-createModuleProgress($users, $modules, $slides);
+//$quizs = createQuizs($users, $tags);
+//$questions = createQuestions($quizs);
+//$answers = createAnswers($questions);
+//createScore($users, $quizs);
+//createQuizsProgress($quizs, $users);
+
+//$modules = createModules($users, $tags);
+//$slides = createSlides($modules);
+//createModuleFinish($users, $modules);
+//createModuleProgress($users, $modules, $slides);
 ?>
