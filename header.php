@@ -134,19 +134,19 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 			</div>
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 				<div id="link"  class="quiz">
-					<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
+					<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
 					<i class="drop fas fa-sort-down" data-id="quizs"></i>
 						<ul class=" menuDown dropMenu" id="quizs">
 							<li>
 								<a href="<?php echo home_url()."/creationquizetape1"?>">Créez votre quiz</a>
 							</li>
 							<li>
-								<a href="<?php echo home_url()."/liste-quizs"?>">Liste des quizs</a>
+								<a href="<?php echo home_url()."/liste-quizs"?>">Liste des quiz</a>
 							</li>
 						</ul>	
 				<?php }  else {?>
 					<div id="link"  class="quiz left">
-						<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quizs</p></a>
+						<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
 				<?php } ?>
 			</div>
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
