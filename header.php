@@ -97,9 +97,9 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						<li>
 							<a target="_blank" href="<?php echo home_url()."/ajouter-un-nouvel-article"?>">Ajoutez un article</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a target="_blank" href="<?php echo home_url()."/liste-articles"?>">Liste des articles</a>
-						</li>
+						</li> -->
 					</ul>	
 				<?php } else { ?>
 					<div id="link" class="articles left">
