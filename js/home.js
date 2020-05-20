@@ -491,6 +491,7 @@ window.addEventListener('load', function () {
         },
         scales: {
           xAxes: [{
+            display: false,
             gridLines: {
               color: 'rgba(0,0,0,0)',
             }
