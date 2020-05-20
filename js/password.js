@@ -68,7 +68,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "#EBB94A";
         star4.style.fill = "white";
         star5.style.fill = "white";
-        btn.disabled = true;
+        btn.disabled = false;
         break;
   
       case 4:
@@ -77,7 +77,7 @@ window.addEventListener("load", ()=>{
         star3.style.fill = "#2CB751";
         star4.style.fill = "#2CB751";
         star5.style.fill = "white";
-        btn.disabled = true;
+        btn.disabled = false;
         break;
   
       case 5:
