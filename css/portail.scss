@@ -1144,7 +1144,7 @@ body
               width: 100%;
               height: 100%;
               margin: 0;
-              color: $police;
+              color: $color-imp;
               border-radius: 5px;
               overflow: hidden;
               @include flex(center, center, column);
@@ -1173,7 +1173,7 @@ body
               p
               {
                 font-weight: 600;
-                color: $color-imp;
+                color: $police;
                 bottom: 0;
               }
               h2
