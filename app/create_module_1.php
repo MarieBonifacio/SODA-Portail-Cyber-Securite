@@ -28,7 +28,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
 
     }else if($_FILES['img_module']['type'] !== ''){
         $dir = md5($_POST['title']);
-        mkdir("../img/modules/".$dir, 0700, true);
+        mkdir("../img/modules/".$dir, 0755, true);
         $content_dir =  get_template_directory()."/img/modules/".$dir."/";
         $tmp_file = $_FILES['img_module']['tmp_name'];
 

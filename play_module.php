@@ -30,7 +30,7 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
             "id" => $p->id,
             "title" => $p->title,
             "module_id" => $p->module_id,
-            "content" => $p->content,
+            "content" => nl2br($p->content),
             "img_path" => $p->img_path,
             "video" => $p->url,
             "order" => $p->order,

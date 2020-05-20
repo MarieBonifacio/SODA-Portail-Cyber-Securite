@@ -37,7 +37,7 @@ get_header();
             <span class="numP">'.$num.'</span>
             <div class="content">
               <h2>'.$q['info']['title'].'</h2>
-              <p>'.$q['info']['content'].'</p>
+              <p>'.nl2br($q['info']['content']).'</p>
             </div>
             ';
           }

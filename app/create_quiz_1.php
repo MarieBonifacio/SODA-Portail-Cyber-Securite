@@ -27,7 +27,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
         $error_quiz = "Veuillez selectionner une image en format jpg ou png.";
     }else if($_FILES['img_quiz']['type'] !== ""){
         $dir = md5($_POST['title']);
-        mkdir("../img/quizs/".$dir, 0700, true);
+        mkdir("../img/quizs/".$dir, 0755, true);
         $content_dir =  get_template_directory()."/img/quizs/".$dir."/";
         $tmp_file = $_FILES['img_quiz']['tmp_name'];
 

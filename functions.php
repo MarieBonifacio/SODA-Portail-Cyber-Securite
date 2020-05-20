@@ -566,6 +566,7 @@ function monprefixe_session_start() {
 }
 
 add_action( 'bp_get_activity_user_link', 'bp_get_activity_user_link_override' );
+add_action('bp_activity_comment_user_link', 'bp_get_activity_user_link_override');
 
 function bp_get_activity_user_link_override( $link){
     //return $link;
@@ -581,6 +582,7 @@ function bp_get_activity_user_link_override( $link){
     // on génère et on remplace le lien vers son profil
     return home_url().'/profil/?u='.$userId;
 }
+
 function checkAuthorized($needAdmin = false, $needLog = true){
     if($needLog){
         if(get_current_user_id() == 0){
@@ -604,5 +606,18 @@ function cleanSession(){
     unset($_SESSION['quizData']);
     unset($_SESSION['formQuizStep2']);
     $_SESSION['quizEdit'] = false;
+}
+
+add_action('admin_init', 'redirect_non_admin_users' );
+/**
+* Redirect non-admin users to home page
+*
+* This function is attached to the ‘admin_init’ action hook.
+*/
+function redirect_non_admin_users() {
+	if ( ! current_user_can( 'activate_plugins') && ('/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF']) ) {
+		wp_redirect( home_url() );
+	exit;
+	}
 }
 ?>

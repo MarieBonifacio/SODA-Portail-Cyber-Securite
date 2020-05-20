@@ -36,12 +36,12 @@ if(!empty($_POST['first_mail']) && !empty($_POST['first_name']) && !empty($_POST
 
         if(!is_dir($content_dir))
         {
-            mkdir($content_dir, 0700, true);
+            mkdir($content_dir, 0755, true);
         }
 
         if(!is_dir($content_dir_plug))
         {
-            mkdir($content_dir_plug, 0700, true);
+            mkdir($content_dir_plug, 0755, true);
         }
 
         if(!is_uploaded_file($tmp_file))

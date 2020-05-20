@@ -99,7 +99,7 @@ class ModuleSlide {
                     "title" => stripslashes($this->title),
                     "img_path" => $this->img_path,
                     "url" => $this->url,
-                    "content" => stripslashes($this->content),
+                    "content" => (stripslashes($this->content)),
                     "order" => $this->order,
                 ),
                 array(

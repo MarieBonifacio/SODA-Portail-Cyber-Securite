@@ -1,7 +1,53 @@
+
+
 window.addEventListener("resize", ()=>{
     window.location.reload();
 })
 window.addEventListener('load', function (e) {
+    function avatarCircle(){
+        $("body .content .home .dashboard .actu #buddypress img").css("border-radius","0");
+        $("img[src*='avatar']").each(function(){
+            $(this).css('min-witdh','auto');
+            $(this).css('min-height','auto');
+            $(this).css('witdh','auto');
+            $(this).css('height','auto');
+            $(this).addClass('avatarCircle');
+            let imgWidth = $(this).width();
+            let imgHeight = $(this).height();
+
+            console.log(imgWidth+"x"+imgHeight);
+            if(imgWidth <= imgHeight){
+                $(this).parent().addClass('portrait');
+                $(this).width("100%");
+                $(this).height("auto");
+            }else{
+                $(this).parent().addClass('landscape');
+                $(this).width("auto");
+                $(this).height("100%");
+            }
+            $(this).parent().css("width", "30px");
+            $(this).parent().css("height", "30px");
+            $(this).parent().css("border-radius", "50%");
+            $(this).parent().css("overflow", "hidden");
+
+            if($(this).closest('form#profil').length){
+                $(this).parent().css("width", "150px");
+                $(this).parent().css("height", "150px");
+            }else if($(this).siblings('.dropMenuProfile').length){
+                $(this).parent().css("width", "45px");
+                $(this).parent().css("height", "45px");
+
+            }else if($(this).closest('div').length){
+                $(this).closest('div').css("border-radius", "50%");
+                $(this).closest('div').css("overflow", "hidden");
+                $(this).closest('div').css("width", "40px");
+                $(this).closest('div').css("height", "40px");
+            }
+        });
+        $(".avatarCirle").each(function(){
+        });
+    }
+    avatarCircle();
 
     const delai = (e.timeStamp/1000);
     const wave1 = document.querySelector(".wave1");
