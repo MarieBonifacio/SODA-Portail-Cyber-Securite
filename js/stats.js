@@ -133,7 +133,6 @@ window.addEventListener('load', function () {
             xAxes: [{
               gridLines: {
                 color: 'rgba(0,0,0,0)',
-                beginAtZero: true 
               }
             }],
             yAxes: [{
