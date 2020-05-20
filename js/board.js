@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
       `
       if(parseInt(genUserBoard[i].user_id) == parseInt(userId))
       {   
-        if(genUserBoard[i].moyenne<50)
+        if(parseInt(genUserBoard[i].moyenne)<50)
         {
           isUnder += 1;
           tbody.innerHTML += `
@@ -45,7 +45,7 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="red">${genUserBoard[i].moyenne}</td>
+            <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
           `
         }
@@ -59,14 +59,14 @@ window.addEventListener('load', function () {
           <td>${genUserBoard[i].meta_value}</td>
           <td>${genUserBoard[i].count}</td>
           <td>${genUserBoard[i].time}</td>
-          <td class="green">${genUserBoard[i].moyenne}</td>
+          <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
           </tr>
           `
         }
       }
       else if(pos == 1)
       {   
-        if(genUserBoard[i].moyenne<50)
+        if(parseInt(genUserBoard[i].moyenne)<50)
         {
           isUnder += 1;
           tbody.innerHTML += `
@@ -76,7 +76,7 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="red">${genUserBoard[i].moyenne}</td>
+            <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
           `
         }
@@ -90,14 +90,14 @@ window.addEventListener('load', function () {
           <td>${genUserBoard[i].meta_value}</td>
           <td>${genUserBoard[i].count}</td>
           <td>${genUserBoard[i].time}</td>
-          <td class="green">${genUserBoard[i].moyenne}</td>
+          <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
           </tr>
           `
         }
       }
       else if(pos == 2)
       {   
-        if(genUserBoard[i].moyenne<50)
+        if(parseInt(genUserBoard[i].moyenne)<50)
         {
           isUnder += 1;
           tbody.innerHTML += `
@@ -107,7 +107,7 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="red">${genUserBoard[i].moyenne}</td>
+            <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
           `
         }
@@ -121,14 +121,14 @@ window.addEventListener('load', function () {
           <td>${genUserBoard[i].meta_value}</td>
           <td>${genUserBoard[i].count}</td>
           <td>${genUserBoard[i].time}</td>
-          <td class="green">${genUserBoard[i].moyenne}</td>
+          <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
           </tr>
           `
         }
       }
       else if(pos == 3)
       {   
-        if(genUserBoard[i].moyenne<50)
+        if(parseInt(genUserBoard[i].moyenne)<50)
         {
           isUnder += 1;
           tbody.innerHTML += `
@@ -138,7 +138,7 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="red">${genUserBoard[i].moyenne}</td>
+            <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
           `
         }
@@ -152,14 +152,14 @@ window.addEventListener('load', function () {
           <td>${genUserBoard[i].meta_value}</td>
           <td>${genUserBoard[i].count}</td>
           <td>${genUserBoard[i].time}</td>
-          <td class="green">${genUserBoard[i].moyenne}</td>
+          <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
           </tr>
           `
         }
       }
       else
       {
-        if(genUserBoard[i].moyenne<50)
+        if(parseInt(genUserBoard[i].moyenne)<50)
         {
           isUnder += 1;
           tbody.innerHTML += `
@@ -169,7 +169,7 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="red">${genUserBoard[i].moyenne}</td>
+            <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
           `
         }
@@ -183,7 +183,7 @@ window.addEventListener('load', function () {
           <td>${genUserBoard[i].meta_value}</td>
           <td>${genUserBoard[i].count}</td>
           <td>${genUserBoard[i].time}</td>
-          <td class="green">${genUserBoard[i].moyenne}</td>
+          <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
           </tr>
           `
         }
@@ -208,7 +208,7 @@ window.addEventListener('load', function () {
         `
         if(parseInt(genUserBoard[i].user_id) == parseInt(userId))
         {   
-          if(genUserBoard[i].moyenne<50)
+          if(parseInt(genUserBoard[i].moyenne)<50)
           {
             isUnder += 1;
             tbody.innerHTML += `
@@ -218,7 +218,7 @@ window.addEventListener('load', function () {
               <td>${genUserBoard[i].meta_value}</td>
               <td>${genUserBoard[i].count}</td>
               <td>${genUserBoard[i].time}</td>
-              <td class="red">${genUserBoard[i].moyenne}</td>
+              <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
               </tr>
             `
           }
@@ -232,14 +232,14 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="green">${genUserBoard[i].moyenne}</td>
+            <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
             `
           }
         }
         else if(pos == 1)
         {   
-          if(genUserBoard[i].moyenne<50)
+          if(parseInt(genUserBoard[i].moyenne)<50)
           {
             isUnder += 1;
             tbody.innerHTML += `
@@ -249,7 +249,7 @@ window.addEventListener('load', function () {
               <td>${genUserBoard[i].meta_value}</td>
               <td>${genUserBoard[i].count}</td>
               <td>${genUserBoard[i].time}</td>
-              <td class="red">${genUserBoard[i].moyenne}</td>
+              <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
               </tr>
             `
           }
@@ -263,14 +263,14 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="green">${genUserBoard[i].moyenne}</td>
+            <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
             `
           }
         }
         else if(pos == 2)
         {   
-          if(genUserBoard[i].moyenne<50)
+          if(parseInt(genUserBoard[i].moyenne)<50)
           {
             isUnder += 1;
             tbody.innerHTML += `
@@ -280,7 +280,7 @@ window.addEventListener('load', function () {
               <td>${genUserBoard[i].meta_value}</td>
               <td>${genUserBoard[i].count}</td>
               <td>${genUserBoard[i].time}</td>
-              <td class="red">${genUserBoard[i].moyenne}</td>
+              <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
               </tr>
             `
           }
@@ -294,14 +294,14 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="green">${genUserBoard[i].moyenne}</td>
+            <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
             `
           }
         }
         else if(pos == 3)
         {   
-          if(genUserBoard[i].moyenne<50)
+          if(parseInt(genUserBoard[i].moyenne)<50)
           {
             isUnder += 1;
             tbody.innerHTML += `
@@ -311,7 +311,7 @@ window.addEventListener('load', function () {
               <td>${genUserBoard[i].meta_value}</td>
               <td>${genUserBoard[i].count}</td>
               <td>${genUserBoard[i].time}</td>
-              <td class="red">${genUserBoard[i].moyenne}</td>
+              <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
               </tr>
             `
           }
@@ -325,14 +325,14 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="green">${genUserBoard[i].moyenne}</td>
+            <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
             `
           }
         }
         else
         {
-          if(genUserBoard[i].moyenne<50)
+          if(parseInt(genUserBoard[i].moyenne)<50)
           {
             isUnder += 1;
             tbody.innerHTML += `
@@ -342,7 +342,7 @@ window.addEventListener('load', function () {
               <td>${genUserBoard[i].meta_value}</td>
               <td>${genUserBoard[i].count}</td>
               <td>${genUserBoard[i].time}</td>
-              <td class="red">${genUserBoard[i].moyenne}</td>
+              <td class="red">${parseInt(genUserBoard[i].moyenne)}</td>
               </tr>
             `
           }
@@ -356,7 +356,7 @@ window.addEventListener('load', function () {
             <td>${genUserBoard[i].meta_value}</td>
             <td>${genUserBoard[i].count}</td>
             <td>${genUserBoard[i].time}</td>
-            <td class="green">${genUserBoard[i].moyenne}</td>
+            <td class="green">${parseInt(genUserBoard[i].moyenne)}</td>
             </tr>
             `
           }
@@ -381,7 +381,7 @@ window.addEventListener('load', function () {
           <th>Temps global (en sec.)</th>
           <th>Score</th>
         `
-        if(genTown[i].moyenne<50)
+        if(parseInt(genTown[i].moyenne)<50)
         {
           isUnder += 1;
           if(genTown[i].city == myArray.ville)
@@ -392,7 +392,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="red">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -404,7 +404,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="red">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -416,7 +416,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="red">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -428,7 +428,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="red">${genTown[i].moyenne}</td>
+            <td class="red">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -440,7 +440,7 @@ window.addEventListener('load', function () {
               <td>${genTown[i].city}</td>
               <td>${genTown[i].quizCount}</td>
               <td>${genTown[i].time}</td>
-              <td class="red">${genTown[i].moyenne}</td>
+              <td class="red">${parseInt(genTown[i].moyenne)}</td>
               </tr>
             `
           }
@@ -456,7 +456,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="green">${genTown[i].moyenne}</td>
+            <td class="green">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -468,7 +468,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="green">${genTown[i].moyenne}</td>
+            <td class="green">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -480,7 +480,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="green">${genTown[i].moyenne}</td>
+            <td class="green">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -492,7 +492,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="green">${genTown[i].moyenne}</td>
+            <td class="green">${parseInt(genTown[i].moyenne)}</td>
             </tr>
           `
           }
@@ -504,7 +504,7 @@ window.addEventListener('load', function () {
             <td>${genTown[i].city}</td>
             <td>${genTown[i].quizCount}</td>
             <td>${genTown[i].time}</td>
-            <td class="green">${genTown[i].moyenne}</td>
+            <td class="green">${parseInt(genTown[i].moyenne)}</td>
             </tr>
             `
           }
