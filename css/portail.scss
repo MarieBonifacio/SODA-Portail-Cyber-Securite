@@ -1244,6 +1244,7 @@ body
                   height: 110%;
                   background: rgba(0,0,0,0.6);
                   text-align: center;
+                  transition: .2s;
                   @include flex(center, center, "");
                 }
               }
