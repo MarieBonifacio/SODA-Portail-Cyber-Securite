@@ -74,11 +74,13 @@ window.addEventListener('load', function () {
           xAxes: [{
             gridLines: {
               color: 'rgba(0,0,0,0)',
+              beginAtZero: true 
             }
           }],
           yAxes: [{
             gridLines: {
               color: 'rgba(0,0,0,0)',
+              beginAtZero: true 
             },
           }]
         },
@@ -130,11 +132,13 @@ window.addEventListener('load', function () {
             xAxes: [{
               gridLines: {
                 color: 'rgba(0,0,0,0)',
+                beginAtZero: true 
               }
             }],
             yAxes: [{
               gridLines: {
                 color: 'rgba(0,0,0,0)',
+                beginAtZero: true 
               },
             }]
           },
@@ -238,7 +242,8 @@ window.addEventListener('load', function () {
                 display: false
               },
               ticks: {
-                display: false
+                display: false,
+                beginAtZero: true
               },
               pointLabels:{
                 fontSize: 15,
@@ -337,7 +342,8 @@ window.addEventListener('load', function () {
                 display: false
               },
               ticks: {
-                display: false
+                display: false,
+                beginAtZero: true
               },
               pointLabels:{
                 fontSize: 15,
