@@ -219,9 +219,9 @@ window.addEventListener('load', function (e) {
                 {
                     arrow.classList.remove("fa-arrow-left");
                     arrow.classList.add("fa-arrow-right");
-                    sideNav.classList.add("shrink");
+                    sideNav.classList.remove("shrink");
                     p.forEach(p => {
-                        p.classList.add("para");
+                        p.classList.remove("para");
                     });
                     contenu.style.width = "95%";
                 }
@@ -229,9 +229,9 @@ window.addEventListener('load', function (e) {
                 {
                     arrow.classList.remove("fa-arrow-right");
                     arrow.classList.add("fa-arrow-left");
-                    sideNav.classList.remove("shrink");
+                    sideNav.classList.add("shrink");
                     p.forEach(p => {
-                        p.classList.remove("para");
+                        p.classList.add("para");
                     });
                     contenu.style.width = "85%";
                 }
@@ -245,8 +245,6 @@ window.addEventListener('load', function (e) {
         }
         else
         {
-            arrow.classList.remove("fa-arrow-left");
-            arrow.classList.add("fa-arrow-right");
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))
                 {

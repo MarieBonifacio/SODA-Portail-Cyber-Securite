@@ -308,7 +308,7 @@ body
   .side
   {
     @include positionTL(fixed, 12%, 0);
-    width: 15%;
+    width: 5%;
     height: 88%;
     z-index: 5;
     background: $color1;
@@ -380,6 +380,7 @@ body
         @include flex(space-around, center, row);
         p
         {
+          display: none;
           margin-right: 10%;
           width: 50%;
           color: $police;
@@ -391,11 +392,11 @@ body
           color: $color-imp;
         }
       }
-      // class to make icons name appear
-      .para
-      {
-        display: none;
-      }
+    }
+    // class to make icons name appear
+    .para
+    {
+      display: block !important;
     }
     .dropMenuAppear
     {
@@ -423,7 +424,7 @@ body
   // class to shrink the side nav
   .shrink
   {
-    width: 5%;
+    width: 15%;
   }
   .loader
   {
@@ -539,7 +540,7 @@ body
   .content
   {
     position: absolute;
-    width: 85%;
+    width: 95%;
     height: 88%;
     transition: .3s;
     right: 0;
@@ -1215,8 +1216,6 @@ body
                   top: 50%;
                   left: 50%;
                   transform: translate(-50%, -50%);
-                  min-height: 100%;
-                  min-width: 130%;
                   z-index:1;
                 }
                 .image::before

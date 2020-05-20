@@ -58,7 +58,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 				</a>
 			</div>
 			<div class="search">
-				<i class="arrow fas fa-arrow-left"></i>
+				<i class="arrow fas fa-arrow-right"></i>
 				<div class="icons">
 					<!-- <div class="searchContainer">
 						<i class="fas fa-search"></i>
