@@ -1160,7 +1160,7 @@ body
                 height: 100%;
                 top: 0;
                 z-index: 1;
-                background: rgba(0,0,0, 0.8);
+                background: rgba(0,0,0, 0.6);
                 transition: .2s;
               }
               p,h2
@@ -1186,7 +1186,7 @@ body
           {
             .filter
             {
-              background: rgba(0,0,0, 0.8);
+              background: rgba(0,0,0, 0.4);
             }
           }
         }
@@ -1252,6 +1252,7 @@ body
                 .title
                 {
                   color: $color-btn;
+                  background: rgba(0,0,0,0.4);
                 }
               }
           }
