@@ -52,7 +52,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -64,7 +64,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -76,7 +76,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -88,7 +88,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -99,7 +99,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -111,7 +111,7 @@ window.addEventListener('load', function () {
           <td>${leadGen.userPlace}</td>
           <td>${userStat.display_name}</td> 
           <td>${userStat.meta_value}</td>
-          <td>${userStat.moyenne}</td>
+          <td>${parseInt(userStat.moyenne)}</td>
         </tr>
         `
       }
@@ -129,7 +129,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td> 
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -141,7 +141,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -153,7 +153,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -165,7 +165,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -176,7 +176,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -188,7 +188,7 @@ window.addEventListener('load', function () {
             <td>${leadGen.userPlace}</td>
             <td>${userStat.display_name}</td>    
             <td>${userStat.meta_value}</td>
-            <td>${userStat.moyenne}</td>
+            <td>${parseInt(userStat.moyenne)}</td>
           </tr>
           `
         }
@@ -207,7 +207,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td> 
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -219,7 +219,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -231,7 +231,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -243,7 +243,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -254,7 +254,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -266,7 +266,7 @@ window.addEventListener('load', function () {
             <td>${leadGen.userPlace}</td>
             <td>${userStat.display_name}</td>  
             <td>${userStat.meta_value}</td>
-            <td>${userStat.moyenne}</td>
+            <td>${parseInt(userStat.moyenne)}</td>
           </tr>
           `
         }
@@ -285,7 +285,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -297,7 +297,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -309,7 +309,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -320,7 +320,7 @@ window.addEventListener('load', function () {
                 <td>${pos}</td>
                 <td>${top30Gen[i].display_name}</td>  
                 <td>${top30Gen[i].meta_value}</td>
-                <td>${top30Gen[i].moyenne}</td>
+                <td>${parseInt(top30Gen[i].moyenne)}</td>
               </tr>
             `
           }
@@ -339,7 +339,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -351,7 +351,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -363,7 +363,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Gen[i].display_name}</td>  
               <td>${top30Gen[i].meta_value}</td>
-              <td>${top30Gen[i].moyenne}</td>
+              <td>${parseInt(top30Gen[i].moyenne)}</td>
             </tr>
             `
           }
@@ -374,7 +374,7 @@ window.addEventListener('load', function () {
                 <td>${pos}</td>
                 <td>${top30Gen[i].display_name}</td>  
                 <td>${top30Gen[i].meta_value}</td>
-                <td>${top30Gen[i].moyenne}</td>
+                <td>${parseInt(top30Gen[i].moyenne)}</td>
               </tr>
             `
           }
@@ -393,7 +393,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -405,7 +405,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -417,7 +417,7 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${top30Town[i].display_name}</td>  
               <td>${top30Town[i].meta_value}</td>
-              <td>${top30Town[i].moyenne}</td>
+              <td>${parseInt(top30Town[i].moyenne)}</td>
             </tr>
             `
           }
@@ -428,7 +428,7 @@ window.addEventListener('load', function () {
                 <td>${pos}</td>
                 <td>${top30Town[i].display_name}</td>  
                 <td>${top30Town[i].meta_value}</td>
-                <td>${top30Town[i].moyenne}</td>
+                <td>${parseInt(top30Town[i].moyenne)}</td>
               </tr>
             `
           }
