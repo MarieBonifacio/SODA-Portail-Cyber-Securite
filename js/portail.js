@@ -15,7 +15,6 @@ window.addEventListener('load', function (e) {
             let imgWidth = $(this).width();
             let imgHeight = $(this).height();
 
-            console.log(imgWidth+"x"+imgHeight);
             if(imgWidth <= imgHeight){
                 $(this).parent().addClass('portrait');
                 $(this).width("100%");
@@ -28,7 +27,6 @@ window.addEventListener('load', function (e) {
             $(this).parent().css("width", "30px");
             $(this).parent().css("height", "30px");
             $(this).parent().css("border-radius", "50%");
-            $(this).parent().css("overflow", "hidden");
 
             if($(this).closest('form#profil').length){
                 $(this).parent().css("width", "150px");
@@ -83,7 +81,7 @@ window.addEventListener('load', function (e) {
         bell.addEventListener("click", ()=>{
             // window.location = urlNotif  + '/notif_checked.php';
             if(notifs.classList.contains("notifsAppear"))
-            {   
+            {
                 notifs.classList.remove("notifsAppear")
                 var xmlhttpNotifChecked = new XMLHttpRequest();
                 xmlhttpNotifChecked.onreadystatechange = function () {
@@ -141,15 +139,15 @@ window.addEventListener('load', function (e) {
             nbrNotifs.innerHTML = number;
             notifs.innerHTML = "Vous n'avez pas de notifications";
         }
-        
+
         // // click event listenner on search Icon which will activate the search bar or desactivate it
-        
+
         // const searchIcon = document.querySelector(".fa-search");
         // const searchBar = document.querySelector(".searchBar");
         // const container = document.querySelector(".searchContainer");
         // const icons = document.querySelector(".icons");
-        
-        
+
+
         // searchIcon.addEventListener("click", ()=>{
         //     if(!icons.classList.contains("iconsGrow"))
         //     {
@@ -164,11 +162,11 @@ window.addEventListener('load', function (e) {
         //         searchBar.classList.remove("growUp");
         //     }
         // });
-        
+
         // click event for dropDown list menu
         const dropMenus = document.querySelectorAll(".dropMenu");
         const arrows = document.querySelectorAll(".drop");
-        
+
         arrows.forEach(arrow => {
             arrow.addEventListener("click", (e)=>{
                 let id = e.target.dataset.id;
@@ -192,10 +190,10 @@ window.addEventListener('load', function (e) {
                 });
             })
         });
-        
+
         const profil = document.querySelector(".circle"),
         dropMenuProfile = document.querySelector(".dropMenuProfile");
-        
+
         profil.addEventListener("click", ()=>{
             if(dropMenuProfile.classList.contains("dropMenuProfileAppear"))
             {
@@ -213,12 +211,12 @@ window.addEventListener('load', function (e) {
         const p = document.querySelectorAll("#p");
         const sideNav = document.querySelector(".side");
         const contenu = document.querySelector(".content");
-        
+
         if(window.innerWidth>1100)
         {
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))
-                {     
+                {
                     arrow.classList.remove("fa-arrow-left");
                     arrow.classList.add("fa-arrow-right");
                     sideNav.classList.add("shrink");
@@ -246,12 +244,12 @@ window.addEventListener('load', function (e) {
             });
         }
         else
-        {   
+        {
             arrow.classList.remove("fa-arrow-left");
             arrow.classList.add("fa-arrow-right");
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))
-                {     
+                {
                     arrow.classList.remove("fa-arrow-left");
                     arrow.classList.add("fa-arrow-right");
                     if(window.innerWidth>760)
@@ -265,7 +263,7 @@ window.addEventListener('load', function (e) {
                     contenu.style.width = "100%";
                 }
                 else
-                {   
+                {
                     arrow.classList.remove("fa-arrow-right");
                     arrow.classList.add("fa-arrow-left");
                     sideNav.style.left = "0%";
@@ -278,7 +276,7 @@ window.addEventListener('load', function (e) {
                     }
                 });
             });
-        } 
+        }
     }
     else
     {

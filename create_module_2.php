@@ -33,8 +33,6 @@ function processPage($id, $isNew){
         $page['info']['img'] = $result['content'];
     }
 
-    $page['info']['order'] = 0;
-
     return [
         'type' => 'success',
         'content' => $page,
@@ -143,7 +141,6 @@ if(!empty($_SESSION['moduleData']) && $_SESSION['moduleEdit'] !== true){
 
 if($nbrPage >= 1){
     $pages = [];
-
     foreach ($_POST as $key => $value) {
         preg_match('/^content_(n)?(\d+)_title$/', $key, $matches);
         if(count($matches) > 2){
@@ -151,11 +148,10 @@ if($nbrPage >= 1){
             $result = processPage($id, $matches[1] === 'n');
             if($result['type'] === 'error'){
                 $_SESSION['errorModule'] = $result['content'];
-            }else{
-                $page = $result['content'];
-                $page['info']['order'] = count($pages);
-                $pages[] = $page;
             }
+            $page = $result['content'];
+            $page['info']['order'] = count($pages);
+            $pages[] = $page;
         }
     }
     $_SESSION['moduleData']['pages'] = $pages;

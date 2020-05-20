@@ -46,14 +46,16 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
-		
+
 	</head>
 	<body>
 
 
 		<nav class="above">
 			<div class="logo">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
+				<a href="<?php echo home_url(); ?>">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/logo/LogoCyberDéfense.png" alt="logo portail SODA cyber Défense">
+				</a>
 			</div>
 			<div class="search">
 				<i class="arrow fas fa-arrow-left"></i>
@@ -100,7 +102,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						<!-- <li>
 							<a target="_blank" href="<?php echo home_url()."/liste-articles"?>">Liste des articles</a>
 						</li> -->
-					</ul>	
+					</ul>
 				<?php } else { ?>
 					<div id="link" class="articles left">
 						<a id="a" href="<?php echo home_url()."/articles" ?>"><i class="far fa-newspaper"></i><p id="p">Articles</p></a>
@@ -117,8 +119,8 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						<li>
 							<a href="<?php echo home_url()."/liste-modules"?>">Liste des modules</a>
 						</li>
-					</ul>	
-			<?php } else { ?>		
+					</ul>
+			<?php } else { ?>
 				<div id="link" class="modules left">
 					<a id="a" href="<?php echo home_url()."/menu-module" ?>"><i class="fas fa-graduation-cap"></i><p id="p">Modules</p></a>
 			<?php }?>
@@ -130,7 +132,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						<li>
 							<a href="<?php echo home_url()."/generateur-de-mots-de-passe"?>">Générateur de mot de passe solide</a>
 						</li>
-					</ul>	
+					</ul>
 			</div>
 			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
 				<div id="link"  class="quiz">
@@ -143,7 +145,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 							<li>
 								<a href="<?php echo home_url()."/liste-quizs"?>">Liste des quiz</a>
 							</li>
-						</ul>	
+						</ul>
 				<?php }  else {?>
 					<div id="link"  class="quiz left">
 						<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
@@ -166,7 +168,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						<li>
 							<a href="<?php echo home_url()."/wp-admin" ?>" target="_blank">Admin</a>
 						</li>
-					</ul>	
+					</ul>
 				</div>
 			<?php } ?>
 			<!-- <i class="fas fa-question"></i> -->
@@ -180,4 +182,3 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
       </div>
 		</div>
 		<section class="content">
-		

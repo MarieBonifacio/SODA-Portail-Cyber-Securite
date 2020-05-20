@@ -30,8 +30,9 @@ if($nbrQuestion >= 3){
             $result = processQuestion($id, $matches[1] === 'n');
             if($result['type'] === 'error'){
                 $_SESSION['errorQuiz'] = $result['content'];
+            }else{
+                $questions[] = $result['content'];
             }
-            $questions[] = $result['content'];
         }
     }
     $_SESSION['quizData']['questions'] = $questions;

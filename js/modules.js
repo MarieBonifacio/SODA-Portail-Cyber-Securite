@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
     var myArray = JSON.parse(this.responseText);
     const grid = document.querySelector(".grid");
     for (let i = 0; i < myArray.length; i++) {
-      
+
       const gridElement = document.createElement("div");
       gridElement.classList.add(`element-item` , `${myArray[i].tag_name}`);
       gridElement.setAttribute('category', `${myArray[i].tag_name}`);
@@ -74,7 +74,7 @@ window.addEventListener('load', function () {
             divModule.innerHTML = `
             <div class="module" id="module">
             </div>
-            <div class="btns"> 
+            <div class="btns">
               <button id="previous">Page précédente</button>
               <button id="next">Page suivante</button>
               <button id="submit">Terminer le module</button>
@@ -94,27 +94,29 @@ window.addEventListener('load', function () {
 
             if(previous.length > 0)
             {
+                currentSlide = parseInt(previous[previous.length -1].order) + 1;
+
               var tableLostPages = [];
-              for (let i = 0; i < previous.length; i++) 
-              {
-                for (let f = 0; f < myPages.length; f++) 
-                {
-                  if(myPages[f].id == previous[i].id_slide)
-                  {
-                    var idCurrentPage = myPages.indexOf(myPages[f]);
-                    if(idCurrentPage > -1)
-                    {
-                      tableLostPages.splice(0, 0, myPages[f]);
-                      myPages.splice(idCurrentPage, 1);
-                    }
-                  }
-                }
-              }
+              // for (let i = 0; i < previous.length; i++)
+              // {
+              //   for (let f = 0; f < myPages.length; f++)
+              //   {
+              //     if(myPages[f].id == previous[i].id_slide)
+              //     {
+              //       var idCurrentPage = myPages.indexOf(myPages[f]);
+              //       if(idCurrentPage > -1)
+              //       {
+              //         tableLostPages.splice(0, 0, myPages[f]);
+              //         myPages.splice(idCurrentPage, 1);
+              //       }
+              //     }
+              //   }
+              // }
             }
-            let percent = (currentSlide + 1 / myPages.length) * 100;
 
             function progressBar()
             {
+             actualpercent = ((currentSlide + 1) / myPages.length) * 100;
               progress.dataset.done = Math.ceil(actualpercent);
               progress.style.width = progress.getAttribute('data-done')+ '%';
               progress.style.opacity = 1;
@@ -122,8 +124,6 @@ window.addEventListener('load', function () {
             }
 
             function buildModule(){
-
-              actualpercent += parseFloat(percent);
 
               progressBar();
               // variable to store the HTML output
@@ -133,13 +133,13 @@ window.addEventListener('load', function () {
                 // for each page...
                 myPages.forEach(
                   (currentPage, pageNumber) => {
-                    
+
                     numPage += 1;
                     // add this page and its content to the output
                     if(currentPage.img_path != null)
                     {
                       output.push(
-                        `<div class="slide">
+                        `<div class="slide" id="slide_${pageNumber}">
                           <span>
                             ${numPage}
                           </span>
@@ -161,7 +161,7 @@ window.addEventListener('load', function () {
                         video = ' <a href="'+currentPage.video+'">Voir la vidéo</a> ';
                       }
                       output.push(
-                        `<div class="slide">
+                        `<div class="slide" id="slide_${pageNumber}">
                           <span>
                             ${numPage}
                           </span>
@@ -180,7 +180,7 @@ window.addEventListener('load', function () {
                     else
                     {
                       output.push(
-                        `<div class="slide">
+                        `<div class="slide" id="slide_${pageNumber}">
                           <span>
                             ${numPage}
                           </span>
@@ -201,7 +201,7 @@ window.addEventListener('load', function () {
             }
 
             function endModule(){
-              var obj = { 
+              var obj = {
                 "module_id" : myModule.id,
               };
 
@@ -269,7 +269,8 @@ window.addEventListener('load', function () {
 
             function showSlide(n) {
               slides[currentSlide].classList.remove('active-slide');
-              slides[n].classList.add('active-slide');
+              document.querySelectorAll(".slide").forEach( curslide => curslide.classList.remove('active-slide'));
+              document.querySelector("#slide_" + n).classList.add('active-slide');
               currentSlide = n;
               if(currentSlide === 0){
                 previousButton.style.display = 'none';
@@ -290,20 +291,20 @@ window.addEventListener('load', function () {
 
             function showNextSlide() {
               var id_page,
-              
+
               id_page = myPages[currentSlide].id;
 
-              var obj = { 
+              var obj = {
                 "slide_id": id_page,
                 "module_id" : myModule.id,
               };
-              
+
 
               dbParam = JSON.stringify(obj);
               xmlhttp = new XMLHttpRequest();
               xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                  actualpercent += parseFloat(percent);
+                  // actualpercent += parseFloat(percent);
                   showSlide(currentSlide + 1);
                   progressBar();
                 }
@@ -315,7 +316,7 @@ window.addEventListener('load', function () {
 
             function showPreviousSlide() {
               showSlide(currentSlide - 1);
-              actualpercent -= parseFloat(percent);
+              // actualpercent -= parseFloat(percent);
               progressBar();
             }
 

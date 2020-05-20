@@ -36,8 +36,8 @@ get_header();
             </div>
             <span class="numP">'.$num.'</span>
             <div class="content">
-              <h2>'.$q['info']['title'].'</h2>
-              <p>'.nl2br($q['info']['content']).'</p>
+              <h2>'.stripslashes($q['info']['title']).'</h2>
+              <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
             </div>
             ';
           }
@@ -48,8 +48,8 @@ get_header();
               <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <span class="numP">'.$num.'</span>
                 <div class="content">
-                  <h2>'.$q['info']['title'].'</h2>
-                  <p>'.$q['info']['content'].'</p>
+                  <h2>'.stripslashes($q['info']['title']).'</h2>
+                  <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
                 </div>
                 ';
             }else{
@@ -64,8 +64,8 @@ get_header();
             echo '
                 <span class="numP">'.$num.'</span>
                 <div class="contentFull content">
-                  <h2>'.$q['info']['title'].'</h2>
-                  <p>'.$q['info']['content'].'</p>
+                  <h2>'.stripslashes($q['info']['title']).'</h2>
+                  <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
                 </div>
               ';
           }

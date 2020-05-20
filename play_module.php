@@ -12,7 +12,7 @@ if(!checkAuthorized(false, true)){
     wp_redirect( home_url() );  exit;
 }
 
-//JSON encode 
+//JSON encode
 $module = new Module();
 $module->selectById($_GET['id']);
 
@@ -26,7 +26,7 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
         'player' => $_SESSION['userConnected'],
     );
     foreach($pages as $p){
-        $page = array(  
+        $page = array(
             "id" => $p->id,
             "title" => $p->title,
             "module_id" => $p->module_id,
@@ -56,9 +56,12 @@ $query = $wpdb->get_results("SELECT slide_id FROM module_progress WHERE user_id=
 $previous = array();
 foreach($query as $q)
 {
+    $slideId = $q->slide_id;
+    $order = $wpdb->get_var("SELECT `order` FROM module_slide WHERE id='$slideId'");
     $previous[] = array(
         "id_module" => $moduleId,
-        "id_slide" => $q->slide_id
+        "id_slide" => $slideId,
+        "order" => $order,
     );
 }
 $module["previous"] = $previous;
