@@ -499,6 +499,10 @@ window.addEventListener('load', function () {
             gridLines: {
               color: 'rgba(0,0,0,0)',
             },
+            ticks: {
+              beginAtZero: true,
+              max: 100
+            }
           }]
         },
         elements: {
