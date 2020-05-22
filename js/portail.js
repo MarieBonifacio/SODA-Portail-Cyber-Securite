@@ -1,7 +1,8 @@
 window.addEventListener("resize", ()=>{
     if(window.innerWidth >850)
     {
-        window.location.reload();
+        console.log("ok");
+        // window.location.reload();
     }
 })
 window.addEventListener('load', function (e) {
