@@ -129,6 +129,9 @@ function html5blank_conditional_scripts()
             'home_url' => home_url()
         ));
     }
+    if (is_page("ajouter-tag")) {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/tag.js', null, true);
+    }
     if (is_page("menu-module")) {
         wp_enqueue_script('my-script', get_template_directory_uri() . '/js/modules.js', null, true);
         wp_localize_script('my-script', 'myScript', array(

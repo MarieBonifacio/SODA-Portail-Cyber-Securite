@@ -35,7 +35,16 @@ cleanSession();
                         echo '<li>'.$t->tName;
 
                         if($t->quiz == 0 && $t->module == 0){
-                            echo ' (<a class = "deleteTag" href ="'.get_template_directory_uri().'/app/deleteTag.php?id='.$t->tId.'">Supprimer</a>)';
+                            echo ' 
+                            <div data-id="'.$t->tId.'" class="deleteBtn">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="confirm hidden" id="confirm'.$t->tId.'">
+                                <p>Êtes-vous sûr de vouloir supprimer ce tag ?</p>
+                                <a class = "deleteTag'.$t->tId.'" href ="'.get_template_directory_uri().'/app/deleteTag.php?id='.$t->tId.'">Oui</a>
+                                <span id="no'.$t->tId.'">Non</span>
+                            </div>
+                            ';
                         }
                         echo '</li>';
 

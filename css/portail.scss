@@ -715,6 +715,7 @@ body
           @include flex("", center, column);
           li
           {
+            position: relative;
             margin: 5px;
             width: 150px;
             padding: 10px 5px;
@@ -724,6 +725,52 @@ body
             font-weight: 600;
             border-radius: 3px;
             word-break: break-word;
+            .deleteBtn
+            {
+              width: 10px;
+              @include positionTR(absolute, 0px, 5px);
+              i
+              {
+                color: rgb(235, 13, 13);
+              }
+            }
+            .deleteBtn:hover
+            {
+              i
+              {
+                color: rgb(136, 13, 13);
+              }
+            }
+            .confirm
+            {
+              @include positionTR(fixed, 50%, 50%);
+              transform: translate(50%, -50%);
+              background: $color3;
+              padding: 5px 10px;
+              border-radius: 5px;
+              color:$police;
+              // box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+              z-index: 45;
+              a, span
+              {
+                font-weight: 100;
+                margin: 5px;
+                color: rgb(235, 13, 13);
+              }
+              span
+              {
+                color: #3AD29F;
+              }
+              span:hover, a:hover
+              {
+                cursor: pointer;
+                font-weight: 600;
+              }
+            }
+            .hidden
+            {
+              display:none;
+            }
           }
         }
         ul::-webkit-scrollbar {

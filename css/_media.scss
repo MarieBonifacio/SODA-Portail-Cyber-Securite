@@ -372,6 +372,7 @@
         }
         .type
         {
+          display: none;
           width: 80px;
           left: 4px;
           top: 4px;
@@ -391,6 +392,7 @@
         }
         .moduleStatsRadar, .quizStatsRadar
         {
+          display:none;
           width: 240vw !important;
           height: 120vw !important;
         }
@@ -677,6 +679,17 @@
   {
     .content
     {
+      .add_tag
+      {
+        .contentTag
+        {
+          margin-top: 25%;
+          div, form
+          {
+            width: 250px;
+          }
+        }
+      }
       .generator
       {
         #container
