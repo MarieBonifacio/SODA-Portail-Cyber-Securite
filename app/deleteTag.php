@@ -15,11 +15,9 @@ $table = "tag";
 
 // $query = $wpdb->get_var("SELECT count(quiz.id) as nbUse FROM `tag`LEFT JOIN quiz ON quiz.tag_id = tag.id LEFT JOIN module ON module.tag_id = tag.id  WHERE tag.id =".$id." GROUP BY tag.name");
 
-$queryMod = $wpdb->get_var("SELECT count(id) FROM module where tag_id = ".$id." ");
+$query = $wpdb->get_row("SELECT tag.id, tag.name, (select count(id) from quiz where quiz.tag_id=tag.id) as quiz, (select count(id) from module where module.tag_id=tag.id) as module  from tag WHERE tag.id = ".$id." ");
 
-$queryQ =  $wpdb->get_var("SELECT count(id) FROM quiz where tag_id = ".$id." ");
-
-if($queryMod == 0 && $queryQ == 0){
+if($query->quiz == 0 && $query->module == 0){
 
     $wpdb->delete($table, array('id' => $id));
 

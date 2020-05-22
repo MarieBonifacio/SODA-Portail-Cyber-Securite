@@ -28,15 +28,14 @@ cleanSession();
 
                     //ajout boucle tags db
 
-                    $tags = $wpdb->get_results( "SELECT tag.id AS tId, tag.name as tName, count(quiz.id) as nbUse FROM `tag`LEFT JOIN quiz ON quiz.tag_id = tag.id LEFT JOIN module ON module.tag_id = tag.id GROUP BY tag.name
-                    ");
+                    $tags = $wpdb->get_results( "SELECT tag.id AS tId, tag.name AS tName, (select count(id) from quiz where quiz.tag_id=tag.id) as quiz, (select count(id) from module where module.tag_id=tag.id) as module  from tag");
 
                     foreach($tags as $t){
 
                         echo '<li>'.$t->tName;
 
-                        if($t->nbUse == 0){
-                            echo ' <a href ="'.get_template_directory_uri().'/app/deleteTag.php?id='.$t->tId.'">X</a>';
+                        if($t->quiz == 0 && $t->module == 0){
+                            echo ' (<a class = "deleteTag" href ="'.get_template_directory_uri().'/app/deleteTag.php?id='.$t->tId.'">Supprimer</a>)';
                         }
                         echo '</li>';
 
