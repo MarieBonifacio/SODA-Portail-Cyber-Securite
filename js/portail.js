@@ -1,7 +1,8 @@
-
-
 window.addEventListener("resize", ()=>{
-    window.location.reload();
+    if(window.innerWidth >850)
+    {
+        window.location.reload();
+    }
 })
 window.addEventListener('load', function (e) {
     function avatarCircle(){
@@ -139,29 +140,6 @@ window.addEventListener('load', function (e) {
             nbrNotifs.innerHTML = number;
             notifs.innerHTML = "Vous n'avez pas de notifications";
         }
-
-        // // click event listenner on search Icon which will activate the search bar or desactivate it
-
-        // const searchIcon = document.querySelector(".fa-search");
-        // const searchBar = document.querySelector(".searchBar");
-        // const container = document.querySelector(".searchContainer");
-        // const icons = document.querySelector(".icons");
-
-
-        // searchIcon.addEventListener("click", ()=>{
-        //     if(!icons.classList.contains("iconsGrow"))
-        //     {
-        //         icons.classList.add("iconsGrow");
-        //         container.classList.add("opacitySearch");
-        //         searchBar.classList.add("growUp");
-        //     }
-        //     else
-        //     {
-        //         icons.classList.remove("iconsGrow");
-        //         container.classList.remove("opacitySearch");
-        //         searchBar.classList.remove("growUp");
-        //     }
-        // });
 
         // click event for dropDown list menu
         const dropMenus = document.querySelectorAll(".dropMenu");

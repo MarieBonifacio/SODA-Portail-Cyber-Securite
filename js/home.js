@@ -116,6 +116,8 @@ window.addEventListener('load', function () {
         `
       }
       gen.addEventListener("click", ()=>{
+        town.classList.remove("activated");
+        gen.classList.add("activated");
         isPresent= false;
         tbody.innerHTML ='';
         for (i = 0; i < top30Gen.length; i++) 
@@ -194,6 +196,8 @@ window.addEventListener('load', function () {
         }
       })
       town.addEventListener("click", ()=>{
+        gen.classList.remove("activated");
+        town.classList.add("activated");
         tbody.innerHTML ='';
         isPresent = false;
         for (i = 0; i < top30Town.length; i++) 
@@ -326,7 +330,8 @@ window.addEventListener('load', function () {
           }
       }
       gen.addEventListener("click", ()=>{
-  
+        town.classList.remove("activated");
+        gen.classList.add("activated");
         tbody.innerHTML ='';
         for (i = 0; i < top30Gen.length; i++) 
         {
@@ -381,6 +386,9 @@ window.addEventListener('load', function () {
         }
       })
       town.addEventListener("click", ()=>{
+        console.log("click");
+        gen.classList.remove("activated");
+        town.classList.add("activated");
         tbody.innerHTML ='';
         for (i = 0; i < top30Town.length; i++) 
         {
