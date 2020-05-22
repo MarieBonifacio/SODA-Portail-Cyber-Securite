@@ -21,6 +21,7 @@ window.addEventListener('load', function () {
     let pos,
     isAbove = 0,
     isUnder = 0;
+    genUserBtn.style.background = "#e6e6e6";
 
     for(i=0; i<genUserBoard.length; i++)
     {
@@ -191,6 +192,8 @@ window.addEventListener('load', function () {
     }
 
     genUserBtn.addEventListener("click", ()=>{
+      genUserBtn.style.background = "#e6e6e6";
+      genTownBtn.style.background = "#EBB94A";
       tbody.innerHTML='';
       thead.innerHTML='';
       isAbove = 0;
@@ -367,6 +370,8 @@ window.addEventListener('load', function () {
     })
 
     genTownBtn.addEventListener("click", ()=>{
+      genTownBtn.style.background = "#e6e6e6";
+      genUserBtn.style.background = "#EBB94A";
       tbody.innerHTML='';
       thead.innerHTML='';
       isAbove = 0;

@@ -238,10 +238,10 @@ window.addEventListener('load', function () {
             legend: {
               display: false,
             },
-            gridLines: {
-              display: false
-            },
             scale: {
+              gridLines: {
+                color: "#131A28"
+              },
               angleLines: {
                 display: false
               },
@@ -339,10 +339,10 @@ window.addEventListener('load', function () {
             legend: {
               display: false,
             },
-            gridLines: {
-              display: false
-            },
             scale: {
+              gridLines: {
+                color: "#131A28"
+              },
               angleLines: {
                 display: false
               },
