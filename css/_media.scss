@@ -76,7 +76,15 @@
             grid-row: 1/5;
             #buddypress
             {
-              height: auto
+              height: auto;
+              .activity-content
+              {
+                margin: 0px 0px 0px 0px;
+              }
+              li.activity
+              {
+                padding: 5px;
+              }
             }
           }
           .quiz
@@ -606,7 +614,7 @@
             grid-row: 1/4;
             #buddypress
             {
-              height: auto
+              height: auto;
             }
           }
           .quiz
