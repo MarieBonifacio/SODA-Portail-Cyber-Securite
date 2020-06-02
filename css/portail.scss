@@ -4096,6 +4096,11 @@ body
           left: 50%;
           transform: translate(-50%, -50%);
           @include flex(space-evenly, center, row);
+          .absoluteh3
+          {
+            position: absolute;
+            top: 0;
+          }
           .medias
           {
             position: relative;
@@ -4113,6 +4118,10 @@ body
               width: 100%;
               height: 56%;
             }
+          }
+          .mediaFull
+          {
+            width: 100%;
           }
           .para
           {

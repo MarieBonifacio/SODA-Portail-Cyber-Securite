@@ -138,44 +138,82 @@ window.addEventListener('load', function () {
                     // add this page and its content to the output
                     if(currentPage.img_path != null)
                     {
-                      output.push(
-                        `<div class="slide" id="slide_${pageNumber}">
-                          <span>
-                            ${numPage}
-                          </span>
-                          <div class="content">
-                            <div class="medias">
-                              <img src="${ url + `/img/modules/${currentPage.img_path}`}" alt="photo de la page"/>
+                      if(currentPage.content == null)
+                      {
+                        output.push(
+                          `<div class="slide" id="slide_${pageNumber}">
+                            <span>
+                              ${numPage}
+                            </span>
+                            <div class="content">
+                              <h3 class="absoluteh3">${currentPage.title}</h3>
+                              <div class="medias mediaFull">
+                                <img src="${ url + `/img/modules/${currentPage.img_path}`}" alt="photo de la page"/>
+                              </div>
                             </div>
-                            <div class="para">
-                              <h3>${currentPage.title}</h3>
-                              <p>${currentPage.content}</p>
+                          </div>`
+                        );
+                      }
+                      else
+                      {
+                        output.push(
+                          `<div class="slide" id="slide_${pageNumber}">
+                            <span>
+                              ${numPage}
+                            </span>
+                            <div class="content">
+                              <div class="medias">
+                                <img src="${ url + `/img/modules/${currentPage.img_path}`}" alt="photo de la page"/>
+                              </div>
+                              <div class="para">
+                                <h3>${currentPage.title}</h3>
+                                <p>${currentPage.content}</p>
+                              </div>
                             </div>
-                          </div>
-                        </div>`
-                      );
+                          </div>`
+                        );
+                      }
                     }else if(currentPage.video !== null){
                       let youtubeHash = currentPage.video.match(/^.*v=(.*)$/);
                       var video = ' <iframe src="https://www.youtube.com/embed/'+youtubeHash[1]+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> ';
                       if(currentPage.video.match(/^.*(youtube).*/) == null  ){
                         video = ' <a href="'+currentPage.video+'">Voir la vidéo</a> ';
                       }
-                      output.push(
-                        `<div class="slide" id="slide_${pageNumber}">
-                          <span>
-                            ${numPage}
-                          </span>
-                          <div class="content">
-                            <div class="medias">
-                              ${video}
+                      if(currentPage.content == null)
+                      {
+                        output.push(
+                          `<div class="slide" id="slide_${pageNumber}">
+                            <span>
+                              ${numPage}
+                            </span>
+                            <div class="content">
+                              <h3 class="absoluteh3">${currentPage.title}</h3>
+                              <div class="medias mediaFull">
+                                ${video}
+                              </div>
                             </div>
-                            <div class="para">
-                              <h3>${currentPage.title}</h3>
-                              <p>${currentPage.content}</p>
+                          </div>`
+                        );
+                      }
+                      else
+                      {
+                        output.push(
+                          `<div class="slide" id="slide_${pageNumber}">
+                            <span>
+                              ${numPage}
+                            </span>
+                            <div class="content">
+                              <div class="medias">
+                                ${video}
+                              </div>
+                              <div class="para">
+                                <h3>${currentPage.title}</h3>
+                                <p>${currentPage.content}</p>
+                              </div>
                             </div>
-                          </div>
-                        </div>`
-                      );
+                          </div>`
+                        );
+                      }
                     }
                     else
                     {
