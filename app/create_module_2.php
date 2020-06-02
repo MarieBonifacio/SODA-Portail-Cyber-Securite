@@ -56,17 +56,20 @@ function processTitle($id, $isNew){
 }
 
 function processText($id, $isNew){
+    $content = "";
     if(!empty($_POST['content_'.$id])){
+        $content = $_POST['content_'.$id];
+    }
         return [
             'type' => 'success',
-            'content' => $_POST['content_'.$id],
+            'content' => $content,
         ];
-    }else{
-        return [
-            'type' => 'error',
-            'content' => 'Veuillez remplir le contenu des pages.',
-        ];
-    }
+    // }else{
+    //     return [
+    //         'type' => 'error',
+    //         'content' => 'Veuillez remplir le contenu des pages.',
+    //     ];
+    // }
 }
 
 function processImg($id, $isNew){
