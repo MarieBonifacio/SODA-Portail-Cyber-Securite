@@ -58,7 +58,7 @@ cleanSession();
 
       <div class="btns">
 
-        <button class="gen activated">Général</button>
+        <button class="gen">Général</button>
 
         <button class="town">Votre site</button>
 
@@ -78,7 +78,7 @@ cleanSession();
 
                   <th colspan="1">Site</th>
 
-                  <th colspan="1">Score</th>
+                  <th colspan="1">Moyenne</th>
 
               </tr>
 
