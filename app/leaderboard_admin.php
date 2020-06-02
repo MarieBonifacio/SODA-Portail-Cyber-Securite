@@ -9,38 +9,38 @@ include($path.'wp-load.php');
 if(!checkAuthorized(true, true)){
     wp_redirect( home_url() );  exit;
 }
-// on going ...
-// function getQuizGeneralClassement($idQuiz){
-//     global $wpdb;
 
-//     $sql = "
-//     SELECT 
-//         wp_users.display_name AS Joueur,  
-//         wp_usermeta.meta_value AS Site 
-//         quiz_score.score AS Score, 
-//         quiz_score.time AS Temps,
-//     FROM 
-//         quiz_score 
-//         LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id 
-//         LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' 
-//     WHERE 
-//         quiz_id = ".$quizId;
+function getQuizGeneralClassement($idQuiz){
+    global $wpdb;
 
-//     $sql .= " ORDER BY quiz_score.score, quiz_score.time DESC";
-// }
+    $sql = "
+    SELECT 
+        wp_users.display_name AS Joueur,  
+        wp_usermeta.meta_value AS Site 
+        quiz_score.score AS Score, 
+        quiz_score.time AS Temps,
+    FROM 
+        quiz_score 
+        LEFT JOIN wp_users ON wp_users.ID = quiz_score.user_id 
+        LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' 
+    WHERE 
+        quiz_id = ".$quizId;
 
-// function getQuizSiteClassement($ville){
-//     global $wpdb;
+    $sql .= " ORDER BY quiz_score.score, quiz_score.time DESC";
+}
 
-//     $sql = "
-//     SELECT
+function getQuizSiteClassement($ville){
+    global $wpdb;
 
-//     FROM
+    $sql = "
+    SELECT
+        
+    FROM
 
-//     WHERE
+    WHERE
 
-//     ";
-// }
+    ";
+}
 
 $userId = $_SESSION['userConnected'];
 $ville = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='location' AND user_id='".$userId."'");
@@ -55,22 +55,22 @@ if($request['type'] == "global"){
     }
 }
 
-// if($request['type'] == "quiz"){
-//     $idQuiz = $request['id'];
-//     if($request['filtre'] == "general"){
-//         echo json_encode();
-//     }else{
-//         //quiz site
-//     }
-// }
+if($request['type'] == "quiz"){
+    $idQuiz = $request['id'];
+    if($request['filtre'] == "general"){
+        echo json_encode();
+    }else{
+        //quiz site
+    }
+}
 
-// if($request['type'] == "tag"){
-//     if($request['filtre'] == "general"){
-//         //tag general
-//     }else{
-//         //tag site
-//     }
-// }
+if($request['type'] == "tag"){
+    if($request['filtre'] == "general"){
+        //tag general
+    }else{
+        //tag site
+    }
+}
 //dashboard admin
 
 // $response['classementVilleGeneral'] = getCityClassement();
