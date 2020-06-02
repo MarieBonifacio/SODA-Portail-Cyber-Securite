@@ -30,28 +30,50 @@ get_header();
           ';
           if($q['info']['img'])
           {
-            echo '
-            <div class="medias">
-            <img src="'.$img.'/img/modules/'.$q['info']['img'].'" alt="votre image">
-            </div>
-            <span class="numP">'.$num.'</span>
-            <div class="content">
-              <h2>'.stripslashes($q['info']['title']).'</h2>
-              <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
-            </div>
-            ';
+            if(!empty($q['info']['content']))
+            {
+              echo '
+              <div class="medias">
+              <img src="'.$img.'/img/modules/'.$q['info']['img'].'" alt="votre image">
+              </div>
+              <span class="numP">'.$num.'</span>
+              <div class="content">
+                <h2>'.stripslashes($q['info']['title']).'</h2>
+                <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
+              </div>
+              ';
+            }
+            else
+            {
+              echo '
+              <div class="medias full">
+              <img src="'.$img.'/img/modules/'.$q['info']['img'].'" alt="votre image">
+              </div>
+              <span class="numP">'.$num.'</span>
+              ';
+            }
           }
           elseif (!empty($q['info']['url'])){
             preg_match("/^.*v=(.*)$/", $q['info']['url'], $keywords);
             if(isset($keywords)){
-              echo '
-              <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <span class="numP">'.$num.'</span>
-                <div class="content">
-                  <h2>'.stripslashes($q['info']['title']).'</h2>
-                  <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
-                </div>
-                ';
+              if(!empty($q['info']['content']))
+              {
+                echo '
+                <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <span class="numP">'.$num.'</span>
+                  <div class="content">
+                    <h2>'.stripslashes($q['info']['title']).'</h2>
+                    <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
+                  </div>
+                  ';
+              }
+              else
+              {
+                echo '
+                <iframe width="500" height="300" src="https://www.youtube.com/embed/'.$keywords[1].'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <span class="numP">'.$num.'</span>
+                  ';
+              }
             }else{
               echo '
               <div class="img">

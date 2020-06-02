@@ -138,7 +138,7 @@ window.addEventListener('load', function () {
                     // add this page and its content to the output
                     if(currentPage.img_path != null)
                     {
-                      if(currentPage.content == null)
+                      if(currentPage.content == "")
                       {
                         output.push(
                           `<div class="slide" id="slide_${pageNumber}">
@@ -179,7 +179,7 @@ window.addEventListener('load', function () {
                       if(currentPage.video.match(/^.*(youtube).*/) == null  ){
                         video = ' <a href="'+currentPage.video+'">Voir la vidéo</a> ';
                       }
-                      if(currentPage.content == null)
+                      if(currentPage.content == "")
                       {
                         output.push(
                           `<div class="slide" id="slide_${pageNumber}">
