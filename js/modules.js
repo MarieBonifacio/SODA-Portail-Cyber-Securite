@@ -67,6 +67,7 @@ window.addEventListener('load', function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myModule = JSON.parse(this.responseText);
+            console.log(myModule);
             var previous = myModule.previous;
             const divModule = document.createElement("div");
             divModule.classList.add("modulePlay");
@@ -265,7 +266,7 @@ window.addEventListener('load', function () {
                     for (let i = 0; i < myModule.quizs.length; i++) {
                       liste.innerHTML += `
                         <li>
-                          <a href="${home_url + `/menu-quiz/`}">
+                          <div class="divQuiz" data-id="${i}">
                             <div class="contentQuiz">
                               <span>${myModule.quizs[i].name}</span>
                               <span class="tag">${myModule.quizs[i].tag_name}</span>
@@ -273,10 +274,374 @@ window.addEventListener('load', function () {
                                 <img src="${ url + `/img/quizs/${myModule.quizs[i].img}`}" alt="photo du quiz"/>
                               </div>
                             </div>
-                          </a>
+                          </div>
                         </li>
                       `
                     }
+                    const quizs = myModule.quizs;
+                    console.log(quizs);
+                    let myQuizs = document.querySelectorAll(".divQuiz");
+                    myQuizs.forEach(quiz => {
+                      quiz.addEventListener("click", (e)=>{
+                        const id = quiz.dataset.id;
+                        const myQuizz = quizs[id];
+                        if(myQuizz.finish == "1"){
+                          const quizFinished = document.createElement("div");
+                          quizFinished.classList.add("quizFinished");
+                          document.body.appendChild(quizFinished);
+                          quizFinished.innerHTML = "<p>Vous avez déjà terminé ce quiz.</p><i class='closeDivMess fas fa-times'></i>";
+
+                          const close = document.querySelectorAll(".closeDivMess");
+                          const quizMess = document.querySelectorAll(".quizFinished");
+                          close.forEach(cross => {
+                            cross.addEventListener("click", ()=>{
+                              for (let i = 0; i < quizMess.length; i++) {
+                                quizMess[i].remove();
+                              }
+                            })
+                          });
+                        }
+                        else{
+                          const quizMess = document.querySelectorAll(".quizFinished");
+                          for (let i = 0; i < quizMess.length; i++) 
+                          {
+                            quizMess[i].remove();
+                          }
+                          console.log(myQuizz)
+                          var previous = myQuizz.previous;
+                          const divQuizz = document.createElement("div");
+                          divQuizz.classList.add("quizPlay");
+                          document.body.appendChild(divQuizz);
+                          divQuizz.innerHTML = `
+                          <div class="quiz" id="quiz"></div>
+                          <div class="btns btnQuiz">
+                          <button id="nextQuiz">Prochaine question</button>
+                          <button id="submitQuiz">Terminer le quiz</button>
+                          </div>
+                          <div id="results">
+                          </div>
+                          <div class="timer">
+                          <label id="minutes">00</label>:<label id="seconds">00</label>
+                          </div>
+                          <div class="progress progressQuiz">
+                            <div class="progressDone progressDoneQuiz" data-done=""><span class="percentage percentageQuiz"></span></div>
+                          </div>
+                          `;
+                          
+                          let currentSlide = 0;
+                          let myQuestions = myQuizz.questions;
+                          let actualpercent = 0;
+                            const quizContainer = document.getElementById('quiz');
+                            const resultsContainer = document.getElementById('results');
+                            const submitButtonQuiz = document.getElementById('submitQuiz');
+                            const btnsQuiz = document.querySelector('.btnQuiz');
+                            const progressQuiz = document.querySelector('.progressDoneQuiz');
+                            const percentageQuiz = document.querySelector('.percentageQuiz');
+                            const timer = document.querySelector('.timer');
+                            var minutesLabel = document.getElementById("minutes");
+                            var secondsLabel = document.getElementById("seconds");
+                            if(previous.length > 0)
+                            {
+                              var totalSeconds = previous[previous.length -1].time;
+                            }
+                            else
+                            {
+                              var totalSeconds = 0;
+                            }
+                            var setInt = setInterval(setTime, 1000);
+              
+                            function setTime() {
+                              ++totalSeconds;
+                              secondsLabel.innerHTML = pad(totalSeconds % 60);
+                              minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+                            }
+              
+                            function pad(val) {
+                              var valString = val + "";
+                              if (valString.length < 2) {
+                                return "0" + valString;
+                              } else {
+                                return valString;
+                              }
+                            }
+              
+                            function shuffle(array)
+                            {
+                              array.sort(()=> Math.random()-0.5);
+                            }
+              
+                            shuffle(myQuestions);
+                            if(previous.length > 0)
+                            {
+                              var tableLostQuestions = [];
+                              for (let i = 0; i < previous.length; i++)
+                              {
+                                for (let f = 0; f < myQuestions.length; f++)
+                                {
+                                  if(myQuestions[f].id == previous[i].id_question)
+                                  {
+                                    var idCurrentQuestion = myQuestions.indexOf(myQuestions[f]);
+                                    if(idCurrentQuestion > -1)
+                                    {
+                                      tableLostQuestions.splice(0, 0, myQuestions[f]);
+                                      myQuestions.splice(idCurrentQuestion, 1);
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            let percent = (currentSlide + 1 / myQuestions.length) * 100;
+              
+                            function progressBarQuiz()
+                            {
+                              actualpercent += parseFloat(percent);
+                              progressQuiz.dataset.done = Math.ceil(actualpercent);
+                              progressQuiz.style.width = progressQuiz.getAttribute('data-done')+ '%';
+                              progressQuiz.style.opacity = 1;
+                              percentageQuiz.innerHTML = `${Math.ceil(actualpercent)} %`;
+                            }
+              
+                            function buildQuiz(){
+              
+                            progressBarQuiz();
+                            // variable to store the HTML output
+                            const output = [];
+              
+                            let numQuestion = 0;
+                              // for each question...
+                              myQuestions.forEach(
+                                (currentQuestion, questionNumber) => {
+              
+                                  // variable to store the list of possible answers
+                                  const currentAnswers = currentQuestion.answers;
+              
+                                  const answers = [];
+                                  numQuestion += 1;
+                                  // and for each available answer...
+                                  shuffle(currentAnswers);
+                                  for(i = 0; i<currentAnswers.length ; i++){
+                                    const letters = ['A', 'B' , 'C', 'D'];
+                                    // ...add an HTML radio button
+                                    answers.push(
+                                      `<label>
+                                        <input id="${currentAnswers[i].id}" class="input${myQuestions.indexOf(currentQuestion)}${[i]}" type="checkbox" name="question${questionNumber}" data-answer="${letters[i]}" value="${currentAnswers[i].is_true}">
+                                        <p class="answer"><span>${letters[i]}.</span> ${currentAnswers[i].content}</p>
+                                      </label>`
+                                    );
+                                  }
+                                  // add this question and its answers to the output
+                                  
+                                  if(currentQuestion.img_path === null)
+                                  {
+                                    if(currentQuestion.url === null)
+                                    {
+                                      output.push(
+                                        `<div class="slide slideQuiz">
+                                          <div class="question">${numQuestion}. ${currentQuestion.content} </div>
+                                          <div class="answers">${answers.join('')}</div>
+                                        </div>`
+                                      );
+                                    }else{
+                                      if( currentQuestion.url.match(/^.*(youtube).*/) == null ){
+                                        output.push(
+                                          `<div class="slide slideQuiz">
+                                            <div class="img">
+                                              <a href="`+currentQuestion.url+`">Voir la vidéo</a>
+                                            </div>
+                                            <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
+                                            <div class="answers">${answers.join('')}</div>
+                                          </div>`
+                                        );
+                                      }
+                                      let youtubeHash = currentQuestion.url.match(/^.*v=(.*)$/);
+                                      output.push(
+                                        `<div class="slide slideQuiz">
+                                          <div class="img">
+                                          <iframe src="https://www.youtube.com/embed/`+youtubeHash[1]+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                          </div>
+                                          <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
+                                          <div class="answers">${answers.join('')}</div>
+                                        </div>`
+                                      );
+                                    }
+                                  }
+                                  else
+                                  {
+                                    output.push(
+                                      `<div class="slide slideQuiz">
+                                        <div class="img">
+                                          <img src="${ url + `/img/quizs/${currentQuestion.img_path}`}" alt="photo de la question"/>
+                                        </div>
+                                        <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
+                                        <div class="answers">${answers.join('')}</div>
+                                      </div>`
+                                    );
+                                  }
+                                }
+                              );
+                              // finally combine our output list into one string of HTML and put it on the page
+                              quizContainer.innerHTML = output.join('');
+                            }
+              
+                            // display quiz right away
+                            buildQuiz();
+              
+                            const nextButtonQuiz = document.getElementById("nextQuiz");
+                            const slidesQuiz = document.querySelectorAll(".slideQuiz");
+              
+                            function showSlideQuiz(n) {
+                              slidesQuiz[currentSlide].classList.remove('active-slide');
+                              slidesQuiz[n].classList.add('active-slide');
+                              currentSlide = n;
+                              if(currentSlide === slidesQuiz.length-1){
+                                nextButtonQuiz.style.display = 'none';
+                                submitButtonQuiz.style.display = 'inline-block';
+                              }
+                              else{
+                                nextButtonQuiz.style.display = 'inline-block';
+                                submitButtonQuiz.style.display = 'none';
+                              }
+                            }
+              
+                            var id_question;
+                            var id_answer;
+                            var is_True;
+              
+                            function recupIds(){
+                              id_question = myQuestions[currentSlide].id;
+                              id_answer = null;
+                              is_True = "false";
+              
+                              let answerChecked = [];
+                              for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
+                                let input = document.querySelector(`.input${currentSlide}${i}`);
+                                if(input.checked)
+                                {
+                                  answerChecked.push(parseInt(input.id));
+                                }
+                              }
+                              return answerChecked;
+                            }
+              
+                            // Show the first slide
+                            showSlideQuiz(currentSlide);
+              
+                            function showNextSlideQuiz(finish) {
+                              let answerChecked = recupIds();
+              
+                              var obj = {
+                                "questions": id_question,
+                                "answers": answerChecked,
+                                "time": totalSeconds,
+                                "id_quiz" : myQuizz.id,
+                              };
+              
+              
+                              dbParam = JSON.stringify(obj);
+                              xmlhttp = new XMLHttpRequest();
+                              xmlhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                  if (!finish){
+                                      showSlideQuiz(currentSlide + 1);
+                                      progressBarQuiz();
+                                      console.log(obj)
+                                  }else{
+                                      getResults();
+                                  }
+                                }
+                              };
+                              xmlhttp.open("POST", url + "/quiz_answer_user.php/", true);
+                              xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                              xmlhttp.send(dbParam);
+                            }
+              
+                          function getResults(){
+                              var obj = {
+                                "id_user": myQuizz.player,
+                                "id_quiz" : myQuizz.id,
+                              };
+                              dbParam = JSON.stringify(obj);
+                              xmlhttp = new XMLHttpRequest();
+                              xmlhttp.onreadystatechange = function() {
+                                  if (this.readyState == 4 && this.status == 200) {
+                                      let result = JSON.parse(this.responseText);
+                                      showFinish(result);
+                                  }
+                              };
+                              xmlhttp.open("POST", url + "/quiz_result.php/", true);
+                              xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                              xmlhttp.send(dbParam);
+                          }
+              
+                          function showFinish(result){
+                              // show number of correct answers out of total
+                              resultsContainer.style.opacity = "1";
+                              resultsContainer.innerHTML = `
+                              <p>${result.good} correct(s) sur ${result.questions.length}</p>
+                              <p>Vous avez obtenu ${result.score}/100pts en ${result.time} secondes!</p>
+                              <i class="btnBackMenu fas fa-times"></i>
+                              <div class="recap">
+                              </div>
+                              `;
+              
+                              const recap = document.querySelector('.recap');
+              
+                              result.questions.forEach((question, i) => {
+                                  numQuestion = i+1;
+              
+                                  const questionDiv = document.createElement("div");
+                                  questionDiv.classList.add("question");
+                                  recap.appendChild(questionDiv);
+              
+                                  const p = document.createElement("p");
+                                  p.classList.add(`questionRecap`);
+                                  questionDiv.appendChild(p);
+                                  p.innerHTML =`<span>${numQuestion}.</span> ${question.content}`;
+              
+                                  const divAnswer = document.createElement("div");
+                                  divAnswer.classList.add(`answerRecap${[i]}`, "answerRecap");
+                                  questionDiv.appendChild(divAnswer);
+              
+                                  question.answers.forEach((answer, j) => {
+                                      const letters = ['A', 'B' , 'C', 'D'];
+              
+                                      const pAnswerDiv = document.createElement("div");
+                                      pAnswerDiv.classList.add(`answerTF${[j]}${[i]}`, 'answerTF');
+                                      divAnswer.appendChild(pAnswerDiv);
+                                      pAnswerDiv.innerHTML = `<span>${letters[j]}:</span> ${answer.content}`;
+                                      if(answer.is_true == "1" || answer.is_true == "true"){
+                                          pAnswerDiv.style.color = "#3AD29F";
+                                      }else{
+                                          pAnswerDiv.style.color = "red";
+                                      }
+                                  });
+                              });
+              
+                              const btnBackMenu = document.querySelectorAll(".btnBackMenu");
+              
+                              btnBackMenu.forEach(btn => {
+                                btn.addEventListener("click", ()=>{
+                                  location.reload();
+                                })
+                              });
+              
+                              timer.remove();
+                              quizContainer.remove();
+                              btnsQuiz.remove();
+                          }
+                
+                          // Event listeners
+                          nextButtonQuiz.addEventListener("click", function(){
+                              showNextSlideQuiz(false);
+                          });
+            
+                          // on submit, show results
+                          submitButtonQuiz.addEventListener('click', function(){
+                              showNextSlideQuiz(true);
+                          });
+                        }
+                      })
+                    });
                   }
                   else
                   {
