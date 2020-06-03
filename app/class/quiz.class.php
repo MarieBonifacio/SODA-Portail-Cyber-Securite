@@ -123,7 +123,7 @@ class Quiz {
 
                 'id' => $this->id,
                 'name' => $this->name,
-                'tag_id' => $this->tag->getId()->getName(),
+                'tag_name' => $this->tag->getName(),
                 'img' => $this->img_path,
                 'player' => $player,
             );
