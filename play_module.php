@@ -39,15 +39,11 @@ $pages = $wpdb->get_results( "SELECT * FROM module_slide WHERE module_id='$modul
     }
 /////
 $quizQuery = $wpdb->get_results("SELECT id_quiz FROM module_quiz WHERE id_module='$moduleId'");
+$quizInfo = array();
 foreach($quizQuery as $q){
     $quizRelated = new Quiz();
     $quizRelated->selectById($q->id_quiz);
-    $quizInfo[] = array(
-        "id" => $quizRelated->getId(),
-        "title" => $quizRelated->getName(),
-        "tag" => $quizRelated->getTag()->getName(),
-        "img"=> $quizRelated->getImgPath(),
-    );
+    $quizInfo[] = $quizRelated->getInfos($_SESSION['userConnected']);
 }
 $module["quizs"] = $quizInfo;
 /////

@@ -34,111 +34,113 @@ $quiz = new Quiz();
 
 $quiz->selectById($_GET['id']);
 
-
-
-$quizId = $quiz->getId();
-
-$questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId' ORDER BY rand() LIMIT 10");
-
-$quizArray = [];
+echo json_encode($quiz->getInfos($_SESSION['userConnected']));
 
 
 
-    $quiz = array(
+// $quizId = $quiz->getId();
 
-        'id' => $quiz->getId(),
+// $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId' ORDER BY rand() LIMIT 10");
 
-        'name' => $quiz->getName(),
+// $quizArray = [];
 
-        'tag_id' => $quiz->getTag()->getId(),
 
-        'img' => $quiz->getImgPath(),
 
-        'player' => $_SESSION['userConnected'],
+//     $quiz = array(
 
-    );
+//         'id' => $quiz->getId(),
 
-    foreach($questions as $q){
+//         'name' => $quiz->getName(),
 
-        $question = array(  
+//         'tag_id' => $quiz->getTag()->getId(),
 
-            "id" => $q->id,
+//         'img' => $quiz->getImgPath(),
 
-            "id_quiz" => $q->id_quiz,
+//         'player' => $_SESSION['userConnected'],
 
-            "content" => $q->content,
+//     );
 
-            "img_path" => $q->img_path,
+//     foreach($questions as $q){
 
-            "url" => $q->url,
+//         $question = array(  
 
-            "points" => $q->points,
+//             "id" => $q->id,
 
-        );
+//             "id_quiz" => $q->id_quiz,
+
+//             "content" => $q->content,
+
+//             "img_path" => $q->img_path,
+
+//             "url" => $q->url,
+
+//             "points" => $q->points,
+
+//         );
 
         
 
-        $questionId = $question['id'];
+//         $questionId = $question['id'];
 
-        $answers = $wpdb->get_results( "SELECT * FROM answer where id_question='$questionId'" );
+//         $answers = $wpdb->get_results( "SELECT * FROM answer where id_question='$questionId'" );
 
-        foreach($answers as $a){
+//         foreach($answers as $a){
 
-            $answer = array(
+//             $answer = array(
 
-                'id' => $a->id,
+//                 'id' => $a->id,
 
-                'id_question' => $a->id_question,
+//                 'id_question' => $a->id_question,
 
-                'content' => $a->content,
+//                 'content' => $a->content,
 
-                'is_true' => $a->is_true,
+//                 'is_true' => $a->is_true,
 
-            );
+//             );
 
-            $question['answers'][] = $answer;
+//             $question['answers'][] = $answer;
 
-        }
+//         }
 
-        $quiz['questions'][] = $question;
+//         $quiz['questions'][] = $question;
 
-    }
-
-
-
-    $userId = $_SESSION['userConnected'];
-
-    $query = $wpdb->get_results("SELECT id_question, id_answer, time FROM quiz_progress WHERE id_user= '$userId' AND id_quiz = '$quizId'");
-
-    $previous = array();
-
-    foreach($query as $q)
-
-    {
-
-        $answerId = $q->id_answer;
-
-        $answer =  $wpdb->get_var("SELECT is_true FROM answer WHERE id='$answerId'");
-
-        $previous[] = array(
-
-            "id_question" => $q->id_question,
-
-            "id_answer" => $q->id_answer,
-
-            "time" => $q->time,
-
-            "is_true" => $answer,
-
-        );
-
-    }
-
-    $quiz["previous"] = $previous;
+//     }
 
 
 
-echo json_encode($quiz);
+//     $userId = $_SESSION['userConnected'];
+
+//     $query = $wpdb->get_results("SELECT id_question, id_answer, time FROM quiz_progress WHERE id_user= '$userId' AND id_quiz = '$quizId'");
+
+//     $previous = array();
+
+//     foreach($query as $q)
+
+//     {
+
+//         $answerId = $q->id_answer;
+
+//         $answer =  $wpdb->get_var("SELECT is_true FROM answer WHERE id='$answerId'");
+
+//         $previous[] = array(
+
+//             "id_question" => $q->id_question,
+
+//             "id_answer" => $q->id_answer,
+
+//             "time" => $q->time,
+
+//             "is_true" => $answer,
+
+//         );
+
+//     }
+
+//     $quiz["previous"] = $previous;
+
+
+
+// echo json_encode($quiz);
 
 
 

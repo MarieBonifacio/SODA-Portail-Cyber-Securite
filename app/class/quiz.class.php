@@ -108,6 +108,83 @@ class Quiz {
         global $wpdb;
         $wpdb->delete( 'quiz', array( 'id' => $id ) );
     }
-}
+
+    public function getInfos($player){
+
+        global $wpdb;
+
+        $quizId = $this->id;
+
+        $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId' ORDER BY rand() LIMIT 10");
+
+        $quizArray = [];
+
+            $quiz = array(
+
+                'id' => $this->id,
+                'name' => $this->name,
+                'tag_id' => $this->tag->getId(),
+                'img' => $this->img_path,
+                'player' => $player,
+            );
+
+            foreach($questions as $q){
+
+                $question = array(  
+
+                    "id" => $q->id,
+                    "id_quiz" => $q->id_quiz,
+                    "content" => $q->content,
+                    "img_path" => $q->img_path,
+                    "url" => $q->url,
+                    "points" => $q->points,
+                );
+
+                $questionId = $question['id'];
+
+                $answers = $wpdb->get_results( "SELECT * FROM answer where id_question='$questionId'" );
+
+                foreach($answers as $a){
+
+                    $answer = array(
+                        'id' => $a->id,
+                        'id_question' => $a->id_question,
+                        'content' => $a->content,
+                    );
+
+                    $question['answers'][] = $answer;
+
+                }
+
+                $quiz['questions'][] = $question;
+
+            }
+
+            $query = $wpdb->get_results("SELECT id_question, id_answer, time FROM quiz_progress WHERE id_user= '$player' AND id_quiz = '$quizId'");
+
+            $previous = array();
+
+            foreach($query as $q)
+
+            {
+
+                $answerId = $q->id_answer;
+
+                $answer =  $wpdb->get_var("SELECT is_true FROM answer WHERE id='$answerId'");
+
+                $previous[] = array(
+                    "id_question" => $q->id_question,
+                    "id_answer" => $q->id_answer,
+                    "time" => $q->time,
+                );
+
+
+            }
+
+            $quiz["previous"] = $previous;
+
+            return $quiz;
+        }
+    }
 
 ?>
