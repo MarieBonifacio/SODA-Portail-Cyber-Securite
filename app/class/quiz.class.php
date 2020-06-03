@@ -117,7 +117,7 @@ class Quiz {
 
         $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId' ORDER BY rand() LIMIT 10");
 
-        $quizArray = [];
+        $finish = $wpdb->get_var("SELECT count(id) FROM quiz_score WHERE quiz_id='$quizId' AND user_id='$player'");
 
             $quiz = array(
 
@@ -126,6 +126,7 @@ class Quiz {
                 'tag_name' => $this->tag->getName(),
                 'img' => $this->img_path,
                 'player' => $player,
+                'finish' => $finish,
             );
 
             foreach($questions as $q){
