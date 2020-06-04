@@ -487,6 +487,14 @@
         }
       }
     }
+    .vc_pageable-slide-wrapper
+    {
+      margin-right: 0 !important;
+    }
+    .vc_grid-item
+    {
+      padding-right: 0 !important;
+    }
     .modulePlay
     {
       .module
@@ -555,6 +563,11 @@
       {
         display: block !important;
       }
+    }
+    .vc_grid-item
+    {
+      padding-right: 0 !important;
+      margin: 28px;
     }
     .modulePlay
     {
