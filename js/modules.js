@@ -96,25 +96,8 @@ window.addEventListener('load', function () {
             if(previous.length > 0)
             {
                 currentSlide = parseInt(previous[previous.length -1].order) + 1;
-
-              var tableLostPages = [];
-              // for (let i = 0; i < previous.length; i++)
-              // {
-              //   for (let f = 0; f < myPages.length; f++)
-              //   {
-              //     if(myPages[f].id == previous[i].id_slide)
-              //     {
-              //       var idCurrentPage = myPages.indexOf(myPages[f]);
-              //       if(idCurrentPage > -1)
-              //       {
-              //         tableLostPages.splice(0, 0, myPages[f]);
-              //         myPages.splice(idCurrentPage, 1);
-              //       }
-              //     }
-              //   }
-              // }
+                console.log(currentSlide);
             }
-
             function progressBar()
             {
              actualpercent = ((currentSlide + 1) / myPages.length) * 100;
@@ -308,7 +291,7 @@ window.addEventListener('load', function () {
                             quizMess[i].remove();
                           }
                           console.log(myQuizz)
-                          var previous = myQuizz.previous;
+                          var previousQuiz = myQuizz.previous;
                           const divQuizz = document.createElement("div");
                           divQuizz.classList.add("quizPlay");
                           document.body.appendChild(divQuizz);
@@ -328,7 +311,7 @@ window.addEventListener('load', function () {
                           </div>
                           `;
                           
-                          let currentSlide = 0;
+                          let currentSlideQuiz = 0;
                           let myQuestions = myQuizz.questions;
                           let actualpercent = 0;
                             const quizContainer = document.getElementById('quiz');
@@ -340,9 +323,9 @@ window.addEventListener('load', function () {
                             const timer = document.querySelector('.timer');
                             var minutesLabel = document.getElementById("minutes");
                             var secondsLabel = document.getElementById("seconds");
-                            if(previous.length > 0)
+                            if(previousQuiz.length > 0)
                             {
-                              var totalSeconds = previous[previous.length -1].time;
+                              var totalSeconds = previousQuiz[previousQuiz.length -1].time;
                             }
                             else
                             {
@@ -371,14 +354,14 @@ window.addEventListener('load', function () {
                             }
               
                             shuffle(myQuestions);
-                            if(previous.length > 0)
+                            if(previousQuiz.length > 0)
                             {
                               var tableLostQuestions = [];
-                              for (let i = 0; i < previous.length; i++)
+                              for (let i = 0; i < previousQuiz.length; i++)
                               {
                                 for (let f = 0; f < myQuestions.length; f++)
                                 {
-                                  if(myQuestions[f].id == previous[i].id_question)
+                                  if(myQuestions[f].id == previousQuiz[i].id_question)
                                   {
                                     var idCurrentQuestion = myQuestions.indexOf(myQuestions[f]);
                                     if(idCurrentQuestion > -1)
@@ -390,7 +373,7 @@ window.addEventListener('load', function () {
                                 }
                               }
                             }
-                            let percent = (currentSlide + 1 / myQuestions.length) * 100;
+                            let percent = (currentSlideQuiz + 1 / myQuestions.length) * 100;
               
                             function progressBarQuiz()
                             {
@@ -490,10 +473,10 @@ window.addEventListener('load', function () {
                             const slidesQuiz = document.querySelectorAll(".slideQuiz");
               
                             function showSlideQuiz(n) {
-                              slidesQuiz[currentSlide].classList.remove('active-slide');
-                              slidesQuiz[n].classList.add('active-slide');
-                              currentSlide = n;
-                              if(currentSlide === slidesQuiz.length-1){
+                              slidesQuiz[currentSlideQuiz].classList.remove('active-slideQuiz');
+                              slidesQuiz[n].classList.add('active-slideQuiz');
+                              currentSlideQuiz = n;
+                              if(currentSlideQuiz === slidesQuiz.length-1){
                                 nextButtonQuiz.style.display = 'none';
                                 submitButtonQuiz.style.display = 'inline-block';
                               }
@@ -508,13 +491,13 @@ window.addEventListener('load', function () {
                             var is_True;
               
                             function recupIds(){
-                              id_question = myQuestions[currentSlide].id;
+                              id_question = myQuestions[currentSlideQuiz].id;
                               id_answer = null;
                               is_True = "false";
               
                               let answerChecked = [];
-                              for (let i = 0; i < myQuestions[currentSlide].answers.length; i++) {
-                                let input = document.querySelector(`.input${currentSlide}${i}`);
+                              for (let i = 0; i < myQuestions[currentSlideQuiz].answers.length; i++) {
+                                let input = document.querySelector(`.input${currentSlideQuiz}${i}`);
                                 if(input.checked)
                                 {
                                   answerChecked.push(parseInt(input.id));
@@ -524,7 +507,7 @@ window.addEventListener('load', function () {
                             }
               
                             // Show the first slide
-                            showSlideQuiz(currentSlide);
+                            showSlideQuiz(currentSlideQuiz);
               
                             function showNextSlideQuiz(finish) {
                               let answerChecked = recupIds();
@@ -542,7 +525,7 @@ window.addEventListener('load', function () {
                               xmlhttp.onreadystatechange = function() {
                                 if (this.readyState == 4 && this.status == 200) {
                                   if (!finish){
-                                      showSlideQuiz(currentSlide + 1);
+                                      showSlideQuiz(currentSlideQuiz + 1);
                                       progressBarQuiz();
                                       console.log(obj)
                                   }else{
@@ -702,7 +685,6 @@ window.addEventListener('load', function () {
                 "module_id" : myModule.id,
               };
 
-
               dbParam = JSON.stringify(obj);
               xmlhttp = new XMLHttpRequest();
               xmlhttp.onreadystatechange = function() {
@@ -710,6 +692,7 @@ window.addEventListener('load', function () {
                   // actualpercent += parseFloat(percent);
                   showSlide(currentSlide + 1);
                   progressBar();
+                  console.log(currentSlide);
                 }
               };
               xmlhttp.open("POST", url + "/module_user.php/", true);

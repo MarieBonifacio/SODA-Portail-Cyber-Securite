@@ -510,7 +510,7 @@
                 max-height: 100%;
               }
               iframe{
-                height: 100%;
+                height: 70%;
               }
             }
             .mediaFull
@@ -569,7 +569,15 @@
             {
               width: 80%;
               iframe{
-                height: 100%;
+                height: 70%;
+              }
+            }
+            .mediaFull
+            {
+              iframe
+              {
+                width: 100%;
+                height: 70%;
               }
             }
             .para
