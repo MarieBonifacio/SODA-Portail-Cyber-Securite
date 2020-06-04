@@ -122,6 +122,14 @@ $ville = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='loca
 $str_json = file_get_contents('php://input'); //($_POST doesn't work here)
 $request = json_decode($str_json, true); // decoding received JSON to array
 
+if($request == null){
+    global $wpdb;
+    $liste['quizs'] = $wpdb->get_results("SELECT id, name from quiz");
+    $liste['tags'] = $wpdb->get_results("SELECT id, name from tag");
+
+    echo json_encode($liste);
+}
+
 if($request['type'] == "global"){
     if($request['filtre'] == "general"){
         echo json_encode(getUserClassement());
