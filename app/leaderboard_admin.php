@@ -119,14 +119,8 @@ function getTagSiteClassement($idTag){
 $userId = $_SESSION['userConnected'];
 $ville = $wpdb->get_var("SELECT meta_value FROM wp_usermeta WHERE meta_key='location' AND user_id='".$userId."'");
 
-// $str_json = file_get_contents('php://input'); //($_POST doesn't work here)
-// $request = json_decode($str_json, true); // decoding received JSON to array
-
-$request = [
-    'type' => 'tag',
-    'filtre' => 'site',
-    'id' => 176
-];
+$str_json = file_get_contents('php://input'); //($_POST doesn't work here)
+$request = json_decode($str_json, true); // decoding received JSON to array
 
 if($request['type'] == "global"){
     if($request['filtre'] == "general"){
