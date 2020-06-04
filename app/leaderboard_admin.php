@@ -128,33 +128,35 @@ if($request == null){
     $liste['tags'] = $wpdb->get_results("SELECT id, name from tag");
 
     echo json_encode($liste);
-}
-
-if($request['type'] == "global"){
-    if($request['filtre'] == "general"){
-        echo json_encode(getUserClassement());
-    }else{
-        echo json_encode(getCityClassement());
+}else{
+    if($request['type'] == "global"){
+        if($request['filtre'] == "general"){
+            echo json_encode(getUserClassement());
+        }else{
+            echo json_encode(getCityClassement());
+        }
+    }
+    
+    if($request['type'] == "quiz"){
+        $idQuiz = $request['id'];
+        if($request['filtre'] == "general"){
+            echo json_encode(getQuizGeneralClassement($idQuiz));
+        }else{
+            echo json_encode(getQuizSiteClassement($idQuiz));
+        }
+    }
+    
+    if($request['type'] == "tag"){
+        $idTag = $request['id'];
+        if($request['filtre'] == "general"){
+            echo json_encode(getTagGeneralClassement($idTag));
+        }else{
+            echo json_encode(getTagSiteClassement($idTag));
+        }
     }
 }
 
-if($request['type'] == "quiz"){
-    $idQuiz = $request['id'];
-    if($request['filtre'] == "general"){
-        echo json_encode(getQuizGeneralClassement($idQuiz));
-    }else{
-        echo json_encode(getQuizSiteClassement($idQuiz));
-    }
-}
 
-if($request['type'] == "tag"){
-    $idTag = $request['id'];
-    if($request['filtre'] == "general"){
-        echo json_encode(getTagGeneralClassement($idTag));
-    }else{
-        echo json_encode(getTagSiteClassement($idTag));
-    }
-}
 //dashboard admin
 
 // $response['classementVilleGeneral'] = getCityClassement();
