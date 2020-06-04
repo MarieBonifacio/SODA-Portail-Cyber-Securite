@@ -318,6 +318,9 @@ public function getInfos($player){
             "order" => $order,
         );
     }
+    usort($previous, function ($a, $b) {
+        return $a['order'] <=> $b['order'];
+    });
     $module["previous"] = $previous;
     
     return $module;
