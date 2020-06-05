@@ -3340,6 +3340,7 @@ body
       .btns
       {
         width: 100%;
+        z-index: 5;
         transform: translate(-50%, -50%);
         @include positionTL(absolute, 15%, 50%);
         @include flex(space-evenly, center, "");
@@ -3358,15 +3359,90 @@ body
         {
           margin: 10px;
         }
-        .select
-        {
-          display: none;
-        }
         label
         {
           font-weight: bold;
           font-family: "Muli";
           margin-right: 5px;
+        }
+        .select
+        {
+          position: relative;
+          z-index: 2;
+          justify-content: space-between;
+          .labelSpan
+          {
+            margin: 0;
+            display:flex;
+            .labelList
+            {
+              display: flex; 
+              align-items: center;
+            }
+            .selected
+            {
+              display:flex;
+              // min-width: 100px;
+              border-radius: 5px;
+              text-align: center;
+              padding: 5px 10px;
+              margin: 0;
+              background: $color1;
+            }
+            .selected:hover
+            {
+              cursor: pointer;
+              color: $color-imp;
+            }
+          }
+          ul
+          {
+            
+            background: $color3;
+            border-radius: 3px;
+            padding: 5px;
+            position: absolute;
+            right: 0;
+            top: 25px;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+            min-height: 100px;
+            max-height: 200px;
+            min-width: 100px;
+            overflow: hidden;
+            overflow-y : scroll;
+          }
+          ul::-webkit-scrollbar {
+            width: 2px;
+            height: 2px;
+          }
+          ul::-webkit-scrollbar-thumb {
+            background: $color-btn;
+            border-radius: 100px;
+          }
+          ul::-webkit-scrollbar-thumb:hover {
+            background: $color-btn;
+          }
+          ul::-webkit-scrollbar-thumb:active {
+            background: $color-btn;
+          }
+          ul::-webkit-scrollbar-track {
+            background: $color1;
+            border-radius: 50px;
+          }
+          ul::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+          li:hover
+          {
+            cursor: pointer;
+            color: $color-imp;
+          }
+        }
+        .none
+        {
+          display: none !important;
         }
         button:hover
         {

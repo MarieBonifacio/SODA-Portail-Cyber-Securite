@@ -69,10 +69,23 @@ cleanSession(); ?>
       <button class="sites">Sites</button>
     </div>
     <div class="select">
-      <label class="labelList"></label>
+      <div class="labelSpan">
+        <label class="labelList"></label>
+        <p class="selected">Votre choix</p>
+      </div>
       <ul class="listQuizCat listCat">
+      <?php $tags = $wpdb->get_results( "SELECT tag.id AS tId, tag.name AS tName from tag");
+      foreach($tags as $t){
+        echo '<li class="tagLi" data-id="'.$t->tId.'">'.$t->tName.'</li>';
+      }
+      ?>
       </ul>
       <ul class="listQuizCat listQuiz">
+      <?php $quiz = $wpdb->get_results( "SELECT quiz.id AS qId, quiz.name AS qName from quiz");
+      foreach($quiz as $t){
+        echo '<li class="quizLi" data-id="'.$t->qId.'">'.$t->qName.'</li>';
+      }
+      ?>
       </ul>
     </div>
   </div>

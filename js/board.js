@@ -10,33 +10,6 @@ window.addEventListener('load', function () {
   xmlhttp.onreadystatechange = function () {
     if(this.readyState == 4 && this.status == 200)
     {
-      // call the same file in GET method in order to take the list of quiz and categories
-      var xmlhttp2 = new XMLHttpRequest();
-      xmlhttp2.onreadystatechange = function(){
-          if(this.readyState == 4 && this.status == 200)
-          {
-            var myArray = JSON.parse(this.responseText);
-            console.log(myArray);
-            const selectQuiz = document.querySelector(".listQuiz"),
-                  selectCat = document.querySelector(".listCat"),
-                  quizArray = myArray.quizs,
-                  catArray = myArray.tags;
-            
-            for (let i = 0; i < quizArray.length; i++) {
-              selectQuiz.innerHTML += `
-                <li class="quizLi" data-id="${quizArray[i].id}">${quizArray[i].name}</li>
-              `
-            }
-            for (let i = 0; i < catArray.length; i++) {
-              selectCat.innerHTML += `
-              <li class="quizLi" data-id="${catArray[i].id}">${catArray[i].name}</li>`;
-            }
-          }
-      }
-      xmlhttp2.open("GET", url  + '/app/leaderboard_admin.php', true);
-      xmlhttp2.send();
-      // ----------------------- 
-
       var myArray = JSON.parse(this.responseText);
       var classement = myArray.classement
       console.log(classement);
@@ -45,14 +18,17 @@ window.addEventListener('load', function () {
             catbtn = document.querySelector(".cat"),
             genfilter = document.querySelector(".gen"),
             sitesfilter = document.querySelector(".sites"),
-            select = document.querySelector(".listQuizCat"),
+            select = document.querySelector(".select"),
+            selected = document.querySelector(".selected"),
+            quizLi = document.querySelectorAll(".quizLi"),
+            tagLi = document.querySelectorAll(".tagLi"),
+            btnList = document.querySelector(".btnList"),
+            label = document.querySelector(".labelList"),
             selectCat = document.querySelector(".listCat"),
             selectQuiz = document.querySelector(".listQuiz"),
             dropIcon = document.querySelector(".dropIcon"),
             legend = document.querySelector(".square_legend");
-
-      selectCat.style.display = 'none';
-      selectQuiz.style.display = 'none';
+      select.style.display = "none";
       globalbtn.style.background = "#e6e6e6";
       quizbtn.style.background = "#EBB94A";
       catbtn.style.background = "#EBB94A";
@@ -66,8 +42,7 @@ window.addEventListener('load', function () {
 
       function buildTable(array, filter, type)
       {
-        const table = document.querySelector("table"),
-              tbody = document.querySelector("tbody"),
+        const tbody = document.querySelector("tbody"),
               thead = document.querySelector("thead"),
               spanAbove = document.querySelector(".span_above"),
               spanUnder = document.querySelector(".span_under");
@@ -149,30 +124,40 @@ window.addEventListener('load', function () {
         }
         for (let i = 0; i < array.length; i++) {
           pos = i + 1;
+          const tr = document.createElement("tr");
+          tbody.appendChild(tr);
+          if(pos == 1)
+          {
+            tr.classList.add("gold");
+          }
+          else if(pos == 2)
+          {
+            tr.classList.add("silver");
+          }
+          else if(pos == 3)
+          {
+            tr.classList.add("bronze");
+          }
           if(type == 'quiz')
           {
             if(filter == 'general')
             {
-              tbody.innerHTML += `
-                <tr>
+              tr.innerHTML += `
                 <td>${pos}</td>
                 <td>${array[i].Joueur}</td>
                 <td>${array[i].Site}</td>
                 <td>${array[i].Temps}</td>
                 <td>${parseInt(array[i].Score)}</td>
-                </tr>
               `
             }
             else
             {
-              tbody.innerHTML += `
-              <tr>
+              tr.innerHTML += `
               <td>${pos}</td>
               <td>${array[i].Site}</td>
               <td>${array[i].Nombre}</td>
               <td>${array[i].Temps}</td>
               <td>${parseInt(array[i].Moyenne)}</td>
-              </tr>
             `
             }
           }
@@ -180,27 +165,23 @@ window.addEventListener('load', function () {
           {
             if(filter == 'general')
             {
-              tbody.innerHTML += `
-                <tr>
+              tr.innerHTML += `
                 <td>${pos}</td>
                 <td>${array[i].Joueur}</td>
                 <td>${array[i].Site}</td>
                 <td>${array[i].Nombre}</td>
                 <td>${array[i].Temps}</td>
                 <td>${parseInt(array[i].Moyenne)}</td>
-                </tr>
               `
             }
             else
             {
-              tbody.innerHTML += `
-              <tr>
+              tr.innerHTML += `
               <td>${pos}</td>
               <td>${array[i].Site}</td>
               <td>${array[i].Nombre}</td>
               <td>${array[i].Temps}</td>
               <td>${parseInt(array[i].Moyenne)}</td>
-              </tr>
             `
             }
           }
@@ -208,27 +189,23 @@ window.addEventListener('load', function () {
           {
             if(filter == 'general')
             {
-              tbody.innerHTML += `
-                <tr>
+              tr.innerHTML += `
                 <td>${pos}</td>
                 <td>${array[i].display_name}</td>
                 <td>${array[i].meta_value}</td>
                 <td>${array[i].count}</td>
                 <td>${array[i].time}</td>
                 <td>${parseInt(array[i].moyenne)}</td>
-                </tr>
               `
             }
             else
             {
-              tbody.innerHTML += `
-              <tr>
+              tr.innerHTML += `
               <td>${pos}</td>
               <td>${array[i].city}</td>
               <td>${array[i].quizCount}</td>
               <td>${array[i].time}</td>
               <td>${parseInt(array[i].moyenne)}</td>
-              </tr>
             `
             }
           }
@@ -265,22 +242,102 @@ window.addEventListener('load', function () {
         xmlhttpPost.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttpPost.send(dbParamPost);
       }
+      function selectId(array, type, filter){
+        array.forEach(li => {
+          li.addEventListener("click", ()=>{
+            if(type == "quiz")
+            {
+              selectQuiz.classList.add("none");
+              quiz_id = li.dataset.id;
+              obj = {
+                "type" : type,
+                "filtre" : filter,
+                "id" : quiz_id
+              };
+              request(obj, type, filter);
+            }
+            else
+            {
+              selectCat.classList.add("none");
+              tag_id = li.dataset.id;
+              obj = {
+                "type" : type,
+                "filtre" : filter,
+                "id" : tag_id
+              };
+              request(obj, type, filter);
+            }
+          })
+        });
+      }
+      quizLi.forEach(li => {
+        li.addEventListener("click", ()=>{
+          selectQuiz.classList.add("none");
+          let idQuiz = li.dataset.id,
+              QuizName = li.textContent;
+          selected.innerHTML= QuizName;
+          quiz_id = idQuiz;
+          obj = {
+            "type" : type,
+            "filtre" : filter,
+            "id" : quiz_id
+          };
+          request(obj, type, filter);
+        })
+      });
+      tagLi.forEach(li =>{
+        li.addEventListener("click", ()=>{
+          selectCat.classList.add("none");
+          let idTag = li.dataset.id,
+              tagName = li.textContent;
+          selected.innerHTML= tagName;
+          tag_id = idTag;
+          obj = {
+            "type" : type,
+            "filtre" : filter,
+            "id" : tag_id
+          };
+          request(obj, type, filter);
+        })
+      })
+      selected.addEventListener("click", ()=>{
+        console.log("click");
+        if(type == "quiz")
+        {
+          if(selectQuiz.classList.contains("none"))
+          {
+            selectQuiz.classList.remove("none");
+          }
+          else
+          {
+            selectQuiz.classList.add("none");
+          }
+        }
+        else if(type == "tag")
+        {
+          if(selectCat.classList.contains("none"))
+          {
+            selectCat.classList.remove("none");
+          }
+          else
+          {
+            selectCat.classList.add("none");
+          }
+        }
+      })
+      
       globalbtn.addEventListener("click", ()=>{
         type = "global"
         globalbtn.style.background = "#e6e6e6";
         quizbtn.style.background = "#EBB94A";
         catbtn.style.background = "#EBB94A";
-        console.log(type);
-        console.log(filter);
+        label.innerHTML = "";
         obj = {
           "type" : type,
           "filtre" : filter,
           "id" : "null"
         }
-        console.log(obj);
-        
-        selectQuiz.style.display = "none";
-        selectCat.style.display = "none";
+        select.style.display = "none";
         request(obj, type, filter);
       })
       quizbtn.addEventListener("click", ()=>{
@@ -288,34 +345,22 @@ window.addEventListener('load', function () {
         globalbtn.style.background = "#EBB94A";
         quizbtn.style.background = "#e6e6e6";
         catbtn.style.background = "#EBB94A";
-        console.log(type);
-        console.log(filter);
-        obj = {
-          "type" : type,
-          "filtre" : filter,
-          "id" : quiz_id
-        }
-        console.log(obj);
-        selectQuiz.style.display = "block";
-        selectCat.style.display = "none";
-        request(obj, type, filter);
+        label.innerHTML = "Votre quiz :";
+        select.style.display = "flex";
+        selectCat.classList.add("none");
+        selectQuiz.classList.add("none");
       })
       catbtn.addEventListener("click", ()=>{
         type= "tag"
         globalbtn.style.background = "#EBB94A";
         quizbtn.style.background = "#EBB94A";
         catbtn.style.background = "#e6e6e6";
+        label.innerHTML = "Votre catégorie :";
         console.log(type);
         console.log(filter);
-        obj = {
-          "type" : type,
-          "filtre" : filter,
-          "id" : tag_id
-        }
-        console.log(obj);
-        selectQuiz.style.display = "none";
-        selectCat.style.display = "block";
-        request(obj, type, filter);
+        select.style.display = "flex";
+        selectQuiz.classList.add("none");
+        selectCat.classList.add("none");
       })
       genfilter.addEventListener("click", ()=>{
         filter = "general"
@@ -347,7 +392,6 @@ window.addEventListener('load', function () {
             "id" : "null"
           }
         }
-        console.log(obj);
         request(obj, type, filter);
       })
       sitesfilter.addEventListener("click", ()=>{
@@ -380,10 +424,9 @@ window.addEventListener('load', function () {
             "id" : "null"
           }
         }
-        console.log(obj);
         request(obj, type, filter);
       })
-
+      
       buildTable(classement, filter, type);
       // drop the legend
       dropIcon.addEventListener("click", ()=>{
