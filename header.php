@@ -151,11 +151,20 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						<a id="a" href="<?php echo home_url()."/menu-quiz" ?>"><i class="fas fa-question-circle"></i><p id="p">Quiz</p></a>
 				<?php } ?>
 			</div>
-			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+			<?php if( current_user_can('editor') || current_user_can('administrator') ) {  
+			//Récupération du nombre d'utilisateurs en attente
+				global $wpdb;
+
+				$users = $wpdb->get_var("SELECT count(wp_users.ID) AS ID FROM wp_users LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID WHERE wp_usermeta.meta_key = 'status' AND wp_usermeta.meta_value =  0");
+						
+			?>
 				<div id="link" class="admin">
-					<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress"></i><p id="p">Administration</p></a>
+					<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress <?php echo $users !== 0 ? "notif" : ""; ?>"></i><p id="p">Administration</p></a>
 					<i class="drop fas fa-sort-down" data-id="admin"></i>
 					<ul class=" menuDown dropMenu" id="admin">
+						<li>
+							<a href="<?php echo home_url()."/activation-utilisateurs" ?>" class="<?php echo $users !== 0 ? "notif" : ""; ?>">Nouveaux Utilisateurs</a>
+						</li>
 						<li>
 							<a href="<?php echo home_url()."/classements" ?>">Classement</a>
 						</li>
