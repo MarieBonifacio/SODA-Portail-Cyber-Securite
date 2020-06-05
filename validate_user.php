@@ -11,6 +11,12 @@ if(isset($_POST['user'])){
 
     update_user_meta($userId, "status", 1);
     unset($_POST);
+    
+    $to = get_user_meta($userId, 'nickname', true);
+    $subject = "Activation du compte";
+    $message = "Votre compte sur le portail Soda CyberDéfense a bien été activé.";
+
+    wp_mail($to, $subject, $message);
 }
 ?>
 
