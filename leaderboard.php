@@ -18,14 +18,6 @@ cleanSession(); ?>
 
     <div class="square_legend dropLegend">
 
-      <div class="you">
-
-        <label>Vous:</label>
-
-        <div></div>
-
-      </div>
-
       <div class="gold">
 
         <label>1er:</label>

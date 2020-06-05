@@ -1,10 +1,3 @@
-window.addEventListener("resize", ()=>{
-    if(window.innerWidth >850)
-    {
-        console.log("ok");
-        // window.location.reload();
-    }
-})
 window.addEventListener('load', function (e) {
     function avatarCircle(){
         $("body .content .home .dashboard .actu #buddypress img").css("border-radius","0");
@@ -191,8 +184,8 @@ window.addEventListener('load', function (e) {
         const sideNav = document.querySelector(".side");
         const contenu = document.querySelector(".content");
 
-        if(window.innerWidth>1100)
-        {
+        // if(window.innerWidth>1100)
+        // {
             arrow.addEventListener("click", ()=>{
                 if(arrow.classList.contains("fa-arrow-left"))
                 {
@@ -202,7 +195,8 @@ window.addEventListener('load', function (e) {
                     p.forEach(p => {
                         p.classList.remove("para");
                     });
-                    contenu.style.width = "95%";
+                    contenu.classList.add("big");
+                    sideNav.classList.remove("sideNavLeft");
                 }
                 else
                 {
@@ -212,7 +206,8 @@ window.addEventListener('load', function (e) {
                     p.forEach(p => {
                         p.classList.add("para");
                     });
-                    contenu.style.width = "85%";
+                    contenu.classList.remove("big");
+                    sideNav.classList.add("sideNavLeft");
                 }
                 dropMenus.forEach(menu => {
                     if(menu.classList.contains("dropMenuAppear"))
@@ -221,39 +216,39 @@ window.addEventListener('load', function (e) {
                     }
                 });
             });
-        }
-        else
-        {
-            arrow.addEventListener("click", ()=>{
-                if(arrow.classList.contains("fa-arrow-left"))
-                {
-                    arrow.classList.remove("fa-arrow-left");
-                    arrow.classList.add("fa-arrow-right");
-                    if(window.innerWidth>760)
-                    {
-                        sideNav.style.left = "-30%";
-                    }
-                    else
-                    {
-                        sideNav.style.left = "-60%";
-                    }
-                    contenu.style.width = "100%";
-                }
-                else
-                {
-                    arrow.classList.remove("fa-arrow-right");
-                    arrow.classList.add("fa-arrow-left");
-                    sideNav.style.left = "0%";
-                    contenu.style.width = "100%";
-                }
-                dropMenus.forEach(menu => {
-                    if(menu.classList.contains("dropMenuAppear"))
-                    {
-                        menu.classList.remove("dropMenuAppear")
-                    }
-                });
-            });
-        }
+        // }
+        // else
+        // {
+        //     arrow.addEventListener("click", ()=>{
+        //         if(arrow.classList.contains("fa-arrow-left"))
+        //         {
+        //             arrow.classList.remove("fa-arrow-left");
+        //             arrow.classList.add("fa-arrow-right");
+        //             if(window.innerWidth>760)
+        //             {
+        //                 sideNav.style.left = "-30%";
+        //             }
+        //             else
+        //             {
+        //                 sideNav.style.left = "-60%";
+        //             }
+        //             contenu.style.width = "100%";
+        //         }
+        //         else
+        //         {
+        //             arrow.classList.remove("fa-arrow-right");
+        //             arrow.classList.add("fa-arrow-left");
+        //             sideNav.style.left = "0%";
+        //             contenu.style.width = "100%";
+        //         }
+        //         dropMenus.forEach(menu => {
+        //             if(menu.classList.contains("dropMenuAppear"))
+        //             {
+        //                 menu.classList.remove("dropMenuAppear")
+        //             }
+        //         });
+        //     });
+        // }
     }
     else
     {

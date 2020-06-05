@@ -47,8 +47,8 @@ window.addEventListener('load', function () {
               spanAbove = document.querySelector(".span_above"),
               spanUnder = document.querySelector(".span_under");
         let pos,
-            isAbove,
-            isUnder;
+            isAbove = 0,
+            isUnder = 0;
         thead.innerHTML = '';
         tbody.innerHTML = '';
         if(type == 'global')
@@ -147,8 +147,21 @@ window.addEventListener('load', function () {
                 <td>${array[i].Joueur}</td>
                 <td>${array[i].Site}</td>
                 <td>${array[i].Temps}</td>
-                <td>${parseInt(array[i].Score)}</td>
-              `
+                `
+              if(array[i].Score > 50)
+              {
+                isAbove += 1;
+                tr.innerHTML += `  
+                  <td class="green">${parseInt(array[i].Score)}</td>
+                `
+              }
+              else
+              {
+                isUnder += 1;
+                tr.innerHTML += `  
+                  <td class="red">${parseInt(array[i].Score)}</td>
+                `
+              }
             }
             else
             {
@@ -156,9 +169,22 @@ window.addEventListener('load', function () {
               <td>${pos}</td>
               <td>${array[i].Site}</td>
               <td>${array[i].Nombre}</td>
-              <td>${array[i].Temps}</td>
-              <td>${parseInt(array[i].Moyenne)}</td>
-            `
+              <td>${array[i].Temps}</td> 
+              `
+              if(array[i].Moyenne > 50)
+              {
+                isAbove += 1;
+                tr.innerHTML += `  
+                  <td class="green">${parseInt(array[i].Moyenne)}</td>
+                `
+              }
+              else
+              {
+                isUnder += 1;
+                tr.innerHTML += `  
+                  <td class="red">${parseInt(array[i].Moyenne)}</td>
+                `
+              }
             }
           }
           else if( type == 'tag')
@@ -171,7 +197,6 @@ window.addEventListener('load', function () {
                 <td>${array[i].Site}</td>
                 <td>${array[i].Nombre}</td>
                 <td>${array[i].Temps}</td>
-                <td>${parseInt(array[i].Moyenne)}</td>
               `
             }
             else
@@ -181,8 +206,21 @@ window.addEventListener('load', function () {
               <td>${array[i].Site}</td>
               <td>${array[i].Nombre}</td>
               <td>${array[i].Temps}</td>
-              <td>${parseInt(array[i].Moyenne)}</td>
             `
+            }
+            if(array[i].Moyenne > 50)
+            {
+              isAbove += 1;
+              tr.innerHTML += `  
+                <td class="green">${parseInt(array[i].Moyenne)}</td>
+              `
+            }
+            else
+            {
+              isUnder += 1;
+              tr.innerHTML += `  
+                <td class="red">${parseInt(array[i].Moyenne)}</td>
+              `
             }
           }
           else
@@ -195,7 +233,6 @@ window.addEventListener('load', function () {
                 <td>${array[i].meta_value}</td>
                 <td>${array[i].count}</td>
                 <td>${array[i].time}</td>
-                <td>${parseInt(array[i].moyenne)}</td>
               `
             }
             else
@@ -205,12 +242,26 @@ window.addEventListener('load', function () {
               <td>${array[i].city}</td>
               <td>${array[i].quizCount}</td>
               <td>${array[i].time}</td>
-              <td>${parseInt(array[i].moyenne)}</td>
             `
+            }
+            if(array[i].moyenne > 50)
+            {
+              isAbove += 1;
+              tr.innerHTML += `  
+                <td class="green">${parseInt(array[i].moyenne)}</td>
+              `
+            }
+            else
+            {
+              isUnder += 1;
+              tr.innerHTML += `  
+                <td class="red">${parseInt(array[i].moyenne)}</td>
+              `
             }
           }
         }
-        
+        spanAbove.innerHTML = `Moyenne > 50 : ${isAbove}`;
+        spanUnder.innerHTML = `Moyenne < 50 : ${isUnder}`;
       }
       function request(obj, type, filter){
         var table = obj;
@@ -241,34 +292,6 @@ window.addEventListener('load', function () {
         xmlhttpPost.open("POST", url  + '/app/leaderboard_admin.php', true);
         xmlhttpPost.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttpPost.send(dbParamPost);
-      }
-      function selectId(array, type, filter){
-        array.forEach(li => {
-          li.addEventListener("click", ()=>{
-            if(type == "quiz")
-            {
-              selectQuiz.classList.add("none");
-              quiz_id = li.dataset.id;
-              obj = {
-                "type" : type,
-                "filtre" : filter,
-                "id" : quiz_id
-              };
-              request(obj, type, filter);
-            }
-            else
-            {
-              selectCat.classList.add("none");
-              tag_id = li.dataset.id;
-              obj = {
-                "type" : type,
-                "filtre" : filter,
-                "id" : tag_id
-              };
-              request(obj, type, filter);
-            }
-          })
-        });
       }
       quizLi.forEach(li => {
         li.addEventListener("click", ()=>{

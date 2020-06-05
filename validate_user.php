@@ -22,9 +22,9 @@ if(isset($_POST['user'])){
 
 <h2 class="h2 h2board">Utilisateurs en attente de validation</h2>
 
-<div class="modulesL">
+<div class="userL">
 
-  <div class="listModules">
+  <div class="listUser bigger">
 
     <table>
 

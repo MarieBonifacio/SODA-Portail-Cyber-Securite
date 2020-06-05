@@ -42,24 +42,33 @@
         display: block !important;
       }
     }
+    .sideNavLeft
+    {
+      left: 0 !important;
+    }
+    .big
+    {
+      width: 100% !important;
+    }
     .content
     {
       width: 100%;
       .h2board
       {
-        margin-top: 15%;
+        top: 15%;
       }
       .board
       {
         .btns
         {
-          top: 24%;
+          top: 35%;
+          flex-direction: column;
         }
         .leadboard
         {
           position: absolute;
-          top: 30%;
-          height: 70%;
+          top: 55%;
+          height: 45%;
         }
       }
       .home{
@@ -246,8 +255,12 @@
       {
         display: none;
       }
-      .quizsL, .modulesL
+      .quizsL, .modulesL, .userL
       {
+        .listUser
+        {
+          height: 70%;
+        }
         .listQuiz, .listModules
         {
           width: 100%;
@@ -568,6 +581,14 @@
     {
       padding-right: 0 !important;
       margin: 28px;
+    }
+    .sideNavLeft
+    {
+      left: 0 !important;
+    }
+    .big
+    {
+      width: 100% !important;
     }
     .modulePlay
     {
