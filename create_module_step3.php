@@ -24,7 +24,7 @@ get_header();
       $num = 0;
       if(!empty($_SESSION['moduleData']['pages']))
       {
-        echo '<div class="pages"><p><span class="numP">Description</span>'.nl2br(stripslashes($_SESSION['moduleData']['module']['description'])).'</p></div>';
+        echo '<div class="pages"><p class="introP"><span class="numP">Description</span>'.nl2br(stripslashes($_SESSION['moduleData']['module']['description'])).'</p></div>';
       }
       foreach($_SESSION['moduleData']['pages'] as $q)
       {

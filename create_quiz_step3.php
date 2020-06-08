@@ -22,7 +22,7 @@ get_header();
       $num = 0;
       if(!empty($_SESSION['quizData']['questions']))
       {
-        echo '<div class="questions"><p><span class="numQ">Description</span>'.nl2br(stripslashes($_SESSION['quizData']['quiz']['description'])).'</p></div>';
+        echo '<div class="questions"><p class="introP"><span class="numQ">Description</span>'.nl2br(stripslashes($_SESSION['quizData']['quiz']['description'])).'</p></div>';
       }
       foreach($_SESSION['quizData']['questions'] as $q)
       {

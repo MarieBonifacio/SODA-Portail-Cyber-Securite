@@ -2208,6 +2208,10 @@ body
           padding: 15px;
           margin-bottom: 45px;
           @include flex(space-around, center, column);
+          .introP
+          {
+            padding: 15px;
+          }
           .numQ
           {
             font-size: $fontSize3;
@@ -2292,6 +2296,10 @@ body
           margin-bottom: 45px;
           overflow-y: hidden;
           @include flex(space-evenly, center, row);
+          .introP
+          {
+            padding: 55px;
+          }
           span
           {
             font-size: $fontSize3;
