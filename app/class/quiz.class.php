@@ -9,6 +9,7 @@ class Quiz {
     private $name;
     private $tag;
     private $img_path;
+    private $description;
     private $author;
     private $created_at;
 
@@ -21,6 +22,7 @@ class Quiz {
         $tagId->selectById($r->tag_id);
         $this->tag = $tagId;
         $this->img_path = $r->img_path;
+        $this->description = $r->description;
         $this->author = $r->author_id;
         $this->created_at = $r->created_at;
         return $r;
@@ -53,6 +55,14 @@ class Quiz {
         $this->img_path = $img_path;
     }
 
+    public function setDescription($description){
+        $this->description = $description;
+    }
+
+    public function getDescription(){
+        return $this->description;
+    }
+
     public function getAuthor(){
         return $this->author;
     }
@@ -83,6 +93,7 @@ class Quiz {
                     "name" => stripslashes($this->name),
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
+                    "description" => stripslashes($this->description),
                     "author_id" => $this->author,
                     "created_at" => $this->created_at
                 )
@@ -95,6 +106,7 @@ class Quiz {
                     "name" => stripslashes($this->name),
                     "tag_id" => $this->tag->getId(),
                     "img_path" => $this->img_path,
+                    "description" => stripslashes($this->description),
                     "author_id" => $this->author,
                     "created_at" => $this->created_at
                 ), array(
@@ -108,15 +120,13 @@ class Quiz {
         global $wpdb;
         $wpdb->delete( 'quiz', array( 'id' => $id ) );
     }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function getInfos($player){
 
         global $wpdb;
 
         $quizId = $this->id;
-
         $questions = $wpdb->get_results( "SELECT * FROM question WHERE id_quiz='$quizId' ORDER BY rand() LIMIT 10");
-
         $finish = $wpdb->get_var("SELECT count(id) FROM quiz_score WHERE quiz_id='$quizId' AND user_id='$player'");
 
             $quiz = array(
@@ -125,6 +135,7 @@ class Quiz {
                 'name' => $this->name,
                 'tag_name' => $this->tag->getName(),
                 'img' => $this->img_path,
+                'description' => nl2br(stripslashes($this->descripion)),
                 'player' => $player,
                 'finish' => $finish,
             );
@@ -142,9 +153,7 @@ class Quiz {
                 );
 
                 $questionId = $question['id'];
-
                 $answers = $wpdb->get_results( "SELECT * FROM answer where id_question='$questionId'" );
-
                 foreach($answers as $a){
 
                     $answer = array(
@@ -162,17 +171,13 @@ class Quiz {
             }
 
             $query = $wpdb->get_results("SELECT id_question, id_answer, time FROM quiz_progress WHERE id_user= '$player' AND id_quiz = '$quizId'");
-
             $previous = array();
-
             foreach($query as $q)
 
             {
 
                 $answerId = $q->id_answer;
-
                 $answer =  $wpdb->get_var("SELECT is_true FROM answer WHERE id='$answerId'");
-
                 $previous[] = array(
                     "id_question" => $q->id_question,
                     "id_answer" => $q->id_answer,

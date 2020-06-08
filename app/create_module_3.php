@@ -24,6 +24,7 @@ $newModule->setTitle($_SESSION['moduleData']['module']['title']);
 $newModule->setTag($tag);
 $newModule->setAuthor($_SESSION['userConnected']);
 $newModule->setImgPath($_SESSION['moduleData']['module']['img']);
+$newModule->setDescription($_SESSION['moduleData']['module']['description']);
 $newModule->save();
 
 if(!empty($_SESSION['moduleData']['module']['id'])){

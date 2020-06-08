@@ -53,6 +53,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     }
     //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
     $title = htmlspecialchars($_POST['title']);
+    $description = $_POST['description'];
     $theme = $_POST['theme'];
 ////
 
@@ -66,6 +67,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     $_SESSION['quizData']['quiz']['title'] = $title;
     $_SESSION['quizData']['quiz']['theme'] = $theme;
     $_SESSION['quizData']['quiz']['img'] = $img_path;
+    $_SESSION['quizData']['quiz']['description'] = $description;
     $_SESSION['quizData']['quiz']['module_id']  = $moduleRelated;
 
 }else{

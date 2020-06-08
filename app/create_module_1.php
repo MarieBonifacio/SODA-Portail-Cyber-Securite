@@ -60,6 +60,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
     $_SESSION['moduleData']['module']['title'] = $title;
     $_SESSION['moduleData']['module']['theme'] = $theme;
     $_SESSION['moduleData']['module']['img'] = $img;
+    $_SESSION['moduleData']['module']['description'] = $description;
 }else{
     $error_module = "Veuillez remplir tous les champs.";
 }

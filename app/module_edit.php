@@ -21,7 +21,8 @@ if(isset($_GET['id'])){
         'id' => $module->getId(),
         'title'=> $module->getTitle(),
         'theme'=> $module->getTag()->getId(),
-        'img'=> $module->getImgPath()
+        'img'=> $module->getImgPath(),
+        'description'=> $module->getDescription(),
     );
 
     $slides = $wpdb->get_results("SELECT * FROM module_slide WHERE module_id=".$moduleId." ORDER BY `order`");

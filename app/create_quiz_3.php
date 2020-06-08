@@ -33,11 +33,13 @@ $newQuiz->setName($_SESSION['quizData']['quiz']['title']);
 $newQuiz->setTag($tag);
 $newQuiz->setAuthorById($id);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
+$newQuiz->setDescription($_SESSION['quizData']['quiz']['description']);
 $t = $newQuiz->save();
 
 if(!empty($_SESSION['quizData']['quiz']['id'])){
     $newQuizId = $newQuiz->getId();
 }else{
+    
     $newQuizId = $wpdb->insert_id;
 }
 
