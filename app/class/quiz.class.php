@@ -135,7 +135,7 @@ class Quiz {
                 'name' => $this->name,
                 'tag_name' => $this->tag->getName(),
                 'img' => $this->img_path,
-                'description' => nl2br(stripslashes($this->descripion)),
+                'description' => nl2br(stripslashes($this->description)),
                 'player' => $player,
                 'finish' => $finish,
             );
