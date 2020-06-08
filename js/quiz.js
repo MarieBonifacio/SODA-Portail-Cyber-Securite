@@ -133,15 +133,40 @@ window.addEventListener('load', function () {
               const timer = document.querySelector('.timer');
               var minutesLabel = document.getElementById("minutes");
               var secondsLabel = document.getElementById("seconds");
+
+              const divIntro = document.createElement("div");
+              divIntro.classList.add("intro");
+              if(myQuizz.description != "")
+              {
+                document.body.appendChild(divIntro);
+                divIntro.innerHTML = `
+                  <p class="introP">${myQuizz.description}</p>
+                  <button class="begin">Commencer</button>
+                `
+                const btnIntro = document.querySelector(".begin");
+                btnIntro.addEventListener("click", ()=>{
+                  divIntro.remove();
+                  var setInt = setInterval(setTime, 1000);
+                })
+              }
+              else 
+              {
+                var setInt = setInterval(setTime, 1000);
+              }
+
               if(previous.length > 0)
               {
                 var totalSeconds = previous[previous.length -1].time;
+                divIntro.remove();
+                if(myQuizz.description != "")
+                {
+                  var setInt = setInterval(setTime, 1000);
+                }
               }
               else
               {
                 var totalSeconds = 0;
               }
-              var setInt = setInterval(setTime, 1000);
 
               function setTime() {
                 ++totalSeconds;

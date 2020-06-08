@@ -57,6 +57,10 @@ if( $_SESSION['quizEdit'] !== true){
             <i class="fas fa-sort-down"></i>
         </div>
         <div>
+            <label for="">Description :</label>
+            <textarea name="description" value="<?php echo $_SESSION['quizData']['quiz']['description']; ?>"></textarea>
+        </div>
+        <div>
             <label for="">Module associé :</label>
             <select name ="moduleId">
                     <option value="">Aucun</option>

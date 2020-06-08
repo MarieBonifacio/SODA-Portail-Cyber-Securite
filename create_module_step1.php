@@ -40,6 +40,10 @@ if( $_SESSION['moduleEdit'] !== true){
             <input type="text" name="title" value="<?php echo $_SESSION['moduleData']['module']['title']; ?>">
         </div>
         <div>
+            <label for="">Description :</label>
+            <textarea name="description" value="<?php echo $_SESSION['moduleData']['module']['description']; ?>"></textarea>
+        </div>
+        <div>
             <label for="" class="moduleThemeLabel">Thème du module * :</label>
             <select name="theme" id="sites">
                 <option value="">Thème de votre module</option>

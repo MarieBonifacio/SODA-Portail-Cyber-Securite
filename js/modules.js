@@ -72,14 +72,31 @@ window.addEventListener('load', function () {
             const divModule = document.createElement("div");
             divModule.classList.add("modulePlay");
             document.body.appendChild(divModule);
-            divModule.innerHTML = `
+            divModule.innerHTML += `
             <div class="module" id="module">
             </div>
-            <div class="btns">
+            `
+            if(myModule.quizs.length != 0 && myModule.finish == "1")
+            {
+              divModule.innerHTML += `
+              <div class="btns">
               <button id="previous">Page précédente</button>
               <button id="next">Page suivante</button>
               <button id="submit">Terminer le module</button>
-            </div>
+              <button id="see">Voir les quiz</button>
+            </div>`
+            }
+            else
+            {
+              divModule.innerHTML += `
+              <div class="btns">
+              <button id="previous">Page précédente</button>
+              <button id="next">Page suivante</button>
+              <button id="submit">Terminer le module</button>
+              </div>
+              `
+            }
+            divModule.innerHTML +=`
             <div class="progress">
               <div class="progressDone" data-done=""><span class="percentage"></span></div>
             </div>
@@ -92,12 +109,43 @@ window.addEventListener('load', function () {
             submitButton = document.getElementById('submit'),
             progress = document.querySelector('.progressDone'),
             percentage = document.querySelector('.percentage');
-
+            // intro ici avec un if tout simple
+            const divIntro = document.createElement("div");
+            divIntro.classList.add("intro");
+            // let totalSeconds = 0;
+            if(myModule.description != "")
+            {
+              document.body.appendChild(divIntro);
+              divIntro.innerHTML = `
+                <p class="introP">${myModule.description}</p>
+                <button class="begin">Commencer</button>
+              `
+              const btnIntro = document.querySelector(".begin");
+              btnIntro.addEventListener("click", ()=>{
+                // var setInt = setInterval(setTime, 1000);
+                divIntro.remove();
+              })
+            }
+            // else
+            // {
+            //  var setInt = setInterval(setTime, 1000);
+            // }
             if(previous.length > 0)
             {
                 currentSlide = parseInt(previous[previous.length -1].order) + 1;
-                console.log(currentSlide);
+                // console.log(currentSlide);
+                divIntro.remove();
+                // if(myModule.description == "")
+                // {
+                //   var setInt = setInterval(setTime, 1000);
+                // }
             }
+
+            // function setTime() {
+            //   ++totalSeconds;
+            //   console.log(totalSeconds);
+            // }
+
             function progressBar()
             {
              actualpercent = ((currentSlide + 1) / myPages.length) * 100;
@@ -235,7 +283,7 @@ window.addEventListener('load', function () {
                   divPlay = document.querySelector(".modulePlay");
                   div.classList.add("recapModule");
                   divPlay.appendChild(div);
-                  if(myModule.quizs != null)
+                  if(myModule.quizs.length != 0)
                   {
                     div.innerHTML =`
                       <i class="fas fa-times endRecap"></i>
@@ -706,11 +754,18 @@ window.addEventListener('load', function () {
               progressBar();
             }
 
+            if(myModule.quizs.length != 0 && myModule.finish == "1")
+            {
+              const see = document.querySelector("#see");
+              see.addEventListener("click", endModule);
+            }
+            
             nextButton.addEventListener("click", showNextSlide);
 
             previousButton.addEventListener("click", showPreviousSlide);
 
             submitButton.addEventListener('click', endModule);
+
 
             moduleContainer.innerHTML += '<i class="fas fa-times endModule"></i>';
 
