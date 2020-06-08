@@ -36,7 +36,7 @@ if( $_SESSION['quizEdit'] !== true){
         <div class="textarea">
             <div>
                 <label for="">Description :</label>
-                <textarea name="description" value="<?php echo $_SESSION['quizData']['quiz']['description']; ?>"></textarea>
+                <textarea name="description"><?php echo $_SESSION['quizData']['quiz']['description']; ?></textarea>
             </div>
         </div>
         <div class="content">

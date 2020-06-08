@@ -38,7 +38,7 @@ if( $_SESSION['moduleEdit'] !== true){
         <div class="textarea">
             <div>
                 <label for="">Description :</label>
-                <textarea name="description" value="<?php echo $_SESSION['moduleData']['module']['description']; ?>"></textarea>
+                <textarea name="description"><?php echo $_SESSION['moduleData']['module']['description']; ?></textarea>
             </div>
         </div>
         <div class="content">
