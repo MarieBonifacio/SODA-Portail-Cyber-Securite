@@ -26,7 +26,7 @@ if(isset($_GET['id'])){
         'title'=> $quiz->getName(),
         'theme'=> $quiz->getTag()->getId(),
         'img'=> $quiz->getImgPath(),
-        'description'=> $module->getDescription(),
+        'description'=> $quiz->getDescription(),
         'moduleRelated' => $moduleRelated,
     );
 
