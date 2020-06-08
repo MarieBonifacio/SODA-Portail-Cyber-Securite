@@ -159,11 +159,11 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						
 			?>
 				<div id="link" class="admin">
-					<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress <?php echo $users !== 0 ? "notifUser" : ""; ?>"></i><p id="p">Administration</p></a>
+					<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress <?php echo $users; echo $users != 0 ? "notifUser" : ""; ?>"></i><p id="p">Administration</p></a>
 					<i class="drop fas fa-sort-down" data-id="admin"></i>
 					<ul class=" menuDown dropMenu" id="admin">
 						<li>
-							<a href="<?php echo home_url()."/activation-utilisateurs" ?>" class="<?php echo $users !== 0 ? "notifUser" : ""; ?>">Nouveaux Utilisateurs</a>
+							<a href="<?php echo home_url()."/activation-utilisateurs" ?>" class="<?php echo $users != 0 ? "notifUser" : ""; ?>">Nouveaux Utilisateurs</a>
 						</li>
 						<li>
 							<a href="<?php echo home_url()."/classements" ?>">Classement</a>
