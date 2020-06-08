@@ -1810,119 +1810,130 @@ body
       form
       {
         position: relative;
-        width: 50%;
+        width: 55%;
         height: 40%;
         color: $police;
         font-size: $fontSize2;
         font-family: "Muli";
         font-weight: 600;
-        @include flex(space-around, center, column);
+        @include flex(space-between, center, "");
         .moduleThemeLabel
         {
           width: 75%;
         }
-        div
+        .textarea
         {
           position: relative;
-          width: 50%;
-          @include flex(space-around, center, row);
-          label
-          {
-            position: relative;
-            width: 50%;
-            text-align: start;
-          }
+          width: 40%;
           textarea
           {
             background: $color1;
             border: none;
-            max-width: 62%;
-            min-width: 62%;
-            max-height: 50px;
-            min-height: 50px;
+            max-width: 100%;
+            min-width: 100%;
+            max-height: 150px;
+            min-height: 150px;
             border-radius: 3px;
             color: $police;
             outline: none;
           }
-          input
+        }
+        .content
+        {
+          position: relative;
+          width: 50%;
+          @include flex(space-around, center, column);
+          div
           {
             position: relative;
-            width: 62%;
-            background: none;
-            border: none;
-            border-bottom: 1px solid $police;
-          }
-          input:focus
-          {
-            color: $police;
-            outline: none;
-            text-align: center;
-          }
-          input:not(:focus)
-          {
-            color: $police;
-            outline: none;
-            text-align: center;
-          }
-          select
-          {
-            position: relative;
-            width: 62%;
-            background: $color-btn;
-            color: $color1;
-            appearance: none;
-            padding: 5px 15px;
-            border: none;
-            border-radius: 3px;
-            outline: none;
-            transition: .2s;
-            font-size: $fontSize1;
-            text-transform: uppercase;
-            font-weight: 600;
-          }
-          select:hover
-          {
-            background: $police;
-            cursor: pointer;
-          }
-          i
-          {
-            color: $color1;
-            font-size: $fontSize2;
-            margin-bottom: 5px;
-            @include positionTR(absolute, 0px, 5px);
-          }
-          button
-          {
-            width: 200px;
-            background: none;
-            border: none;
-            padding: 0;
-            p
+            width: 100%;
+            @include flex(space-around, center, row);
+            label
             {
               position: relative;
-              padding: 5px 10px;
-              width: 100%;
+              width: 50%;
+              text-align: start;
+            }
+            input
+            {
+              position: relative;
+              width: 62%;
+              background: none;
+              border: none;
+              border-bottom: 1px solid $police;
+            }
+            input:focus
+            {
+              color: $police;
+              outline: none;
+              text-align: center;
+            }
+            input:not(:focus)
+            {
+              color: $police;
+              outline: none;
+              text-align: center;
+            }
+            select
+            {
+              position: relative;
+              width: 62%;
               background: $color-btn;
+              color: $color1;
+              appearance: none;
+              padding: 5px 15px;
               border: none;
               border-radius: 3px;
-              color: $color1;
               outline: none;
               transition: .2s;
-              font-size:$fontSize1;
-              font-weight: 600;
+              font-size: $fontSize1;
               text-transform: uppercase;
+              font-weight: 600;
             }
-            p:hover
+            select:hover
             {
               background: $police;
               cursor: pointer;
             }
-          }
-          span
-          {
-            font-size: 12px;
-            @include positionBR(absolute, -10px, 5px);
+            i
+            {
+              color: $color1;
+              font-size: $fontSize2;
+              margin-bottom: 5px;
+              @include positionTR(absolute, 0px, 5px);
+            }
+            button
+            {
+              width: 200px;
+              background: none;
+              border: none;
+              padding: 0;
+              p
+              {
+                position: relative;
+                padding: 5px 10px;
+                width: 100%;
+                background: $color-btn;
+                border: none;
+                border-radius: 3px;
+                color: $color1;
+                outline: none;
+                transition: .2s;
+                font-size:$fontSize1;
+                font-weight: 600;
+                text-transform: uppercase;
+              }
+              p:hover
+              {
+                background: $police;
+                cursor: pointer;
+              }
+            }
+            span
+            {
+              font-size: 12px;
+              @include positionBR(absolute, -10px, 5px);
+            }
           }
         }
         input[type=submit]

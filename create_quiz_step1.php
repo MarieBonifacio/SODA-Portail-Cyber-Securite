@@ -33,63 +33,67 @@ if( $_SESSION['quizEdit'] !== true){
                 unset($_SESSION["quizOk"]);
             }
         ?>
-        <div>
-            <label for="">Titre du quiz * :</label>
-            <input type="text" name="title" value="<?php echo $_SESSION['quizData']['quiz']['title']; ?>">
+        <div class="textarea">
+            <div>
+                <label for="">Description :</label>
+                <textarea name="description" value="<?php echo $_SESSION['quizData']['quiz']['description']; ?>"></textarea>
+            </div>
         </div>
-        <div>
-            <label for="">Thème du quiz * :</label>
-            <select name="theme" id="sites">
-                <option value="">Sélectionnez un thème</option>
-                <?php
-                    //ajout boucle tags db
-                    $tags = $wpdb->get_results( "SELECT id, name FROM tag");
-
-                    foreach($tags as $t){
-                        echo '<option value="'.$t->name.'"';
-                        if($t->id === $_SESSION['quizData']['quiz']['theme']){
-                           echo 'selected';
-                        }
-                        echo '>'.$t->name.'</option>';
-                    }
-                ?>
-            </select>
-            <i class="fas fa-sort-down"></i>
-        </div>
-        <div>
-            <label for="">Description :</label>
-            <textarea name="description" value="<?php echo $_SESSION['quizData']['quiz']['description']; ?>"></textarea>
-        </div>
-        <div>
-            <label for="">Module associé :</label>
-            <select name ="moduleId">
-                    <option value="">Aucun</option>
+        <div class="content">
+            <div>
+                <label for="">Titre du quiz * :</label>
+                <input type="text" name="title" value="<?php echo $_SESSION['quizData']['quiz']['title']; ?>">
+            </div>
+            <div>
+                <label for="">Thème du quiz * :</label>
+                <select name="theme" id="sites">
+                    <option value="">Sélectionnez un thème</option>
                     <?php
-                        //récupération des modules
-                        $modules = $wpdb->get_results("SELECT id, title FROM module");
-                        foreach ($modules as $m) {
-                            echo '<option value="'.$m->id.'"';
-                            if($m->id === $_SESSION['quizData']['quiz']['moduleRelated']){
-                                echo 'selected';
+                        //ajout boucle tags db
+                        $tags = $wpdb->get_results( "SELECT id, name FROM tag");
+    
+                        foreach($tags as $t){
+                            echo '<option value="'.$t->name.'"';
+                            if($t->id === $_SESSION['quizData']['quiz']['theme']){
+                               echo 'selected';
                             }
-                            echo '>'.$m->title.'</option>';
+                            echo '>'.$t->name.'</option>';
                         }
                     ?>
-            </select>
-            <i class="fas fa-sort-down"></i>
-        </div>
-        <div>
-            <label for="">
-            Image * :
-            <?php
-                if( !empty($_SESSION['quizData']['quiz']['img'])){
-                echo '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/quizs/'.$_SESSION['quizData']['quiz']['img'].'">';
-                }
-            ?>
-            </label>
-            <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
-            <span id="img_select">Aucune image sélectionnée.</span>
-            <input id="realbtn" type="file" name="img_quiz" hidden>
+                </select>
+                <i class="fas fa-sort-down"></i>
+            </div>
+            <div>
+                <label for="">Module associé :</label>
+                <select name ="moduleId">
+                        <option value="">Aucun</option>
+                        <?php
+                            //récupération des modules
+                            $modules = $wpdb->get_results("SELECT id, title FROM module");
+                            foreach ($modules as $m) {
+                                echo '<option value="'.$m->id.'"';
+                                if($m->id === $_SESSION['quizData']['quiz']['moduleRelated']){
+                                    echo 'selected';
+                                }
+                                echo '>'.$m->title.'</option>';
+                            }
+                        ?>
+                </select>
+                <i class="fas fa-sort-down"></i>
+            </div>
+            <div>
+                <label for="">
+                Image * :
+                <?php
+                    if( !empty($_SESSION['quizData']['quiz']['img'])){
+                    echo '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/quizs/'.$_SESSION['quizData']['quiz']['img'].'">';
+                    }
+                ?>
+                </label>
+                <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
+                <span id="img_select">Aucune image sélectionnée.</span>
+                <input id="realbtn" type="file" name="img_quiz" hidden>
+            </div>
         </div>
         <input type="submit" value="Suivant">
         <!-- <iframe src="https://www.youtube.com/embed/VLbMXG8lvjI?list=RDZdQLWg2E1fg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->

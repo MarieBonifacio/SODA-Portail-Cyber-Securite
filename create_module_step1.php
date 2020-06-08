@@ -35,44 +35,48 @@ if( $_SESSION['moduleEdit'] !== true){
                 unset($_SESSION["moduleOk"]);
             }
         ?>
-        <div>
-            <label for="">Titre du module * :</label>
-            <input type="text" name="title" value="<?php echo $_SESSION['moduleData']['module']['title']; ?>">
+        <div class="textarea">
+            <div>
+                <label for="">Description :</label>
+                <textarea name="description" value="<?php echo $_SESSION['moduleData']['module']['description']; ?>"></textarea>
+            </div>
         </div>
-        <div>
-            <label for="">Description :</label>
-            <textarea name="description" value="<?php echo $_SESSION['moduleData']['module']['description']; ?>"></textarea>
-        </div>
-        <div>
-            <label for="" class="moduleThemeLabel">Thème du module * :</label>
-            <select name="theme" id="sites">
-                <option value="">Thème de votre module</option>
-                <?php
-                    //ajout boucle tags db
-                    $tags = $wpdb->get_results( "SELECT id, name FROM tag");
-
-                    foreach($tags as $t){
-                        echo '<option value="'.$t->name.'"';
-                        if($_SESSION['moduleData']['module']['theme'] === $t->id){
-                            echo 'selected';
+        <div class="content">
+            <div>
+                <label for="">Titre du module * :</label>
+                <input type="text" name="title" value="<?php echo $_SESSION['moduleData']['module']['title']; ?>">
+            </div>
+            <div>
+                <label for="" class="moduleThemeLabel">Thème du module * :</label>
+                <select name="theme" id="sites">
+                    <option value="">Thème de votre module</option>
+                    <?php
+                        //ajout boucle tags db
+                        $tags = $wpdb->get_results( "SELECT id, name FROM tag");
+    
+                        foreach($tags as $t){
+                            echo '<option value="'.$t->name.'"';
+                            if($_SESSION['moduleData']['module']['theme'] === $t->id){
+                                echo 'selected';
+                            }
+                            echo '>'.$t->name.'</option>';
                         }
-                        echo '>'.$t->name.'</option>';
+                    ?>
+                </select>
+                <i class="fas fa-sort-down"></i>
+            </div>
+            <div>
+                <label for="">Image :
+                    <?php
+                    if( !empty($_SESSION['moduleData']['module']['img'])){
+                    echo '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/modules/'.$_SESSION['moduleData']['module']['img'].'">';
                     }
                 ?>
-            </select>
-            <i class="fas fa-sort-down"></i>
-        </div>
-        <div>
-            <label for="">Image :
-                <?php
-                if( !empty($_SESSION['moduleData']['module']['img'])){
-                echo '<img style="width : 50px; margin-left : 6px;" src="'.get_template_directory_uri().'/img/modules/'.$_SESSION['moduleData']['module']['img'].'">';
-                }
-            ?>
-            </label>
-            <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
-            <span id="img_select">Aucune image sélectionnée.</span>
-            <input id="realbtn" type="file" name="img_module" hidden>
+                </label>
+                <button type="button" disabled><p id="fakebtn">Séléctionnez une image</p></button>
+                <span id="img_select">Aucune image sélectionnée.</span>
+                <input id="realbtn" type="file" name="img_module" hidden>
+            </div>
         </div>
         <input type="submit" value="Suivant">
         <!-- <iframe src="https://www.youtube.com/embed/VLbMXG8lvjI?list=RDZdQLWg2E1fg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->

@@ -101,6 +101,7 @@ window.addEventListener('load', function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myQuizz = JSON.parse(this.responseText);
+            console.log(myQuizz);
             var previous = myQuizz.previous;
             const divQuizz = document.createElement("div");
             divQuizz.classList.add("quizPlay");

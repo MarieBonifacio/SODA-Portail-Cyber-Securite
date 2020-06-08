@@ -22,6 +22,10 @@ get_header();
       <?php
       $img = get_template_directory_uri();
       $num = 0;
+      if(!empty($_SESSION['moduleData']['pages']))
+      {
+        echo '<div class="pages"><p><span class="numP">Description</span>'.nl2br(stripslashes($_SESSION['moduleData']['module']['description'])).'</p></div>';
+      }
       foreach($_SESSION['moduleData']['pages'] as $q)
       {
         $num ++;

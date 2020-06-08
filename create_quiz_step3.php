@@ -20,6 +20,10 @@ get_header();
       <?php
       $img = get_template_directory_uri();
       $num = 0;
+      if(!empty($_SESSION['quizData']['questions']))
+      {
+        echo '<div class="questions"><p><span class="numQ">Description</span>'.nl2br(stripslashes($_SESSION['quizData']['quiz']['description'])).'</p></div>';
+      }
       foreach($_SESSION['quizData']['questions'] as $q)
       {
         $num ++;
