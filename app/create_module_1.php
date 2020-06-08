@@ -56,6 +56,7 @@ if(!empty($_POST['title']) && !empty($_POST['theme']))
      //enregistrement des POST en SESSION pour passer à la seconde étape sans enregistrer en base de données en cas d'abandon
      $title = htmlspecialchars($_POST['title']);
      $theme = $_POST['theme'];
+     $description = $_POST['description'];
 
     $_SESSION['moduleData']['module']['title'] = $title;
     $_SESSION['moduleData']['module']['theme'] = $theme;
