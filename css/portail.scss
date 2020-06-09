@@ -3728,7 +3728,7 @@ body
             } 
             :nth-child(5)
             {
-              width: 25%;
+              width: 15%;
             } 
           }
           button
@@ -3737,14 +3737,19 @@ body
             border: none;
             border-radius: 3px;
             transition: .2s;
+            font-weight: bold;
             color: $color1;
             padding: 5px 10px;
+            margin: 5px;
           }
           button:hover
           {
             background: $police;
           }
-
+          .red
+          {
+            background: red;
+          }
         }
       }
       .listQuiz::-webkit-scrollbar, .listModules::-webkit-scrollbar, .listUser::-webkit-scrollbar {

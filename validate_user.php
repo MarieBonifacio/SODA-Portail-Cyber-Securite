@@ -74,7 +74,7 @@ if(isset($_POST['user'])){
       
                 <td>".get_user_meta($userId, 'location', true)."</td>
       
-                <td><form action='./' method='POST' ><button type = 'submit' value='".$userId."' name='user' >Activer</button></form></td>
+                <td><form action='./' method='POST' ><button type = 'submit' value='".$userId."' name='user' >Activer</button><button class='red' type = 'submit' value='".$userId."' name='reject' >Refuser</button></form></td>
       
               </tr>";
             }
