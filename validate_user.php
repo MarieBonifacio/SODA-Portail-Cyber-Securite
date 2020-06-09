@@ -18,6 +18,20 @@ if(isset($_POST['user'])){
 
     wp_mail($to, $subject, $message);
 }
+
+if(isset($_POST['reject'])){
+  $userId = $_POST['reject'];
+    
+  $to = get_user_meta($userId, 'nickname', true);
+  $subject = "Inscription refusée par les administrateurs";
+  $message = "Les données que vous avez renseignées ne sont pas correctes. Veuillez vous réinscire.";
+
+  wp_mail($to, $subject, $message);
+
+  //suppr user
+  wp_delete_user($userId);
+  unset($_POST);
+}
 ?>
 
 <h2 class="h2 h2board">Utilisateurs en attente de validation</h2>
