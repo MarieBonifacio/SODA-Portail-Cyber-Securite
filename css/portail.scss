@@ -3910,6 +3910,13 @@ body
           width: 100%;
         }
       }
+      .span
+      {
+        font-size: $fontSize3;
+        font-weight: 600;
+        color: $color-imp;
+        @include positionTR(absolute, 10px, 10px);
+      }
       .question
       {
         position: relative;

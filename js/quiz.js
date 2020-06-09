@@ -255,6 +255,9 @@ window.addEventListener('load', function () {
                       {
                         output.push(
                           `<div class="slide">
+                            <span class="span">
+                              ${numQuestion}/${myQuestions.length}
+                            </span>
                             <div class="question">${numQuestion}. ${currentQuestion.content} </div>
                             <div class="answers">${answers.join('')}</div>
                           </div>`
@@ -263,6 +266,9 @@ window.addEventListener('load', function () {
                         if( currentQuestion.url.match(/^.*(youtube).*/) == null ){
                           output.push(
                             `<div class="slide">
+                              <span class="span">
+                                ${numQuestion}/${myQuestions.length}
+                              </span>
                               <div class="img">
                                 <a href="`+currentQuestion.url+`">Voir la vidéo</a>
                               </div>
@@ -274,6 +280,9 @@ window.addEventListener('load', function () {
                         let youtubeHash = currentQuestion.url.match(/^.*v=(.*)$/);
                         output.push(
                           `<div class="slide">
+                            <span class="span">
+                              ${numQuestion}/${myQuestions.length}
+                            </span>
                             <div class="img">
                             <iframe src="https://www.youtube.com/embed/`+youtubeHash[1]+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
@@ -287,6 +296,9 @@ window.addEventListener('load', function () {
                     {
                       output.push(
                         `<div class="slide">
+                          <span class="span">
+                            ${numQuestion}/${myQuestions.length}
+                          </span>
                           <div class="img">
                             <img src="${ url + `/img/quizs/${currentQuestion.img_path}`}" alt="photo de la question"/>
                           </div>

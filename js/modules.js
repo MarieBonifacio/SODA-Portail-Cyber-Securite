@@ -172,7 +172,7 @@ window.addEventListener('load', function () {
                         output.push(
                           `<div class="slide" id="slide_${pageNumber}">
                             <span>
-                              ${numPage}
+                              ${numPage}/${myPages.length}
                             </span>
                             <div class="content">
                               <h3 class="absoluteh3">${currentPage.title}</h3>
@@ -188,7 +188,7 @@ window.addEventListener('load', function () {
                         output.push(
                           `<div class="slide" id="slide_${pageNumber}">
                             <span>
-                              ${numPage}
+                              ${numPage}/${myPages.length}
                             </span>
                             <div class="content">
                               <div class="medias">
@@ -213,7 +213,7 @@ window.addEventListener('load', function () {
                         output.push(
                           `<div class="slide" id="slide_${pageNumber}">
                             <span>
-                              ${numPage}
+                              ${numPage}/${myPages.length}
                             </span>
                             <div class="content">
                               <h3 class="absoluteh3">${currentPage.title}</h3>
@@ -229,7 +229,7 @@ window.addEventListener('load', function () {
                         output.push(
                           `<div class="slide" id="slide_${pageNumber}">
                             <span>
-                              ${numPage}
+                              ${numPage}/${myPages.length}
                             </span>
                             <div class="content">
                               <div class="medias">
@@ -249,7 +249,7 @@ window.addEventListener('load', function () {
                       output.push(
                         `<div class="slide" id="slide_${pageNumber}">
                           <span>
-                            ${numPage}
+                            ${numPage}/${myPages.length}
                           </span>
                           <div class="content">
                             <div class="para paraFull">
@@ -317,7 +317,6 @@ window.addEventListener('load', function () {
                           quizFinished.classList.add("quizFinished");
                           document.body.appendChild(quizFinished);
                           quizFinished.innerHTML = "<p>Vous avez déjà terminé ce quiz.</p><i class='closeDivMess fas fa-times'></i>";
-
                           const close = document.querySelectorAll(".closeDivMess");
                           const quizMess = document.querySelectorAll(".quizFinished");
                           close.forEach(cross => {
@@ -463,7 +462,10 @@ window.addEventListener('load', function () {
                                     {
                                       output.push(
                                         `<div class="slide slideQuiz">
-                                          <div class="question">${numQuestion}. ${currentQuestion.content} </div>
+                                          <span class="span">
+                                            ${numQuestion}/${myQuestions.length}
+                                          </span>
+                                          <div class="question"><span>${numQuestion}.</span> ${currentQuestion.content} </div>
                                           <div class="answers">${answers.join('')}</div>
                                         </div>`
                                       );
@@ -471,6 +473,9 @@ window.addEventListener('load', function () {
                                       if( currentQuestion.url.match(/^.*(youtube).*/) == null ){
                                         output.push(
                                           `<div class="slide slideQuiz">
+                                            <span class="span">
+                                              ${numQuestion}/${myQuestions.length}
+                                            </span>
                                             <div class="img">
                                               <a href="`+currentQuestion.url+`">Voir la vidéo</a>
                                             </div>
@@ -482,6 +487,9 @@ window.addEventListener('load', function () {
                                       let youtubeHash = currentQuestion.url.match(/^.*v=(.*)$/);
                                       output.push(
                                         `<div class="slide slideQuiz">
+                                          <span class="span">
+                                            ${numQuestion}/${myQuestions.length}
+                                          </span>
                                           <div class="img">
                                           <iframe src="https://www.youtube.com/embed/`+youtubeHash[1]+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                           </div>
@@ -495,6 +503,9 @@ window.addEventListener('load', function () {
                                   {
                                     output.push(
                                       `<div class="slide slideQuiz">
+                                        <span class="span">
+                                          ${numQuestion}/${myQuestions.length}
+                                        </span>
                                         <div class="img">
                                           <img src="${ url + `/img/quizs/${currentQuestion.img_path}`}" alt="photo de la question"/>
                                         </div>
