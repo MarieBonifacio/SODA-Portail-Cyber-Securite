@@ -67,7 +67,6 @@ window.addEventListener('load', function () {
           if(this.readyState == 4 && this.status == 200)
           {
             var myModule = JSON.parse(this.responseText);
-            console.log(myModule);
             var previous = myModule.previous;
             const divModule = document.createElement("div");
             divModule.classList.add("modulePlay");
@@ -133,7 +132,6 @@ window.addEventListener('load', function () {
             if(previous.length > 0)
             {
                 currentSlide = parseInt(previous[previous.length -1].order) + 1;
-                // console.log(currentSlide);
                 divIntro.remove();
                 // if(myModule.description == "")
                 // {
@@ -143,7 +141,6 @@ window.addEventListener('load', function () {
 
             // function setTime() {
             //   ++totalSeconds;
-            //   console.log(totalSeconds);
             // }
 
             function progressBar()
@@ -310,7 +307,6 @@ window.addEventListener('load', function () {
                       `
                     }
                     const quizs = myModule.quizs;
-                    console.log(quizs);
                     let myQuizs = document.querySelectorAll(".divQuiz");
                     myQuizs.forEach(quiz => {
                       quiz.addEventListener("click", (e)=>{
@@ -338,7 +334,6 @@ window.addEventListener('load', function () {
                           {
                             quizMess[i].remove();
                           }
-                          console.log(myQuizz)
                           var previousQuiz = myQuizz.previous;
                           const divQuizz = document.createElement("div");
                           divQuizz.classList.add("quizPlay");
@@ -575,7 +570,6 @@ window.addEventListener('load', function () {
                                   if (!finish){
                                       showSlideQuiz(currentSlideQuiz + 1);
                                       progressBarQuiz();
-                                      console.log(obj)
                                   }else{
                                       getResults();
                                   }
@@ -740,7 +734,6 @@ window.addEventListener('load', function () {
                   // actualpercent += parseFloat(percent);
                   showSlide(currentSlide + 1);
                   progressBar();
-                  console.log(currentSlide);
                 }
               };
               xmlhttp.open("POST", url + "/module_user.php/", true);
