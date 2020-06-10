@@ -411,9 +411,14 @@
           left: 4px;
           top: 4px;
         }
-        .canvas
+        .btns
         {
-          margin-top: 30%;
+          top: 25%;
+          flex-direction: column;
+        }
+        .canvaDiv
+        {
+          margin-top: 60%;
           width:100vw;
           height: 200vw;
           overflow-x: scroll;
