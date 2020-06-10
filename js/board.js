@@ -12,7 +12,6 @@ window.addEventListener('load', function () {
     {
       var myArray = JSON.parse(this.responseText);
       var classement = myArray.classement
-      console.log(classement);
       const globalbtn = document.querySelector(".glob"),
             quizbtn = document.querySelector(".quizz"),
             catbtn = document.querySelector(".cat"),
@@ -273,7 +272,6 @@ window.addEventListener('load', function () {
             if(this.readyState == 4 && this.status == 200)
             {
               var myArray = JSON.parse(this.responseText);
-              console.log(myArray);
               buildTable(myArray.classement, filter, type);
             }
           }
@@ -284,7 +282,6 @@ window.addEventListener('load', function () {
               if(this.readyState == 4 && this.status == 200)
               {
                 var myArray = JSON.parse(this.responseText);
-                console.log(myArray);
                 buildTable(myArray, filter, type);
               }
           }
@@ -326,7 +323,6 @@ window.addEventListener('load', function () {
         })
       })
       selected.addEventListener("click", ()=>{
-        console.log("click");
         if(type == "quiz")
         {
           if(selectQuiz.classList.contains("none"))
@@ -381,8 +377,6 @@ window.addEventListener('load', function () {
         quizbtn.style.background = "#EBB94A";
         catbtn.style.background = "#e6e6e6";
         label.innerHTML = "Votre catégorie :";
-        console.log(type);
-        console.log(filter);
         select.style.display = "flex";
         selectQuiz.classList.add("none");
         selectCat.classList.add("none");
@@ -391,8 +385,6 @@ window.addEventListener('load', function () {
         filter = "general"
         genfilter.style.background = "#e6e6e6";
         sitesfilter.style.background = "#EBB94A";
-        console.log(type);
-        console.log(filter);
         if(type == "quiz")
         {
           obj = {
@@ -423,8 +415,6 @@ window.addEventListener('load', function () {
         filter = "sites"
         genfilter.style.background = "#EBB94A";
         sitesfilter.style.background = "#e6e6e6";
-        console.log(type);
-        console.log(filter);
         if(type == "quiz")
         {
           obj = {

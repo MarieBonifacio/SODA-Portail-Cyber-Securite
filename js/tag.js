@@ -1,7 +1,6 @@
 window.addEventListener("load", ()=>{
   const deleteTagsBtn = document.querySelectorAll(".deleteBtn"),
   confirmDivs = document.querySelectorAll(".confirm");
-  console.log(deleteTagsBtn);
   deleteTagsBtn.forEach(btn => {
     btn.addEventListener("click", ()=>{
       let id= btn.dataset.id,

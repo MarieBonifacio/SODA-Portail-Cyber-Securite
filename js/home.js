@@ -386,7 +386,6 @@ window.addEventListener('load', function () {
         }
       })
       town.addEventListener("click", ()=>{
-        console.log("click");
         gen.classList.remove("activated");
         town.classList.add("activated");
         tbody.innerHTML ='';
