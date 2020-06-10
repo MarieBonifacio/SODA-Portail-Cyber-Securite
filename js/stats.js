@@ -33,7 +33,6 @@ xmlhttp.onreadystatechange = function () {
         backColor.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.5)`);
         borderColor.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
       }
-      console.log(labels);
       let data,
           fontColor,
           options;
@@ -58,7 +57,6 @@ xmlhttp.onreadystatechange = function () {
         },
         scales: {
           xAxes: [{
-            display: false,
             gridLines: {
               color: 'rgba(0,0,0,0)',
             }
