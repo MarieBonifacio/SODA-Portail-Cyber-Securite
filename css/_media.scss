@@ -429,31 +429,25 @@
           width: 240vw !important;
           height: 120vw !important;
         }
-        .moduleStatsRadar, .quizStatsRadar
-        {
-          display:none;
-          width: 240vw !important;
-          height: 120vw !important;
-        }
-        .canvas::-webkit-scrollbar {
+        .canvaDiv::-webkit-scrollbar {
           width: 5px;
           height: 5px;
         }
-        .canvas::-webkit-scrollbar-thumb {
+        .canvaDiv::-webkit-scrollbar-thumb {
           background: $color-btn;
           border-radius: 100px;
         }
-        .canvas::-webkit-scrollbar-thumb:hover {
+        .canvaDiv::-webkit-scrollbar-thumb:hover {
           background: $color-btn;
         }
-        .canvas::-webkit-scrollbar-thumb:active {
+        .canvaDiv::-webkit-scrollbar-thumb:active {
           background: $color-btn;
         }
-        .canvas::-webkit-scrollbar-track {
+        .canvaDiv::-webkit-scrollbar-track {
           background: $color2;
           border-radius: 50px;
         }
-        .canvas::-webkit-scrollbar-corner {
+        .canvaDiv::-webkit-scrollbar-corner {
           background: transparent;
         }
       }
@@ -861,7 +855,7 @@
       {
         .btns
         {
-          top: 20%;
+          top: 35%;
         }
         .infoStats
         {
@@ -871,17 +865,12 @@
             top: 10px;
           }
         }
-        .canvas
+        .canvaDiv
         {
           margin-top: 20%;
           overflow-x: initial;
           justify-content: center;
           canvas
-          {
-            width: 82vw !important;
-            height: 41vw !important;
-          }
-          .moduleStatsRadar, .quizStatsRadar
           {
             width: 82vw !important;
             height: 41vw !important;

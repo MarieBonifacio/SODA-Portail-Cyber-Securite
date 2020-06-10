@@ -33,6 +33,7 @@ xmlhttp.onreadystatechange = function () {
         backColor.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.5)`);
         borderColor.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
       }
+      console.log(labels);
       let data,
           fontColor,
           options;
