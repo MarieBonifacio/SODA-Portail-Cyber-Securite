@@ -679,19 +679,15 @@ body
           }
         }
       }
-      .canvas
+      canvas
       {
-        .canva
-        {
-          margin-top: 12%;
-          margin-bottom: 15px;
-          z-index: 3;
-          position : relative;
-          width: 82vw !important;
-          height: 41vw !important;
-        }
+        margin-top: 12%;
+        margin-bottom: 15px;
+        z-index: 3;
+        position : relative;
+        width: 82vw !important;
+        height: 41vw !important;
       }
-      
     }
     .add_tag
     {
