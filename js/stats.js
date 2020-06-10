@@ -102,7 +102,7 @@ xmlhttp.onreadystatechange = function () {
     buildChart(quizs, labels, pourcentages, backgroundColor, borderColor);
     let typeName ="Quiz",
         filterName= "Général",
-        siteName,
+        siteName = "",
         obj;
 
     const quiz = document.querySelector(".quizBtn"),
@@ -162,20 +162,31 @@ xmlhttp.onreadystatechange = function () {
         {
           typeName = btn1.textContent;
         }
-        if(btn1 == site)
+        if(filterName == "Sites" && siteName == "")
         {
           return
         }
-        else
+        else if(typeName == "Quiz" && filterName == "Général")
         {
-          if(typeName == "Quiz" && filterName == "Général")
-          {
-            buildChart(quizs, labels, pourcentages, backgroundColor, borderColor);
+          buildChart(quizs, labels, pourcentages, backgroundColor, borderColor);
+        }
+        else if(typeName == "Module" && filterName == "Général")
+        {
+          buildChart(modules, labels, pourcentages, backgroundColor, borderColor);
+        }
+        else if(typeName == "Quiz" && filterName == "Sites" && siteName != "")
+        {
+          obj = {
+            "site" : siteName
           }
-          else if(typeName == "Module" && filterName == "Général")
-          {
-            buildChart(modules, labels, pourcentages, backgroundColor, borderColor);
+          requestPOST(obj)
+        }
+        else if(typeName == "Module" && filterName == "Sites" && siteName != "")
+        {
+          obj = {
+            "site" : siteName
           }
+          requestPOST(obj);
         }
       })
     }
