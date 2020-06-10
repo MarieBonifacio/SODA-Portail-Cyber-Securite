@@ -8,120 +8,48 @@ window.addEventListener('load', function () {
       var myArray = JSON.parse(this.responseText),
       quizs = myArray.quizs,
       modules = myArray.modules,
-      labelsQuiz = [],
-      labelsModule = [],
-      pourcentagesQuiz = [],
-      pourcentagesModule = [],
-      borderColorQuiz= [],
-      borderColorModule= [],
-      backgroundColorQuiz= [],
-      backgroundColorModule= [];
+      labels = [],
+      pourcentages = [],
+      borderColor= [],
+      backgroundColor= [];
 
-      for (let i = 0; i < quizs.length; i++) {
-        labelsQuiz.push(quizs[i].titre);
-        pourcentagesQuiz.push(quizs[i].pourcentage);
+      console.log(myArray);
 
-        let rgb1 = Math.floor(Math.random()*Math.floor(255)),
-        rgb2 = Math.floor(Math.random()*Math.floor(255)),
-        rgb3 = Math.floor(Math.random()*Math.floor(255));
+      function buildChart(array, labels, pourcentages, backColor, borderColor){
+        labels = [],
+        pourcentages = [],
+        borderColor= [],
+        backColor= [];
+        console.log(labels);
+        const canva = document.querySelector(".canva");
+        console.log(canva);
+        for(let i=0; i<array.length; i++)
+        {
+          labels.push(array[i].titre);
+          pourcentages.push(array[i].pourcentage);
 
-        backgroundColorQuiz.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.5)`);
-        borderColorQuiz.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
-      }
-      for (let f = 0; f < modules.length; f++) {
-        labelsModule.push(modules[f].titre);
-        pourcentagesModule.push(modules[f].pourcentage);
+          let rgb1 = Math.floor(Math.random()*Math.floor(255)),
+          rgb2 = Math.floor(Math.random()*Math.floor(255)),
+          rgb3 = Math.floor(Math.random()*Math.floor(255));
 
-        let rgb1 = Math.floor(Math.random()*Math.floor(255)),
-        rgb2 = Math.floor(Math.random()*Math.floor(255)),
-        rgb3 = Math.floor(Math.random()*Math.floor(255));
+          backColor.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.5)`);
+          borderColor.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
+        }
+        console.log(labels);
+        let data,
+            fontColor,
+            options;
 
-        backgroundColorModule.push(`rgba(${rgb1},${rgb2},${rgb3}, 0.7)`);
-        borderColorModule.push(`rgba(${rgb1},${rgb2},${rgb3}, 1)`)
-      }
-      const quizBar = document.querySelector(".quizStatsBar"),
-      moduleBar = document.querySelector(".moduleStatsBar"),
-      moduleRadar = document.querySelector(".moduleStatsRadar"),
-      quizRadar = document.querySelector(".quizStatsRadar"),
-      quizBtn = document.querySelector(".quizBtn"),
-      moduleBtn = document.querySelector(".moduleBtn"),
-      radarBtn = document.querySelector(".radar"),
-      barBtn = document.querySelector(".bar");
-      let type = "bar",
-      data,
-      fontColor,
-      options;
-
-      data = {
-        labels : labelsModule,
-        datasets: [{
-          label: '% terminé',
-          data: pourcentagesModule,
-          backgroundColor: backgroundColorModule,
-          borderColor: borderColorModule,
-          borderWidth: 2
-        }]
-      };
-      options = {
-        legend: {
-          display: false,
-        },
-        animation: {
-          easing: 'easeInOutQuad',
-          duration: 520
-        },
-        scales: {
-          xAxes: [{
-            gridLines: {
-              color: 'rgba(0,0,0,0)',
-            }
-          }],
-          yAxes: [{
-            gridLines: {
-              color: 'rgba(0,0,0,0)',
-            },
-            ticks: {
-              beginAtZero: true,
-              max: 100
-            }
+        data = {
+          labels: labels,
+          datasets: [{
+            label: '% terminé',
+            data: pourcentages,
+            backgroundColor: backColor,
+            borderColor: borderColor,
+            borderWidth: 2
           }]
-        },
-        elements: {
-          line: {
-            tension: 0.3
-          }
-        },
-        tooltips: {
-          titleFontFamily: 'Muli',
-          backgroundColor: 'rgba(0,0,0,0.3)',
-          caretSize: 5,
-          cornerRadius: 2,
-          xPadding: 10,
-          yPadding: 10
-        },
-      };
-      var myBarChartModule = new Chart(moduleBar, {
-        type: type,
-        data: data,
-        options: options
-      });
-      Chart.defaults.global.defaultFontColor='white';
-
-      radarBtn.addEventListener("click", ()=>{
-        if(!radarBtn.classList.contains("activated"))
-        {
-          radarBtn.classList.add("activated");
-          barBtn.classList.remove("activated");
-        }
-        type= "radar";
-      })
-      barBtn.addEventListener("click", ()=>{
-        if(!barBtn.classList.contains("activated"))
-        {
-          barBtn.classList.add("activated");
-          radarBtn.classList.remove("activated");
-        }
-        type= "bar";
+        };
         options = {
           legend: {
             display: false,
@@ -132,6 +60,7 @@ window.addEventListener('load', function () {
           },
           scales: {
             xAxes: [{
+              display: false,
               gridLines: {
                 color: 'rgba(0,0,0,0)',
               }
@@ -159,224 +88,133 @@ window.addEventListener('load', function () {
             xPadding: 10,
             yPadding: 10
           },
-        }
-      })
+        };
+        canva.remove();
+        const newCanva = document.createElement("canvas"),
+              canvaDiv = document.querySelector(".canvaDiv");
+              newCanva.classList.add("canva");
+        canvaDiv.appendChild(newCanva);
+        console.log(canvaDiv);
 
-      moduleBtn.addEventListener("click", ()=>{
-        if(!moduleBtn.classList.contains("activated"))
-        {
-          moduleBtn.classList.add("activated");
-          quizBtn.classList.remove("activated");
-        }
-        if(type == "bar")
-        {
-          if(!quizBar.classList.contains("hidden"))
-          {
-            quizBar.classList.add("hidden")
-          }
-          else if (!quizRadar.classList.contains("hidden"))
-          {
-            quizRadar.classList.add("hidden")
-          }  
-          else if (!moduleRadar.classList.contains("hidden"))
-          {
-            moduleRadar.classList.add("hidden")
-          }
-          if(moduleBar.classList.contains("hidden"))
-          {
-            moduleBar.classList.remove("hidden")
-          }
-          data = {
-            labels : labelsModule,
-            datasets: [{
-              label: '% terminé',
-              data: pourcentagesModule,
-              backgroundColor: backgroundColorModule,
-              borderColor: borderColorModule,
-              borderWidth: 2
-            }]
-          }
-          var myBarChartModule = new Chart(moduleBar, {
-            type: type,
-            data: data,
-            options: options
-          });
-          Chart.defaults.global.defaultFontColor='white';
-        }
-        else if (type == "radar")
-        {
-          if(!quizBar.classList.contains("hidden"))
-          {
-            quizBar.classList.add("hidden")
-          }
-          else if (!quizRadar.classList.contains("hidden"))
-          {
-            quizRadar.classList.add("hidden")
-          }  
-          else if (!moduleBar.classList.contains("hidden"))
-          {
-            moduleBar.classList.add("hidden")
-          }
-          if(moduleRadar.classList.contains("hidden"))
-          {
-            moduleRadar.classList.remove("hidden")
-          }
-          fontColor = borderColorModule;
-          data = {
-            labels : labelsModule,
-            datasets: [{
-              label: '% terminé',
-              data: pourcentagesModule,
-              backgroundColor:"rgba(235, 185, 74, 0.2)",
-              borderColor:"rgb(235, 185, 74)",
-              borderWidth: 2,
-              pointBackgroundColor: backgroundColorModule,
-              pointBorderColor: borderColorModule,
-            }]
-          }
-          options = {
-            legend: {
-              display: false,
-            },
-            scale: {
-              gridLines: {
-                color: "#131A28"
-              },
-              angleLines: {
-                display: false
-              },
-              ticks: {
-                display: false,
-                max: 100,
-                beginAtZero: true
-              },
-              pointLabels:{
-                fontSize: 15,
-                fontColor: borderColorModule,
-              }
-            },
+        var myChart = new Chart(newCanva, {
+          type: "bar",
+          data: data,
+          options: options
+        });
+        Chart.defaults.global.defaultFontColor='white';
+      }
+
+      buildChart(quizs, labels, pourcentages, backgroundColor, borderColor);
+      let typeName,
+          filterName,
+          siteName,
+          obj = {
+            "site" : siteName
           };
-          var myBarChartModule = new Chart(moduleRadar, {
-            type: type,
-            data: data,
-            options: options
-          });
+
+      const quiz = document.querySelector(".quizBtn"),
+            module = document.querySelector(".moduleBtn"),
+            gen = document.querySelector(".genBtn"),
+            site = document.querySelector(".siteBtn"),
+            ul = document.querySelector(".listSite"),
+            divlist = document.querySelector(".listDiv"),
+            lis = document.querySelectorAll(".li"),
+            labelSIte = document.querySelector(".labelSite");
+
+      function requestPOST(obj){
+        console.log(obj);
+        var table = obj;
+        dbParamPost = JSON.stringify(table);
+        var xmlhttpPost = new XMLHttpRequest();
+        xmlhttpPost.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200)
+          {
+            var myArray = JSON.parse(this.responseText);
+            console.log(myArray);
+            if(typeName == 'Quiz')
+            {
+              buildChart(myArray.quizs, labels, pourcentages, backgroundColor, borderColor);
+            }
+            else
+            {
+              buildChart(myArray.modules, labels, pourcentages, backgroundColor, borderColor);
+            }
+          }
         }
-      })
-      quizBtn.addEventListener("click", ()=>{
-        if(!quizBtn.classList.contains("activated"))
+        xmlhttpPost.open("POST", url  + '/statistics.php', true);
+        xmlhttpPost.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttpPost.send(dbParamPost);
+      }
+      
+      function listenerClickBtns(btn1, btn2)
+      {   
+        btn1.addEventListener("click", ()=>{
+          if(!btn1.classList.contains("activated"))
+          {
+            btn2.classList.remove("activated");
+            btn1.classList.add("activated");
+          }
+          if(site.classList.contains("activated"))
+          {
+            divlist.classList.remove("hidden")
+          }
+          else
+          {
+            divlist.classList.add("hidden")
+          }
+          if(btn1 == site || btn1 == gen)
+          {
+            filterName = btn1.textContent;
+            console.log(filterName);
+            console.log(typeName);
+          }
+          else
+          {
+            typeName = btn1.textContent;
+            console.log(filterName);
+            console.log(typeName);
+          }
+          if(btn1 == site)
+          {
+            return
+          }
+          else
+          {
+            if(typeName == "Quiz")
+            {
+              buildChart(quizs, labels, pourcentages, backgroundColor, borderColor);
+            }
+            else
+            {
+              buildChart(modules, labels, pourcentages, backgroundColor, borderColor);
+            }
+          }
+        })
+      }
+      listenerClickBtns(quiz, module);
+      listenerClickBtns(module, quiz);
+      listenerClickBtns(gen, site);
+      listenerClickBtns(site, gen);
+
+      labelSIte.addEventListener("click", ()=>{
+        if(ul.classList.contains("hidden"))
         {
-          quizBtn.classList.add("activated");
-          moduleBtn.classList.remove("activated");
-        }
-        if(type == "bar")
-        {
-          if(!moduleRadar.classList.contains("hidden"))
-          {
-            moduleRadar.classList.add("hidden")
-          }
-          else if (!quizRadar.classList.contains("hidden"))
-          {
-            quizRadar.classList.add("hidden")
-          }  
-          else if (!moduleBar.classList.contains("hidden"))
-          {
-            moduleBar.classList.add("hidden")
-          }
-          if(quizBar.classList.contains("hidden"))
-          {
-            quizBar.classList.remove("hidden")
-          }
-          data = {
-            labels : labelsQuiz,
-            datasets: [{
-              label: '% terminé',
-              data: pourcentagesQuiz,
-              backgroundColor: backgroundColorQuiz,
-              borderColor: borderColorQuiz,
-              borderWidth: 2
-            }]
-          }
-          myBarChartQuiz = new Chart(quizBar, {
-            type: type,
-            data: data,
-            options: options
-          });
-          Chart.defaults.global.defaultFontColor='white';
-        }
-        else if (type == "radar")
-        {
-          if(!moduleRadar.classList.contains("hidden"))
-          {
-            moduleRadar.classList.add("hidden")
-          }
-          else if (!quizBar.classList.contains("hidden"))
-          {
-            quizBar.classList.add("hidden")
-          }  
-          else if (!moduleBar.classList.contains("hidden"))
-          {
-            moduleBar.classList.add("hidden")
-          }
-          if(quizRadar.classList.contains("hidden"))
-          {
-            quizRadar.classList.remove("hidden")
-          }
-          fontColor = borderColorQuiz;
-          data = {
-            labels : labelsQuiz,
-            datasets: [{
-              label: '% terminé',
-              data: pourcentagesQuiz,
-              backgroundColor:"rgba(235, 185, 74, 0.2)",
-              borderColor:"rgb(235, 185, 74)",
-              borderWidth: 2,
-              pointBackgroundColor: backgroundColorQuiz,
-              pointBorderColor: borderColorQuiz,
-            }]
-          }
-          options = {
-            legend: {
-              display: false,
-            },
-            scale: {
-              gridLines: {
-                color: "#131A28"
-              },
-              angleLines: {
-                display: false
-              },
-              ticks: {
-                display: false,
-                beginAtZero: true,
-                max: 100
-              },
-              pointLabels:{
-                fontSize: 15,
-                fontColor: borderColorQuiz,
-              }
-            },
-          };
-          myBarChartQuiz = new Chart(quizRadar, {
-            type: type,
-            data: data,
-            options: options
-          });
-        }
-      })
-      Chart.defaults.global.defaultFontFamily='Muli';
-      const infos = document.querySelector(".statsExplained");
-      const info = document.querySelector(".fa-info-circle");
-      info.addEventListener("click", ()=>{
-        if(!infos.classList.contains("infoActivated"))
-        {
-          infos.classList.add("infoActivated");
+          ul.classList.remove("hidden")
         }
         else
         {
-          infos.classList.remove("infoActivated");
+          ul.classList.add("hidden")
         }
       })
+
+      lis.forEach(li => {
+        li.addEventListener("click", ()=>{
+          siteName = li.textContent;
+          labelSIte.innerHTML = siteName;
+          ul.classList.add("hidden");
+          requestPOST(obj);
+        })
+      });
     }
   }
   xmlhttp.open("GET", url  + '/statistics.php', true);

@@ -593,45 +593,6 @@ body
       {
         background: $police;
       }
-      .infoStats
-      {
-        width: 250px;
-        height: 150px;
-        overflow: hidden;
-        border-radius: 5px;
-        z-index: 15;
-        @include positionTR(absolute, 5px, 5px);
-        div
-        {
-          background: $color1;
-          border-radius: 50%;
-          padding: 5px 10px;
-          width: 200%;
-          height: 500px;
-          transform: translate(50%, -50%);
-          transform-origin: top right;
-          transition: 1s;
-          @include positionTR(absolute, -500px, -100%);
-          @include flex(center,center, "");
-          p
-          {
-            text-align: center;
-            margin: 0;
-            padding: 0px 130px;
-          }
-        }
-        i
-        {
-          @include positionTR(absolute, 10px, 10px);
-          font-size: $fontSize3;
-          z-index: 2;
-        }
-        .infoActivated
-        {
-          top: 50%;
-          right: 50%;
-        }
-      }
       .hidden
       {
         display: none !important;
@@ -640,45 +601,95 @@ body
       {
         background: $police;
       }
-      .type
-      {
-        width: 100px;
-        border-radius: 5px;
-        background: $color1;
-        color: $police;
-        padding: 5px;
-        z-index: 12;
-        @include positionTL(absolute, 10px, 10px);
-        @include flex(flex-end, center, column);
-        label
-        {
-          font-size: $fontSize2;
-          margin-bottom: 5px;
-        }
-        div
-        {
-          @include flex(flex-end, center, column);
-        }
-      }
       .btns
       {
+        width: 100%;
         z-index: 10;
         transform: translate(-50%, -50%);
         @include positionTL(absolute, 15%, 50%);
+        @include flex(space-evenly, center, "");
+        label
+        {
+          color: $police;
+          font-family: "Muli";
+          font-weight: bold;
+          font-size: $fontSize2;
+        }
+        .listDiv
+        {
+          position: relative;
+          color: $police;
+          @include flex(center, center, "");
+          .labelSite
+          {
+            transition: .2s;
+            background: $color1;
+            border-radius: 3px;
+            font-weight: lighter;
+            padding: 5px 10px;
+          }
+          .labelSite:hover
+          {
+            cursor: pointer;
+            color: $color-imp;
+          }
+          ul
+          {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: $color1;
+            border-radius: 3px;
+            height: 150px;
+            overflow-y: scroll;
+            @include positionTR(absolute, 20px, 0);
+            @include flex("", center, column);
+            li
+            {
+              text-align: center;
+              margin: 5px;
+              transition: .2s;
+            }
+            li:hover
+            {
+              cursor: pointer;
+              color: $color-imp;
+            }
+          }
+          ul::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+          }
+          ul::-webkit-scrollbar-thumb {
+            background: $color-btn;
+            border-radius: 100px;
+          }
+          ul::-webkit-scrollbar-thumb:hover {
+            background: $color-btn;
+          }
+          ul::-webkit-scrollbar-thumb:active {
+            background: $color-btn;
+          }
+          ul::-webkit-scrollbar-track {
+            background: $color1;
+            border-radius: 50px;
+          }
+          ul::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+        }
       }
-      canvas
+      .canvas
       {
-        margin-top: 12%;
-        margin-bottom: 15px;
-        z-index: 3;
-        position : relative;
-        width: 82vw !important;
-        height: 41vw !important;
-      }
-      .quizStatsRadar, .moduleStatsRadar
-      {
-        width: 85vw !important;
-        height: 42.5vw !important;
+        .canva
+        {
+          margin-top: 12%;
+          margin-bottom: 15px;
+          z-index: 3;
+          position : relative;
+          width: 82vw !important;
+          height: 41vw !important;
+        }
       }
       
     }

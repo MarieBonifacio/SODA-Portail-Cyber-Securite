@@ -306,6 +306,7 @@ window.addEventListener('load', function () {
             "id" : quiz_id
           };
           request(obj, type, filter);
+          selectQuiz.classList.add("none");
         })
       });
       tagLi.forEach(li =>{
@@ -321,6 +322,7 @@ window.addEventListener('load', function () {
             "id" : tag_id
           };
           request(obj, type, filter);
+          selectCat.classList.add("none");
         })
       })
       selected.addEventListener("click", ()=>{
