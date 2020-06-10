@@ -14,7 +14,7 @@ if(!checkAuthorized(true)){
 }
 
 
-function moduleStat($site = null){
+function moduleStat($site){
     global $wpdb;
     //Pour chaque module terminé
     $module = $wpdb->get_results( "SELECT id, title FROM module");
@@ -22,6 +22,7 @@ function moduleStat($site = null){
     foreach($module as $m){
 
         $moduleId = $m->id;
+        $nbUsers = 0;
         if($site === null){
             $nbUsers = count_users()['total_users'];
             $sql = "SELECT count(module_id) FROM module_finish WHERE module_id = '$moduleId'";
@@ -38,10 +39,8 @@ function moduleStat($site = null){
                 module_id = '$moduleId'
                     AND wp_usermeta.meta_value = '$site'";
         }
-  
-        
         $nbrDone = $wpdb->get_var($sql);
-        $pourcent = $nbUser === 0 ? 0 : round(((int)$nbrDone * 100)/(int)$nbUsers);
+        $pourcent = ((int)$nbUsers ===  0) ? 0 : (round(((int)$nbrDone * 100)/(int)$nbUsers));
         $stats[] = [
             "pourcentage" => $pourcent,
             "id" => $m->id,
@@ -75,9 +74,8 @@ function quizStat($site = null){
                 quiz_id = '$quizId'
                     AND wp_usermeta.meta_value = '$site'";
         }
-
-        $nbrDone = $wpdb->get_var("SELECT count(quiz_id) FROM quiz_score WHERE quiz_id = '$quizId'");
-        $pourcent = $nbUser === 0 ? 0 : round(((int)$nbrDone * 100)/(int)$nbUsers);
+        $nbrDone = $wpdb->get_var($sql);
+        $pourcent = ((int)$nbUsers ===  0) ? 0 : ( round ( ( (int)$nbrDone * 100) / (int)$nbUsers) );
         $stats[] = [
             "pourcentage" => $pourcent,
             "id" => $q->id,
