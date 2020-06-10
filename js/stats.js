@@ -13,8 +13,6 @@ xmlhttp.onreadystatechange = function () {
     borderColor= [],
     backgroundColor= [];
 
-    console.log(myArray);
-
     function buildChart(array, labels, pourcentages, backColor, borderColor){
       labels = [],
       pourcentages = [],
@@ -115,7 +113,6 @@ xmlhttp.onreadystatechange = function () {
           labelSIte = document.querySelector(".labelSite");
 
     function requestPOST(obj){
-      console.log(obj);
       var table = obj;
       dbParamPost = JSON.stringify(table);
       var xmlhttpPost = new XMLHttpRequest();
