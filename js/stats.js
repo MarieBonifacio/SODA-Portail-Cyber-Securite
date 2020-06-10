@@ -67,7 +67,7 @@ xmlhttp.onreadystatechange = function () {
             },
             ticks: {
               beginAtZero: true,
-              max: 100
+              // max: 100
             }
           }]
         },
