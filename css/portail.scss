@@ -3672,7 +3672,8 @@ body
           p, a
           {
             font-family: "Muli";
-            margin: 15px;
+            margin: 10px;
+            width: 100px;
             color: $color1;
             padding: 5px 10px;
             border-radius: 3px;
@@ -3705,12 +3706,18 @@ body
             }
             :nth-child(3)
             {
-              width: 25%;
+              margin: 0;
             }
             th
             {
-              width: 40%;
               border-left: 1px solid rgba(255, 255, 255, 0.5);
+            }
+          }
+          tr:nth-child(1)
+          {
+            :nth-child(3)
+            {
+              border-top: none;
             }
           }
           tr
@@ -3720,11 +3727,16 @@ body
             {
               border-left: none;
             }
+            :nth-child(3)
+            {
+              @include flex(center, center, column);
+              p, a
+              {
+              }
+            }
             td
             {
               word-break: break-word;
-              padding-top: 15px;
-              padding-bottom: 15px;
               border-left: 1px solid rgba(255, 255, 255, 0.5);
               border-top: 1px solid rgba(255, 255, 255, 0.5);
             }
