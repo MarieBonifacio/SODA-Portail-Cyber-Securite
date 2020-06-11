@@ -3655,6 +3655,19 @@ body
           font-weight: 600;
         }
       }
+      .listQuiz, .listModules
+      {
+        table
+        {
+          tr
+          {
+            :nth-child(3)
+            {
+              @include flex(center, center, column);
+            }
+          }
+        }
+      }
       .listQuiz, .listModules, .listUser
       {
         position: absolute;
@@ -3726,13 +3739,6 @@ body
             :nth-child(1)
             {
               border-left: none;
-            }
-            :nth-child(3)
-            {
-              @include flex(center, center, column);
-              p, a
-              {
-              }
             }
             td
             {
@@ -4707,6 +4713,28 @@ body
       {
         color: $color-imp !important;
         margin-left: 5px;
+      }
+    }
+    .wp-block-file
+    {
+      a 
+      {
+        color: $police !important;
+        transition: .2s;
+      }
+      a:hover
+      {
+        color: $color-imp;
+      }
+      .wp-block-file__button
+      {
+        color: $color1;
+        background: $color-btn;
+        transition: .2s;
+      }
+      .wp-block-file__button
+      {
+        background: $police;
       }
     }
     .comments
