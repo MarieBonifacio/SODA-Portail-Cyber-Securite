@@ -4724,17 +4724,17 @@ body
       }
       a:hover
       {
-        color: $color-imp;
+        color: $color-imp !important;
       }
       .wp-block-file__button
       {
-        color: $color1;
-        background: $color-btn;
+        color: $color1 !important;
+        background: $color-btn !important;
         transition: .2s;
       }
       .wp-block-file__button:hover
       {
-        background: $police;
+        background: $police !important;
       }
     }
     .comments
