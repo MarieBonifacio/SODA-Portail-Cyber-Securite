@@ -586,6 +586,11 @@ body
         p
         {
           text-align: center;
+          font-weight: bold;
+        }
+        .imp
+        {
+          color: $color-imp;
         }
         .select
         {

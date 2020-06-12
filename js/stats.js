@@ -256,7 +256,7 @@ xmlhttp.onreadystatechange = function () {
                 </tr>
               `
             }
-            spanUserQ.innerHTML = `Nombre de personnes n'ayant pas terminé ce quiz : ${myArray.length}`;
+            spanUserQ.innerHTML = `Nombre de personnes n'ayant pas terminé ce quiz : <span class="imp">${myArray.length}</span>`;
           }
           else
           {
@@ -270,7 +270,7 @@ xmlhttp.onreadystatechange = function () {
                 </tr>
               `
             }
-            spanUserM.innerHTML = `Nombre de personnes n'ayant pas terminé ce module : ${myArray.length}`;
+            spanUserM.innerHTML = `Nombre de personnes n'ayant pas terminé ce module : <span class="imp">${myArray.length}</span>`;
           }
         }
       }

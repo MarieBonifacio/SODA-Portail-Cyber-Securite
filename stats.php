@@ -44,7 +44,7 @@ cleanSession(); ?>
         ?>
         </ul>
       </div>
-      <p>Liste des utilisateurs n'ayant pas terminé le quiz "<span class="spanQ"></span>"</p>
+      <p>Liste des utilisateurs n'ayant pas terminé le quiz "<span class="spanQ imp"></span>"</p>
       <span class="nbrUsers nbrUsersQ">Nombre de personnes n'ayant pas terminé ce quiz :</span>
       <div class="table">
         <table>
@@ -73,7 +73,7 @@ cleanSession(); ?>
         ?>
         </ul>
       </div>
-      <p>Liste des utilisateurs n'ayant pas terminé le module "<span class="spanM"></span>"</p>
+      <p>Liste des utilisateurs n'ayant pas terminé le module "<span class="spanM imp"></span>"</p>
       <span class="nbrUsers nbrUsersM">Nombre de personnes n'ayant pas terminé ce module :</span>
       <div class="table">
         <table>
