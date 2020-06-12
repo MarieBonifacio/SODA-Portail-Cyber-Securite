@@ -357,6 +357,23 @@ xmlhttp.onreadystatechange = function () {
       divMod.classList.add("hidden");
       canvaDiv.classList.remove("hidden");
     })
+
+    // send emails
+
+    const btnSendMail = document.querySelector(".mailSend"),
+          divMess = document.querySelector(".confirmMess"),
+          no = document.querySelector(".no");
+    
+    btnSendMail.addEventListener("click", ()=>{
+      if(divMess.classList.contains("hidden"))
+      {
+        divMess.classList.remove("hidden");
+      }
+    })
+    no.addEventListener("click", ()=>{
+      divMess.classList.add("hidden");
+    })
+
   }
 }
 xmlhttp.open("GET", url  + '/statistics.php', true);

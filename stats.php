@@ -32,6 +32,16 @@ cleanSession(); ?>
 
     <button class="extract">Tableaux utilisateurs</button>
 
+    <p class="mailSend">Envoi de mail de rappel aux utilisateurs</p>
+
+    <div class="confirmMess hidden">
+      <p>Vous êtes sur le point d'envoyer un mail de rappel à tous les utilisateurs n'ayant pas terminé leur module ou quiz.</br> Confirmez-vous l'envoi de ces mails ?</p>
+      <div class="yesNo">
+        <a href="<?php echo get_template_directory_uri(); ?>/app/">Oui</a>
+        <p class="no">Non</p>
+      </div>
+    </div>
+
     <div class="users userQuiz hidden">
       <i class="fas fa-times quizCross"></i>
       <div class="select">
