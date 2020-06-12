@@ -30,7 +30,7 @@ cleanSession(); ?>
       </div>
     </div>
 
-    <button class="extract">Extraire les données</button>
+    <button class="extract">Tableaux utilisateurs</button>
 
     <div class="users userQuiz hidden">
       <i class="fas fa-times quizCross"></i>

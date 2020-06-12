@@ -305,6 +305,7 @@ xmlhttp.onreadystatechange = function () {
           "type": typeName,
           "id" : idQM
         }
+        console.log(objUsers);
         if(typeName == "Quiz")
         {
           listQuiz.classList.add("hidden");
