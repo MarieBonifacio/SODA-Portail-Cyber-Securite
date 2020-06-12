@@ -214,6 +214,148 @@ xmlhttp.onreadystatechange = function () {
         requestPOST(obj);
       })
     });
+
+    // extract btn
+    let objUsers,
+        idQM;
+    const extract = document.querySelector(".extract"),
+          divMod = document.querySelector(".userModule"),
+          quizCross = document.querySelector(".quizCross"),
+          modCross = document.querySelector(".modCross"),
+          canvaDiv = document.querySelector(".canvaDiv"),
+          listMod = document.querySelector(".listMod"),
+          lisusers = document.querySelectorAll(".liQM"),
+          spanQ = document.querySelectorAll(".spanQ"),
+          spanM = document.querySelectorAll(".spanM"),
+          listQuiz = document.querySelector(".listQuiz"),
+          spans = document.querySelectorAll(".spanQM"),
+          tbodyQ = document.querySelector(".tbodyQ"),
+          tbodyM = document.querySelector(".tbodyM"),
+          divQuiz = document.querySelector(".userQuiz");
+
+    function requestListUser(obj, type){
+      var tableUsers = obj;
+      dbParamPostUsers = JSON.stringify(tableUsers);
+      var xmlhttpPostUsers = new XMLHttpRequest();
+      xmlhttpPostUsers.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200)
+        {
+          var myArray = JSON.parse(this.responseText);
+          const spanUserQ = document.querySelector(".nbrUsersQ"),
+                spanUserM = document.querySelector(".nbrUsersM");
+          console.log(myArray);
+          if(type == "Quiz")
+          {
+            tbodyQ.innerHTML = "";
+            for(i=0; i<myArray.length; i++)
+            {
+              tbodyQ.innerHTML += `
+                <tr>
+                  <td>${myArray[i].Utilisateur}</td>
+                  <td>${myArray[i].Site}</td>
+                </tr>
+              `
+            }
+            spanUserQ.innerHTML = `Nombre de personnes n'ayant pas terminé ce quiz : ${myArray.length}`;
+          }
+          else
+          {
+            tbodyM.innerHTML = "";
+            for(i=0; i<myArray.length; i++)
+            {
+              tbodyM.innerHTML += `
+                <tr>
+                  <td>${myArray[i].Utilisateur}</td>
+                  <td>${myArray[i].Site}</td>
+                </tr>
+              `
+            }
+            spanUserM.innerHTML = `Nombre de personnes n'ayant pas terminé ce module : ${myArray.length}`;
+          }
+        }
+      }
+      xmlhttpPostUsers.open("POST", url  + '/app/statistics_undone.php', true);
+      xmlhttpPostUsers.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xmlhttpPostUsers.send(dbParamPostUsers);
+    }
+    extract.addEventListener("click", ()=>{
+      if(typeName == "Module")
+      {
+        if(divMod.classList.contains("hidden"))
+        {
+          divMod.classList.remove("hidden");
+          divQuiz.classList.add("hidden");
+          canvaDiv.classList.add("hidden");
+        }
+      }
+      else
+      {
+        if(divQuiz.classList.contains("hidden"))
+        {
+          divQuiz.classList.remove("hidden");
+          divMod.classList.add("hidden");
+          canvaDiv.classList.add("hidden");
+        }
+      }
+    })
+    lisusers.forEach(li => {
+      li.addEventListener("click", ()=>{
+        idQM = li.dataset.id;
+        objUsers = {
+          "type": typeName,
+          "id" : idQM
+        }
+        if(typeName == "Quiz")
+        {
+          listQuiz.classList.add("hidden");
+          spanQ.forEach(span => {
+            span.innerHTML = li.textContent;
+          });
+        }
+        else
+        {
+          listMod.classList.add("hidden");
+          spanM.forEach(span => {
+            span.innerHTML = li.textContent;
+          });
+        }
+        requestListUser(objUsers, typeName);
+      })
+    });
+    spans.forEach(span => {
+      span.addEventListener("click", ()=>{
+        if(typeName == "Quiz")
+        {
+          if(listQuiz.classList.contains("hidden"))
+          {
+            listQuiz.classList.remove("hidden");
+          }
+          else
+          {
+            listQuiz.classList.add("hidden");
+          }
+        }
+        else
+        {
+          if(listMod.classList.contains("hidden"))
+          {
+            listMod.classList.remove("hidden");
+          }
+          else
+          {
+            listMod.classList.add("hidden");
+          }
+        }
+      })
+    });
+    quizCross.addEventListener("click", ()=>{
+      divQuiz.classList.add("hidden");
+      canvaDiv.classList.remove("hidden");
+    })
+    modCross.addEventListener("click", ()=>{
+      divMod.classList.add("hidden");
+      canvaDiv.classList.remove("hidden");
+    })
   }
 }
 xmlhttp.open("GET", url  + '/statistics.php', true);

@@ -382,34 +382,47 @@
       }
       .stats
       {
-        .infoStats
-        {
-          display:none;
-          top: calc(100% - 155px);
-          div
-          {
-            top: 500px;
-          }
-          i
-          {
-            top: calc(100% - 25px);
-          }
-        }
         button
         {
           width: 60px;
-        }
-        .type
-        {
-          display: none;
-          width: 80px;
-          left: 4px;
-          top: 4px;
         }
         .btns
         {
           top: 25%;
           flex-direction: column;
+        }
+        .users
+        {
+          .table
+          {
+            width: 95%;
+          }
+          .nbrUsers
+          {
+            width: 80%;
+          }
+          .select
+          {
+            top: 8%;
+            label
+            {
+              display: flex;
+              flex-direction: column;
+              span
+              {
+                text-align:center;
+              }
+            }
+            ul
+            {
+              width: auto;
+            }
+          }
+        }
+        .extract
+        {
+          top: 0px;
+          right: 0px;
         }
         .canvaDiv
         {
