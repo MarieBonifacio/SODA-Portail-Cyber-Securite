@@ -40,7 +40,7 @@ $request = json_decode($str_json, true); // decoding received JSON to array
 $type = $request['type'];
 $id = $request['id'];
 
-if($type === "module"){
+if($type === "Module"){
     echo json_encode(moduleStat($id));
 }else{
     echo json_encode(quizStat($id));
