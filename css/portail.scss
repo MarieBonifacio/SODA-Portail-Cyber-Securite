@@ -577,7 +577,7 @@ body
       @include flex("", center, column);
       .mailSend
       {
-        @include positionTL(absolute, 5px, 5px);
+        @include positionTR(absolute, 5px, 5px);
         background: $color-imp;
         color: $color1;
         transition: .2s;
@@ -833,7 +833,7 @@ body
       .extract
       {
         width : 150px;
-        @include positionTR(absolute, 5px, 5px);
+        @include positionTL(absolute, 5px, 5px);
       }
       .hidden
       {
