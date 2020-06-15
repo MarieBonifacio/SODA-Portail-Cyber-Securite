@@ -9,6 +9,17 @@ if(!checkAuthorized(true)){
     wp_redirect( home_url() );  exit;
 }
 
+function checkNotify(){
+    global $wpdb;
+    $checkDate = $wpdb->get_results("SELECT * from notify_date WHERE date > DATE_SUB(NOW(), INTERVAL 24 HOUR)");
+  
+    if(count($checkDate) != 0){
+        $_SESSION['notify'] = "Des mails ont déjà été envoyés aujourd'hui.";
+        wp_redirect(home_url()."/statistiques");
+        exit;
+    }
+}
+
 
 function notify(){
     global $wpdb;
@@ -18,10 +29,6 @@ function notify(){
 
     foreach($users as $user){
         $userId = $user->ID;
-        if($userId != 798){
-            echo 'skip '.$userId.'<br/>';
-            continue;
-        }
 
         $quizUndone = $wpdb->get_results("SELECT id, name FROM quiz WHERE id NOT IN (SELECT quiz_id FROM quiz_score WHERE user_id = '.$userId.')");
         $moduleUndone = $wpdb->get_results("SELECT id, title FROM module WHERE id NOT IN (SELECT module_id FROM module_finish WHERE user_id = '.$userId.')");
@@ -58,12 +65,16 @@ function notify(){
         }
 
         $mail = wp_mail($to, $subject, $message);
+
     }
+    $wpdb->insert("notify_date", ["date"=>(new DateTime())->format('Y-m-d H:i:s'), "author_id"=>$_SESSION['userConnected']]);
+    $_SESSION['notify'] = "Les mails ont été envoyés.";
+    wp_redirect(home_url()."/statistiques");
 }
- 
+
+checkNotify();
 notify();
-$_SESSION['notify'] = "Les mails ont été envoyés.";
-wp_redirect(home_url()."/statistiques");
+
 
 
 ?>
