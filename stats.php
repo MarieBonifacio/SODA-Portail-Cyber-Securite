@@ -32,7 +32,7 @@ cleanSession(); ?>
 
     <button class="extract">Tableaux utilisateurs</button>
 
-    <p class="mailSend">Envoi de mails</p>
+    <p class="mailSend">Notifier par mail</p>
     <?php if(isset($_SESSION['notify'])){
       echo "<span class='notifyConfirm'>".$_SESSION['notify']."</span>";
       unset($_SESSION['notify']);
