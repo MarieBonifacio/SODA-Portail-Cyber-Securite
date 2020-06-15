@@ -2,8 +2,6 @@
 
 define('WP_USE_THEMES', false);
 
-
-
 $path = preg_replace('/wp-content(?!.*wp-content).*/','',__DIR__);
 include($path.'wp-load.php');
 
@@ -14,16 +12,14 @@ if(!checkAuthorized(true)){
 
 function notify(){
     global $wpdb;
-    // $users = $wpdb->get_results( "SELECT wp_users.ID AS ID, wp_users.display_name AS Utilisateur, wp_usermeta.meta_value AS Site FROM wp_users LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID AND wp_usermeta.meta_key = 'location' ");
-    // $users_fnsh = $wpdb->get_results("SELECT wp_users.ID as ID, wp_users.display_name AS Utilisateur FROM wp_users LEFT JOIN module_finish ON wp_users.ID = module_finish.user_id WHERE '.$moduleId.'= module_finish.module_id ");
-   
     $users = $wpdb->get_results( "SELECT * FROM wp_users");
     $quizs = $wpdb->get_results("SELECT id, name FROM quiz");
     $modules = $wpdb->get_results("SELECT id, title FROM module");
 
     foreach($users as $user){
-        $userId = $user->id;
+        $userId = $user->ID;
         if($userId != 798){
+            echo 'skip '.$userId.'<br/>';
             continue;
         }
 
@@ -48,20 +44,26 @@ function notify(){
         }
         
         $message.=" sur le portail Soda CyberDéfense. \n ";
-
+        if(count($moduleUndone) != 0){
+            $message.= "\n Modules : ";
+        }
         foreach($moduleUndone as $module){
-            $message.="\n \t-".$module->title;
+            $message.="\n \t- ".htmlspecialchars_decode($module->title);
         }
-
+        if(count($quizUndone) != 0){
+            $message.= "\n Quiz : ";
+        }
         foreach($quizUndone as $quiz){
-            $message.="\n \t-".$quiz->name;
+            $message.="\n \t- ".htmlspecialchars_decode($quiz->name);
         }
 
-        wp_mail($to, $subject, $message);
+        $mail = wp_mail($to, $subject, $message);
     }
 }
-
+ 
 notify();
+$_SESSION['notify'] = "Les mails ont été envoyés.";
 wp_redirect(home_url()."/statistiques");
+
 
 ?>

@@ -33,7 +33,10 @@ cleanSession(); ?>
     <button class="extract">Tableaux utilisateurs</button>
 
     <p class="mailSend">Envoi de mails</p>
-
+    <?php if(isset($_SESSION['notify'])){
+      echo "<span class='notifyConfirm'>".$_SESSION['notify']."</span>";
+      unset($_SESSION['notify']);
+    } ?>
     <div class="confirmMess hidden">
       <p>Vous êtes sur le point d'envoyer un mail de rappel à tous les utilisateurs n'ayant pas terminé leur module ou quiz.</br> Confirmez-vous l'envoi de ces mails ?</p>
       <div class="yesNo">
