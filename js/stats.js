@@ -286,6 +286,7 @@ xmlhttp.onreadystatechange = function () {
           divMod.classList.remove("hidden");
           divQuiz.classList.add("hidden");
           canvaDiv.classList.add("hidden");
+          messNotify.remove();
         }
       }
       else
@@ -295,6 +296,7 @@ xmlhttp.onreadystatechange = function () {
           divQuiz.classList.remove("hidden");
           divMod.classList.add("hidden");
           canvaDiv.classList.add("hidden");
+          messNotify.remove();
         }
       }
     })
@@ -359,7 +361,6 @@ xmlhttp.onreadystatechange = function () {
     })
 
     // send emails
-
     const btnSendMail = document.querySelector(".mailSend"),
           divMess = document.querySelector(".confirmMess"),
           no = document.querySelector(".no");
@@ -374,6 +375,13 @@ xmlhttp.onreadystatechange = function () {
       divMess.classList.add("hidden");
     })
 
+    // notification mess closing
+    var notify = document.querySelector(".notify"),
+          messNotify = document.querySelector(".notifyConfirm");
+    
+    notify.addEventListener("click", ()=>{
+      messNotify.remove();
+    })
   }
 }
 xmlhttp.open("GET", url  + '/statistics.php', true);

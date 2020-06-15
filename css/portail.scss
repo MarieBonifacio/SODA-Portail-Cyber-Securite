@@ -624,6 +624,21 @@ body
           }
         }
       }
+      .notifyConfirm
+      {
+        padding: 15px;
+        background: $color1;
+        color: $police;
+        border-radius: 3px;
+        font-size: $fontSize2;
+        z-index: 20;
+        transform: translate(50%, -50%);
+        @include positionTR(fixed, 50%, 50%);
+        i
+        {
+          @include positionTR(absolute, 5px, 5px);
+        }
+      }
       .users
       {
         @include positionTL(absolute, 0, 0);

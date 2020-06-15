@@ -34,7 +34,7 @@ cleanSession(); ?>
 
     <p class="mailSend">Notifier par mail</p>
     <?php if(isset($_SESSION['notify'])){
-      echo "<span class='notifyConfirm'>".$_SESSION['notify']."</span>";
+      echo "<span class='notifyConfirm'>".$_SESSION['notify']."<i class='fas fa-times notify'></i></span>";
       unset($_SESSION['notify']);
     } ?>
     <div class="confirmMess hidden">
