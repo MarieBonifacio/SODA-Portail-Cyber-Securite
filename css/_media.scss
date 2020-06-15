@@ -305,7 +305,7 @@
           #intro
           {
             padding: 0;
-            margin-top: 15%;
+            margin-top: 30%;
             font-size: $fontSize2;
           }
         }
@@ -390,6 +390,11 @@
         {
           top: 25%;
           flex-direction: column;
+        }
+        .mailSend
+        {
+          top: 0;
+          left: 0;
         }
         .users
         {
@@ -774,7 +779,7 @@
         {
           #intro
           {
-            margin-top: 45%;
+            margin-top: 70%;
           }
         }
       }
