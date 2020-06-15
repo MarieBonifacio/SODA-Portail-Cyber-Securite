@@ -158,6 +158,18 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 				$users = $wpdb->get_var("SELECT count(wp_users.ID) AS ID FROM wp_users LEFT JOIN wp_usermeta ON wp_usermeta.user_id = wp_users.ID WHERE wp_usermeta.meta_key = 'status' AND wp_usermeta.meta_value =  0");
 						
 			?>
+				<div id="link" class="campaigns">
+					<a id="a" href="<?php echo home_url()."/liste-des-campagnes" ?>"><i class="fas fa-shield-alt"></i><p id="p">Campagnes</p></a>
+					<i class="drop fas fa-sort-down" data-id="campaigns"></i>
+					<ul class=" menuDown dropMenu" id="campaigns">
+						<li>
+							<a href="<?php echo home_url()."/nouvelle-campagne" ?>">Créer une campagne</a>
+						</li>
+						<li>
+							<a href="<?php echo home_url()."/stats-campagnes" ?>">Stats des campagnes</a>
+						</li>
+					</ul>
+				</div>
 				<div id="link" class="admin">
 					<a id="a" href="<?php echo home_url()."/wp-admin" ?>" target="_blank"><i class="fab fa-wordpress <?php echo $users != 0 ? "notifUser" : ""; ?>"></i><p id="p">Administration</p></a>
 					<i class="drop fas fa-sort-down" data-id="admin"></i>
