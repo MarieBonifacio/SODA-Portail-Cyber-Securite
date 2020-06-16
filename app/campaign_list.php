@@ -46,5 +46,5 @@ if(!empty($id) && empty($name) && empty($dateStart) && empty($dateEnd)){
     echo json_encode(campaignList());
 }
 
-wp_redirect(home_url()."/nouvelle-campagne");
+// wp_redirect(home_url()."/nouvelle-campagne");
 ?>
