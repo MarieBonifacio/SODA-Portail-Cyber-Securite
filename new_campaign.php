@@ -3,6 +3,14 @@
 <h2 class="h2"> Nouvelle Campagne </h2>
 
 <div class="new_camp">
+  <div class="confirm hidden">
+    <p>Êtes-vous sur de vouloir supprimer cette campagne "<span class="nameCamp"></span>"?</p>
+    <div>
+      <a class='yes'>Oui</a>
+      <span class='no close'>Non</span>
+    </div>
+    <i class='fas fa-times close'></i>
+  </div>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_campaign.php" method="POST">
     <h3>Créez votre campagne</h3>
     <?php

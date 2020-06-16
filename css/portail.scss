@@ -656,6 +656,7 @@ body
               margin:5px;
               padding: 5px 10px;
               transition: .2s;
+              outline: none;
             }
             button:nth-child(2)
             {
@@ -686,6 +687,52 @@ body
         ul::-webkit-scrollbar-corner {
           background: transparent;
         }
+      }
+      .confirm
+      { 
+        width: 300px;
+        padding: 15px;
+        z-index: 25;
+        font-size: $fontSize2;
+        color: $police;
+        background: $color3;
+        border-radius: 3px;
+        transform: translate(-50%, -50%);
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+        @include positionTL(fixed, 50%, 50%);
+        p
+        {
+          margin: 0;
+          margin-bottom: 5px;
+          text-align: center;
+        }
+        div
+        {
+          position: relative;
+          width: 100%;
+          @include flex(space-around, center, "");
+          .yes
+          {
+            color: #3AD29F;
+          }
+          .no
+          {
+            color: red;
+          }
+          .yes:hover, .no:hover
+          {
+            cursor: pointer;
+            font-weight: bold;
+          }
+        }
+        i
+        {
+          @include positionTR(absolute, 5px, 5px);
+        }
+      }
+      .hidden
+      {
+        display: none;
       }
     }
     .stats
