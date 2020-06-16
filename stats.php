@@ -50,7 +50,7 @@ cleanSession(); ?>
       <div class="select">
         <label>Votre quiz: <span class="spanQM spanQ">Choisissez votre quiz</span></label>
         <ul class="listModQuiz listQuiz hidden">
-          <?php $quizs = $wpdb->get_results( "SELECT quiz.id AS qId, quiz.name AS qName from quiz");
+        <?php $quizs = $wpdb->get_results( "SELECT quiz.id AS qId, quiz.name AS qName from quiz");
         foreach($quizs as $q){
           echo '<li class="liQM" data-id="'.$q->qId.'">'.$q->qName.'</li>';
         }

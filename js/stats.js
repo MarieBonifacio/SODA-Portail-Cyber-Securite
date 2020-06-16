@@ -243,7 +243,6 @@ xmlhttp.onreadystatechange = function () {
           var myArray = JSON.parse(this.responseText);
           const spanUserQ = document.querySelector(".nbrUsersQ"),
                 spanUserM = document.querySelector(".nbrUsersM");
-          console.log(myArray);
           if(type == "Quiz")
           {
             tbodyQ.innerHTML = "";
@@ -307,7 +306,6 @@ xmlhttp.onreadystatechange = function () {
           "type": typeName,
           "id" : idQM
         }
-        console.log(objUsers);
         if(typeName == "Quiz")
         {
           listQuiz.classList.add("hidden");
