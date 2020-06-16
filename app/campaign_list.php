@@ -13,7 +13,7 @@ if(!checkAuthorized(true)){
 function campaignList(){
     global $wpdb;
 
-    return $wpdb->get_results( "SELECT name AS Nom, start AS 'Date de début', end AS 'Date de fin' FROM campaign");
+    return $wpdb->get_results( "SELECT id AS Id, name AS Nom, start AS Début, end AS Fin FROM campaign");
 }
 
 function updateCampaign($id, $name, $dateStart, $dateEnd){
