@@ -17,26 +17,21 @@
     <h3>Créez votre campagne</h3>
     <div>
       <label>Nom de la campagne:</label>
-      <input type="text" name="name_camp">
+      <input type="text" name="name">
     </div>
     <div>
       <label> Début de la campagne:</label>
-      <input type="date" name="start_camp">
+      <input type="date" name="dateStart">
     </div> 
     <div>
       <label>Fin de la campagne:</label>
-      <input type="date" name="end_camp">
+      <input type="date" name="dateEnd">
     </div>
     <input type="submit" value="Valider">
   </form>
   <div class="listCamp">
     <h3>Liste des Campagnes</h3>
     <ul class="camps">
-    <?php $quizs = $wpdb->get_results( "SELECT quiz.id AS qId, quiz.name AS qName from quiz");
-        foreach($quizs as $q){
-          echo '<li class="liQM" data-id="'.$q->qId.'">'.$q->qName.'<div><button>Modifier</button><button>Supprimer</button></div></li>';
-        }
-        ?>
     </ul>
   </div>
 </div>
