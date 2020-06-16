@@ -3,18 +3,18 @@
 <h2 class="h2"> Nouvelle Campagne </h2>
 
 <div class="new_camp">
-  <?php
-    if(!empty($_SESSION["campaignSuccess"])){
-      echo "<p class='mess error'>".$_SESSION["campaignSuccess"]."</p>";
-      unset($_SESSION["campaignSuccess"]);
-    }
-    elseif(!empty($_SESSION["campaignError"])){
-      echo "<p class='mess good'>".$_SESSION["campaignError"]."</p>";
-      unset($_SESSION["campaignError"]);
-    }
-  ?>
-  <form action="<?php echo get_template_directory_uri(); ?>/app/create_campaign.php">
+  <form action="<?php echo get_template_directory_uri(); ?>/app/create_campaign.php" method="POST">
     <h3>Créez votre campagne</h3>
+    <?php
+      if(!empty($_SESSION["campaignSuccess"])){
+        echo "<p class='mess good'>".$_SESSION["campaignSuccess"]."</p>";
+        unset($_SESSION["campaignSuccess"]);
+      }
+      elseif(!empty($_SESSION["campaignError"])){
+        echo "<p class='mess error'>".$_SESSION["campaignError"]."</p>";
+        unset($_SESSION["campaignError"]);
+      }
+    ?>
     <div>
       <label>Nom de la campagne:</label>
       <input type="text" name="name">

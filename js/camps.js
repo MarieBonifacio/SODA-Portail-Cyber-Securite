@@ -10,6 +10,6 @@ window.addEventListener('load', function () {
   }
   };
   // url a trouver
-  xmlhttpList.open("GET", urlList  + '/app/list_campaign.php', true);
+  xmlhttpList.open("GET", urlList  + '/app/campaign_list.php', true);
   xmlhttpList.send();
 });
