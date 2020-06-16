@@ -159,7 +159,7 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 						
 			?>
 				<div id="link" class="campaigns">
-					<a id="a" href="<?php echo home_url()."/liste-des-campagnes" ?>"><i class="fas fa-shield-alt"></i><p id="p">Campagnes</p></a>
+					<a id="a" href="<?php echo home_url()."/nouvelle-campagne" ?>"><i class="fas fa-shield-alt"></i><p id="p">Campagnes</p></a>
 					<i class="drop fas fa-sort-down" data-id="campaigns"></i>
 					<ul class=" menuDown dropMenu" id="campaigns">
 						<li>
