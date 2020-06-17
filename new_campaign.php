@@ -9,7 +9,23 @@
       <a class='yes'>Oui</a>
       <span class='no close'>Non</span>
     </div>
-    <i class='fas fa-times close'></i>
+  </div>
+  <div class="modifyDiv hidden">
+    <h3>Modifiez votre campagne</h3>
+    <div>
+      <label>Nom de la campagne:</label>
+      <input type="text" class="name">
+    </div>
+    <div>
+      <label>Début de la campagne:</label>
+      <input type="date" class="start">
+    </div>
+    <div>
+      <label>Fin de la campagne:</label>
+      <input type="date" class="end">
+    </div>
+    <button class="confirmMod">Valider</button>
+    <i class="fas fa-times close"></i>
   </div>
   <form action="<?php echo get_template_directory_uri(); ?>/app/create_campaign.php" method="POST">
     <h3>Créez votre campagne</h3>
