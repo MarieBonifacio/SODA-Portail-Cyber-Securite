@@ -181,6 +181,14 @@ function html5blank_conditional_scripts()
             'home_url' => home_url()
         ));
     }
+    if(is_page("stats-campagnes"))
+    {
+        wp_enqueue_script('my-script', get_template_directory_uri() . '/js/stats_camps.js', null, true);
+        wp_localize_script('my-script', 'myScript', array(
+            'theme_directory' => get_template_directory_uri(),
+            'home_url' => home_url()
+        ));
+    }
 }
 
 // Load HTML5 Blank styles

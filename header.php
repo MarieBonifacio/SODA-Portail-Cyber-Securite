@@ -163,9 +163,6 @@ if(!checkAuthorized($_SESSION['needAdmin'], $_SESSION['needLog'])){
 					<i class="drop fas fa-sort-down" data-id="campaigns"></i>
 					<ul class=" menuDown dropMenu" id="campaigns">
 						<li>
-							<a href="<?php echo home_url()."/nouvelle-campagne" ?>">Créer une campagne</a>
-						</li>
-						<li>
 							<a href="<?php echo home_url()."/stats-campagnes" ?>">Stats des campagnes</a>
 						</li>
 					</ul>
