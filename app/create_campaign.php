@@ -21,12 +21,18 @@ function createCampaign($post){
         $_SESSION['campaignError'] = "Veuillez saisir une date de fin.";
         return 0;
     }
+   
     global $wpdb;
 
     $name = $post['name'];
     $dateStart = $post['dateStart'];
     $dateEnd = $post['dateEnd'];
 
+    if($dateStart > $dateEnd){
+        $_SESSION['campaignError'] = "La date de début doit être inférieure à la date de fin.";
+        return 0;
+    }
+    
     $wpdb->insert("campaign", array('name'=>$name, 'start'=> $dateStart, 'end'=> $dateEnd));
     $_SESSION['campaignSuccess'] = "La campagne a bien été créée.";
 }
