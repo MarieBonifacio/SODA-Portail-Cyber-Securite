@@ -7,17 +7,17 @@
     <label>Votre campagne: <span class="camp_name name_camp">votre choix</span></label>
     <ul class="listCamp hidden">
     <?php $campaigns = $wpdb->get_results( "SELECT campaign.id AS cId, campaign.name AS cName from campaign");
-        foreach($campaigns as $c){
-          echo '<li class="liC" data-id="'.$c->cId.'">'.$c->cName.'</li>';
-        }
-        ?>
+      foreach($campaigns as $c){
+        echo '<li class="liC" data-id="'.$c->cId.'">'.$c->cName.'</li>';
+      }
+    ?>
     </ul>
   </div>
   <p>Tableau des stats pour la campagne <span class="camp_name"></span></p>
   <div class="tableContainer">
     <div>
-      <h3>Quiz</h3>
-      <table>
+      <h3><span class="nbrQuiz"></span> Quiz</h3>
+      <table class="quizTable">
         <thead>
           <tr>
             <th>Sites</th>
@@ -31,8 +31,8 @@
       </table>
     </div>
     <div>
-      <h3>Modules</h3>
-      <table>
+      <h3><span class="nbrMod"></span> Modules</h3>
+      <table class="modTable">
         <thead>
           <tr>
             <th>Sites</th>

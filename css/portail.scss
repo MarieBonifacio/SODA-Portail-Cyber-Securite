@@ -576,6 +576,15 @@ body
       color: $police;
       font-family: "Muli";
       @include flex(center, center, column);
+      span
+      {
+        font-weight: bold;
+        color: $color-imp;
+      }
+      p
+      {
+        text-align: center;
+      }
       .select
       {
         position: relative;
@@ -585,6 +594,7 @@ body
         {
           padding: 5px 10px;
           font-weight: bold; 
+          color: $police;
           transition: .2s;
           border-radius: 3px;
           font-weight: bold;
@@ -666,6 +676,10 @@ body
             th, td
             {
               padding: 5px;
+            }
+            tr
+            {
+              text-align: center;
             }
             tr:nth-child(even) 
             {
@@ -820,6 +834,10 @@ body
             font-weight: bold;
             text-align: center;
             margin-bottom: 10px;
+            span
+            {
+              color: $color-imp;
+            }
             button
             {
               background: $color-btn;

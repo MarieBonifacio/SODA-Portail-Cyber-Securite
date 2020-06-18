@@ -283,12 +283,10 @@
             { :nth-child(1)
               {
                 width: 25%;
-                // border-left: none;
               }
               :nth-child(2)
               {
                 width: 25%;
-                // border-left: none;
               }
             }
           }
@@ -377,6 +375,21 @@
               min-height: 300px;
               min-width: 280px;
             }
+          }
+        }
+      }
+      .stats_camp
+      {
+        height: 200%;
+        @include positionTL(absolute, 20%, 0);
+        .tableContainer
+        {
+          flex-direction: column;
+          height: 240%;
+          div
+          {
+            width: 100%;
+            height: 50%;
           }
         }
       }
