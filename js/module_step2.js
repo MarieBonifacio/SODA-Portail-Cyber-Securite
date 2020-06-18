@@ -125,3 +125,15 @@ const validate = document.querySelector(".validate");
 validate.addEventListener("click", ()=>{
   document.querySelector("input[type=submit]").click();
 })
+
+const textareas = document.querySelectorAll("textarea");
+
+console.log(textareas);
+
+textareas.forEach(text => {
+  text.addEventListener("input", ()=>{
+    const words = text.value.split(" ");
+
+    console.log(words[words.length - 1]);
+  })
+});

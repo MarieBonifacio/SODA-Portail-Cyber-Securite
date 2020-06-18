@@ -675,15 +675,30 @@ body
             padding: 5px;
             th, td
             {
-              padding: 5px;
+              padding-top: 5px;
+              padding-bottom: 5px;
             }
             tr
             {
+              td:nth-child(1)
+              {
+                text-align: left;
+              }
               text-align: center;
             }
             tr:nth-child(even) 
             {
               background-color: $color1;
+            }
+          }
+          .totalTable
+          {
+            tr
+            {
+              td:nth-child(1)
+              {
+                text-align: center;
+              }
             }
           }
           .red

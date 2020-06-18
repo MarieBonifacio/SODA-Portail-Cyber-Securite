@@ -60,6 +60,7 @@ window.addEventListener('load', function (e) {
     })
 
     var urlNotif = myScriptDir.theme_directory;
+    var homeNotif = myScriptDir.home_url;
     var xmlhttpNotif = new XMLHttpRequest();
     xmlhttpNotif.onreadystatechange = function () {
     if(this.readyState == 4 && this.status == 200)
@@ -116,7 +117,7 @@ window.addEventListener('load', function (e) {
             {
                 for (let j = 0; j < quiz.length; j++) {
                     notifs.innerHTML += `
-                        <p>Le quiz <a href="http://localhost/wordpress/menu-quiz/"><span>${quiz[j].name}</span></a> a été créé le <span>${quiz[j].created_at}</span></p>
+                        <p>Le quiz <a href="${homeNotif}/menu-quiz/"><span>${quiz[j].name}</span></a> a été créé le <span>${quiz[j].created_at}</span></p>
                     `;
                 }
             }
@@ -124,7 +125,7 @@ window.addEventListener('load', function (e) {
             {
                 for (let f = 0; f < modules.length; f++) {
                     notifs.innerHTML += `
-                        <p>Le module <a href="http://localhost/wordpress/menu-module/"><span>${modules[f].title}</span></a> a été créé le <span>${modules[f].created_at}</span></p>
+                        <p>Le module <a href="${homeNotif}/menu-module/"><span>${modules[f].title}</span></a> a été créé le <span>${modules[f].created_at}</span></p>
                     `;
                 }
             }
@@ -216,39 +217,6 @@ window.addEventListener('load', function (e) {
                     }
                 });
             });
-        // }
-        // else
-        // {
-        //     arrow.addEventListener("click", ()=>{
-        //         if(arrow.classList.contains("fa-arrow-left"))
-        //         {
-        //             arrow.classList.remove("fa-arrow-left");
-        //             arrow.classList.add("fa-arrow-right");
-        //             if(window.innerWidth>760)
-        //             {
-        //                 sideNav.style.left = "-30%";
-        //             }
-        //             else
-        //             {
-        //                 sideNav.style.left = "-60%";
-        //             }
-        //             contenu.style.width = "100%";
-        //         }
-        //         else
-        //         {
-        //             arrow.classList.remove("fa-arrow-right");
-        //             arrow.classList.add("fa-arrow-left");
-        //             sideNav.style.left = "0%";
-        //             contenu.style.width = "100%";
-        //         }
-        //         dropMenus.forEach(menu => {
-        //             if(menu.classList.contains("dropMenuAppear"))
-        //             {
-        //                 menu.classList.remove("dropMenuAppear")
-        //             }
-        //         });
-        //     });
-        // }
     }
     else
     {

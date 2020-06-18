@@ -44,6 +44,22 @@
         </tbody>
       </table>
     </div>
+    <div class="totalDiv">
+      <h3>Total</h3>
+      <table class="totalTable">
+        <thead>
+          <tr>
+            <th>Taux de participation Quiz</th>
+            <th>Taux de participation Modules</th>
+            <th>Moyenne des quiz</th>
+            <th>Temps des quiz</th>
+          </tr>
+        </thead>
+        <tbody class="total">
+    
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

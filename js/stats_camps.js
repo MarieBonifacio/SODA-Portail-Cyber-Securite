@@ -8,6 +8,7 @@ window.addEventListener("load", ()=>{
         spanCamp = document.querySelectorAll(".camp_name"),
         quizBody = document.querySelector(".bodyQ"),
         modBody = document.querySelector(".bodyM"),
+        totalBody = document.querySelector(".total"),
         nbrMod = document.querySelector(".nbrMod"),
         nbrQuiz = document.querySelector(".nbrQuiz"),
         lisCamp = document.querySelectorAll(".liC");
@@ -45,8 +46,9 @@ window.addEventListener("load", ()=>{
         var myArray = JSON.parse(this.responseText),
             nbQuiz = myArray.nbQuiz,
             nbMod = myArray.nbModule;
+        // console.log(myArray);
         const sites = myArray.sites;
-        buildTable(sites, nbQuiz, nbMod);
+        buildTable(myArray, sites, nbQuiz, nbMod);
       }
     }
     xmlhttpPost.open("POST", url  + '/app/campaign_stats.php', true);
@@ -54,26 +56,35 @@ window.addEventListener("load", ()=>{
     xmlhttpPost.send(dbParamPost);
   }
 
-  function buildTable( array, nbrquiz, nbrmod){
+  function buildTable(array, sites, nbrquiz, nbrmod){
     quizBody.innerHTML = "";
     modBody.innerHTML = "";
-    for (let [key, value] of Object.entries(array)) {
+    totalBody.innerHTML = "";
+    for (let [key, value] of Object.entries(sites)) {
       quizBody.innerHTML += `
         <tr>
           <td>${key}</td>
-          <td>${value.participationQuiz}</td>
-          <td>${parseInt(value.moyenneQuiz)}</td>
-          <td>${parseInt(value.tempsQuiz)}</td>
+          <td>${value.participationQuiz}%</td>
+          <td>${parseInt(value.moyenneQuiz)}.pts</td>
+          <td>${parseInt(value.tempsQuiz)}.s</td>
         </tr>
       `
 
       modBody.innerHTML += `
         <tr>
           <td>${key}</td>
-          <td>${value.participationModule}</td>
+          <td>${value.participationModule}%</td>
         </tr>
       `
     }
+    totalBody.innerHTML = `
+      <tr>
+        <td>${array.total.participationQuiz}%</td>
+        <td>${array.total.participationQuiz}%</td>
+        <td>${parseInt(array.total.moyenneQuiz)}.pts</td>
+        <td>${parseInt(array.total.tempsQuiz)}.s</td>
+      </tr>
+    `;
     nbrMod.innerHTML = nbrmod;
     nbrQuiz.innerHTML = nbrquiz;
   }
