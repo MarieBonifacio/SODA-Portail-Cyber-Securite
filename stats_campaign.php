@@ -21,9 +21,9 @@
         <thead>
           <tr>
             <th>Sites</th>
-            <th>Taux de participation</th>
-            <th>Moyenne</th>
-            <th>Temps en moyenne</th>
+            <th>Taux de participation (%)</th>
+            <th>Moyenne (pts.)</th>
+            <th>Temps en moyenne (sec.)</th>
           </tr>
         </thead>
         <tbody class="bodyQ">
@@ -36,7 +36,7 @@
         <thead>
           <tr>
             <th>Sites</th>
-            <th>Taux de participation</th>
+            <th>Taux de participation (%)</th>
           </tr>
         </thead>
         <tbody class="bodyM">
@@ -49,10 +49,10 @@
       <table class="totalTable">
         <thead>
           <tr>
-            <th>Taux de participation Quiz</th>
-            <th>Taux de participation Modules</th>
-            <th>Moyenne des quiz</th>
-            <th>Temps des quiz</th>
+            <th>Taux de participation Quiz(%)</th>
+            <th>Taux de participation Modules(%)</th>
+            <th>Moyenne des quiz(pts.)</th>
+            <th>Temps des quiz(sec.)</th>
           </tr>
         </thead>
         <tbody class="total">

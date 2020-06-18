@@ -64,28 +64,52 @@ window.addEventListener("load", ()=>{
       quizBody.innerHTML += `
         <tr>
           <td>${key}</td>
-          <td>${value.participationQuiz}%</td>
-          <td>${parseInt(value.moyenneQuiz)}.pts</td>
-          <td>${parseInt(value.tempsQuiz)}.s</td>
+          <td class="part">${value.participationQuiz}</td>
+          <td class="moyQ">${parseInt(value.moyenneQuiz)}</td>
+          <td>${parseInt(value.tempsQuiz)}</td>
         </tr>
       `
-
+      
       modBody.innerHTML += `
-        <tr>
-          <td>${key}</td>
-          <td>${value.participationModule}%</td>
-        </tr>
+      <tr>
+      <td>${key}</td>
+      <td class="part">${value.participationModule}</td>
+      </tr>
       `
     }
     totalBody.innerHTML = `
-      <tr>
-        <td>${array.total.participationQuiz}%</td>
-        <td>${array.total.participationQuiz}%</td>
-        <td>${parseInt(array.total.moyenneQuiz)}.pts</td>
-        <td>${parseInt(array.total.tempsQuiz)}.s</td>
-      </tr>
+    <tr>
+    <td class="part">${array.total.participationQuiz}</td>
+    <td class="part">${array.total.participationQuiz}</td>
+    <td class="moyQ">${parseInt(array.total.moyenneQuiz)}</td>
+    <td>${parseInt(array.total.tempsQuiz)}</td>
+    </tr>
     `;
+    const moyQ =document.querySelectorAll(".moyQ"),
+          parts = document.querySelectorAll(".part");
     nbrMod.innerHTML = nbrmod;
     nbrQuiz.innerHTML = nbrquiz;
+    moyQ.forEach(td => {   
+      console.log(parseInt(td.textContent));
+      if(parseInt(td.textContent)>50)
+      {
+        td.classList.add("green");
+      }
+      else
+      {
+        td.classList.add("red");
+      }
+    });
+    parts.forEach(td => {   
+      console.log(parseInt(td.textContent));
+      if(parseInt(td.textContent)>50)
+      {
+        td.classList.add("green");
+      }
+      else
+      {
+        td.classList.add("red");
+      }
+    });
   }
 })
