@@ -30,7 +30,7 @@ function quizStatsByCampaign($campaignStart, $campaignEnd, $site, $nbQuiz, $nbUs
     $moyenne = $quizInfo->moyenne ?? 0;
     $temps = $quizInfo->temps ?? 0;
 
-    $pourcent = ((int)$nbUsers === 0) ? 0 : (round(((int)$nbQuizDone * 100)/((int)$nbQuiz*(int)$nbUsers)));
+    $pourcent = ((int)$nbUsers === 0 || (int)$nbQuiz === 0) ? 0 : (round(((int)$nbQuizDone * 100)/((int)$nbQuiz*(int)$nbUsers)));
     return [
         "participationQuiz" => $pourcent,
         "moyenneQuiz" => $moyenne,
@@ -53,7 +53,7 @@ function moduleStatsByCampaign($campaignStart, $campaignEnd, $site, $nbModule, $
             module_finish.created_at BETWEEN '$campaignStart' AND '$campaignEnd'"
     );
 
-    return ((int)$nbUsers === 0) ? 0 : (round(((int)$nbModuleDone * 100)/((int)$nbModule*(int)$nbUsers)));
+    return ((int)$nbUsers === 0 || (int)$nbModule === 0) ? 0 : (round(((int)$nbModuleDone * 100)/((int)$nbModule*(int)$nbUsers)));
 }
 
 global $wpdb;
