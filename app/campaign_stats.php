@@ -27,8 +27,8 @@ function quizStatsByCampaign($campaignStart, $campaignEnd, $site, $nbQuiz, $nbUs
     );
 
     $nbQuizDone = $quizInfo->nb;
-    $moyenne = $quizInfo->moyenne;
-    $temps = $quizInfo->temps;
+    $moyenne = $quizInfo->moyenne ?? 0;
+    $temps = $quizInfo->temps ?? 0;
 
     $pourcent = ((int)$nbUsers === 0) ? 0 : (round(((int)$nbQuizDone * 100)/((int)$nbQuiz*(int)$nbUsers)));
     return [
