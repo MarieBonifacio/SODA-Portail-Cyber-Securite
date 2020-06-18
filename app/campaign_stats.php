@@ -45,7 +45,7 @@ function moduleStatsByCampaign($campaignStart, $campaignEnd, $site, $nbModule, $
             count(module_finish.id) 
         FROM
             module_finish
-        LEFT JOIN  wp_usermeta ON quiz_score.user_id = wp_usermeta.user_id 
+        LEFT JOIN  wp_usermeta ON module_finish.user_id = wp_usermeta.user_id 
             AND wp_usermeta.meta_key = 'location' 
         WHERE
             wp_usermeta.meta_value = '$site' 
