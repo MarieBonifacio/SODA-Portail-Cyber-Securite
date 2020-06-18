@@ -60,8 +60,8 @@ global $wpdb;
 $str_json = file_get_contents('php://input'); //($_POST doesn't work here)
 $request = json_decode($str_json, true); // decoding received JSON to array
 
-// $campaignId = $request['id'];
-$campaignId = 4;
+$campaignId = $request['id'];
+// $campaignId = 4;
 //récupérer les scores, taux de participation etc par ville 
 $campaign = $wpdb->get_row("SELECT * FROM campaign WHERE id = $campaignId");
 $sites = $wpdb->get_results("SELECT distinct(meta_value) FROM wp_usermeta WHERE meta_key = 'location' ORDER BY meta_value");
