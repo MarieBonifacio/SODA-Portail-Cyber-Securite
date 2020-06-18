@@ -32,7 +32,6 @@ function quizStatsByCampaign($campaignStart, $campaignEnd, $site, $nbQuiz, $nbUs
 
     $pourcent = ((int)$nbUsers === 0 || (int)$nbQuiz === 0) ? 0 : (round(((int)$nbQuizDone * 100)/((int)$nbQuiz*(int)$nbUsers)));
     return [
-        "site" => $site,
         "participationQuiz" => $pourcent,
         "moyenneQuiz" => $moyenne,
         "tempsQuiz" => $temps
