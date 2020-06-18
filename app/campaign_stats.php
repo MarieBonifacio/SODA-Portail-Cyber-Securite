@@ -86,7 +86,8 @@ $nbModule = $wpdb->get_var("
 
 $stats = [
     "nbQuiz" => $nbQuiz,
-    "nbModule" => $nbModule
+    "nbModule" => $nbModule,
+    "sites" => [],
 ];
 
 $total = [
@@ -100,13 +101,13 @@ foreach($sites as $site){
         SELECT count(umeta_id) FROM wp_usermeta WHERE wp_usermeta.meta_key = 'location' AND  wp_usermeta.meta_value = '$site->meta_value'
     ");
     
-    $stats[$site->meta_value] = quizStatsByCampaign($campaign->start, $campaign->end, $site->meta_value, $nbQuiz, $nbUsers);
-    $stats[$site->meta_value]["participationModule"] = moduleStatsByCampaign($campaign->start, $campaign->end, $site->meta_value, $nbModule, $nbUsers);
+    $stats['sites'][$site->meta_value] = quizStatsByCampaign($campaign->start, $campaign->end, $site->meta_value, $nbQuiz, $nbUsers);
+    $stats['sites'][$site->meta_value]["participationModule"] = moduleStatsByCampaign($campaign->start, $campaign->end, $site->meta_value, $nbModule, $nbUsers);
 
-    $total["participationQuiz"] += (int)$stats[$site->meta_value]["participationQuiz"];
-    $total["moyenneQuiz"] += (int)$stats[$site->meta_value]["moyenneQuiz"];
-    $total["tempsQuiz"] += (int)$stats[$site->meta_value]["tempsQuiz"];
-    $total["participationModule"] += (int)$stats[$site->meta_value]["participationModule"];
+    $total["participationQuiz"] += (int)$stats['sites'][$site->meta_value]["participationQuiz"];
+    $total["moyenneQuiz"] += (int)$stats['sites'][$site->meta_value]["moyenneQuiz"];
+    $total["tempsQuiz"] += (int)$stats['sites'][$site->meta_value]["tempsQuiz"];
+    $total["participationModule"] += (int)$stats['sites'][$site->meta_value]["participationModule"];
 }
 
 foreach($total as $k=>$v){
