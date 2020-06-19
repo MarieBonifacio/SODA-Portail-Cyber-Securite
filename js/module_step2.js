@@ -18,7 +18,7 @@ function inputFile()
         }
         else
         {
-          span.innerHTML = "Aucune image séléctionnée";
+          span.innerHTML = "Aucune image sélectionnée";
         }
       })
     })
