@@ -14,7 +14,7 @@
     </ul>
   </div>
   <div class="selectC">
-    <label>comparé à : <span class="compare_name compare_camp">votre choix</span></label>
+    <label>comparée à : <span class="compare_name compare_camp">votre choix</span></label>
     <ul class="listCampC hidden">
     <?php $campaigns = $wpdb->get_results( "SELECT campaign.id AS cId, campaign.name AS cName from campaign");
       foreach($campaigns as $c){
@@ -23,7 +23,7 @@
     ?>
     </ul>
   </div>
-  <p>Tableau des stats pour la campagne <span class="camp_name"></span> comparé à <span class="compare_name"></span></p>
+  <p>Tableau des statisitques de la campagne <span class="camp_name"></span> comparée à <span class="compare_name"></span></p>
   <div class="container">
     <div class="tableContainer">
       <div>
