@@ -60,10 +60,10 @@
         <table class="totalTable">
           <thead>
             <tr>
-              <th>Taux de participation Quiz(%)</th>
-              <th>Taux de participation Modules(%)</th>
-              <th>Moyenne des quiz(pts.)</th>
-              <th>Temps des quiz(sec.)</th>
+              <th>Taux de participation Quiz (%)</th>
+              <th>Taux de participation Modules (%)</th>
+              <th>Moyenne des quiz (pts.)</th>
+              <th>Temps des quiz (sec.)</th>
             </tr>
           </thead>
           <tbody class="total">
