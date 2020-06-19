@@ -13,52 +13,111 @@
     ?>
     </ul>
   </div>
-  <p>Tableau des stats pour la campagne <span class="camp_name"></span></p>
-  <div class="tableContainer">
-    <div>
-      <h3><span class="nbrQuiz"></span> Quiz</h3>
-      <table class="quizTable">
-        <thead>
-          <tr>
-            <th>Sites</th>
-            <th>Taux de participation (%)</th>
-            <th>Moyenne (pts.)</th>
-            <th>Temps en moyenne (sec.)</th>
-          </tr>
-        </thead>
-        <tbody class="bodyQ">
-        </tbody>
-      </table>
+  <div class="selectC">
+    <label>comparé à : <span class="compare_name compare_camp">votre choix</span></label>
+    <ul class="listCampC hidden">
+    <?php $campaigns = $wpdb->get_results( "SELECT campaign.id AS cId, campaign.name AS cName from campaign");
+      foreach($campaigns as $c){
+        echo '<li class="liComp" data-id="'.$c->cId.'">'.$c->cName.'</li>';
+      }
+    ?>
+    </ul>
+  </div>
+  <p>Tableau des stats pour la campagne <span class="camp_name"></span> comparé à <span class="compare_name"></span></p>
+  <div class="container">
+    <div class="tableContainer">
+      <div>
+        <h3><span class="nbrQuiz"></span> Quiz</h3>
+        <table class="quizTable">
+          <thead>
+            <tr>
+              <th>Sites</th>
+              <th>Taux de participation (%)</th>
+              <th>Moyenne (pts.)</th>
+              <th>Temps en moyenne (sec.)</th>
+            </tr>
+          </thead>
+          <tbody class="bodyQ">
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3><span class="nbrMod"></span> Modules</h3>
+        <table class="modTable">
+          <thead>
+            <tr>
+              <th>Sites</th>
+              <th>Taux de participation (%)</th>
+            </tr>
+          </thead>
+          <tbody class="bodyM">
+      
+          </tbody>
+        </table>
+      </div>
+      <div class="totalDiv">
+        <h3>Total</h3>
+        <table class="totalTable">
+          <thead>
+            <tr>
+              <th>Taux de participation Quiz(%)</th>
+              <th>Taux de participation Modules(%)</th>
+              <th>Moyenne des quiz(pts.)</th>
+              <th>Temps des quiz(sec.)</th>
+            </tr>
+          </thead>
+          <tbody class="total">
+      
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div>
-      <h3><span class="nbrMod"></span> Modules</h3>
-      <table class="modTable">
-        <thead>
-          <tr>
-            <th>Sites</th>
-            <th>Taux de participation (%)</th>
-          </tr>
-        </thead>
-        <tbody class="bodyM">
-    
-        </tbody>
-      </table>
-    </div>
-    <div class="totalDiv">
-      <h3>Total</h3>
-      <table class="totalTable">
-        <thead>
-          <tr>
-            <th>Taux de participation Quiz(%)</th>
-            <th>Taux de participation Modules(%)</th>
-            <th>Moyenne des quiz(pts.)</th>
-            <th>Temps des quiz(sec.)</th>
-          </tr>
-        </thead>
-        <tbody class="total">
-    
-        </tbody>
-      </table>
+    <div class="tableContainer">
+      <div>
+        <h3><span class="nbrQuizCompare"></span> Quiz</h3>
+        <table class="quizTable">
+          <thead>
+            <tr>
+              <th>Sites</th>
+              <th>Taux de participation (%)</th>
+              <th>Moyenne (pts.)</th>
+              <th>Temps en moyenne (sec.)</th>
+            </tr>
+          </thead>
+          <tbody class="compareQ">
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3><span class="nbrModCompare"></span> Modules</h3>
+        <table class="modTable">
+          <thead>
+            <tr>
+              <th>Sites</th>
+              <th>Taux de participation (%)</th>
+            </tr>
+          </thead>
+          <tbody class="compareM">
+      
+          </tbody>
+        </table>
+      </div>
+      <div class="totalDiv">
+        <h3>Total</h3>
+        <table class="totalTable">
+          <thead>
+            <tr>
+              <th>Taux de participation Quiz(%)</th>
+              <th>Taux de participation Modules(%)</th>
+              <th>Moyenne des quiz(pts.)</th>
+              <th>Temps des quiz(sec.)</th>
+            </tr>
+          </thead>
+          <tbody class="totalCompare">
+      
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

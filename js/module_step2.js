@@ -121,19 +121,21 @@ plus.addEventListener("click", ()=>{
 })
 
 const validate = document.querySelector(".validate");
+const sketching = document.querySelector(".sketching");
 
 validate.addEventListener("click", ()=>{
-  document.querySelector("input[type=submit]").click();
+  document.querySelector("input[value='Valider']").click();
+})
+sketching.addEventListener("click", ()=>{
+  document.querySelector("input[value='Enregistrer le brouillon']").click();
 })
 
 const textareas = document.querySelectorAll("textarea");
-
-console.log(textareas);
 
 textareas.forEach(text => {
   text.addEventListener("input", ()=>{
     const words = text.value.split(" ");
 
-    console.log(words[words.length - 1]);
+    // console.log(words[words.length - 1]);
   })
 });

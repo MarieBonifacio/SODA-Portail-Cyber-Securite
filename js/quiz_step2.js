@@ -183,7 +183,12 @@ plus.addEventListener("click", ()=>{
 })
 
 const validate = document.querySelector(".validate");
+const sketching = document.querySelector(".sketching");
 
 validate.addEventListener("click", ()=>{
-  document.querySelector("input[type=submit]").click();
+  document.querySelector("input[value='Valider']").click();
+})
+sketching.addEventListener("click", ()=>{
+  document.querySelector("input[value='Enregistrer le brouillon']").click();
+
 })

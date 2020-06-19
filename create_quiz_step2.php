@@ -161,10 +161,11 @@ get_header();
     ?>
     <input type="submit" name ="valider" value="Valider" hidden/>
 
-    <input type="submit" name ="brouillon" value="Enregistrer le brouillon"/>
+    <input type="submit" name ="brouillon" value="Enregistrer le brouillon" hidden/>
   </form>
   <i class="plus fas fa-plus"></i>
   <p class="validate">Suivant</p>
+  <p class="sketching">Enregistrer en brouillon</p>
 </div>
 <div class="svg_step2_quiz">
   <svg viewBox="0 0 1004 837" fill="none" xmlns="http://www.w3.org/2000/svg">
