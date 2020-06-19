@@ -168,7 +168,11 @@ if($nbrPage >= 1){
 
 if($_SESSION['errorModule'] == "")
 {
-    wp_redirect( home_url().'/creationmoduleetape3' );
+    if(isset($_POST['brouillon'])){
+        wp_redirect(get_template_directory_uri()."/app/create_module_3.php?status=0" );
+    }else{
+        wp_redirect( home_url().'/creationmoduleetape3' );
+    }
 }else{
     wp_redirect( home_url().'/creationmoduleetape2' );
 }
