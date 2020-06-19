@@ -91,7 +91,7 @@ window.addEventListener("load", ()=>{
 
       spanPQ.innerHTML= `(${diffPQC}%)`;
       spanPM.innerHTML= `(${diffPMC}%)`;
-      spanMQ.innerHTML= `(${diffMC}%)`;
+      spanMQ.innerHTML= `(${diffMC}pts.)`;
       if(diffPQC == 0)
       {
         spanPQ.classList.add("orange");
@@ -144,7 +144,7 @@ window.addEventListener("load", ()=>{
           diffTMC = parseInt(moyenneTotal) - parseInt(moyenne);
     spanPQT.innerHTML= `(${diffTPQ}%)`;
     spanPMT.innerHTML= `(${diffTPM}%)`;
-    spanMT.innerHTML= `(${diffTMC}%)`;
+    spanMT.innerHTML= `(${diffTMC}pts.)`;
     if(diffTPQ == 0)
     {
       spanPQT.classList.add("orange");
