@@ -105,7 +105,7 @@ get_header();
 
   <a href="<?php echo get_template_directory_uri(); ?>/app/create_quiz_3.php">Confirmez la création de votre quiz</a>
 
-  <a href="<?php echo get_template_directory_uri(); ?>/app/create_module_3.php?status=0">Enregistrer le brouillon</a>
+  <a href="<?php echo get_template_directory_uri(); ?>/app/create_quiz_3.php?status=0">Enregistrer le brouillon</a>
 
 </div>
 <div class="svg_step3">
