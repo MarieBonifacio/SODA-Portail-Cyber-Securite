@@ -159,7 +159,9 @@ get_header();
             echo getQuestion('n1', true, null);
         }
     ?>
-    <input type="submit" value="Valider" hidden/>
+    <input type="submit" name ="valider" value="Valider" hidden/>
+
+    <input type="submit" name ="brouillon" value="Enregistrer le brouillon"/>
   </form>
   <i class="plus fas fa-plus"></i>
   <p class="validate">Suivant</p>

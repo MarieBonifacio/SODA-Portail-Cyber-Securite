@@ -28,6 +28,8 @@ cleanSession();
 
           <th>Tag</th>
 
+          <th>Status</th>
+
           <th>Mod/Supp</th>
 
         </tr>

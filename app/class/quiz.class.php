@@ -11,6 +11,7 @@ class Quiz {
     private $img_path;
     private $description;
     private $author;
+    private $status;
     private $created_at;
 
     public function selectById($id){
@@ -24,6 +25,7 @@ class Quiz {
         $this->img_path = $r->img_path;
         $this->description = $r->description;
         $this->author = $r->author_id;
+        $this->status = $r->status;
         $this->created_at = $r->created_at;
         return $r;
     }
@@ -75,6 +77,14 @@ class Quiz {
         $this->author = $authorId;
     }
 
+    public function getStatus(){
+        return $this->status;
+    }
+
+    public function setStatus($status){
+        $this->status = $status;
+    }
+
     public function getCreatedAt(){
         return $this->created_at;
     }
@@ -95,6 +105,7 @@ class Quiz {
                     "img_path" => $this->img_path,
                     "description" => stripslashes($this->description),
                     "author_id" => $this->author,
+                    "status" => $this->status,
                     "created_at" => $this->created_at
                 )
             );
@@ -108,6 +119,7 @@ class Quiz {
                     "img_path" => $this->img_path,
                     "description" => stripslashes($this->description),
                     "author_id" => $this->author,
+                    "status" => $this->status,
                     "created_at" => $this->created_at
                 ), array(
                     "id" => $this->id,

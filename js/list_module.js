@@ -10,13 +10,20 @@ window.addEventListener('load', function () {
     content = document.querySelector(".modulesL");
     for(i=0; i<modules.length; i++)
     {
+      let status = "Publié";
+      if(modules[i].status === "0"){
+        status = "Brouillon";
+      }
       list.innerHTML += `
       <tr>
         <td>
           <span>${modules[i].title}</span>
         </td>
         <td>
-        <span>${modules[i].tag_name}</span>
+          <span>${modules[i].tag_name}</span>
+        </td>
+        <td>
+          <span>${status}</span>
         </td>
         <td>
           <p data-id="${modules[i].id}" class="delete">Supprimer</p>
@@ -70,6 +77,6 @@ window.addEventListener('load', function () {
   };
 
   // url a trouver
-  xmlhttpListe.open("GET", urlListe  + '/menu_modules.php', true);
+  xmlhttpListe.open("GET", urlListe  + '/menu_modules.php?all=true', true);
   xmlhttpListe.send();
 });

@@ -183,7 +183,11 @@ function processAnswers($id, $isNew){
 }
 
 if($_SESSION['errorQuiz'] == ""){
-    wp_redirect( home_url().'/creationquizetape3' );
+    if(isset($_POST['brouillon'])){
+        wp_redirect(get_template_directory_uri()."/app/create_quiz_3.php?status=0" );
+    }else{
+        wp_redirect( home_url().'/creationquizetape3' );
+    }
 }else{
     wp_redirect( home_url().'/creationquizetape2' );
 }

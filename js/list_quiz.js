@@ -10,6 +10,10 @@ window.addEventListener('load', function () {
     content = document.querySelector(".quizsL");
     for(i=0; i<quizs.quiz.length; i++)
     {
+      let status = "Publié";
+      if(quizs.quiz[i].status === "0"){
+        status = "Brouillon";
+      }
       list.innerHTML += `
       <tr>
         <td>
@@ -19,11 +23,14 @@ window.addEventListener('load', function () {
         <span>${quizs.quiz[i].tag_name}</span>
         </td>
         <td>
+          <span>${status}</span>
+        </td>
+        <td>
           <p data-id="${quizs.quiz[i].id}" class="delete">Supprimer</p>
           <a href="${home_url}/app/quiz_edit.php?id=${quizs.quiz[i].id}" target="_blank" class="modify">Modifier</a>
         </td>
       </tr>
-      `
+      `;
     }
     const btns = document.querySelectorAll(".delete");
     btns.forEach(btn => {
@@ -70,6 +77,6 @@ window.addEventListener('load', function () {
   };
 
   // url a trouver
-  xmlhttpListe.open("GET", urlListe  + '/menu_quiz.php', true);
+  xmlhttpListe.open("GET", urlListe  + '/menu_quiz.php?all=true', true);
   xmlhttpListe.send();
 });

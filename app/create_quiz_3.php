@@ -34,6 +34,7 @@ $newQuiz->setTag($tag);
 $newQuiz->setAuthorById($id);
 $newQuiz->setImgPath($_SESSION['quizData']['quiz']['img']);
 $newQuiz->setDescription($_SESSION['quizData']['quiz']['description']);
+$newQuiz->setStatus($_GET['status'] ?? 1); 
 $t = $newQuiz->save();
 
 if(!empty($_SESSION['quizData']['quiz']['id'])){
