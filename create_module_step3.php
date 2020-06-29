@@ -43,7 +43,7 @@ get_header();
               <span class="numP">'.$num.'</span>
               <div class="content">
                 <h2>'.stripslashes($q['info']['title']).'</h2>
-                <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
+                <p class="textContent">'.nl2br(stripslashes($q['info']['content'])).'</p>
               </div>
               ';
             }
@@ -67,7 +67,7 @@ get_header();
                   <span class="numP">'.$num.'</span>
                   <div class="content">
                     <h2>'.stripslashes($q['info']['title']).'</h2>
-                    <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
+                    <p class="textContent">'.nl2br(stripslashes($q['info']['content'])).'</p>
                   </div>
                   ';
               }
@@ -91,7 +91,7 @@ get_header();
                 <span class="numP">'.$num.'</span>
                 <div class="contentFull content">
                   <h2>'.stripslashes($q['info']['title']).'</h2>
-                  <p>'.nl2br(stripslashes($q['info']['content'])).'</p>
+                  <p class="textContent">'.nl2br(stripslashes($q['info']['content'])).'</p>
                 </div>
               ';
           }
@@ -153,4 +153,6 @@ get_header();
 </svg>
 
 </div>
+<script src="<?php echo get_template_directory_uri(); ?>/js/module_step3.js">
+
 <?php get_footer();?>

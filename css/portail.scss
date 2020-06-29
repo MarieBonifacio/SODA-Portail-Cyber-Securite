@@ -3216,8 +3216,9 @@ body
       width: 50%;
       height: 100%;
       z-index: 1;
+      display:none;
       @include positionTR(fixed, 0, 0);
-      @include flex(center, center, row);
+      // @include flex(center, center, row);
       svg
       {
         @include positionBR(absolute, 15px, 15px);
