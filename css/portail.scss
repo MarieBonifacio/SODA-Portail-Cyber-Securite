@@ -2675,12 +2675,32 @@ body
               border:none;
               border-bottom: 1px solid $police;
             }
+            ul
+            {
+              list-style: none;
+              padding: 5px;
+              background: $color1;
+              border-radius: 3px;
+              li
+              {
+                margin-bottom: 10px;
+                span
+                {
+                  font-weight: bold;
+                  color: $color-imp;
+                }
+                span:nth-child(1)
+                {
+                  font-size: $fontSize3;
+                }
+              }
+            }
             textarea
             {
               width: 100%;
               max-width: 100%;
               min-width: 100%;
-              min-height: 150px;
+              min-height: 250px;
               outline: none;
               background: $color1;
               color: $police;
@@ -3216,7 +3236,7 @@ body
       width: 50%;
       height: 100%;
       z-index: 1;
-      display:none;
+      display: none;
       @include positionTR(fixed, 0, 0);
       // @include flex(center, center, row);
       svg
@@ -3568,6 +3588,7 @@ body
           {
             position: relative;
             z-index: 2;
+            text-align: center;
           }
           .tag
           {
@@ -4309,7 +4330,7 @@ body
       {
         position: absolute;
         bottom: 0;
-        width: 50%;
+        width: 70%;
         height: 80%;
         border-collapse: collapse;
         overflow-y: scroll;

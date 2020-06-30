@@ -3,22 +3,41 @@ const paragraphs = document.querySelectorAll(".textContent");
 paragraphs.forEach(text => {
     const words = text.textContent.split(" "),
           newWords = [];
-    // console.log(words);
     for (let i = 0; i < words.length; i++) {
-      let letters = words[i].split("");
-      // console.log(letters);
-      let firstLetter = letters[0];
-      let lastLetter = letters[letters.length -1];
-      let newLetters;
-      if(firstLetter == '§')
+      let letters = words[i].split(""),
+          firstLetter = letters[0],
+          lastLetter = letters[letters.length -1],
+          newLetters;
+      if(firstLetter == '{')
       {
         letters.splice(0, 1);
-        newWords.push("<br>")
+        newWords.push("<div style='text-align: left;'>")
       }
-      else if (letters[1] == '§')
+      else if(firstLetter == '}')
       {
-        letters.splice(0, 2);
-        newWords.push("<br>")
+        letters.splice(0, 1);
+        newWords.push("<div style='text-align: right;'>")
+      }
+      else if(firstLetter == '|')
+      {
+        letters.splice(0, 1);
+        newWords.push("<div style='text-align: center;'>")
+      }
+      else if(firstLetter == 'µ')
+      {
+        letters.splice(0, 1);
+        newWords.push("<div style='text-align: justify;'>")
+      }
+      else if(firstLetter == '~')
+      {
+        letters.splice(0, 1);
+        newWords.push("</div>")
+      }
+      else if(firstLetter == '§')
+      {
+        letters.splice(0, 1);
+        newWords.push("<br>");
+        firstLetter = letters[0];
       }
       if(letters.length>1)
       {
@@ -51,7 +70,7 @@ paragraphs.forEach(text => {
           else if(firstLetter =="%" && lastLetter=="%")
           {
             newLetters = letters.slice(1, -2);
-            newWords.push(`<elem syle='font-style: italic'>${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
+            newWords.push(`<elem style='font-style: italic'>${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
           }
           else if(firstLetter != "%" && lastLetter=="%")
           { 
@@ -128,4 +147,6 @@ paragraphs.forEach(text => {
       }
       text.innerHTML =newWords.join(" ");
     }
+    console.log(text);
 });
+
