@@ -34,18 +34,18 @@ function getPageHtml(id){
     <div>
       <label>Stylisation du texte :</label>
       <ul>
-      <li><span>§</span> Retour a la ligne <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après *( ex : § § votre texte -> retour a la ligne 2 fois )</li>
-      <li><span>{</span> Texte sur la gauche <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après *( ex : { votre texte... )</li>
-      <li><span>}</span> Texte sur la droite <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après *( ex : } votre texte... )</li>
-      <li><span>|</span> Texte centré  <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après *( ex : | votre texte... )</li>
-      <li><span>µ</span> Texte justifié <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après *( ex : µ votre texte... )</li>
-      <li><span>~</span> Balise de fin de justification de texte <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après *( ex : texte centré -> | votre texte ~ )</li>
-      <li><span>@@</span> Texte en <b>gras</b> <span>-></span> il suffit d\'entourer le mot ou texte du symbole @ ** ( ex: @votre texte@ )</li>
-      <li><span>%%</span> Texte en <elem style="font-style: italic">italique</elem> <span>-></span> il suffit d\'entourer le mot ou texte du symbole % ** ( ex: %votre texte% )</li>
-      <li><span>**</span> Texte <elem style="text-decoration: underline">souligné</elem> <span>-></span> il suffit d\'entourer le mot ou texte du symbole * ** ( ex: *votre texte* )</li>
-    </ul>
-    * : vous pouvez revenir a la ligne pendant que vous ecrivez mais veillez bien a respecter les consignes. Laissez toujours un espace avant et après chaque symbole même après avoir sauté une ligne <br>
-    ** : Pour la stylisation du texte en gras, italique et souligné, il faut laisser un espace après votre phrase si vous revenez à la ligne.
+        <li><span>§</span> Retour a la ligne <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : § § votre texte -> retour a la ligne 2 fois ) *</li>
+        <li><span>{</span> Texte sur la gauche <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : { votre texte... ) *</li>
+        <li><span>}</span> Texte sur la droite <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : } votre texte... ) *</li>
+        <li><span>|</span> Texte centré  <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : | votre texte... ) *</li>
+        <li><span>µ</span> Texte justifié <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : µ votre texte... ) *</li>
+        <li><span>~</span> Balise de fin de justification de texte <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : texte centré -> | votre texte ~ ) *</li>
+        <li><span>@@</span> Texte en <b>gras</b> <span>-></span> il suffit d\'entourer le mot ou texte du symbole "@" ( ex: @votre texte@ ) **</li>
+        <li><span>%%</span> Texte en <elem style="font-style: italic">italique</elem> <span>-></span> il suffit d\'entourer le mot ou texte du symbole "%" ( ex: %votre texte% ) **</li>
+        <li><span>**</span> Texte <elem style="text-decoration: underline">souligné</elem> <span>-></span> il suffit d\'entourer le mot ou texte du symbole "*" ( ex: *votre texte* ) **</li>
+      </ul>
+      * : Vous pouvez revenir a la ligne pendant que vous ecrivez mais veillez bien a respecter les consignes. Laissez toujours un espace avant et après chaque symbole même après avoir sauté une ligne.<br>
+      ** : Pour la stylisation du texte en gras, italique et souligné, il faut laisser un espace après votre phrase si vous revenez à la ligne.
     </div>
     <div>
         <label>Contenu de la page :</label>
@@ -70,26 +70,26 @@ function getPageHtml(id){
 
 function addDeleteEvent()
 {
-        let trashes = document.querySelectorAll('.trash');
-        trashes.forEach(function(trash){
-            trash.removeEventListener("click", deleteBlock);
-            trash.addEventListener("click", deleteBlock);
-        });
+  let trashes = document.querySelectorAll('.trash');
+  trashes.forEach(function(trash){
+      trash.removeEventListener("click", deleteBlock);
+      trash.addEventListener("click", deleteBlock);
+  });
 }
 
 function deleteBlock(event)
 {
-    let page = event.target.parentNode;
-    let id = event.target.dataset.id;
-    let nbrPage = document.querySelector("input[name=nbrPage]").value;
-    let totalText = document.querySelector('.total').innerHTML;
+  let page = event.target.parentNode;
+  let id = event.target.dataset.id;
+  let nbrPage = document.querySelector("input[name=nbrPage]").value;
+  let totalText = document.querySelector('.total').innerHTML;
 
-    if(nbrPage > 1){
-        nbrPage--;
-        document.querySelector("input[name=nbrPage]").value = nbrPage;
-        document.querySelector('.total').innerHTML = totalText.replace(/\d+/gi, nbrPage);
-        page.remove();
-    }
+  if(nbrPage > 1){
+    nbrPage--;
+    document.querySelector("input[name=nbrPage]").value = nbrPage;
+    document.querySelector('.total').innerHTML = totalText.replace(/\d+/gi, nbrPage);
+    page.remove();
+  }
 }
 
 inputFile();

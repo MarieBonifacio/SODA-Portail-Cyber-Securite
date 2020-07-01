@@ -781,152 +781,146 @@ window.addEventListener('load', function () {
             const paragraphs = document.querySelectorAll(".textContent");
 
             paragraphs.forEach(text => {
-                const words = text.textContent.split(" "),
-                      newWords = [];
-                for (let i = 0; i < words.length; i++) {
-                  let letters = words[i].split(""),
-                      firstLetter = letters[0],
-                      lastLetter = letters[letters.length -1],
-                      newLetters;
-                  if(firstLetter == '{')
-                  {
+              const words = text.textContent.split(" "),
+              newWords = [];
+              for (let i = 0; i < words.length; i++) {
+                let letters = words[i].split(""),
+                    firstLetter = letters[0],
+                    lastLetter = letters[letters.length -1],
+                    pack,
+                    newLetters;
+                switch (firstLetter) {
+                  case '{':
                     letters.splice(0, 1);
-                    newWords.push("<div style='text-align: left;'>")
-                  }
-                  else if(firstLetter == '}')
-                  {
+                    newWords.push("<div style='text-align: left;'>");
+                    break;
+                  case '}':
                     letters.splice(0, 1);
-                    newWords.push("<div style='text-align: right;'>")
-                  }
-                  else if(firstLetter == '|')
-                  {
+                    newWords.push("<div style='text-align: right;'>");
+                    break;
+                  case '|':
                     letters.splice(0, 1);
-                    newWords.push("<div style='text-align: center;'>")
-                  }
-                  else if(firstLetter == 'µ')
-                  {
+                    newWords.push("<div style='text-align: center;'>");
+                    break;
+                  case 'µ':
                     letters.splice(0, 1);
-                    newWords.push("<div style='text-align: justify;'>")
-                  }
-                  else if(firstLetter == '~')
-                  {
+                    newWords.push("<div style='text-align: justify;'>");
+                    break;
+                  case '~':
                     letters.splice(0, 1);
                     newWords.push("</div>")
-                  }
-                  else if(firstLetter == '§')
-                  {
+                    break;
+                  case '§':
                     letters.splice(0, 1);
                     newWords.push("<br>");
-                    firstLetter = letters[0];
-                  }
-                  if(letters.length>1)
-                  {
-                    if(lastLetter == '.' || lastLetter == '!' || lastLetter == '?' || lastLetter == ',' || lastLetter == ';' || lastLetter == ':' || lastLetter == '/' )
-                    {
-                      lastLetter = letters[letters.length - 2]
+                    break;
+                }
+                if(letters.length>1) {
+                  if(lastLetter == '.' || lastLetter == '!' || lastLetter == '?' || lastLetter == ',' || lastLetter == ';' || lastLetter == ':' || lastLetter == '/' ) {
+                    lastLetter = letters[letters.length - 2]
+                    if(firstLetter != '@' && lastLetter =='@' || firstLetter != '*' && lastLetter =='*' || firstLetter != '%' && lastLetter =='%') {
+                      pack = `0${lastLetter}`;
+                    } else {
+                      pack = `${firstLetter + lastLetter}`;
+                    }
+                    switch (pack) {
                       // bold
-                      if(firstLetter == "@" && lastLetter=="@")
-                      {
+                      case '@@':
                         newLetters = letters.slice(1, -2);
-                        newWords.push(`<b>${newLetters.join("")}</b>${letters[letters.length - 1]}`);
-                      }
-                      else if(firstLetter != "@" && lastLetter=="@")
-                      { 
+                        newWords.push(`<elem style="font-weight: bold">${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
+                        break; 
+                      case '0@':
                         newLetters = letters.slice(0, -2);
-                        newWords.push(`${newLetters.join("")}</b>${letters[letters.length - 1]}`);
-                      }
-                      // underline
-                      else if(firstLetter =="*" && lastLetter=="*")
-                      {
+                        newWords.push(`${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
+                        break;
+                      // underlined
+                      case '**':
                         newLetters = letters.slice(1, -2);
                         newWords.push(`<elem style="text-decoration: underline">${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
-                      }
-                      else if(firstLetter != "*" && lastLetter=="*")
-                      { 
+                        break; 
+                      case '0*':
                         newLetters = letters.slice(0, -2);
                         newWords.push(`${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
-                      }
+                        break;
                       // italic
-                      else if(firstLetter =="%" && lastLetter=="%")
-                      {
+                      case '%%':
                         newLetters = letters.slice(1, -2);
                         newWords.push(`<elem style='font-style: italic'>${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
-                      }
-                      else if(firstLetter != "%" && lastLetter=="%")
-                      { 
+                        break; 
+                      case '0%':
                         newLetters = letters.slice(0, -2);
                         newWords.push(`${newLetters.join("")}</elem>${letters[letters.length - 1]}`);
-                      }
-                      else
-                      {
+                        break; 
+                      // by default
+                      default: 
                         newLetters = letters;
                         newWords.push(`${newLetters.join("")}`);
-                      }
+                        break;
                     }
-                    else
+                  } else {
+                    if(lastLetter != '@' && firstLetter== '@'|| lastLetter != '*'&& firstLetter== '*' || lastLetter != '%' && firstLetter== '%')
                     {
+                      pack = `${firstLetter}0`;
+                    }
+                    else if(firstLetter != '@' && lastLetter =='@' || firstLetter != '*' && lastLetter =='*' || firstLetter != '%' && lastLetter =='%')
+                    {
+                      pack = `0${lastLetter}`;
+                    } else {
+                      pack = `${firstLetter + lastLetter}`;
+                    }
+                    switch (pack) {
                       // bold
-                      if(firstLetter == "@" && lastLetter !="@")
-                      {
-                        newLetters = letters.slice(1);
-                        newWords.push(`<b>${newLetters.join("")}`);
-                      }
-                      else if(firstLetter == "@" && lastLetter=="@")
-                      {
+                      case '@@':
                         newLetters = letters.slice(1, -1);
-                        newWords.push(`<b>${newLetters.join("")}</b>`);
-                      }
-                      else if(firstLetter != "@" && lastLetter=="@")
-                      { 
-                        newLetters = letters.slice(0, -1);
-                        newWords.push(`${newLetters.join("")}</b>`);
-                      }
-                      // underline
-                      else if(firstLetter == "*" && lastLetter !="*")
-                      {
+                        newWords.push(`<elem style="font-weight: bold">${newLetters.join("")}</elem>`);
+                        break; 
+                      case '@0':
                         newLetters = letters.slice(1);
-                        newWords.push(`<elem style="text-decoration: underline">${newLetters.join("")}`);
-                      }
-                      else if(firstLetter =="*" && lastLetter=="*")
-                      {
+                        newWords.push(`<elem style="font-weight: bold">${newLetters.join("")}`);
+                        break; 
+                      case '0@':
+                        newLetters = letters.slice(0, -1);
+                        newWords.push(`${newLetters.join("")}</elem>`);
+                        break;
+                      // underlined
+                      case '**':
                         newLetters = letters.slice(1, -1);
                         newWords.push(`<elem style="text-decoration: underline">${newLetters.join("")}</elem>`);
-                      }
-                      else if(firstLetter != "*" && lastLetter=="*")
-                      { 
+                        break; 
+                      case '*0':
+                        newLetters = letters.slice(1);
+                        newWords.push(`<elem style="text-decoration: underline">${newLetters.join("")}`);
+                        break; 
+                      case '0*':
                         newLetters = letters.slice(0, -1);
                         newWords.push(`${newLetters.join("")}</elem>`);
-                      }
-                      // italic 
-                      else if(firstLetter == "%" && lastLetter !="%")
-                      {
-                        newLetters = letters.slice(1);
-                        newWords.push(`<elem style="font-style: italic">${newLetters.join("")}`);
-                      }
-                      else if(firstLetter =="%" && lastLetter=="%")
-                      {
+                        break;
+                      // italic
+                      case '%%':
                         newLetters = letters.slice(1, -1);
                         newWords.push(`<elem style="font-style: italic">${newLetters.join("")}</elem>`);
-                      }
-                      else if(firstLetter != "%" && lastLetter=="%")
-                      { 
+                        break; 
+                      case '0%':
                         newLetters = letters.slice(0, -1);
                         newWords.push(`${newLetters.join("")}</elem>`);
-                      }
-                      else
-                      {
+                        break; 
+                      case '%0':
+                        newLetters = letters.slice(1);
+                        newWords.push(`<elem style="font-style: italic">${newLetters.join("")}`);
+                        break;
+                      // by default
+                      default: 
                         newLetters = letters;
                         newWords.push(`${newLetters.join("")}`);
-                      }
+                        break;
                     }
                   }
-                  else
-                  {
-                    newLetters = letters;
-                    newWords.push(`${newLetters.join("")}`);
-                  }
+                } else {
+                  newLetters = letters;
+                  newWords.push(`${newLetters.join("")}`);
                 }
-                text.innerHTML = newWords.join(" ");
+                text.innerHTML =newWords.join(" ");
+              }
             });
           }
         };
