@@ -31,7 +31,7 @@ function getPageHtml(id){
         <label>Titre de la page :</label>
         <input type="text" name="content_${id}_title" value="">
     </div>
-    <div class="legend">
+    <div class="legend legend${id}">
       <label>Stylisation du texte :</label>
       <ul class="display">
         <li><span>{{</span> Texte sur la gauche<br> ( ex : {{votre texte{{ ) *</li>
@@ -80,24 +80,6 @@ function addDeleteEvent()
   trashes.forEach(function(trash){
       trash.removeEventListener("click", deleteBlock);
       trash.addEventListener("click", deleteBlock);
-  });
-  let legends = document.querySelectorAll(".legend");
-
-  legends.forEach(div => {
-    const legend = div.childNodes[3];
-    const inst = div.childNodes[7];
-    div.addEventListener("click", ()=>{
-      if(legend.classList.contains("display"))
-      {
-        legend.classList.remove("display");
-        inst.classList.remove("display");
-      }
-      else
-      {
-        legend.classList.add("display");
-        inst.classList.add("display");
-      }
-    })
   });
 }
 
@@ -156,6 +138,24 @@ plus.addEventListener("click", ()=>{
 
     addDeleteEvent();
     inputFile();
+
+    let legend = document.querySelector(`.legendn${nextId}`);
+    const ul = legend.childNodes[3];
+    const inst = legend.childNodes[7];
+    legend.addEventListener("click", ()=>{
+      console.log("click");
+      if(ul.classList.contains("display"))
+      {
+        ul.classList.remove("display");
+        inst.classList.remove("display");
+      }
+      else
+      {
+        ul.classList.add("display");
+        inst.classList.add("display");
+      }
+    });
+    
     nextId++;
   }
 })
@@ -168,4 +168,24 @@ validate.addEventListener("click", ()=>{
 })
 sketching.addEventListener("click", ()=>{
   document.querySelector("input[value='Enregistrer le brouillon']").click();
+});
+
+const legends = document.querySelectorAll(".legend");
+
+legends.forEach(legend => {
+  const ul = legend.childNodes[3];
+  const inst = legend.childNodes[7];
+  legend.addEventListener("click", ()=>{
+    console.log("click");
+    if(ul.classList.contains("display"))
+    {
+      ul.classList.remove("display");
+      inst.classList.remove("display");
+    }
+    else
+    {
+      ul.classList.add("display");
+      inst.classList.add("display");
+    }
+  });
 });
