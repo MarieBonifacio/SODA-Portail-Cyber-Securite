@@ -36,8 +36,7 @@ window.addEventListener('load', function () {
     leaderboard = document.querySelector(".leaderboard");
     let tableContent,
     isPresent = false;
-
-    console.log(myArray);
+    
     // condition for user whithout any user stats
     if(userResults.length != 0)
     {
