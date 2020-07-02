@@ -184,7 +184,7 @@ function getLastQuiz($userId){
 
     global $wpdb;   
 
-    $quiz = $wpdb->get_row( "SELECT id, name, tag_id, img_path FROM quiz ORDER BY created_at DESC LIMIT 1" );
+    $quiz = $wpdb->get_row( "SELECT id, name, tag_id, img_path FROM quiz WHERE status=1 ORDER BY created_at DESC LIMIT 1" );
 
 
 
