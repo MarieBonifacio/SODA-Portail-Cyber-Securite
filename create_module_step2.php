@@ -46,14 +46,24 @@ get_header();
             <div class="legend">
               <label>Stylisation du texte :</label>
               <ul class="display">
-                <li><span>{{</span> Texte sur la gauche<br> ( ex : {{ votre texte{{ )</li>
-                <li><span>}}</span> Texte sur la droite<br> ( ex : }}votre texte}} )</li>
-                <li><span>||</span> Texte centré<br> ( ex : ||votre texte|| )</li>
-                <li><span>~~</span> Texte justifié<br> ( ex : µµvotre texteµµ )</li>
+                <li><span>{{</span> Texte sur la gauche<br> ( ex : {{votre texte{{ ) *</li>
+                <li><span>}}</span> Texte sur la droite<br> ( ex : }}votre texte}} ) *</li>
+                <li><span>||</span> Texte centré<br> ( ex : ||votre texte|| ) *</li>
+                <li><span>~~</span> Texte justifié<br> ( ex : ~~votre texte~~ ) *</li>
                 <li><span>**</span> Texte en <b>gras</b><br> ( ex: **votre texte** )</li>
                 <li><span>//</span> Texte en <elem style="font-style: italic">italique</elem> <br>( ex: //votre texte// )</li>
                 <li><span>__</span> Texte <elem style="text-decoration: underline">souligné</elem> <br>( ex: __votre texte__ )</li>
               </ul>
+              <br>
+              <p class="display">* pour la justification du texte, il y a une particularité a respecter: chaque bloc doit être entouré du symbole en question. <br>
+              <elem style="text-decoration: underline">ex</elem>: <br>{{Ma phrase d\'introduction
+                <br>
+                mon paragraphe}} -> cet exemple ne marchera pas
+                <br><br>
+                {{Ma phrase d\'introduction}}
+                  <br>
+                {{mon paragraphe}} -> il faudra suivre cet exemple
+                </p>
             </div>
             <div>
                 <label>Contenu de la page :</label>

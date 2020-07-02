@@ -2692,6 +2692,10 @@ body
                 }
               }
             }
+            p
+            {
+              user-select: none;
+            }
             .display
             {
               display: none;
@@ -2719,7 +2723,7 @@ body
               width: 100%;
               max-width: 100%;
               min-width: 100%;
-              min-height: 250px;
+              min-height: 350px;
               outline: none;
               background: $color1;
               color: $police;

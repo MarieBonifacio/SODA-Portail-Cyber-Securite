@@ -34,14 +34,24 @@ function getPageHtml(id){
     <div class="legend">
       <label>Stylisation du texte :</label>
       <ul class="display">
-        <li><span>{{</span> Texte sur la gauche<br> ( ex : {{ votre texte{{ )</li>
-        <li><span>}}</span> Texte sur la droite<br> ( ex : }}votre texte}} )</li>
-        <li><span>||</span> Texte centré<br> ( ex : ||votre texte|| )</li>
-        <li><span>~~</span> Texte justifié<br> ( ex : µµvotre texteµµ )</li>
+        <li><span>{{</span> Texte sur la gauche<br> ( ex : {{votre texte{{ ) *</li>
+        <li><span>}}</span> Texte sur la droite<br> ( ex : }}votre texte}} ) *</li>
+        <li><span>||</span> Texte centré<br> ( ex : ||votre texte|| ) *</li>
+        <li><span>~~</span> Texte justifié<br> ( ex : ~~votre texte~~ ) *</li>
         <li><span>**</span> Texte en <b>gras</b><br> ( ex: **votre texte** )</li>
         <li><span>//</span> Texte en <elem style="font-style: italic">italique</elem> <br>( ex: //votre texte// )</li>
         <li><span>__</span> Texte <elem style="text-decoration: underline">souligné</elem> <br>( ex: __votre texte__ )</li>
       </ul>
+      <br>
+      <p class="display">* pour la justification du texte, il y a une particularité a respecter: chaque bloc doit être entouré du symbole en question. <br>
+      <elem style="text-decoration: underline">ex</elem>: <br>{{Ma phrase d\'introduction
+        <br>
+        mon paragraphe}} -> cet exemple ne marchera pas
+        <br><br>
+        {{Ma phrase d\'introduction}}
+          <br>
+        {{mon paragraphe}} -> il faudra suivre cet exemple
+        </p>
     </div>
     <div>
         <label>Contenu de la page :</label>
@@ -70,6 +80,24 @@ function addDeleteEvent()
   trashes.forEach(function(trash){
       trash.removeEventListener("click", deleteBlock);
       trash.addEventListener("click", deleteBlock);
+  });
+  let legends = document.querySelectorAll(".legend");
+
+  legends.forEach(div => {
+    const legend = div.childNodes[3];
+    const inst = div.childNodes[7];
+    div.addEventListener("click", ()=>{
+      if(legend.classList.contains("display"))
+      {
+        legend.classList.remove("display");
+        inst.classList.remove("display");
+      }
+      else
+      {
+        legend.classList.add("display");
+        inst.classList.add("display");
+      }
+    })
   });
 }
 
@@ -140,20 +168,4 @@ validate.addEventListener("click", ()=>{
 })
 sketching.addEventListener("click", ()=>{
   document.querySelector("input[value='Enregistrer le brouillon']").click();
-});
-
-const legends = document.querySelectorAll(".legend");
-
-legends.forEach(div => {
-  const thirdChild = div.childNodes[3];
-  div.addEventListener("click", ()=>{
-    if(thirdChild.classList.contains("display"))
-    {
-      thirdChild.classList.remove("display");
-    }
-    else
-    {
-      thirdChild.classList.add("display");
-    }
-  })
 });

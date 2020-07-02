@@ -7,5 +7,5 @@ paragraphs.forEach(text => {
   text.innerHTML = text.innerHTML.replace(new RegExp(/{{(.*?){{/g), "<div style='text-align: left;'>\$1</div>" );
   text.innerHTML = text.innerHTML.replace(new RegExp(/}}(.*?)}}/g), "<div style='text-align: right;'>\$1</div>" );
   text.innerHTML = text.innerHTML.replace(new RegExp(/\|\|(.*?)\|\|/g), "<div style='text-align: center;'>\$1</div>" );
-  text.innerHTML = text.innerHTML.replace(new RegExp(/~~(.*?)~~/g), "<div style='text-align: justify;'>\$1</div>" );
+  text.innerHTML = text.innerHTML.replace(new RegExp(/\~\~(.*?)\~\~/g), "<div style='text-align: justify;'>\$1</div>" );
 });
