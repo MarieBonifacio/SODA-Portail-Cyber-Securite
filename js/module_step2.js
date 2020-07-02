@@ -143,7 +143,6 @@ plus.addEventListener("click", ()=>{
     const ul = legend.childNodes[3];
     const inst = legend.childNodes[7];
     legend.addEventListener("click", ()=>{
-      console.log("click");
       if(ul.classList.contains("display"))
       {
         ul.classList.remove("display");
@@ -155,7 +154,7 @@ plus.addEventListener("click", ()=>{
         inst.classList.add("display");
       }
     });
-    
+
     nextId++;
   }
 })
@@ -176,7 +175,6 @@ legends.forEach(legend => {
   const ul = legend.childNodes[3];
   const inst = legend.childNodes[7];
   legend.addEventListener("click", ()=>{
-    console.log("click");
     if(ul.classList.contains("display"))
     {
       ul.classList.remove("display");

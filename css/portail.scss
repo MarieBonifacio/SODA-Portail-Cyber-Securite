@@ -2663,7 +2663,7 @@ body
           margin-top: 15px;
           margin-bottom: 15px;
           @include flex(flex-start, flex-start, column);
-          div:nth-child(2)
+          .legend
           {
             background: $color1;
             padding: 5px;
@@ -2701,7 +2701,7 @@ body
               display: none;
             }
           }
-          div:nth-child(2):hover
+          .legend:hover
           {
             background: $color2;
             cursor: pointer;
@@ -2998,7 +2998,7 @@ body
           position: relative;
           width: 800px;
           height: 500px;
-          background: $color3;
+          background: rgba(36, 52, 77, 0.7);
           border-radius: 5px;
           padding: 5px 10px;
           margin-bottom: 45px;
@@ -3259,7 +3259,6 @@ body
       width: 50%;
       height: 100%;
       z-index: 1;
-      display: none;
       @include positionTR(fixed, 0, 0);
       // @include flex(center, center, row);
       svg
@@ -3385,7 +3384,6 @@ body
       width: 50%;
       height: 100%;
       z-index: 1;
-      display: none;
       @include positionTR(fixed, 0, 0);
       // @include flex(center, center, row);
       svg

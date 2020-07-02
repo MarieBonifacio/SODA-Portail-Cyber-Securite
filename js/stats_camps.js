@@ -72,9 +72,7 @@ window.addEventListener("load", ()=>{
     })
   });
 
-  function compare(){
-    console.log("|"+document.querySelector(".camp_name").textContent+"|");
-    
+  function compare(){ 
     if(document.querySelector(".camp_name_span").textContent !== "" && document.querySelector(".compare_name_span").textContent !== ""){
       document.querySelector(".compareTitle").style.opacity= "1";
     }
