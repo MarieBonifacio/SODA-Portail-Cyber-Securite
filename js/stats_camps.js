@@ -73,6 +73,11 @@ window.addEventListener("load", ()=>{
   });
 
   function compare(){
+    console.log("|"+document.querySelector(".camp_name").textContent+"|");
+    
+    if(document.querySelector(".camp_name_span").textContent !== "" && document.querySelector(".compare_name_span").textContent !== ""){
+      document.querySelector(".compareTitle").style.opacity= "1";
+    }
     const trQ = document.querySelectorAll(".trQ");
 
     for (let i = 0; i < trQ.length; i++) {

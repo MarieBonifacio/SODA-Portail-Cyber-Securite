@@ -23,7 +23,7 @@
     ?>
     </ul>
   </div>
-  <p>Tableau des statisitques de la campagne <span class="camp_name"></span> comparée à <span class="compare_name"></span></p>
+  <p class="compareTitle" style="opacity:0;">Tableau des statistiques de la campagne <span class="camp_name camp_name_span"></span> comparée à <span class="compare_name compare_name_span"></span></p>
   <div class="container">
     <div class="tableContainer">
       <div>
