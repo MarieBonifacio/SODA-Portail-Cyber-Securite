@@ -43,21 +43,17 @@ get_header();
                 <label>Titre de la page :</label>
                 <input type="text" name="content_'.$i.'_title" value="'.$p['content_'.$i.'_title'].'">
             </div>
-            <div>
+            <div class="legend">
               <label>Stylisation du texte :</label>
-              <ul>
-                <li><span>§</span> Retour a la ligne <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : § § votre texte -> retour a la ligne 2 fois ) *</li>
-                <li><span>{</span> Texte sur la gauche <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : { votre texte... ) *</li>
-                <li><span>}</span> Texte sur la droite <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : } votre texte... ) *</li>
-                <li><span>|</span> Texte centré  <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : | votre texte... ) *</li>
-                <li><span>µ</span> Texte justifié <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : µ votre texte... ) *</li>
-                <li><span>~</span> Balise de fin de justification de texte <span>-></span> pour qu\'il soit effectif vous devrez laisser un espace avant et après ( ex : texte centré -> | votre texte ~ ) *</li>
-                <li><span>@@</span> Texte en <b>gras</b> <span>-></span> il suffit d\'entourer le mot ou texte du symbole "@" ( ex: @votre texte@ ) **</li>
-                <li><span>%%</span> Texte en <elem style="font-style: italic">italique</elem> <span>-></span> il suffit d\'entourer le mot ou texte du symbole "%" ( ex: %votre texte% ) **</li>
-                <li><span>**</span> Texte <elem style="text-decoration: underline">souligné</elem> <span>-></span> il suffit d\'entourer le mot ou texte du symbole "*" ( ex: *votre texte* ) **</li>
+              <ul class="display">
+                <li><span>{{</span> Texte sur la gauche<br> ( ex : {{ votre texte{{ )</li>
+                <li><span>}}</span> Texte sur la droite<br> ( ex : }}votre texte}} )</li>
+                <li><span>||</span> Texte centré<br> ( ex : ||votre texte|| )</li>
+                <li><span>~~</span> Texte justifié<br> ( ex : µµvotre texteµµ )</li>
+                <li><span>**</span> Texte en <b>gras</b><br> ( ex: **votre texte** )</li>
+                <li><span>//</span> Texte en <elem style="font-style: italic">italique</elem> <br>( ex: //votre texte// )</li>
+                <li><span>__</span> Texte <elem style="text-decoration: underline">souligné</elem> <br>( ex: __votre texte__ )</li>
               </ul>
-              * : Vous pouvez revenir a la ligne pendant que vous ecrivez mais veillez bien a respecter les consignes. Laissez toujours un espace avant et après chaque symbole même après avoir sauté une ligne.<br>
-              ** : Pour la stylisation du texte en gras, italique et souligné, il faut laisser un espace après votre phrase si vous revenez à la ligne.
             </div>
             <div>
                 <label>Contenu de la page :</label>

@@ -2663,26 +2663,23 @@ body
           margin-top: 15px;
           margin-bottom: 15px;
           @include flex(flex-start, flex-start, column);
-          div
+          div:nth-child(2)
           {
-            width: 100%;
-            margin-bottom: 10px;
-            margin-top: 5px;
-            input
-            {
-              width: 70%;
-              background: none;
-              border:none;
-              border-bottom: 1px solid $police;
-            }
+            background: $color1;
+            padding: 5px;
+            border-radius: 3px;
+            transition: .2s;
             ul
             {
+              padding: 0px;
               list-style: none;
-              padding: 5px;
-              background: $color1;
-              border-radius: 3px;
+              display: flex;
+              justify-content: center;
+              flex-wrap: wrap;
+              user-select: none;
               li
               {
+                width: 30%;
                 margin-bottom: 10px;
                 span
                 {
@@ -2694,6 +2691,28 @@ body
                   font-size: $fontSize3;
                 }
               }
+            }
+            .display
+            {
+              display: none;
+            }
+          }
+          div:nth-child(2):hover
+          {
+            background: $color2;
+            cursor: pointer;
+          }
+          div
+          {
+            width: 100%;
+            margin-bottom: 10px;
+            margin-top: 5px;
+            input
+            {
+              width: 70%;
+              background: none;
+              border:none;
+              border-bottom: 1px solid $police;
             }
             textarea
             {
