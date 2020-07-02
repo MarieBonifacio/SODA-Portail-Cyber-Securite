@@ -1847,6 +1847,21 @@ body
             background: transparent;
           }
         }
+        .lastQuizMess
+        {
+          z-index: 5;
+          background: $color1;
+          border-radius: 3px;
+          padding: 15px;
+          width: 150px;
+          text-align: center;
+          transform: translate(-50%, -50%);
+          @include positionTL(fixed, 50%, 50%);
+          i
+          {
+            @include positionTR(absolute, 5px, 5px);
+          }
+        }
         .quiz
         {
           grid-column: 6/8;
@@ -1857,7 +1872,7 @@ body
             width: 50%;
             height: 70%;
             margin-bottom: 5px;
-            a
+            div
             {
               position: relative;
               width: 100%;
@@ -1900,6 +1915,10 @@ body
                 text-align: center;
                 top: 0;
               }
+            }
+            div:hover
+            {
+              cursor: pointer;
             }
           }
           .contentQ:hover
@@ -2025,7 +2044,7 @@ body
           grid-column: 6/8;
           grid-row: 1/4;
           @include flex(flex-start, center, column);
-          .btns
+          .btnsBoard
           {
             margin-bottom: 10px;
             button

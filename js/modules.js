@@ -108,7 +108,6 @@ window.addEventListener('load', function () {
             submitButton = document.getElementById('submit'),
             progress = document.querySelector('.progressDone'),
             percentage = document.querySelector('.percentage');
-            // intro ici avec un if tout simple
             const divIntro = document.createElement("div");
             divIntro.classList.add("intro");
             // let totalSeconds = 0;

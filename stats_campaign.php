@@ -7,8 +7,15 @@
     <label>Votre campagne: <span class="camp_name name_camp">votre choix</span></label>
     <ul class="listCamp hidden">
     <?php $campaigns = $wpdb->get_results( "SELECT campaign.id AS cId, campaign.name AS cName from campaign");
-      foreach($campaigns as $c){
-        echo '<li class="liC" data-id="'.$c->cId.'">'.$c->cName.'</li>';
+      if(count($campaigns)>0)
+      { 
+        foreach($campaigns as $c){
+          echo '<li class="liC" data-id="'.$c->cId.'">'.$c->cName.'</li>';
+        } 
+      }
+      else
+      {
+        echo '<li>Aucunes campagnes disponibles</li>';
       }
     ?>
     </ul>
@@ -17,8 +24,15 @@
     <label>comparée à : <span class="compare_name compare_camp">votre choix</span></label>
     <ul class="listCampC hidden">
     <?php $campaigns = $wpdb->get_results( "SELECT campaign.id AS cId, campaign.name AS cName from campaign");
-      foreach($campaigns as $c){
-        echo '<li class="liComp" data-id="'.$c->cId.'">'.$c->cName.'</li>';
+      if(count($campaigns)>0)
+      {
+        foreach($campaigns as $c){
+          echo '<li class="liComp" data-id="'.$c->cId.'">'.$c->cName.'</li>';
+        }
+      }
+      else
+      {
+        echo '<li>Aucunes campagnes disponibles</li>';
       }
     ?>
     </ul>

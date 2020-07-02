@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
   if(this.readyState == 4 && this.status == 200)
   {
     var myArray = JSON.parse(this.responseText);
+    console.log(myArray);
     const grid = document.querySelector(".grid");
     for(i = 0; i<myArray.quiz.length; i ++)
     {

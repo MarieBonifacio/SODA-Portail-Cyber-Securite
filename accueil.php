@@ -30,6 +30,7 @@ cleanSession();
 
       <h3>Dernier quiz</h3>
 
+
     </div>
 
     <div class="window results">
@@ -56,7 +57,7 @@ cleanSession();
 
       <h3>Classement</h3>
 
-      <div class="btns">
+      <div class="btnsBoard">
 
         <button class="gen">Général</button>
 
