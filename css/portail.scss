@@ -313,32 +313,30 @@ body
     transition: .2s;
     z-index: 10;
     @include flex(flex-start, center, column);
-    .rank,
-    .home
-    {
-      @include flex(flex-start, center, row);
-      a
-      {
-        margin-left: 5%;
-      }
+    i{
+      transition: .2s;
+    }
+    i:hover{
+      color: $color-imp;
+      cursor: pointer;
     }
     div
     {
       position: relative;
-      @include flex(space-around, center, row);
+      @include flex(space-between, center, row);
       margin-bottom: 15px;
       width: 100%;
       height: 5%;
       .dropMenu
       {
         display: none;
-        width: 150px;
+        width: 170px;
         padding: 5px;
         background: $color3;
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
         position: absolute;
         top: -10%;
-        right: 10%;
+        right: 0%;
         border-radius: 5px;
         transform: translate(100%);
         list-style: none;
@@ -347,7 +345,6 @@ body
         z-index: 3;
         li
         {
-          margin: 5px;
           a
           {
             color: $police;
@@ -362,25 +359,25 @@ body
       {
         color: $icon-home;
       }
-      .fa-sort-down
+      .fa-caret-right, .fa-sort-down
       {
-        width: 30%;
-        height: 10%;
-        margin-right: 10px;
-        text-align: center;
+        margin: 10px;
+      }
+      .fa-sort-down{
         transform: rotate(-90deg);
       }
       #a
       {
         position: relative;
-        width: 50%;
         transition: .2s;
+        margin-left: 10px;
         @include flex(space-around, center, row);
+        i{
+          margin-right: 10px;
+        }
         p
         {
           display: none;
-          margin-right: 10%;
-          width: 50%;
           color: $police;
           font-size: $fontSize2;
           font-family: "Montserrat";
@@ -389,6 +386,10 @@ body
         {
           color: $color-imp;
         }
+      }
+      .bagelQuizImg{
+        width: 25px;
+        transform: translateX(-4px);
       }
     }
     // class to make icons name appear
@@ -404,19 +405,9 @@ body
     {
       margin-top: 15px;
     }
-    .fa-question
-    {
-      @include positionTR(absolute, "", 10px);
-      bottom: 10px;
-      font-size: $fontSize3;
-    }
     .left
     {
       @include flex(flex-start, center, row);
-      a
-      {
-        margin-left: 5%;
-      }
     }
   }
   // class to shrink the side nav
@@ -1862,7 +1853,7 @@ body
             @include positionTR(absolute, 5px, 5px);
           }
         }
-        .quiz
+        .quiz, .lastQ
         {
           grid-column: 6/8;
           grid-row: 4/6;
@@ -1872,7 +1863,7 @@ body
             width: 50%;
             height: 70%;
             margin-bottom: 5px;
-            div
+            a
             {
               position: relative;
               width: 100%;
@@ -2044,7 +2035,7 @@ body
           grid-column: 6/8;
           grid-row: 1/4;
           @include flex(flex-start, center, column);
-          .btnsBoard
+          .btns
           {
             margin-bottom: 10px;
             button
